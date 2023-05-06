@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AestheticsApplication<aesthetics>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.senac.aesthetics.AestheticsApplication",
+            "projectName": "aesthetics",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
