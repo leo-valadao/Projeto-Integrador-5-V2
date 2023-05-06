@@ -1,13 +1,11 @@
 package com.senac.aesthetics.domain;
 
-import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,9 +26,5 @@ public class Fornecedor extends Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_FORNECEDOR")
     private Long id;
-
-    // Relacionamentos:
-    @OneToMany(orphanRemoval = false, mappedBy = "fornecedor")
-    private Set<ContaPagar> contasPagar;
     
 }
