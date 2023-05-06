@@ -1,5 +1,6 @@
 package com.senac.aesthetics.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -45,7 +46,7 @@ public class ContaPagar extends Conta {
     @Column(name = "VALOR_PAGO", precision = 10, scale = 2)
     @Digits(integer = 10, fraction = 2, message = "O Valor Máximo de Pagamento da Conta a Pagar é de R$ 1.000.000,00 (1 Milhão)!")
     @PositiveOrZero(message = "O Valor Pago da Contaa Pagar Deve Estar Entre R$ 0 (Zero) e R$ 1.000.000,00 (1 Milhão)!")
-    private Float valorPago;
+    private BigDecimal valorPago;
 
     @Column(name = "DATA_PAGAMENTO")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")

@@ -1,5 +1,6 @@
 package com.senac.aesthetics.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -41,6 +42,6 @@ public abstract class Conta {
     @Digits(integer = 10, fraction = 2, message = "O Valor Máximo da Conta é de R$ 1.000.000,00 (1 Milhão)!")
     @PositiveOrZero(message = "O Valor da Conta Deve Estar Entre R$ 0 (Zero) e R$ 1.000.000,00 (1 Milhão)!")
     @NotNull(message = "O Valor da Conta Deve Ser Informado!")
-    private Float valor;
+    private BigDecimal valor;
 
 }

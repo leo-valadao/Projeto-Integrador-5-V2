@@ -1,5 +1,6 @@
 package com.senac.aesthetics.domain;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -48,7 +49,7 @@ public class Funcionario extends Pessoa {
     @Digits(integer = 10, fraction = 2, message = "O Valor Máximo da Comissão é de R$ 1.000.000,00 (1 Milhão)!")
     @PositiveOrZero(message = "O Valor da Comissão Deve Estar Entre R$ 0 (Zero) e R$ 1.000.000,00 (1 Milhão)!")
     @NotNull(message = "O Valor da Comissão Deve Ser Informado!")
-    private Float comissao;
+    private BigDecimal comissao;
 
     // Relacionamentos:
     @OneToMany(orphanRemoval = false, mappedBy = "respAgendamento")

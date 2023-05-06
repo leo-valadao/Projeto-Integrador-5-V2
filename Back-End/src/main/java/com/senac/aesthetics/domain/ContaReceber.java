@@ -1,6 +1,7 @@
 package com.senac.aesthetics.domain;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -46,7 +47,7 @@ public class ContaReceber extends Conta {
     @Column(name = "VALOR_RECEBIDO", precision = 10, scale = 2)
     @Digits(integer = 10, fraction = 2, message = "O Valor Máximo de Recebimento da Conta a Receber é de R$ 1.000.000,00 (1 Milhão)!")
     @PositiveOrZero(message = "O Valor Recebido da Conta a Receber Deve Estar Entre R$ 0 (Zero) e R$ 1.000.000,00 (1 Milhão)!")
-    private Float valorRecebido;
+    private BigDecimal valorRecebido;
 
     @Column(name = "DATA_RECEBIMENTO")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")

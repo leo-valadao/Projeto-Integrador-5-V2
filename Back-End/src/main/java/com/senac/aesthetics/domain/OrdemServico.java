@@ -1,5 +1,6 @@
 package com.senac.aesthetics.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -63,7 +64,7 @@ public class OrdemServico {
     @Digits(integer = 10, fraction = 2, message = "O Valor Máximo da Ordem de Serviço é de R$ 1.000.000,00 (1 Milhão)!")
     @PositiveOrZero(message = "O Valor da Ordem de Serviço Deve Estar Entre R$ 0 (Zero) e R$ 1.000.000,00 (1 Milhão)!")
     @NotNull(message = "O Valor da Ordem de Serviço Deve Ser Informado!")
-    private Float valor;
+    private BigDecimal valor;
 
     // Relacionamentos:
     @OneToOne(fetch = FetchType.EAGER, optional = false)
