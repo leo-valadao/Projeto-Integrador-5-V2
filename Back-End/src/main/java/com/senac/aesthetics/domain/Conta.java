@@ -40,6 +40,7 @@ public abstract class Conta {
     @Column(name = "VALOR", nullable = false, precision = 10, scale = 2)
     @Digits(integer = 10, fraction = 2, message = "O Valor Máximo da Conta é de R$ 1.000.000,00 (1 Milhão)!")
     @PositiveOrZero(message = "O Valor da Conta Deve Estar Entre R$ 0 (Zero) e R$ 1.000.000,00 (1 Milhão)!")
+    @NotNull(message = "O Valor da Conta é Obrigatório!")
     private Float valor;
     
 }
