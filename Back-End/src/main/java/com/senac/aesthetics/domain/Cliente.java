@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
@@ -37,7 +36,6 @@ public class Cliente extends Pessoa {
 
     // Relacionamentos:
     @OneToMany(orphanRemoval = false, mappedBy = "cliente")
-    @JoinColumn(name = "ID_AGENDAMENTO_FK", referencedColumnName = "ID_AGENDAMENTO")
     private Set<Agendamento> agendamentos;
 
 }
