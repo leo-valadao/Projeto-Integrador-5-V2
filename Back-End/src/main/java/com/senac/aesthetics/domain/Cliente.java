@@ -38,7 +38,4 @@ public class Cliente extends Pessoa {
     @OneToMany(orphanRemoval = false, mappedBy = "cliente")
     private Set<Agendamento> agendamentos;
 
-    @OneToMany(orphanRemoval = false, mappedBy = "cliente")
-    private Set<ContaReceber> contasReceber;
-
 }
