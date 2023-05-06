@@ -54,7 +54,6 @@ public class Funcionario extends Pessoa {
     // Relacionamentos:
 
     @OneToMany(orphanRemoval = false, mappedBy = "respAgendamento")
-    @JoinColumn(name = "ID_AGENDAMENTO_FK", referencedColumnName = "ID_AGENDAMENTO")
     private Set<Agendamento> agendamentos;
 
     @OneToMany(orphanRemoval = false, mappedBy = "respOS")
