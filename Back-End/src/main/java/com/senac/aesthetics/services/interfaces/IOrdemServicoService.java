@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import com.senac.aesthetics.domains.OrdemServico;
 import com.senac.aesthetics.errors.DataBaseException;
 
-public interface OrdemServicoServiceInterface {
+public interface IOrdemServicoService {
 
     public Page<OrdemServico> obterTodosOrdensServico(
             Integer numeroPagina, Integer quantidadePorPagina,

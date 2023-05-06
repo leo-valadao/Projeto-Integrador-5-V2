@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import com.senac.aesthetics.domains.Cliente;
 import com.senac.aesthetics.errors.DataBaseException;
 
-public interface ClienteServiceInterface {
+public interface IClienteService {
 
     public Page<Cliente> obterTodosClientes(
             Integer numeroPagina, Integer quantidadePorPagina,

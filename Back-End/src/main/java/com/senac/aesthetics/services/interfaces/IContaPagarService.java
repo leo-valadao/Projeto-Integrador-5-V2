@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import com.senac.aesthetics.domains.ContaPagar;
 import com.senac.aesthetics.errors.DataBaseException;
 
-public interface ContaPagarServiceInterface {
+public interface IContaPagarService {
 
     public Page<ContaPagar> obterTodasContasPagar(
             Integer numeroPagina, Integer quantidadePorPagina,

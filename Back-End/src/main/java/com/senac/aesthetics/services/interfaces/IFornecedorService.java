@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import com.senac.aesthetics.domains.Fornecedor;
 import com.senac.aesthetics.errors.DataBaseException;
 
-public interface FornecedorServiceInterface {
+public interface IFornecedorService {
 
     public Page<Fornecedor> obterTodosFornecedores(
             Integer numeroPagina, Integer quantidadePorPagina,

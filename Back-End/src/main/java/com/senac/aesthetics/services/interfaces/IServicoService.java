@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import com.senac.aesthetics.domains.Servico;
 import com.senac.aesthetics.errors.DataBaseException;
 
-public interface ServicoServiceInterface {
+public interface IServicoService {
 
     public Page<Servico> obterTodosServicos(
             Integer numeroPagina, Integer quantidadePorPagina,

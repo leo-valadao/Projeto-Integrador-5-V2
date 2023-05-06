@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import com.senac.aesthetics.domains.Agendamento;
 import com.senac.aesthetics.errors.DataBaseException;
 
-public interface AgendamentoServiceInterface {
+public interface IAgendamentoService {
 
     public Page<Agendamento> obterTodosAgendamentos(
             Integer numeroPagina, Integer quantidadePorPagina,

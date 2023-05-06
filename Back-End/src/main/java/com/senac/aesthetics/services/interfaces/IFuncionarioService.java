@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import com.senac.aesthetics.domains.Funcionario;
 import com.senac.aesthetics.errors.DataBaseException;
 
-public interface FuncionarioServiceInterface {
+public interface IFuncionarioService {
 
     public Page<Funcionario> obterTodosFuncionarios(
             Integer numeroPagina, Integer quantidadePorPagina,

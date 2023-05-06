@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import com.senac.aesthetics.domains.ContaReceber;
 import com.senac.aesthetics.errors.DataBaseException;
 
-public interface ContaReceberServiceInterface {
+public interface IContaReceberService {
 
     public Page<ContaReceber> obterTodasContasReceber(
     Integer numeroPagina, Integer quantidadePorPagina,
