@@ -15,10 +15,10 @@ public class TelefoneValidator implements ConstraintValidator<Telefone, Object> 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext arg1) {
         if (value == null || value.equals("")) {
-			return true;
-		}
+            return true;
+        }
 
-		Matcher matcher = padrao.matcher(value.toString());
-		return matcher.matches();
+        Matcher matcher = padrao.matcher(value.toString());
+        return matcher.matches();
     }
 }

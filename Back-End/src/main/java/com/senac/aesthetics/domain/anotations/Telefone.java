@@ -16,10 +16,11 @@ import jakarta.validation.Payload;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Telefone {
-    
-    String message() default "Formato de Telefone inválido!";
+
+	String message() default "Formato de Telefone inválido!";
 
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
+	
 }

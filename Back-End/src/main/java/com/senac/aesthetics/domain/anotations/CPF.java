@@ -22,4 +22,5 @@ public @interface CPF {
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+    
 }

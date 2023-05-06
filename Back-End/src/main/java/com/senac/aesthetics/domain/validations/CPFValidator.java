@@ -31,7 +31,7 @@ public class CPFValidator implements ConstraintValidator<CPF, Object> {
     private boolean validarCPF(Object obj) {
         // Fonte Deste Método:
         // https://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
-        
+
         String cpf = obj.toString();
         cpf = cpf.toString().replaceAll("\\D+", "");
 
@@ -85,4 +85,5 @@ public class CPFValidator implements ConstraintValidator<CPF, Object> {
             return (false);
         }
     }
+    
 }
