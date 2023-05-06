@@ -2,12 +2,23 @@ package com.senac.aesthetics.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.senac.aesthetics.domain.enums.StatusAgendamentoEnum;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,29 +32,48 @@ import lombok.Setter;
 @Entity(name = "Agendamento")
 @Table(name = "AGENDAMENTOS")
 public class Agendamento {
-    
+
     // Atributos:
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_AGENDAMENTO")
     private Long id;
 
+    @Column(name = "DATA", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @NotNull(message = "A Data do Agendamento é Obrigatória!")
     private Date data;
-    
+
+    @Column(name = "HORA", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @NotNull(message = "A Hora do Agendamento é Obrigatória!")
     private Date hora;
-    
-    private String status;
-    
+
+    @Column(name = "STATUS", length = 15)
+    @Enumerated(EnumType.STRING)
+    @Size(max = 15, message = "O Tamanho Máximo do Status do Agendamento é de 15 Caracteres!")
+    @Pattern(regexp = "^(ABERTO|CANCELADO|CONFIRMADO)$", message = "O Status do Agendamento só Pode Ser: ABERTO ou CANCELADO ou CONFIRMADO!")
+    private StatusAgendamentoEnum status;
+
+    @Column(name = "OBSERVACAO", length = 500)
+    @Size(max = 500, message = "O Tamanho Máximo da Observação do Agendamento é de 500 Caracteres!")
     private String observacao;
 
     // Relacionamentos:
-    
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLINETE")
     private Cliente cliente;
-    
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ID_RESPONSAVEL_AGENDAMENTO_FK", referencedColumnName = "ID_FUNCIONARIO")
     private Funcionario respAgendamento;
-    
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ID_SERVICO_FK", referencedColumnName = "ID_SERVICO")
     private Servico servico;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_ORDEM_SERVICO_FK", referencedColumnName = "ID_ORDEM_SERVICO")
     private OrdemServico ordemServico;
 
 }
