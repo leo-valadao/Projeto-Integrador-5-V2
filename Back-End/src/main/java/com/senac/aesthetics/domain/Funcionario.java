@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
@@ -52,16 +51,13 @@ public class Funcionario extends Pessoa {
     private Float comissao;
 
     // Relacionamentos:
-
     @OneToMany(orphanRemoval = false, mappedBy = "respAgendamento")
     private Set<Agendamento> agendamentos;
 
     @OneToMany(orphanRemoval = false, mappedBy = "respOS")
-    @JoinColumn(name = "ID_ORDEM_SERVICO_RESPONSAVEL_OS_FK", referencedColumnName = "ID_ORDEM_SERVICO")
     private Set<OrdemServico> respPeloLancamento;
 
     @OneToMany(orphanRemoval = false, mappedBy = "execServico")
-    @JoinColumn(name = "ID_ORDEM_SERVICO_EXECUTA_SERVICO_FK", referencedColumnName = "ID_ORDEM_SERVICO")
     private Set<OrdemServico> respExecServico;
 
 }
