@@ -1,6 +1,15 @@
 package com.senac.aesthetics.domain;
 
+import com.senac.aesthetics.domain.anotations.Telefone;
+import com.senac.aesthetics.domain.enums.EstadosBrasileirosEnum;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,12 +23,25 @@ import lombok.Setter;
 @MappedSuperclass
 public abstract class Pessoa {
     
+    // Atributos:
+    @Column(name = "NOME", length = 100, nullable = false)
+    @NotBlank(message = "O Nome da Pessoa Não Pode Estar Vazio!")
+    @Size(max = 100, message = "O Tamanho Máximo da Nome da Pessoa é de 100 Caracteres!")
     private String nome;
 
+    @Column(name = "TELEFONE", length = 14)
+    @NotBlank(message = "O Telefone da Pessoa Não Pode Estar Vazio!")
+    @Size(min = 13, max = 14, message = "O Tamanho do Telefone da Pessoa é de 13 ou 14 Caracteres!")
+    @Telefone(message = "O Telefone da Pessoa Está Inválido!")
     private String telefone;
 
+    @Column(name = "E-MAIL", length = 50)
+    @Email(message = "O E-Mail da Pessoa Está Inválido!")
     private String email;
 
-    private String uf;
+    @Column(name = "UF", length = 2)
+    @Enumerated(EnumType.STRING)
+    @Size(min = 2, max = 2, message = "A UF da Pessoa Deve Ser a Sigla (2 Caracteres) do Estado Brasileiro!")
+    private EstadosBrasileirosEnum uf;
 
 }
