@@ -37,7 +37,7 @@ public class Cliente extends Pessoa {
 
     // Relacionamentos:
     @OneToMany(orphanRemoval = false, mappedBy = "cliente")
-    @JoinColumn(name = "ID_AGENDAMENTO_FK", referencedColumnName = "ID_CLIENTE")
+    @JoinColumn(name = "ID_AGENDAMENTO_FK", referencedColumnName = "ID_AGENDAMENTO")
     private Set<Agendamento> agendamentos;
 
 }
