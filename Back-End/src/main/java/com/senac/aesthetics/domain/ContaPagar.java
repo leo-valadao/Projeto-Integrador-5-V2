@@ -55,8 +55,8 @@ public class ContaPagar extends Conta {
     @Column(name = "STATUS", length = 15, nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull(message = "O Status da Conta a Pagar Deve Ser Informado!")
-    @Size(max = 15, message = "O Tamanho Máximo do Status do Agendamento é de 15 Caracteres!")
-    @Pattern(regexp = "^(ABERTO|CANCELADO|PAGO)$", message = "O Status do Agendamento Só Pode Ser: ABERTO ou CANCELADO ou PAGO!")
+    @Size(max = 15, message = "O Tamanho Máximo do Status da Conta a Pagar é de 15 Caracteres!")
+    @Pattern(regexp = "^(ABERTO|CANCELADO|PAGO)$", message = "O Status da Conta a Pagar Só Pode Ser: ABERTO ou CANCELADO ou PAGO!")
     private StatusContaPagarEnum status;
 
     // Relacionamentos:
