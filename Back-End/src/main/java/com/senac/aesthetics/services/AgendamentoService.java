@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Agendamento;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.AgendamentoServiceInterface;
+import com.senac.aesthetics.services.interfaces.IAgendamentoService;
 
 @Service
-public class AgendamentoService implements AgendamentoServiceInterface {
+public class AgendamentoService implements IAgendamentoService {
     
     // Objetos:
     @Autowired

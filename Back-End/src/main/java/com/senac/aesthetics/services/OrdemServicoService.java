@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.OrdemServico;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.OrdemServicoServiceInterface;
+import com.senac.aesthetics.services.interfaces.IOrdemServicoService;
 
 @Service
-public class OrdemServicoService implements OrdemServicoServiceInterface {
+public class OrdemServicoService implements IOrdemServicoService {
 
     // Objetos:
     @Autowired

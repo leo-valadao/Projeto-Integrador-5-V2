@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.ContaReceber;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.ContaReceberServiceInterface;
+import com.senac.aesthetics.services.interfaces.IContaReceberService;
 
 @Service
-public class ContaReceberService implements ContaReceberServiceInterface {
+public class ContaReceberService implements IContaReceberService {
 
     // Objetos:
     @Autowired

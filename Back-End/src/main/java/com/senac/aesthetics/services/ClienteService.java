@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Cliente;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.ClienteServiceInterface;
+import com.senac.aesthetics.services.interfaces.IClienteService;
 
 @Service
-public class ClienteService implements ClienteServiceInterface {
+public class ClienteService implements IClienteService {
 
     // Objetos:
     @Autowired

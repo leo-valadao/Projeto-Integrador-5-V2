@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Funcionario;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.FuncionarioServiceInterface;
+import com.senac.aesthetics.services.interfaces.IFuncionarioService;
 
 @Service
-public class FuncionarioService implements FuncionarioServiceInterface {
+public class FuncionarioService implements IFuncionarioService {
 
     // Objetos:
     @Autowired

@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Fornecedor;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.FornecedorServiceInterface;
+import com.senac.aesthetics.services.interfaces.IFornecedorService;
 
 @Service
-public class FornecedorService implements FornecedorServiceInterface {
+public class FornecedorService implements IFornecedorService {
     
     // Objetos:
     @Autowired

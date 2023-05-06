@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.ContaPagar;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.ContaPagarServiceInterface;
+import com.senac.aesthetics.services.interfaces.IContaPagarService;
 
 @Service
-public class ContaPagarService implements ContaPagarServiceInterface {
+public class ContaPagarService implements IContaPagarService {
 
     // Objetos:
     @Autowired
