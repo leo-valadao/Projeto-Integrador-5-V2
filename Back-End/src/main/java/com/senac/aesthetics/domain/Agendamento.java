@@ -52,7 +52,7 @@ public class Agendamento {
     @Column(name = "STATUS", length = 15)
     @Enumerated(EnumType.STRING)
     @Size(max = 15, message = "O Tamanho Máximo do Status do Agendamento é de 15 Caracteres!")
-    @Pattern(regexp = "^(ABERTO|CANCELADO|CONFIRMADO)$", message = "O Status do Agendamento só Pode Ser: ABERTO ou CANCELADO ou CONFIRMADO!")
+    @Pattern(regexp = "^(ABERTO|CANCELADO|CONFIRMADO)$", message = "O Status do Agendamento Só Pode Ser: ABERTO ou CANCELADO ou CONFIRMADO!")
     private StatusAgendamentoEnum status;
 
     @Column(name = "OBSERVACAO", length = 500)
