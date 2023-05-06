@@ -63,7 +63,7 @@ public class Agendamento {
 
     // Relacionamentos:
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLINETE")
+    @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLIENTE")
     private Cliente cliente;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
