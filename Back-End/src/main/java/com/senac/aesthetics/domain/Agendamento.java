@@ -41,12 +41,12 @@ public class Agendamento {
 
     @Column(name = "DATA", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    @NotNull(message = "A Data do Agendamento é Obrigatória!")
+    @NotNull(message = "A Data do Agendamento Deve Ser Informada!")
     private Date data;
 
     @Column(name = "HORA", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
-    @NotNull(message = "A Hora do Agendamento é Obrigatória!")
+    @NotNull(message = "A Hora do Agendamento Deve Ser Informada!")
     private Date hora;
 
     @Column(name = "STATUS", length = 15)
