@@ -1,9 +1,9 @@
-package com.senac.aesthetics.validation;
+package com.senac.aesthetics.validations;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.senac.aesthetics.anotation.Telefone;
+import com.senac.aesthetics.anotations.Telefone;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

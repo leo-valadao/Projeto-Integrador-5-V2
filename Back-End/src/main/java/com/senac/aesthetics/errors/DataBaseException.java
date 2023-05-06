@@ -1,4 +1,4 @@
-package com.senac.aesthetics.error;
+package com.senac.aesthetics.errors;
 
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 

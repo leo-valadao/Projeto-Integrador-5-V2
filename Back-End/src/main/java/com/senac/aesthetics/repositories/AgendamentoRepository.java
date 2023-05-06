@@ -1,8 +1,8 @@
-package com.senac.aesthetics.repository;
+package com.senac.aesthetics.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.senac.aesthetics.domain.Agendamento;
+import com.senac.aesthetics.domains.Agendamento;
 
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long>  {
     

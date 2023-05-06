@@ -1,8 +1,8 @@
-package com.senac.aesthetics.repository;
+package com.senac.aesthetics.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.senac.aesthetics.domain.ContaReceber;
+import com.senac.aesthetics.domains.ContaReceber;
 
 public interface ContaReceberRepository extends JpaRepository<ContaReceber, Long>  {
     

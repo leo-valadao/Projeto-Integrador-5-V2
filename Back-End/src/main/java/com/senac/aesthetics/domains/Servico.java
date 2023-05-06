@@ -1,4 +1,4 @@
-package com.senac.aesthetics.domain;
+package com.senac.aesthetics.domains;
 
 import java.math.BigDecimal;
 import java.util.Set;

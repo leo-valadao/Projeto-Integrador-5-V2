@@ -1,10 +1,10 @@
-package com.senac.aesthetics.validation;
+package com.senac.aesthetics.validations;
 
 import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.senac.aesthetics.anotation.CPF;
+import com.senac.aesthetics.anotations.CPF;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

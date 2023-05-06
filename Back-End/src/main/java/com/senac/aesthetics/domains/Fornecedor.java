@@ -1,4 +1,4 @@
-package com.senac.aesthetics.domain;
+package com.senac.aesthetics.domains;
 
 
 import jakarta.persistence.Column;
