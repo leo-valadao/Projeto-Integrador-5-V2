@@ -1,0 +1,63 @@
+package com.senac.aesthetics.services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+
+import com.senac.aesthetics.domains.Cliente;
+import com.senac.aesthetics.enums.TipoMensagemEnum;
+import com.senac.aesthetics.errors.DataBaseException;
+import com.senac.aesthetics.services.interfaces.ClienteServiceInterface;
+
+@Service
+public class ClienteService implements ClienteServiceInterface {
+
+    // Objetos:
+    @Autowired
+    private JpaRepository<Cliente, Long> clienteRepository;
+
+    // Métodos:
+    public Page<Cliente> obterTodosClientes(Integer numeroPagina, Integer quantidadePorPagina,
+            String ordenarPor) {
+        Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
+
+        return clienteRepository.findAll(pagina);
+    }
+
+    public Cliente obterClientePorId(Long idCliente) {
+        Optional<Cliente> cliente = clienteRepository.findById(idCliente);
+
+        if (cliente.isPresent()) {
+            return cliente.get();
+        } else {
+            throw new DataBaseException(TipoMensagemEnum.ERROR, "Cliente Não Encontrado! ID: " + idCliente);
+        }
+    }
+
+    public Cliente inserirCliente(Cliente cliente) {
+        return clienteRepository.save(cliente);
+    }
+
+    public Cliente atualizarCliente(Cliente cliente) {
+        if (clienteRepository.existsById(cliente.getId())) {
+            return clienteRepository.saveAndFlush(cliente);
+        } else {
+            throw new DataBaseException(TipoMensagemEnum.ERROR, "Cliente Não Encontrado! ID: " + cliente.getId());
+        }
+    }
+
+    public void excluirCliente(Long idCliente) {
+        if (clienteRepository.existsById(idCliente)) {
+            clienteRepository.deleteById(idCliente);
+        } else {
+            throw new DataBaseException(TipoMensagemEnum.ERROR, "Cliente Não Encontrado! ID: " + idCliente);
+        }
+    }
+
+}
