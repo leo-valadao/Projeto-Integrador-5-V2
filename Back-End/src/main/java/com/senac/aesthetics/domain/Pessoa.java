@@ -1,7 +1,7 @@
 package com.senac.aesthetics.domain;
 
-import com.senac.aesthetics.domain.anotations.Telefone;
-import com.senac.aesthetics.domain.enums.EstadosBrasileirosEnum;
+import com.senac.aesthetics.anotations.Telefone;
+import com.senac.aesthetics.enums.EstadosBrasileirosEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;

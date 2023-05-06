@@ -1,4 +1,4 @@
-package com.senac.aesthetics.domain.anotations;
+package com.senac.aesthetics.anotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -6,7 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.senac.aesthetics.domain.validations.CPFValidator;
+import com.senac.aesthetics.validations.CPFValidator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

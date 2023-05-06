@@ -1,4 +1,4 @@
-package com.senac.aesthetics.domain.enums;
+package com.senac.aesthetics.enums;
 
 public enum StatusOrdemServicoEnum {
 

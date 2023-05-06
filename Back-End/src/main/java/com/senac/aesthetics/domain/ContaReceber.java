@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.senac.aesthetics.domain.enums.StatusContaReceberEnum;
+import com.senac.aesthetics.enums.StatusContaReceberEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

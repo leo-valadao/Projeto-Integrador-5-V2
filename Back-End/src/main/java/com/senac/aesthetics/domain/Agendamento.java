@@ -3,7 +3,7 @@ package com.senac.aesthetics.domain;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.senac.aesthetics.domain.enums.StatusAgendamentoEnum;
+import com.senac.aesthetics.enums.StatusAgendamentoEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
