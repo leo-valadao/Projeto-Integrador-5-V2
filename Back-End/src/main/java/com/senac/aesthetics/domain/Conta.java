@@ -23,10 +23,10 @@ import lombok.Setter;
 // Java Persistence API:
 @MappedSuperclass
 public abstract class Conta {
-    
+
     // Atributos:
     @Column(name = "EMISSAO", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     @PastOrPresent(message = "A Data da Emissão da Conta Deve Ser Uma Data no Presente ou no Passado!")
     @NotNull(message = "A Data da Emissão da Conta é Obrigatória!")
     private Date emissao;
@@ -42,5 +42,5 @@ public abstract class Conta {
     @PositiveOrZero(message = "O Valor da Conta Deve Estar Entre R$ 0 (Zero) e R$ 1.000.000,00 (1 Milhão)!")
     @NotNull(message = "O Valor da Conta é Obrigatório!")
     private Float valor;
-    
+
 }
