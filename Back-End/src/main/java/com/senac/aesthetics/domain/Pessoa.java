@@ -25,12 +25,12 @@ public abstract class Pessoa {
     
     // Atributos:
     @Column(name = "NOME", length = 100, nullable = false)
-    @NotBlank(message = "O Nome da Pessoa Não Pode Estar Vazio!")
+    @NotBlank(message = "O Nome da Pessoa Deve Ser Informado e Não Pode Estar Vazio!")
     @Size(max = 100, message = "O Tamanho Máximo da Nome da Pessoa é de 100 Caracteres!")
     private String nome;
 
     @Column(name = "TELEFONE", length = 14, nullable = false)
-    @NotBlank(message = "O Telefone da Pessoa Não Pode Estar Vazio!")
+    @NotBlank(message = "O Telefone da Pessoa Deve Ser Informado e Não Pode Estar Vazio!")
     @Size(min = 13, max = 14, message = "O Tamanho do Telefone da Pessoa é de 13 ou 14 Caracteres!")
     @Telefone(message = "O Telefone da Pessoa Está Inválido!")
     private String telefone;
