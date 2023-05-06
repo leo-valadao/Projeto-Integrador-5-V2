@@ -15,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -73,7 +74,7 @@ public class Agendamento {
     @JoinColumn(name = "ID_SERVICO_FK", referencedColumnName = "ID_SERVICO")
     private Servico servico;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "agendamento")
     @JoinColumn(name = "ID_ORDEM_SERVICO_FK", referencedColumnName = "ID_ORDEM_SERVICO")
     private OrdemServico ordemServico;
 
