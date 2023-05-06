@@ -29,13 +29,14 @@ public abstract class Pessoa {
     @Size(max = 100, message = "O Tamanho Máximo da Nome da Pessoa é de 100 Caracteres!")
     private String nome;
 
-    @Column(name = "TELEFONE", length = 14)
+    @Column(name = "TELEFONE", length = 14, nullable = false)
     @NotBlank(message = "O Telefone da Pessoa Não Pode Estar Vazio!")
     @Size(min = 13, max = 14, message = "O Tamanho do Telefone da Pessoa é de 13 ou 14 Caracteres!")
     @Telefone(message = "O Telefone da Pessoa Está Inválido!")
     private String telefone;
 
     @Column(name = "E-MAIL", length = 50)
+    @Size(max = 50, message = "O Tamanho Máximo do E-Mail da Pessoa é de 50 Caracteres!")
     @Email(message = "O E-Mail da Pessoa Está Inválido!")
     private String email;
 
