@@ -13,25 +13,24 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Fornecedor;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.IFornecedorService;
+import com.senac.aesthetics.interfaces.IGenericaService;
 
 @Service
-public class FornecedorService implements IFornecedorService {
-    
+public class FornecedorService implements IGenericaService<Fornecedor> {
+
     // Objetos:
     @Autowired
     private JpaRepository<Fornecedor, Long> fornecedorRepository;
 
     // Métodos:
-    public Page<Fornecedor> obterTodosFornecedores(Integer numeroPagina, Integer quantidadePorPagina,
-    String ordenarPor)
-    {
+    public Page<Fornecedor> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,
+            String ordenarPor) {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return fornecedorRepository.findAll(pagina);
     }
 
-    public Fornecedor obterFornecedorPorId(Long idFornecedor) {
+    public Fornecedor obterPorId(Long idFornecedor) {
         Optional<Fornecedor> fornecedor = fornecedorRepository.findById(idFornecedor);
 
         if (fornecedor.isPresent()) {
@@ -41,11 +40,11 @@ public class FornecedorService implements IFornecedorService {
         }
     }
 
-    public Fornecedor inserirFornecedor(Fornecedor fornecedor) {
+    public Fornecedor inserir(Fornecedor fornecedor) {
         return fornecedorRepository.save(fornecedor);
     }
 
-    public Fornecedor atualizarFornecedor(Fornecedor fornecedor) {
+    public Fornecedor atualizar(Fornecedor fornecedor) {
         if (fornecedorRepository.existsById(fornecedor.getId())) {
             return fornecedorRepository.saveAndFlush(fornecedor);
         } else {
@@ -53,13 +52,12 @@ public class FornecedorService implements IFornecedorService {
         }
     }
 
-    public void excluirFornecedor(Long idFornecedor)
-    {
+    public void excluir(Long idFornecedor) {
         if (fornecedorRepository.existsById(idFornecedor)) {
             fornecedorRepository.deleteById(idFornecedor);
         } else {
             throw new DataBaseException(TipoMensagemEnum.ERROR, "Fornecedor Não Encontrado! ID: " + idFornecedor);
         }
     }
-    
+
 }

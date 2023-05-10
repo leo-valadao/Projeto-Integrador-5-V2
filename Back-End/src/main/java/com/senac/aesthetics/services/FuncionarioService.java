@@ -13,24 +13,24 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Funcionario;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.IFuncionarioService;
+import com.senac.aesthetics.interfaces.IGenericaService;
 
 @Service
-public class FuncionarioService implements IFuncionarioService {
+public class FuncionarioService implements IGenericaService<Funcionario> {
 
     // Objetos:
     @Autowired
     private JpaRepository<Funcionario, Long> funcionarioRepository;
 
     // Métodos:
-    public Page<Funcionario> obterTodosFuncionarios(Integer numeroPagina, Integer quantidadePorPagina,
+    public Page<Funcionario> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,
             String ordenarPor) {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return funcionarioRepository.findAll(pagina);
     }
 
-    public Funcionario obterFuncionarioPorId(Long idFuncionario) {
+    public Funcionario obterPorId(Long idFuncionario) {
         Optional<Funcionario> funcionario = funcionarioRepository.findById(idFuncionario);
 
         if (funcionario.isPresent()) {
@@ -40,11 +40,11 @@ public class FuncionarioService implements IFuncionarioService {
         }
     }
 
-    public Funcionario inserirFuncionario(Funcionario funcionario) {
+    public Funcionario inserir(Funcionario funcionario) {
         return funcionarioRepository.save(funcionario);
     }
 
-    public Funcionario atualizarFuncionario(Funcionario funcionario) {
+    public Funcionario atualizar(Funcionario funcionario) {
         if (funcionarioRepository.existsById(funcionario.getId())) {
             return funcionarioRepository.saveAndFlush(funcionario);
         } else {
@@ -53,7 +53,7 @@ public class FuncionarioService implements IFuncionarioService {
         }
     }
 
-    public void excluirFuncionario(Long idFuncionario) {
+    public void excluir(Long idFuncionario) {
         if (funcionarioRepository.existsById(idFuncionario)) {
             funcionarioRepository.deleteById(idFuncionario);
         } else {

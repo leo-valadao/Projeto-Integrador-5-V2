@@ -13,24 +13,24 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.ContaPagar;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.IContaPagarService;
+import com.senac.aesthetics.interfaces.IGenericaService;
 
 @Service
-public class ContaPagarService implements IContaPagarService {
+public class ContaPagarService implements IGenericaService<ContaPagar> {
 
     // Objetos:
     @Autowired
     private JpaRepository<ContaPagar, Long> contaPagarRepository;
 
     // Métodos:
-    public Page<ContaPagar> obterTodasContasPagar(Integer numeroPagina, Integer quantidadePorPagina,
+    public Page<ContaPagar> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,
             String ordenarPor) {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return contaPagarRepository.findAll(pagina);
     }
 
-    public ContaPagar obterContaPagarPorId(Long idContaPagar) {
+    public ContaPagar obterPorId(Long idContaPagar) {
         Optional<ContaPagar> contaPagar = contaPagarRepository.findById(idContaPagar);
 
         if (contaPagar.isPresent()) {
@@ -40,11 +40,11 @@ public class ContaPagarService implements IContaPagarService {
         }
     }
 
-    public ContaPagar inserirContaPagar(ContaPagar contaPagar) {
+    public ContaPagar inserir(ContaPagar contaPagar) {
         return contaPagarRepository.save(contaPagar);
     }
 
-    public ContaPagar atualizarContaPagar(ContaPagar contaPagar) {
+    public ContaPagar atualizar(ContaPagar contaPagar) {
         if (contaPagarRepository.existsById(contaPagar.getId())) {
             return contaPagarRepository.saveAndFlush(contaPagar);
         } else {
@@ -52,7 +52,7 @@ public class ContaPagarService implements IContaPagarService {
         }
     }
 
-    public void excluirContaPagar(Long idContaPagar) {
+    public void excluir(Long idContaPagar) {
         if (contaPagarRepository.existsById(idContaPagar)) {
             contaPagarRepository.deleteById(idContaPagar);
         } else {

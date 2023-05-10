@@ -13,24 +13,24 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Servico;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.IServicoService;
+import com.senac.aesthetics.interfaces.IGenericaService;
 
 @Service
-public class ServicoService implements IServicoService {
+public class ServicoService implements IGenericaService<Servico> {
 
     // Objetos:
     @Autowired
     private JpaRepository<Servico, Long> servicoRepository;
 
     // Métodos:
-    public Page<Servico> obterTodosServicos(Integer numeroPagina, Integer quantidadePorPagina,
+    public Page<Servico> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,
             String ordenarPor) {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return servicoRepository.findAll(pagina);
     }
 
-    public Servico obterServicoPorId(Long idServico) {
+    public Servico obterPorId(Long idServico) {
         Optional<Servico> servico = servicoRepository.findById(idServico);
 
         if (servico.isPresent()) {
@@ -40,11 +40,11 @@ public class ServicoService implements IServicoService {
         }
     }
 
-    public Servico inserirServico(Servico servico) {
+    public Servico inserir(Servico servico) {
         return servicoRepository.save(servico);
     }
 
-    public Servico atualizarServico(Servico servico) {
+    public Servico atualizar(Servico servico) {
         if (servicoRepository.existsById(servico.getId())) {
             return servicoRepository.saveAndFlush(servico);
         } else {
@@ -52,7 +52,7 @@ public class ServicoService implements IServicoService {
         }
     }
 
-    public void excluirServico(Long idServico) {
+    public void excluir(Long idServico) {
         if (servicoRepository.existsById(idServico)) {
             servicoRepository.deleteById(idServico);
         } else {

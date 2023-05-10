@@ -13,24 +13,24 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Cliente;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.IClienteService;
+import com.senac.aesthetics.interfaces.IGenericaService;
 
 @Service
-public class ClienteService implements IClienteService {
+public class ClienteService implements IGenericaService<Cliente> {
 
     // Objetos:
     @Autowired
     private JpaRepository<Cliente, Long> clienteRepository;
 
     // Métodos:
-    public Page<Cliente> obterTodosClientes(Integer numeroPagina, Integer quantidadePorPagina,
+    public Page<Cliente> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,
             String ordenarPor) {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return clienteRepository.findAll(pagina);
     }
 
-    public Cliente obterClientePorId(Long idCliente) {
+    public Cliente obterPorId(Long idCliente) {
         Optional<Cliente> cliente = clienteRepository.findById(idCliente);
 
         if (cliente.isPresent()) {
@@ -40,11 +40,11 @@ public class ClienteService implements IClienteService {
         }
     }
 
-    public Cliente inserirCliente(Cliente cliente) {
+    public Cliente inserir(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
-    public Cliente atualizarCliente(Cliente cliente) {
+    public Cliente atualizar(Cliente cliente) {
         if (clienteRepository.existsById(cliente.getId())) {
             return clienteRepository.saveAndFlush(cliente);
         } else {
@@ -52,7 +52,7 @@ public class ClienteService implements IClienteService {
         }
     }
 
-    public void excluirCliente(Long idCliente) {
+    public void excluir(Long idCliente) {
         if (clienteRepository.existsById(idCliente)) {
             clienteRepository.deleteById(idCliente);
         } else {

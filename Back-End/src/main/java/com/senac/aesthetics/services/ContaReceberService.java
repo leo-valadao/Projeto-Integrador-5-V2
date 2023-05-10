@@ -13,24 +13,24 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.ContaReceber;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.IContaReceberService;
+import com.senac.aesthetics.interfaces.IGenericaService;
 
 @Service
-public class ContaReceberService implements IContaReceberService {
+public class ContaReceberService implements IGenericaService<ContaReceber> {
 
     // Objetos:
     @Autowired
     private JpaRepository<ContaReceber, Long> contaReceberRepository;
 
     // Métodos:
-    public Page<ContaReceber> obterTodasContasReceber(Integer numeroPagina, Integer quantidadePorPagina,
+    public Page<ContaReceber> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,
             String ordenarPor) {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return contaReceberRepository.findAll(pagina);
     }
 
-    public ContaReceber obterContaReceberPorId(Long idContaReceber) {
+    public ContaReceber obterPorId(Long idContaReceber) {
         Optional<ContaReceber> contaReceber = contaReceberRepository.findById(idContaReceber);
 
         if (contaReceber.isPresent()) {
@@ -40,11 +40,11 @@ public class ContaReceberService implements IContaReceberService {
         }
     }
 
-    public ContaReceber inserirContaReceber(ContaReceber contaReceber) {
+    public ContaReceber inserir(ContaReceber contaReceber) {
         return contaReceberRepository.save(contaReceber);
     }
 
-    public ContaReceber atualizarContaReceber(ContaReceber contaReceber) {
+    public ContaReceber atualizar(ContaReceber contaReceber) {
         if (contaReceberRepository.existsById(contaReceber.getId())) {
             return contaReceberRepository.saveAndFlush(contaReceber);
         } else {
@@ -53,7 +53,7 @@ public class ContaReceberService implements IContaReceberService {
         }
     }
 
-    public void excluirContaReceber(Long idContaReceber) {
+    public void excluir(Long idContaReceber) {
         if (contaReceberRepository.existsById(idContaReceber)) {
             contaReceberRepository.deleteById(idContaReceber);
         } else {

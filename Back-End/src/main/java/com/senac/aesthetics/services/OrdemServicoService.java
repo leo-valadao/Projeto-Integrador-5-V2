@@ -13,24 +13,24 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.OrdemServico;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.services.interfaces.IOrdemServicoService;
+import com.senac.aesthetics.interfaces.IGenericaService;
 
 @Service
-public class OrdemServicoService implements IOrdemServicoService {
+public class OrdemServicoService implements IGenericaService<OrdemServico> {
 
     // Objetos:
     @Autowired
     private JpaRepository<OrdemServico, Long> ordemServicoRepository;
 
     // Métodos:
-    public Page<OrdemServico> obterTodosOrdensServico(Integer numeroPagina, Integer quantidadePorPagina,
+    public Page<OrdemServico> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,
             String ordenarPor) {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return ordemServicoRepository.findAll(pagina);
     }
 
-    public OrdemServico obterOrdemServicoPorId(Long idOrdemServico) {
+    public OrdemServico obterPorId(Long idOrdemServico) {
         Optional<OrdemServico> ordemServico = ordemServicoRepository.findById(idOrdemServico);
 
         if (ordemServico.isPresent()) {
@@ -40,11 +40,11 @@ public class OrdemServicoService implements IOrdemServicoService {
         }
     }
 
-    public OrdemServico inserirOrdemServico(OrdemServico ordemServico) {
+    public OrdemServico inserir(OrdemServico ordemServico) {
         return ordemServicoRepository.save(ordemServico);
     }
 
-    public OrdemServico atualizarOrdemServico(OrdemServico ordemServico) {
+    public OrdemServico atualizar(OrdemServico ordemServico) {
         if (ordemServicoRepository.existsById(ordemServico.getId())) {
             return ordemServicoRepository.saveAndFlush(ordemServico);
         } else {
@@ -53,7 +53,7 @@ public class OrdemServicoService implements IOrdemServicoService {
         }
     }
 
-    public void excluirOrdemServico(Long idOrdemServico) {
+    public void excluir(Long idOrdemServico) {
         if (ordemServicoRepository.existsById(idOrdemServico)) {
             ordemServicoRepository.deleteById(idOrdemServico);
         } else {
