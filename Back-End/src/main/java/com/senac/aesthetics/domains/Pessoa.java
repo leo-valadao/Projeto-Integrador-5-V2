@@ -42,7 +42,6 @@ public abstract class Pessoa {
 
     @Column(name = "UF", length = 2)
     @Enumerated(EnumType.STRING)
-    @Size(min = 2, max = 2, message = "A UF da Pessoa Deve Ser a Sigla (2 Caracteres) do Estado Brasileiro!")
     private EstadosBrasileirosEnum uf;
 
 }
