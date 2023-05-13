@@ -1,8 +1,9 @@
 {
     "configurations": [
+
         {
             "type": "java",
-            "name": "Spring Boot-AestheticsApplication<aesthetics>",
+            "name": "Back-End Debug",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.senac.aesthetics.AestheticsApplication",
