@@ -3,9 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-painel-lateral',
   templateUrl: './painel-lateral.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class PainelLateralComponent {
-
-}
+export class PainelLateralComponent {}

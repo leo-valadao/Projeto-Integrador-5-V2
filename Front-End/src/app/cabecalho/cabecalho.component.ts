@@ -3,9 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-cabecalho',
   templateUrl: './cabecalho.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class CabecalhoComponent {
-
-}
+export class CabecalhoComponent {}

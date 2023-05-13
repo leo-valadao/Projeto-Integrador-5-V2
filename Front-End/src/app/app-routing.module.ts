@@ -9,7 +9,6 @@ import { OrdemServicoComponent } from './ordem-servico/ordem-servico.component';
 import { ServicoComponent } from './servico/servico.component';
 import { FuncionarioComponent } from './funcionario/funcionario.component';
 
-
 const routes: Routes = [
   {
     path: 'cliente',
@@ -47,6 +46,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

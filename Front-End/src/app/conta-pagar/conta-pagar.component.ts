@@ -3,9 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-conta-pagar',
   templateUrl: './conta-pagar.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class ContaPagarComponent {
-
-}
+export class ContaPagarComponent {}

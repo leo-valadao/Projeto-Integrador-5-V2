@@ -3,9 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-servico',
   templateUrl: './servico.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class ServicoComponent {
-
-}
+export class ServicoComponent {}

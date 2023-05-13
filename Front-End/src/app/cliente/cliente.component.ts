@@ -3,9 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class ClienteComponent {
-
-}
+export class ClienteComponent {}

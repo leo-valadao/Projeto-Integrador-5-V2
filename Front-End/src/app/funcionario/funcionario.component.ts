@@ -3,9 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-funcionario',
   templateUrl: './funcionario.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class FuncionarioComponent {
-
-}
+export class FuncionarioComponent {}
