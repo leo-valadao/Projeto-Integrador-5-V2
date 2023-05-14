@@ -20,7 +20,7 @@ import lombok.Setter;
 // Java Persistence API:
 @MappedSuperclass
 public abstract class PessoaJuridica extends Pessoa {
-    
+
     // Atributos:
     @Column(name = "CNPJ", length = 18, nullable = false, unique = true)
     @NotBlank(message = "O CNPJ da Pessoa Jurídica Deve Ser Informado e Não Pode Estar Vazio!")

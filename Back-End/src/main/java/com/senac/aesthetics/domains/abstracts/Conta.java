@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
@@ -30,12 +32,14 @@ public abstract class Conta {
     // Atributos:
     @Column(name = "EMISSAO", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @Temporal(TemporalType.TIMESTAMP)
     @PastOrPresent(message = "A Data da Emissão da Conta Deve Ser Uma Data no Presente ou no Passado!")
     @NotNull(message = "A Data da Emissão da Conta Deve Ser Informada!")
     private Date emissao;
 
     @Column(name = "VENCIMENTO", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @Temporal(TemporalType.TIMESTAMP)
     @FutureOrPresent(message = "A Data do Vencimento da Conta Deve Ser Uma Data no Presente ou no Futuro!")
     @NotNull(message = "A Data do Vencimento da Conta Deve Ser Informada!")
     private Date vencimento;

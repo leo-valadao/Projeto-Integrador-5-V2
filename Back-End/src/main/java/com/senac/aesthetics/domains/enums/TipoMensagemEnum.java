@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum TipoMensagemEnum {
-    
+
     SUCESS("sucess"),
     INFO("info"),
     WARN("warn"),

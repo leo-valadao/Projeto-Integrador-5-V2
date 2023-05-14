@@ -17,12 +17,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,20 +52,18 @@ public class ContaReceber extends Conta {
 
     @Column(name = "DATA_RECEBIMENTO")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @Temporal(TemporalType.TIMESTAMP)
     @PastOrPresent(message = "A Data de Recebimento da Conta a Receber Deve Ser Uma Data no Presente ou no Passado!")
     private Date recebimento;
 
     @Column(name = "STATUS", length = 15, nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull(message = "O Status da Conta a Receber Deve Ser Informado!")
-    @Size(max = 15, message = "O Tamanho Máximo do Status da Conta a Receber é de 15 Caracteres!")
-    @Pattern(regexp = "^(ABERTO|CANCELADO|RECEBIDO)$", message = "O Status da Conta a Receber Só Pode Ser: ABERTO ou CANCELADO ou RECEBIDO!")
     private StatusContaReceberEnum status;
 
     // Relacionamentos:
     @ManyToOne
     @JoinColumn(name = "ID_ORDEM_SERVICO_FK", referencedColumnName = "ID_ORDEM_SERVICO")
-    @NotNull(message = "A Ordem de Serviço da Conta a Receber Deve Ser Informado!")
     private OrdemServico ordemServico;
 
     @ManyToOne

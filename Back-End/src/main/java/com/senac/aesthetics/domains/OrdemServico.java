@@ -17,6 +17,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -44,11 +46,13 @@ public class OrdemServico {
 
     @Column(name = "DATA_HORA_INICIO", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @Temporal(TemporalType.TIMESTAMP)
     @NotNull(message = "A Data e Horário do Início da Ordem de Serviço Deve Ser Informada!")
     private Date dataHoraInicio;
 
     @Column(name = "DATA_HORA_TERMINO", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @Temporal(TemporalType.TIMESTAMP)
     @NotNull(message = "A Data e Horário do Término da Ordem de Serviço Deve Ser Informada!")
     private Date dataHoraTermino;
 
