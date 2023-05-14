@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.senac.aesthetics.domains.abstracts.Pessoa;
+import com.senac.aesthetics.domains.abstracts.PessoaFisica;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,7 +32,7 @@ import lombok.Setter;
 // Java Persistence API:
 @Entity(name = "Funcionário")
 @Table(name = "FUNCIONARIOS")
-public class Funcionario extends Pessoa {
+public class Funcionario extends PessoaFisica {
 
     // Atributos:
     @Id

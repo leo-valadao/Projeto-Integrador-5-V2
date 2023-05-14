@@ -11,14 +11,10 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class CPFValidator implements ConstraintValidator<CPF, Object> {
 
-    private Pattern padrao = Pattern.compile("(\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2})|(\\d{11})");
+    private Pattern padrao = Pattern.compile("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$");
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext arg1) {
-        if (value == null || value.equals("")) {
-            return true;
-        }
-
         Matcher matcher = padrao.matcher(value.toString());
 
         if (matcher.matches()) {
@@ -33,7 +29,6 @@ public class CPFValidator implements ConstraintValidator<CPF, Object> {
         // https://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
 
         String cpf = obj.toString();
-        cpf = cpf.toString().replaceAll("\\D+", "");
 
         if (cpf.equals("00000000000") ||
                 cpf.equals("11111111111") ||

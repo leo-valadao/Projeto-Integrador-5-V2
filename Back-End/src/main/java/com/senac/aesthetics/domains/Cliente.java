@@ -3,7 +3,7 @@ package com.senac.aesthetics.domains;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.senac.aesthetics.domains.abstracts.Pessoa;
+import com.senac.aesthetics.domains.abstracts.PessoaFisica;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +27,7 @@ import lombok.Setter;
 // Java Persistence API:
 @Entity(name = "Clinte")
 @Table(name = "CLIENTES")
-public class Cliente extends Pessoa {
+public class Cliente extends PessoaFisica {
 
     // Atributos:
     @Id
