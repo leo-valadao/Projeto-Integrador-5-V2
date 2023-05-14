@@ -14,27 +14,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senac.aesthetics.domains.ContaReceber;
-import com.senac.aesthetics.interfaces.IGenericaResource;
-import com.senac.aesthetics.interfaces.IGenericaService;
+import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
+import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 
 import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/conta-receber")
-public class ContaReceberResource implements IGenericaResource<ContaReceber> {
+public class ContaReceberResource implements InterfaceGenericaCliente<ContaReceber> {
 
     // Obejtos:
     @Autowired
-    private IGenericaService<ContaReceber> contaReceberService;
+    private InterfaceGenericaResource<ContaReceber> contaReceberService;
 
     // API's:
     @GetMapping
-    public ResponseEntity<Page<ContaReceber>> obterTodos(
+    public ResponseEntity<Page<ContaReceber>> obterTodosComPaginacao(
             @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
             @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
             @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) {
-        Page<ContaReceber> contaRecebers = contaReceberService.obterTodos(numeroPagina, quantidadePorPagina,
+        Page<ContaReceber> contaRecebers = contaReceberService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
                 ordernarPor);
 
         return ResponseEntity.ok(contaRecebers);

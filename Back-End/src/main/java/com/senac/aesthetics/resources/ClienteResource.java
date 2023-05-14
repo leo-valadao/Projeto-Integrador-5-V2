@@ -14,27 +14,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senac.aesthetics.domains.Cliente;
-import com.senac.aesthetics.interfaces.IGenericaResource;
-import com.senac.aesthetics.interfaces.IGenericaService;
+import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
+import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 
 import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/cliente")
-public class ClienteResource implements IGenericaResource<Cliente> {
+public class ClienteResource implements InterfaceGenericaCliente<Cliente> {
 
     // Obejtos:
     @Autowired
-    private IGenericaService<Cliente> clienteService;
+    private InterfaceGenericaResource<Cliente> clienteService;
 
     // API's:
     @GetMapping
-    public ResponseEntity<Page<Cliente>> obterTodos(
+    public ResponseEntity<Page<Cliente>> obterTodosComPaginacao(
             @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
             @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
             @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) {
-        Page<Cliente> clientes = clienteService.obterTodos(numeroPagina, quantidadePorPagina,
+        Page<Cliente> clientes = clienteService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
                 ordernarPor);
 
         return ResponseEntity.ok(clientes);

@@ -12,18 +12,18 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Servico;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.interfaces.IGenericaService;
+import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.ServicoRepository;
 
 @Service
-public class ServicoService implements IGenericaService<Servico> {
+public class ServicoService implements InterfaceGenericaResource<Servico> {
 
     // Objetos:
     @Autowired
     private ServicoRepository servicoRepository;
 
     // Métodos:
-    public Page<Servico> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,
+    public Page<Servico> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
             String ordenarPor) {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 

@@ -14,27 +14,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senac.aesthetics.domains.Fornecedor;
-import com.senac.aesthetics.interfaces.IGenericaResource;
-import com.senac.aesthetics.interfaces.IGenericaService;
+import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
+import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 
 import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/fornecedor")
-public class FornecedorResource implements IGenericaResource<Fornecedor> {
+public class FornecedorResource implements InterfaceGenericaCliente<Fornecedor> {
 
     // Obejtos:
     @Autowired
-    private IGenericaService<Fornecedor> fornecedorService;
+    private InterfaceGenericaResource<Fornecedor> fornecedorService;
 
     // API's:
     @GetMapping
-    public ResponseEntity<Page<Fornecedor>> obterTodos(
+    public ResponseEntity<Page<Fornecedor>> obterTodosComPaginacao(
             @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
             @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
             @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) {
-        Page<Fornecedor> fornecedors = fornecedorService.obterTodos(numeroPagina, quantidadePorPagina,
+        Page<Fornecedor> fornecedors = fornecedorService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
                 ordernarPor);
 
         return ResponseEntity.ok(fornecedors);

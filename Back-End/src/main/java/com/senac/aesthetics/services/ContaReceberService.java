@@ -12,18 +12,18 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.ContaReceber;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.interfaces.IGenericaService;
+import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.ContaReceberRepository;
 
 @Service
-public class ContaReceberService implements IGenericaService<ContaReceber> {
+public class ContaReceberService implements InterfaceGenericaResource<ContaReceber> {
 
     // Objetos:
     @Autowired
     private ContaReceberRepository contaReceberRepository;
 
     // Métodos:
-    public Page<ContaReceber> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,
+    public Page<ContaReceber> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
             String ordenarPor) {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 

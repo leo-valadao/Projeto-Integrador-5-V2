@@ -12,18 +12,18 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Agendamento;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
-import com.senac.aesthetics.interfaces.IGenericaService;
+import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.AgendamentoRepository;
 
 @Service
-public class AgendamentoService implements IGenericaService<Agendamento> {
+public class AgendamentoService implements InterfaceGenericaResource<Agendamento> {
 
     // Objetos:
     @Autowired
     private AgendamentoRepository agendamentoRepository;
 
     // Métodos:
-    public Page<Agendamento> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,
+    public Page<Agendamento> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
             String ordenarPor) {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
