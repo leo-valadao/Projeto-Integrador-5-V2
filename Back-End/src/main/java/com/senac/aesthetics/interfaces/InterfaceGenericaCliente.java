@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 
-public interface IGenericaResource<T> {
-    
-    public ResponseEntity<Page<T>> obterTodos(
+public interface InterfaceGenericaCliente<T> {
+
+    public ResponseEntity<Page<T>> obterTodosComPaginacao(
             @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
             @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
             @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor);

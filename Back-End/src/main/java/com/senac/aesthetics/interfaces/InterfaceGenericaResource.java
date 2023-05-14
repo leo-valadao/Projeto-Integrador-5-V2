@@ -4,9 +4,9 @@ import org.springframework.data.domain.Page;
 
 import com.senac.aesthetics.errors.DataBaseException;
 
-public interface IGenericaService<T> {
-    
-    public Page<T> obterTodos(
+public interface InterfaceGenericaResource<T> {
+
+    public Page<T> obterTodosComPaginacao(
             Integer numeroPagina, Integer quantidadePorPagina,
             String ordenarPor) throws DataBaseException;
 
