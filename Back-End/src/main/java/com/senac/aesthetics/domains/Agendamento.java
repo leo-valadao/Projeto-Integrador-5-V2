@@ -3,6 +3,8 @@ package com.senac.aesthetics.domains;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.senac.aesthetics.enums.StatusAgendamentoEnum;
 
 import jakarta.persistence.Column;
@@ -18,8 +20,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,6 +30,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+
+// JSON:
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 
 // Java Persistence API:
 @Entity(name = "Agendamento")
@@ -53,8 +59,6 @@ public class Agendamento {
     @Column(name = "STATUS", length = 15, nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull(message = "O Status do Agendamento Deve Ser Informado!")
-    @Size(max = 15, message = "O Tamanho Máximo do Status do Agendamento é de 15 Caracteres!")
-    @Pattern(regexp = "^(ABERTO|CANCELADO|CONFIRMADO)$", message = "O Status do Agendamento Só Pode Ser: ABERTO ou CANCELADO ou CONFIRMADO!")
     private StatusAgendamentoEnum status;
 
     @Column(name = "OBSERVACAO", length = 500)

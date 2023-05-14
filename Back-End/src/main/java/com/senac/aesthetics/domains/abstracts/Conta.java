@@ -1,4 +1,4 @@
-package com.senac.aesthetics.domains;
+package com.senac.aesthetics.domains.abstracts;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,6 +12,7 @@ import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.PositiveOrZero;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 // Java Persistence API:
 @MappedSuperclass

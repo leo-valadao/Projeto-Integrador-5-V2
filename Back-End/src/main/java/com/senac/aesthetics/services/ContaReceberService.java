@@ -7,20 +7,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.ContaReceber;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
 import com.senac.aesthetics.interfaces.IGenericaService;
+import com.senac.aesthetics.repositories.ContaReceberRepository;
 
 @Service
 public class ContaReceberService implements IGenericaService<ContaReceber> {
 
     // Objetos:
     @Autowired
-    private JpaRepository<ContaReceber, Long> contaReceberRepository;
+    private ContaReceberRepository contaReceberRepository;
 
     // Métodos:
     public Page<ContaReceber> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,

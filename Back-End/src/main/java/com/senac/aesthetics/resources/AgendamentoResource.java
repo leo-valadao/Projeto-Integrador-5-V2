@@ -21,7 +21,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "api/v1/agendamento", produces = "application/json")
+@RequestMapping("api/v1/agendamento")
 public class AgendamentoResource implements IGenericaResource<Agendamento> {
 
     // Obejtos:

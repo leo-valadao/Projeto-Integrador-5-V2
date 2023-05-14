@@ -7,20 +7,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Cliente;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
 import com.senac.aesthetics.interfaces.IGenericaService;
+import com.senac.aesthetics.repositories.ClienteRepository;
 
 @Service
 public class ClienteService implements IGenericaService<Cliente> {
 
     // Objetos:
     @Autowired
-    private JpaRepository<Cliente, Long> clienteRepository;
+    private ClienteRepository clienteRepository;
 
     // Métodos:
     public Page<Cliente> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,

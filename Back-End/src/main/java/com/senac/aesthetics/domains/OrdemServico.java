@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.senac.aesthetics.enums.StatusOrdemServicoEnum;
 
 import jakarta.persistence.Column;
@@ -20,9 +22,8 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,6 +32,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 
 // Java Persistence API:
 @Entity(name = "Ordem Serviço")
@@ -44,20 +48,18 @@ public class OrdemServico {
     private Long id;
 
     @Column(name = "DATA_HORA_INICIO", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     @NotNull(message = "A Data e Horário do Início da Ordem de Serviço Deve Ser Informada!")
     private Date dataHoraInicio;
 
     @Column(name = "DATA_HORA_TERMINO", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     @NotNull(message = "A Data e Horário do Término da Ordem de Serviço Deve Ser Informada!")
     private Date dataHoraTermino;
 
     @Column(name = "STATUS", length = 15, nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull(message = "O Status da Ordem de Serviço Deve Ser Informado!")
-    @Size(max = 15, message = "O Tamanho Máximo do Status da Ordem de Serviço é de 15 Caracteres!")
-    @Pattern(regexp = "^(ABERTO|CANCELADO|EM_EXECUCAO|CONCLUIDO)$", message = "O Status da Ordem de Serviço Só Pode Ser: ABERTO ou CANCELADO ou EM_EXECUCAO ou CONCLUIDO!")
     private StatusOrdemServicoEnum status;
 
     @Column(name = "VALOR", nullable = false, precision = 10, scale = 2)
@@ -70,7 +72,7 @@ public class OrdemServico {
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ID_AGENDAMENTO_FK", referencedColumnName = "ID_AGENDAMENTO")
     private Agendamento agendamento;
-    
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ID_SERVICO_FK", referencedColumnName = "ID_SERVICO")
     private Servico servico;
@@ -79,8 +81,8 @@ public class OrdemServico {
     @JoinColumn(name = "ID_FUNCIONARIO_RESPONSAVEL_OS_FK", referencedColumnName = "ID_FUNCIONARIO")
     private Funcionario respOS;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_FUNCIONARIO_EXECUTA_SERVICO_FK", referencedColumnName = "ID_FUNCIONARIO")
     private Funcionario execServico;
-    
+
 }

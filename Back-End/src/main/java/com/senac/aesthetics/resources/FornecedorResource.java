@@ -21,7 +21,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "api/v1/fornecedor", produces = "application/json")
+@RequestMapping("api/v1/fornecedor")
 public class FornecedorResource implements IGenericaResource<Fornecedor> {
 
     // Obejtos:

@@ -7,20 +7,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Agendamento;
 import com.senac.aesthetics.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.DataBaseException;
 import com.senac.aesthetics.interfaces.IGenericaService;
+import com.senac.aesthetics.repositories.AgendamentoRepository;
 
 @Service
 public class AgendamentoService implements IGenericaService<Agendamento> {
 
     // Objetos:
     @Autowired
-    private JpaRepository<Agendamento, Long> agendamentoRepository;
+    private AgendamentoRepository agendamentoRepository;
 
     // Métodos:
     public Page<Agendamento> obterTodos(Integer numeroPagina, Integer quantidadePorPagina,

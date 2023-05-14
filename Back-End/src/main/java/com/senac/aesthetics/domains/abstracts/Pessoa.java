@@ -1,4 +1,4 @@
-package com.senac.aesthetics.domains;
+package com.senac.aesthetics.domains.abstracts;
 
 import com.senac.aesthetics.anotations.Telefone;
 import com.senac.aesthetics.enums.EstadosBrasileirosEnum;
@@ -10,6 +10,7 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,11 +19,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 // Java Persistence API:
 @MappedSuperclass
 public abstract class Pessoa {
-    
+
     // Atributos:
     @Column(name = "NOME", length = 100, nullable = false)
     @NotBlank(message = "O Nome da Pessoa Deve Ser Informado e Não Pode Estar Vazio!")
