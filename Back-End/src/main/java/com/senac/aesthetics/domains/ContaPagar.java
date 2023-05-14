@@ -64,8 +64,9 @@ public class ContaPagar extends Conta {
     private StatusContaPagarEnum status;
 
     // Relacionamentos:
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_FORNECEDOR_FK", referencedColumnName = "ID_FORNECEDOR")
+    @NotNull(message = "O Fornecedor da Conta a Pagar Deve Ser Informado!")
     private Fornecedor fornecedor;
 
 }

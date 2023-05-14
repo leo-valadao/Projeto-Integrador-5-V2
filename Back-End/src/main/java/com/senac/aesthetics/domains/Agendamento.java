@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.senac.aesthetics.enums.StatusAgendamentoEnum;
 
@@ -66,20 +67,27 @@ public class Agendamento {
     private String observacao;
 
     // Relacionamentos:
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLIENTE")
+    @NotNull(message = "O Cliente do Agendamento Deve Ser Informado!")
+    @JsonIgnoreProperties("agendamentos")
     private Cliente cliente;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_RESPONSAVEL_AGENDAMENTO_FK", referencedColumnName = "ID_FUNCIONARIO")
+    @NotNull(message = "O Responsável do Agendamento Deve Ser Informado!")
+    @JsonIgnoreProperties("agendamentos")
     private Funcionario respAgendamento;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_SERVICO_FK", referencedColumnName = "ID_SERVICO")
+    @NotNull(message = "O Serviço do Agendamento Deve Ser Informado!")
+    @JsonIgnoreProperties("agendamentos")
     private Servico servico;
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "agendamento")
     @JoinColumn(name = "ID_ORDEM_SERVICO_FK", referencedColumnName = "ID_ORDEM_SERVICO")
+    @JsonIgnoreProperties("agendamento")
     private OrdemServico ordemServico;
 
 }

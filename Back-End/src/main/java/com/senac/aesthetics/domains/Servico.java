@@ -3,6 +3,8 @@ package com.senac.aesthetics.domains;
 import java.math.BigDecimal;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -60,9 +62,11 @@ public class Servico {
 
     // Relacionamentos:
     @OneToMany(orphanRemoval = false, mappedBy = "servico")
+    @JsonIgnoreProperties("servico")
     private Set<Agendamento> agendamentos;
 
     @OneToMany(orphanRemoval = false, mappedBy = "servico")
+    @JsonIgnoreProperties("servico")
     private Set<OrdemServico> ordensDeServicos;
 
 }

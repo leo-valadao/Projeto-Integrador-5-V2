@@ -2,6 +2,7 @@ package com.senac.aesthetics.domains;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.senac.aesthetics.domains.abstracts.Pessoa;
 
 import jakarta.persistence.Column;
@@ -40,6 +41,7 @@ public class Cliente extends Pessoa {
 
     // Relacionamentos:
     @OneToMany(orphanRemoval = false, mappedBy = "cliente")
+    @JsonIgnoreProperties("cliente")
     private Set<Agendamento> agendamentos;
 
 }
