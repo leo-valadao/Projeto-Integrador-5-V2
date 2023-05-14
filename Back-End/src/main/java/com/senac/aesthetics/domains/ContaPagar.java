@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.senac.aesthetics.domains.abstracts.Conta;
-import com.senac.aesthetics.enums.StatusContaPagarEnum;
+import com.senac.aesthetics.domains.enums.StatusContaPagarEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

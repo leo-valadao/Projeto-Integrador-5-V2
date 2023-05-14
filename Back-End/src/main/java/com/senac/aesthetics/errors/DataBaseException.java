@@ -1,6 +1,6 @@
 package com.senac.aesthetics.errors;
 
-import com.senac.aesthetics.enums.TipoMensagemEnum;
+import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

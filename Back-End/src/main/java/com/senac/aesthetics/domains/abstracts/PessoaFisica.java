@@ -1,7 +1,7 @@
 package com.senac.aesthetics.domains.abstracts;
 
 
-import com.senac.aesthetics.anotations.CPF;
+import com.senac.aesthetics.validations.anotations.CPF;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

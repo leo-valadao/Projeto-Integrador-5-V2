@@ -1,4 +1,4 @@
-package com.senac.aesthetics.anotations;
+package com.senac.aesthetics.validations.anotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -6,21 +6,21 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.senac.aesthetics.validations.TelefoneValidator;
+import com.senac.aesthetics.validations.CPFValidator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-@Constraint(validatedBy = TelefoneValidator.class)
+@Constraint(validatedBy = CPFValidator.class)
 @Documented
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Telefone {
+public @interface CPF {
 
-	String message() default "Formato de Telefone inválido!";
+    String message() default "Formato de CPF Inválido!";
 
-	Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-	Class<? extends Payload>[] payload() default {};
-	
+    Class<? extends Payload>[] payload() default {};
+
 }

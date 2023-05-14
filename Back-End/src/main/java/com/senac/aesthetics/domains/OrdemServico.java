@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.senac.aesthetics.enums.StatusOrdemServicoEnum;
+import com.senac.aesthetics.domains.enums.StatusOrdemServicoEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

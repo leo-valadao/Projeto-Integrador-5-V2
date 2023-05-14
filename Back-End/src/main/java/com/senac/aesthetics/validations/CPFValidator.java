@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.senac.aesthetics.anotations.CPF;
+import com.senac.aesthetics.validations.anotations.CPF;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -29,6 +29,7 @@ public class CPFValidator implements ConstraintValidator<CPF, Object> {
         // https://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
 
         String cpf = obj.toString();
+        cpf = cpf.replaceAll("\\D+", "");
 
         if (cpf.equals("00000000000") ||
                 cpf.equals("11111111111") ||

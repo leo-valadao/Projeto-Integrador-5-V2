@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.senac.aesthetics.enums.StatusAgendamentoEnum;
+import com.senac.aesthetics.domains.enums.StatusAgendamentoEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

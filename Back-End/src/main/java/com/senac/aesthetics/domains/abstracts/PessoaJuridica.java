@@ -1,6 +1,6 @@
 package com.senac.aesthetics.domains.abstracts;
 
-import com.senac.aesthetics.anotations.CNPJ;
+import com.senac.aesthetics.validations.anotations.CNPJ;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

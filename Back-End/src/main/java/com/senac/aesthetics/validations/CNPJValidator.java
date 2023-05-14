@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.senac.aesthetics.anotations.CNPJ;
+import com.senac.aesthetics.validations.anotations.CNPJ;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -29,6 +29,7 @@ public class CNPJValidator implements ConstraintValidator<CNPJ, Object> {
         // https://www.devmedia.com.br/validando-o-cnpj-em-uma-aplicacao-java/22374
 
         String cnpj = obj.toString();
+        cnpj = cnpj.replaceAll("\\D+", "");
 
         if (cnpj.equals("00000000000000") || cnpj.equals("11111111111111") ||
                 cnpj.equals("22222222222222") || cnpj.equals("33333333333333") ||

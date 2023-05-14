@@ -1,4 +1,4 @@
-package com.senac.aesthetics.enums;
+package com.senac.aesthetics.domains.enums;
 
 public enum StatusContaPagarEnum {
 

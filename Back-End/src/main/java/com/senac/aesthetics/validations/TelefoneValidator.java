@@ -3,7 +3,7 @@ package com.senac.aesthetics.validations;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.senac.aesthetics.anotations.Telefone;
+import com.senac.aesthetics.validations.anotations.Telefone;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

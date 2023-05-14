@@ -1,4 +1,4 @@
-package com.senac.aesthetics.anotations;
+package com.senac.aesthetics.validations.anotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

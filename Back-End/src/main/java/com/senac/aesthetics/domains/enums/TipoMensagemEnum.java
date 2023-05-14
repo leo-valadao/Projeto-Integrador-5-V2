@@ -1,4 +1,4 @@
-package com.senac.aesthetics.enums;
+package com.senac.aesthetics.domains.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
