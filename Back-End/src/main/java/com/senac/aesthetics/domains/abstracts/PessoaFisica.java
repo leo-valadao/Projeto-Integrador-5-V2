@@ -1,6 +1,7 @@
 package com.senac.aesthetics.domains.abstracts;
 
-import org.hibernate.validator.constraints.br.CPF;
+
+import com.senac.aesthetics.anotations.CPF;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
