@@ -11,7 +11,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -64,12 +63,12 @@ public class ContaReceber extends Conta {
     private StatusContaReceberEnum status;
 
     // Relacionamentos:
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "ID_ORDEM_SERVICO_FK", referencedColumnName = "ID_ORDEM_SERVICO")
     @NotNull(message = "A Ordem de Serviço da Conta a Receber Deve Ser Informado!")
     private OrdemServico ordemServico;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLIENTE")
     @NotNull(message = "O Cliente da Conta a Receber Deve Ser Informado!")
     private Cliente cliente;

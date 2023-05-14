@@ -3,16 +3,13 @@ package com.senac.aesthetics.domains;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.aesthetics.enums.StatusAgendamentoEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,9 +29,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
-// JSON:
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 
 // Java Persistence API:
 @Entity(name = "Agendamento")
@@ -67,27 +61,24 @@ public class Agendamento {
     private String observacao;
 
     // Relacionamentos:
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLIENTE")
     @NotNull(message = "O Cliente do Agendamento Deve Ser Informado!")
-    @JsonIgnoreProperties("agendamentos")
     private Cliente cliente;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "ID_RESPONSAVEL_AGENDAMENTO_FK", referencedColumnName = "ID_FUNCIONARIO")
     @NotNull(message = "O Responsável do Agendamento Deve Ser Informado!")
-    @JsonIgnoreProperties("agendamentos")
     private Funcionario respAgendamento;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "ID_SERVICO_FK", referencedColumnName = "ID_SERVICO")
     @NotNull(message = "O Serviço do Agendamento Deve Ser Informado!")
-    @JsonIgnoreProperties("agendamentos")
     private Servico servico;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "agendamento")
+    @OneToOne(mappedBy = "agendamento")
     @JoinColumn(name = "ID_ORDEM_SERVICO_FK", referencedColumnName = "ID_ORDEM_SERVICO")
-    @JsonIgnoreProperties("agendamento")
+    @JsonIgnore
     private OrdemServico ordemServico;
 
 }

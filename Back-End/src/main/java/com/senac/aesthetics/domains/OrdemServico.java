@@ -4,16 +4,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.senac.aesthetics.enums.StatusOrdemServicoEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,8 +30,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 
 // Java Persistence API:
 @Entity(name = "Ordem Serviço")
@@ -70,27 +64,23 @@ public class OrdemServico {
     private BigDecimal valor;
 
     // Relacionamentos:
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_AGENDAMENTO_FK", referencedColumnName = "ID_AGENDAMENTO")
+    @OneToOne
+    @JoinColumn(name = "ID_AGENDAMENTO_FK", referencedColumnName = "ID_AGENDAMENTO", unique = true)
     @NotNull(message = "O Agendamento da Ordem de Serviço Deve Ser Informado!")
-    @JsonIgnoreProperties("ordemServico")
     private Agendamento agendamento;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "ID_SERVICO_FK", referencedColumnName = "ID_SERVICO")
     @NotNull(message = "O Serviço da Ordem de Serviço Deve Ser Informado!")
-    @JsonIgnoreProperties("ordensDeServicos")
     private Servico servico;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "ID_FUNCIONARIO_RESPONSAVEL_OS_FK", referencedColumnName = "ID_FUNCIONARIO")
     @NotNull(message = "O Reponsável Pelo Lançamento da Ordem de Serviço Deve Ser Informado!")
-    @JsonIgnoreProperties("respPeloLancamento")
     private Funcionario respOS;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "ID_FUNCIONARIO_EXECUTA_SERVICO_FK", referencedColumnName = "ID_FUNCIONARIO")
-    @JsonIgnoreProperties("respExecServico")
     private Funcionario execServico;
 
 }

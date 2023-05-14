@@ -1,9 +1,9 @@
 package com.senac.aesthetics.domains;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.aesthetics.domains.abstracts.Pessoa;
 
 import jakarta.persistence.Column;
@@ -58,15 +58,15 @@ public class Funcionario extends Pessoa {
 
     // Relacionamentos:
     @OneToMany(orphanRemoval = false, mappedBy = "respAgendamento")
-    @JsonIgnoreProperties("respAgendamento")
-    private Set<Agendamento> agendamentos;
+    @JsonIgnore
+    private List<Agendamento> agendamentos;
 
     @OneToMany(orphanRemoval = false, mappedBy = "respOS")
-    @JsonIgnoreProperties("respOS")
-    private Set<OrdemServico> respPeloLancamento;
+    @JsonIgnore
+    private List<OrdemServico> respPeloLancamento;
 
     @OneToMany(orphanRemoval = false, mappedBy = "execServico")
-    @JsonIgnoreProperties("execServico")
-    private Set<OrdemServico> respExecServico;
+    @JsonIgnore
+    private List<OrdemServico> respExecServico;
 
 }
