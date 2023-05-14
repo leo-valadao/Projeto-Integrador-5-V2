@@ -22,9 +22,7 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -61,8 +59,6 @@ public class ContaPagar extends Conta {
     @Column(name = "STATUS", length = 15, nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull(message = "O Status da Conta a Pagar Deve Ser Informado!")
-    @Size(max = 15, message = "O Tamanho Máximo do Status da Conta a Pagar é de 15 Caracteres!")
-    @Pattern(regexp = "^(ABERTO|CANCELADO|PAGO)$", message = "O Status da Conta a Pagar Só Pode Ser: ABERTO ou CANCELADO ou PAGO!")
     private StatusContaPagarEnum status;
 
     // Relacionamentos:
