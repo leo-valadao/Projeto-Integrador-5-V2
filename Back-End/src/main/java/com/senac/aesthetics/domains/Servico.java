@@ -29,7 +29,7 @@ import lombok.Setter;
 @AllArgsConstructor
 
 // Java Persistence API:
-@Entity(name = "Serviço")
+@Entity
 @Table(name = "SERVICOS")
 public class Servico {
 

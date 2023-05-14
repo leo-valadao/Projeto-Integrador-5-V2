@@ -35,7 +35,7 @@ import lombok.Setter;
 @AllArgsConstructor
 
 // Java Persistence API:
-@Entity(name = "Conta a Receber")
+@Entity
 @Table(name = "CONTAS_RECEBER")
 public class ContaReceber extends Conta {
 

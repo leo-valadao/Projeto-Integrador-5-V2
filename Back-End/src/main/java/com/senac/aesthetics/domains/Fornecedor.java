@@ -20,7 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 
 // Java Persistence API:
-@Entity(name = "Fornecedor")
+@Entity
 @Table(name = "FORNECEDORES")
 public class Fornecedor extends PessoaJuridica {
 

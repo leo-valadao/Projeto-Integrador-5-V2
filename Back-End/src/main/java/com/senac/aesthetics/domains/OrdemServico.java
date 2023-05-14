@@ -34,7 +34,7 @@ import lombok.Setter;
 @AllArgsConstructor
 
 // Java Persistence API:
-@Entity(name = "Ordem Serviço")
+@Entity
 @Table(name = "ORDENS_SERVICOS")
 public class OrdemServico {
 
