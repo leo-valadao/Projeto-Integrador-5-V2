@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 
+/* 
+ * O nome "Generica" é porque a interface é reutilizada em mais de recurso (Resource), sendo genérica para o projeto.
+ * O nome "Resource" é porque a interface é utilizada na camada de serviço (Service) e satisfaz as necessidades das controladoras (Resource),
+ * por causa do princípio da inversão das dependências do SOLID
+ */
 public interface InterfaceGenericaCliente<T> {
 
     public ResponseEntity<Page<T>> obterTodosComPaginacao(
