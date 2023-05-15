@@ -1,0 +1,1427 @@
+{
+	"info": {
+		"_postman_id": "9dd6cbd2-e6e5-4215-9da1-399adf5d5774",
+		"name": "Aesthetics",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23178920",
+		"_collection_link": "https://projeto-integrador-5.postman.co/workspace/Aesthetics---Projeto-Integrador~a2448d2a-417e-496c-907f-2805b9e3d64d/collection/23178920-9dd6cbd2-e6e5-4215-9da1-399adf5d5774?action=share&creator=23178920&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Agendamento",
+			"item": [
+				{
+					"name": "Inserir Agendamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\":\"13/05/2023\",\n    \"hora\":\"12:34:00\",\n    \"status\":\"ABERTO\",\n    \"observacao\":\"Nada a se observar\",\n    \"cliente\":{ \"id\":1 },\n    \"respAgendamento\":{ \"id\":1 },\n    \"servico\":{ \"id\":2 }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/agendamento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"agendamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Todos os Agendamentos Com Paginação",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/agendamento?numeroPagina=0&quantidadePorPagina=25&ordenarPor=id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"agendamento"
+							],
+							"query": [
+								{
+									"key": "numeroPagina",
+									"value": "0"
+								},
+								{
+									"key": "quantidadePorPagina",
+									"value": "25"
+								},
+								{
+									"key": "ordenarPor",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Agendamento Por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/agendamento?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"agendamento"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Agendamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"data\":\"25/05/2023\",\n    \"hora\":\"23:34:56\",\n    \"status\":\"CONFIRMADO\",\n    \"observacao\":\"Tudo certo\",\n    \"cliente\":{ \"id\":2 },\n    \"respAgendamento\":{ \"id\":2 },\n    \"servico\":{ \"id\":2 }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/agendamento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"agendamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Agendamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/agendamento?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"agendamento"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Inserir Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"Leonardo Valadão\",\n    \"telefone\":\"(12)34567-8910\",\n    \"email\":\"leonardo@teste.com\",\n    \"uf\":\"GO\",\n    \"cpf\":\"001.295.100-50\",\n    \"alergias\":\"Nenhuma\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Todos os Clientes Com Paginação",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/cliente?numeroPagina=0&quantidadePorPagina=25&ordenarPor=id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cliente"
+							],
+							"query": [
+								{
+									"key": "numeroPagina",
+									"value": "0"
+								},
+								{
+									"key": "quantidadePorPagina",
+									"value": "25"
+								},
+								{
+									"key": "ordenarPor",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Cliente Por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/cliente?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cliente"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"nome\":\"Leonardo Valadão de Oliveira\",\n    \"telefone\":\"(10)98765-4321\",\n    \"email\":\"leonardo@teste2.com\",\n    \"uf\":\"SP\",\n    \"alergias\":\"Todas\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/cliente?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cliente"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contas a Pagar",
+			"item": [
+				{
+					"name": "Inserir Conta a Pagar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emissao\": \"13/05/2023 20:00:00\",\n    \"vencimento\": \"15/05/2024 20:00:00\",\n    \"valor\": 10,\n    \"valorPago\": 100.0,\n    \"pagamento\": \"13/05/2023 20:00:00\",\n    \"status\": \"CANCELADO\",\n    \"fornecedor\": { \"id\": 2 }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/conta-pagar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"conta-pagar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Todas as Contas a Pagar Com Paginação",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/conta-pagar?numeroPagina=0&quantidadePorPagina=25&ordenarPor=id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"conta-pagar"
+							],
+							"query": [
+								{
+									"key": "numeroPagina",
+									"value": "0"
+								},
+								{
+									"key": "quantidadePorPagina",
+									"value": "25"
+								},
+								{
+									"key": "ordenarPor",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Conta a Pagar Por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/conta-pagar?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"conta-pagar"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Conta a Pagar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"emissao\": \"13/05/2023 20:00:00\",\n    \"vencimento\": \"15/05/2024 20:00:00\",\n    \"valor\": 10,\n    \"valorPago\": 100.0,\n    \"pagamento\": \"13/05/2023 20:00:00\",\n    \"status\": \"PAGO\",\n    \"fornecedor\": { \"id\": 1 }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/conta-pagar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"conta-pagar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Conta a Pagar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/conta-pagar?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"conta-pagar"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contas a Receber",
+			"item": [
+				{
+					"name": "Inserir Conta a Receber",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emissao\": \"13/05/2023 20:00:00\",\n    \"vencimento\": \"15/05/2024 20:00:00\",\n    \"valor\": 10,\n    \"valorRecebido\": 100.0,\n    \"recebimento\": \"13/05/2023 20:00:00\",\n    \"status\": \"CANCELADO\",\n    \"cliente\": { \"id\": 2 }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/conta-receber",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"conta-receber"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Todas as Contas a Receber Com Paginação",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/conta-receber?numeroPagina=0&quantidadePorPagina=25&ordenarPor=id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"conta-receber"
+							],
+							"query": [
+								{
+									"key": "numeroPagina",
+									"value": "0"
+								},
+								{
+									"key": "quantidadePorPagina",
+									"value": "25"
+								},
+								{
+									"key": "ordenarPor",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Conta a Receber Por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/conta-receber?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"conta-receber"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Conta a Receber",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emissao\": \"13/05/2023 20:00:00\",\n    \"vencimento\": \"23/10/2030 22:11:12\",\n    \"valor\": 10.00,\n    \"id\": 1,\n    \"valorRecebido\": 100.00,\n    \"recebimento\": \"13/05/2023 20:00:00\",\n    \"status\": \"CANCELADO\",\n    \"ordemServico\": null,\n    \"cliente\": { \"id\": 1 }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/conta-receber",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"conta-receber"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Conta a Receber",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/conta-receber?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"conta-receber"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fornecedor",
+			"item": [
+				{
+					"name": "Inserir Fornecedor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"Leonardo Valadão\",\n    \"telefone\":\"(12)34567-8910\",\n    \"email\":\"leonardo@teste.com\",\n    \"uf\":\"GO\",\n    \"cnpj\":\"88.445.538/0001-50\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/fornecedor",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"fornecedor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Todos ss Fornecedores Com Paginação",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/fornecedor?numeroPagina=0&quantidadePorPagina=25&ordenarPor=id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"fornecedor"
+							],
+							"query": [
+								{
+									"key": "numeroPagina",
+									"value": "0"
+								},
+								{
+									"key": "quantidadePorPagina",
+									"value": "25"
+								},
+								{
+									"key": "ordenarPor",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Fornecedor Por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/fornecedor?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"fornecedor"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Fornecedor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"nome\":\"Leonardo Valadão Oliveira\",\n    \"telefone\":\"(12)34567-8910\",\n    \"email\":\"leonardo@teste.com\",\n    \"uf\":\"GO\",\n    \"cnpj\":\"31.187.812/0001-11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/fornecedor",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"fornecedor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Fornecedor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/fornecedor?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"fornecedor"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ordem de Serviço",
+			"item": [
+				{
+					"name": "Inserir Ordem de Serviço",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dataHoraInicio\":\"13/05/2023 10:00:34\",\n    \"dataHoraTermino\":\"14/05/2023 10:00:34\",\n    \"status\":\"ABERTO\",\n    \"valor\":10,\n    \"agendamento\":{ \"id\":3 },\n    \"servico\":{ \"id\":2 },\n    \"respOS\":{ \"id\":2 },\n    \"execServico\":{ \"id\":2 }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/ordem-servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ordem-servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Todas as Ordens de Serviço Com Paginação",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/ordem-servico?numeroPagina=0&quantidadePorPagina=25&ordenarPor=id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ordem-servico"
+							],
+							"query": [
+								{
+									"key": "numeroPagina",
+									"value": "0"
+								},
+								{
+									"key": "quantidadePorPagina",
+									"value": "25"
+								},
+								{
+									"key": "ordenarPor",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Ordem de Serviço Por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/ordem-servico?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ordem-servico"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Ordem de Serviço",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"dataHoraInicio\":\"13/05/2023 10:00:34\",\n    \"dataHoraTermino\":\"14/05/2023 10:00:34\",\n    \"status\":\"CANCELADO\",\n    \"valor\":10,\n    \"agendamento\":{ \"id\":1 },\n    \"servico\":{ \"id\":1 },\n    \"respOS\":{ \"id\":1 },\n    \"execServico\":{ \"id\":1 }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/ordem-servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ordem-servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Ordem de Serviço",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/ordem-servico?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ordem-servico"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profissional",
+			"item": [
+				{
+					"name": "Inserir Funcionário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"Leonardo Valadão\",\n    \"telefone\":\"(12)34567-8910\",\n    \"email\":\"leonardo@teste.com\",\n    \"uf\":\"GO\",\n    \"cpf\":\"612.527.870-06\",\n    \"login\":\"leo\",\n    \"senha\":123456,\n    \"comissao\":12.34\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/funcionario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"funcionario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Todos os Funcionários Com Paginação",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/funcionario?numeroPagina=0&quantidadePorPagina=25&ordenarPor=id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"funcionario"
+							],
+							"query": [
+								{
+									"key": "numeroPagina",
+									"value": "0"
+								},
+								{
+									"key": "quantidadePorPagina",
+									"value": "25"
+								},
+								{
+									"key": "ordenarPor",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Funcionário Por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/funcionario?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"funcionario"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Funcionário",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"nome\":\"Leonardo Oliveira\",\n    \"telefone\":\"(12)34567-8910\",\n    \"email\":\"leonardo@teste.com\",\n    \"uf\":\"GO\",\n    \"login\":\"leo\",\n    \"senha\":\"senha\",\n    \"comissao\":4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/funcionario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"funcionario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Funcionário",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/funcionario?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"funcionario"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Serviço",
+			"item": [
+				{
+					"name": "Inserir Serviço",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"Corte de Cabelo\",\n    \"descricao\":\"Corte de Cabelo Masculino ou Feminino\",\n    \"precoCusto\":0,\n    \"precoVenda\":70\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Todos os Serviços Com Paginação",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/servico?numeroPagina=0&quantidadePorPagina=25&ordenarPor=id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"servico"
+							],
+							"query": [
+								{
+									"key": "numeroPagina",
+									"value": "0"
+								},
+								{
+									"key": "quantidadePorPagina",
+									"value": "25"
+								},
+								{
+									"key": "ordenarPor",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Todos os Serviço",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Serviço Por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/servico?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"servico"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Serviço",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"nome\":\"Corte de Cabelo PREMIUM\",\n    \"descricao\":\"Corte de Cabelo Masculino ou Feminino que a gente só cobra mais caro mesmo\",\n    \"precoCusto\":70.5,\n    \"precoVenda\":170.9\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Serviço",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/servico?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"servico"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
