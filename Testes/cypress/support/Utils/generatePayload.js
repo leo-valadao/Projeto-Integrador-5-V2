@@ -1,6 +1,10 @@
 import uuid from "./uuid";
 
-export function payloadPostAgendamento(cliente_id, profissional_id, servico_id) {
+export function payloadPostAgendamento(
+  cliente_id,
+  profissional_id,
+  servico_id
+) {
   const data = "29/04/2023";
   const payload = {
     agendamentoDataHora: `${data} 15:50:12`,
@@ -17,12 +21,13 @@ export function payloadPostAgendamento(cliente_id, profissional_id, servico_id) 
 export function payloadPostCliente() {
   const payload = {
     nome: Cypress.env("nome"),
-    cpf: Cypress.env("cpf"),
-    endereco: Cypress.env("endereco"),
-    telefoneFixo: "(62)4018-5236",
-    telefoneCelular: "(62)98131-7252",
+    telefone: Cypress.env("telefone").replace(/\s/g, ""),
     email: Cypress.env("email"),
+    uf: "GO",
+    cpf: Cypress.env("cpf"),
+    alergias: "Nenhuma",
   };
+  //.replace(/\s/g, "")
 
   return payload;
 }

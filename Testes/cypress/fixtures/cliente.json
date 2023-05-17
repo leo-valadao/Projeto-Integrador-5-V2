@@ -1,0 +1,52 @@
+{
+  "validaCampos": [
+    {
+      "campo": "O campo nome é obrigatório",
+      "telefone": "(12)34567-8910",
+      "email": "leonardo@teste.com",
+      "uf": "GO",
+      "cpf": "001.295.100-50",
+      "alergias": "Nenhuma",
+      "message": "O Nome da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
+    },
+    {
+      "campo": "O campo telefone é obrigatório",
+      "nome": "Leonardo Valadão",
+      "email": "leonardo@teste.com",
+      "uf": "GO",
+      "cpf": "001.295.100-50",
+      "alergias": "Nenhuma",
+      "message": "O Telefone da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
+    },
+    {
+      "campo": "Telefone inválido - Validação de caracteres",
+      "nome": "Leonardo Valadão",
+      "telefone": "(12)3456-78910157",
+      "email": "leonardo@teste.com",
+      "uf": "GO",
+      "cpf": "001.295.100-50",
+      "alergias": "Nenhuma",
+      "message": "O Tamanho do Telefone da Pessoa é de 13 ou 14 Caracteres!"
+    },
+    {
+      "campo": "E-mail inválido",
+      "nome": "Leonardo Valadão",
+      "telefone": "(12)34567-8910",
+      "email": "leonardo.teste.com",
+      "uf": "GO",
+      "cpf": "001.295.100-50",
+      "alergias": "Nenhuma",
+      "message": "O E-Mail da Pessoa Está Inválido!"
+    },
+    {
+      "campo": "E-mail acima de 50 caracteres",
+      "nome": "Leonardo Valadão",
+      "telefone": "(12)34567-8910",
+      "email": "teste_email_com_mais__de_50_caracteres@teste.com.br",
+      "uf": "GO",
+      "cpf": "001.295.100-50",
+      "alergias": "Nenhuma",
+      "message": "O Tamanho Máximo do E-Mail da Pessoa é de 50 Caracteres!"
+    }
+  ]
+}
