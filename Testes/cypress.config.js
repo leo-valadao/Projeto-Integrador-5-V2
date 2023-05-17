@@ -5,6 +5,10 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    baseUrl: "http://localhost:4200/",
+    env: {
+      apiUrl: "http://localhost:8080/api/v1",
+    },
     experimentalRunAllSpecs: true,
     watchForFileChanges: false,
     specPattern: "cypress/integration/**/*.cy.{js,jsx,ts,tsx}",
