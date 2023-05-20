@@ -1,46 +1,46 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ClienteComponent } from './cliente/cliente.component';
-import { AgendamentoComponent } from './agendamento/agendamento.component';
-import { ContaPagarComponent } from './conta-pagar/conta-pagar.component';
-import { ContaReceberComponent } from './conta-receber/conta-receber.component';
-import { FornecedorComponent } from './fornecedor/fornecedor.component';
-import { OrdemServicoComponent } from './ordem-servico/ordem-servico.component';
-import { ServicoComponent } from './servico/servico.component';
-import { FuncionarioComponent } from './funcionario/funcionario.component';
+import { ClientesComponent } from './clientes/clientes.component';
+import { AgendamentosComponent } from './agendamentos/agendamentos.component';
+import { ContasPagarComponent } from './contas-pagar/contas-pagar.component';
+import { ContasReceberComponent } from './contas-receber/contas-receber.component';
+import { FornecedoresComponent } from './fornecedores/fornecedores.component';
+import { FuncionariosComponent } from './funcionarios/funcionarios.component';
+import { OrdensServicosComponent } from './ordens-servicos/ordens-servicos.component';
+import { ServicosComponent } from './servicos/servicos.component';
 
 const routes: Routes = [
   {
     path: 'cliente',
-    component: ClienteComponent,
+    component: ClientesComponent,
   },
   {
     path: 'agendamento',
-    component: AgendamentoComponent,
-  },
-  {
-    path: 'conta-pagar',
-    component: ContaPagarComponent,
-  },
-  {
-    path: 'conta-receber',
-    component: ContaReceberComponent,
-  },
-  {
-    path: 'fornecedor',
-    component: FornecedorComponent,
-  },
-  {
-    path: 'funcionario',
-    component: FuncionarioComponent,
-  },
-  {
-    path: 'ordem-servico',
-    component: OrdemServicoComponent,
+    component: AgendamentosComponent,
   },
   {
     path: 'servico',
-    component: ServicoComponent,
+    component: ServicosComponent,
+  },
+  {
+    path: 'funcionario',
+    component: FuncionariosComponent,
+  },
+  {
+    path: 'ordem-servico',
+    component: OrdensServicosComponent,
+  },
+  {
+    path: 'conta-receber',
+    component: ContasReceberComponent,
+  },
+  {
+    path: 'conta-pagar',
+    component: ContasPagarComponent,
+  },
+  {
+    path: 'fornecedor',
+    component: FornecedoresComponent,
   },
 ];
 

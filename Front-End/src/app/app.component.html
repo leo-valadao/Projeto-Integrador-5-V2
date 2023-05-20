@@ -1,1 +1,12 @@
-<app-cabecalho />
+<div class="d-flex flex-column">
+  <div class="d-flex flex-row">
+    <app-painel-lateral />
+    <div class="d-flex flex-column vw-100">
+      <app-cabecalho />
+      <div class="border">
+        <router-outlet />
+      </div>
+    </div>
+  </div>
+  <app-rodape />
+</div>
