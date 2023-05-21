@@ -3,7 +3,7 @@ import { OrdemServico } from './ordem-servico.model';
 
 export class Servico {
   // Atributo(s):
-  public id!: Number;
+  public readonly id!: Number;
   public nome!: String;
   public descricao!: String;
   public precoCusto!: Number;

@@ -4,7 +4,7 @@ import { Fornecedor } from './fornecedor.model';
 
 export class ContaPagar extends Conta {
   // Atributo(s):
-  public id!: Number;
+  public readonly id!: Number;
   public valorPago!: Number;
   public dataPagamento!: Date;
   public status!: StatusContaPagarEnum;

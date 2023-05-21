@@ -5,7 +5,7 @@ import { Servico } from './servico.model';
 
 export class OrdemServico {
   // Atributo(s):
-  public id!: Number;
+  public readonly id!: Number;
   public dataHoraInicio!: Date;
   public dataHoraTermino!: Date;
   public status!: StatusOrdemServicoEnum;
