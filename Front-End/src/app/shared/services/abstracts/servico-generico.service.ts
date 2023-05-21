@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IntefaceGenericaComponentes } from '../../interfaces/interface-generica-componentes.interface';
 import { Observable } from 'rxjs';
-import { Page } from '../../domains/others/page.model';
+import { Page } from '../../domains/others/pagina.page';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -17,7 +17,7 @@ export abstract class ServicoGenericoService<T>
   obterTodosPorPagina(
     numeroPagina?: Number,
     quantidadePorPagina?: Number,
-    ordenarPor?: string | undefined
+    ordenarPor?: string
   ): Observable<Page<T>> {
     let url = `${this.url}?numeroPagina=${numeroPagina}&quantidadePorPagina=${quantidadePorPagina}`;
 

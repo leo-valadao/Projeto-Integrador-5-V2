@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Page } from '../domains/others/page.model';
+import { Page } from '../domains/others/pagina.page';
 
 export interface IntefaceGenericaComponentes<T> {
   // Atributo(s):
