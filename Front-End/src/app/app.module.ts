@@ -7,6 +7,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
+// Prime NG
+import { MessageService } from 'primeng/api';
+import { TableModule } from 'primeng/table';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputMaskModule } from 'primeng/inputmask';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { CalendarModule } from 'primeng/calendar';
+import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
+
 // Aesthetics
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -92,9 +105,19 @@ import { Rotas } from './app.routes';
     HttpClientModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
+    TableModule,
+    CheckboxModule,
+    ButtonModule,
+    DialogModule,
+    InputTextModule,
+    InputMaskModule,
+    MultiSelectModule,
+    CalendarModule,
+    ToastModule,
+    DropdownModule,
     RouterModule.forRoot(Rotas, { onSameUrlNavigation: 'reload' }),
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
