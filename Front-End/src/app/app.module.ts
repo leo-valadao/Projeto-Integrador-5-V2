@@ -21,7 +21,6 @@ import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 
 // Aesthetics
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PainelLateralComponent } from './painel-lateral/painel-lateral.component';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
@@ -99,7 +98,6 @@ import { Rotas } from './app.routes';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
