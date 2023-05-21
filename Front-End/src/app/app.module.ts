@@ -1,6 +1,11 @@
 // Angular
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 // Aesthetics
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +44,7 @@ import { FornecedoresComponent } from './fornecedores/fornecedores.component';
 import { FiltroFornecedoresComponent } from './fornecedores/filtro-fornecedores/filtro-fornecedores.component';
 import { TabelaFornecedoresComponent } from './fornecedores/tabela-fornecedores/tabela-fornecedores.component';
 import { FormularioFornecedoresComponent } from './fornecedores/formulario-fornecedores/formulario-fornecedores.component';
+import { Rotas } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -78,7 +84,16 @@ import { FormularioFornecedoresComponent } from './fornecedores/formulario-forne
     TabelaFornecedoresComponent,
     FormularioFornecedoresComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    RouterModule.forRoot(Rotas, { onSameUrlNavigation: 'reload' }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
