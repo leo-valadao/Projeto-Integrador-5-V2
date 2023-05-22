@@ -1,8 +1,21 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild} from '@angular/core';
+import { TabelaAgendamentosComponent } from './tabela-agendamentos/tabela-agendamentos.component';
+import { FormularioAgendamentosComponent } from './formulario-agendamentos/formulario-agendamentos.component';
+import { Agendamento } from '../shared/domains/agendamento.model';
 
 @Component({
   selector: 'app-agendamentos',
   templateUrl: './agendamentos.component.html',
   styles: [],
 })
-export class AgendamentosComponent {}
+export class AgendamentosComponent {
+  @ViewChild(FormularioAgendamentosComponent) formularioAgendamentos!: FormularioAgendamentosComponent;
+  @ViewChild(TabelaAgendamentosComponent) tabelaAgendamentos!: TabelaAgendamentosComponent;
+
+
+
+
+ 
+
+
+}

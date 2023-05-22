@@ -20,6 +20,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 
+
+
+
 // Aesthetics
 import { AppComponent } from './app.component';
 import { PainelLateralComponent } from './painel-lateral/painel-lateral.component';
@@ -112,7 +115,10 @@ import { Rotas } from './app.routes';
     MultiSelectModule,
     CalendarModule,
     ToastModule,
-    DropdownModule,
+ 
+  
+ 
+    DropdownModule, 
     RouterModule.forRoot(Rotas, { onSameUrlNavigation: 'reload' }),
   ],
   providers: [MessageService],
