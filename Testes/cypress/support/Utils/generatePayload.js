@@ -32,15 +32,15 @@ export function payloadPostCliente() {
   return payload;
 }
 
-export function payloadPutCliente() {
+export function payloadPutCliente(id) {
   const payload = {
-    id: Cypress.env("cliente_id"),
-    nome: Cypress.env("nome"),
-    cpf: Cypress.env("cpf"),
-    endereco: Cypress.env("endereco_put"),
-    telefoneFixo: "(62)3018-5236",
-    telefoneCelular: "(62)99131-7252",
-    email: Cypress.env("email"),
+    id: id,
+    nome: Cypress.env("nomePut"),
+    cpf: Cypress.env("cpfPut"),
+    telefone: Cypress.env("telefonePut").replace(/\s/g, ""),
+    uf: "GO",
+    email: Cypress.env("emailPut"),
+    alergias: 'Shampoo de Camomila'
   };
 
   return payload;
@@ -49,11 +49,13 @@ export function payloadPutCliente() {
 export function payloadPostProfissional() {
   const payload = {
     nome: Cypress.env("profissional_nome"),
-    cpf: Cypress.env("profissional_cpf"),
-    endereco: Cypress.env("profissional_endereco"),
-    telefoneFixo: Cypress.env("profissional_telefone_fixo").replace(/\s/g, ""),
-    telefoneCelular: Cypress.env("profissional_celular").replace(/\s/g, ""),
+    telefone: Cypress.env("profissional_celular").replace(/\s/g, ""),
     email: Cypress.env("profissional_email"),
+    uf: Cypress.env('profissional_uf'),
+    cpf: Cypress.env("profissional_cpf"),
+    login: Cypress.env("profissional_senha"),
+    senha: Cypress.env("profissional_senha"),
+    comissao: 12.50
   };
 
   return payload;

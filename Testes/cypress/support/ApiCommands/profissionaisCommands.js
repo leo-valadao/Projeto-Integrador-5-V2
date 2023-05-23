@@ -4,7 +4,7 @@ export const url = Cypress.env("apiUrl");
 Cypress.Commands.add("PostProfissional", (payload) => {
   cy.api({
     method: "POST",
-    url: `${url}/profissional`,
+    url: `${url}/funcionario`,
     body: payload,
     failOnStatusCode: false,
   }).then((response) => {
@@ -15,12 +15,9 @@ Cypress.Commands.add("PostProfissional", (payload) => {
 Cypress.Commands.add("GetAllProfissionais", () => {
   cy.api({
     method: "GET",
-    url: `${url}/profissional`,
+    url: `${url}/funcionario`,
     failOnStatusCode: false,
   }).then(function (response) {
-    Cypress.env("profissional_del", response.body.content[1].id);
-    Cypress.env("profissional_put", response.body.content[2].id);
-    Cypress.env("id_profissional", response.body.content[0].id)
     return response;
   });
 });
@@ -28,7 +25,7 @@ Cypress.Commands.add("GetAllProfissionais", () => {
 Cypress.Commands.add("GetAllProfissionalById", (id) => {
   cy.api({
     method: "GET",
-    url: `${url}/profissional`,
+    url: `${url}/funcionario`,
     qs: {
       id: id,
     },
