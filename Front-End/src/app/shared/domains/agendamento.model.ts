@@ -6,7 +6,7 @@ import { Servico } from './servico.model';
 
 export class Agendamento {
   // Atributo(s):
-  public readonly id!: Number;
+  public readonly id!: number;
   public data!: Date;
   public hora!: Time;
   public status!: StatusAgendamentoEnum;

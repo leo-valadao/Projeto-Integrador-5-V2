@@ -7,7 +7,7 @@ const enum LinksEnum {
 }
 
 const enum VersaoEnum {
-  V1 = 'v1',
+  V1 = 'v1/',
 }
 
 const enum ApisEnum {
@@ -22,6 +22,7 @@ const enum ApisEnum {
 }
 
 export const enum environment {
+  AGENDAMENTO = `${LinksEnum.URL}${VersaoEnum.V1}${ApisEnum.AGENDAMENTO}`,
   CLIENTE = `${LinksEnum.URL}${VersaoEnum.V1}${ApisEnum.CLIENTE}`,
   CONTA_PAGAR = `${LinksEnum.URL}${VersaoEnum.V1}${ApisEnum.CONTA_PAGAR}`,
   CONTA_RECEBER = `${LinksEnum.URL}${VersaoEnum.V1}${ApisEnum.CONTA_RECEBER}`,

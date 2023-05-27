@@ -7,8 +7,8 @@ export interface IntefaceGenericaComponentes<T> {
 
   // Método(s):
   obterTodosPorPagina(
-    numeroDaPagina?: Number,
-    quantidadePorPagina?: Number,
+    numeroDaPagina?: number,
+    quantidadePorPagina?: number,
     ordenarPor?: string
   ): Observable<Page<T>>;
 
@@ -16,5 +16,5 @@ export interface IntefaceGenericaComponentes<T> {
 
   atualizar(objeto: T): Observable<T>;
 
-  excluir(id: Number): Observable<void>;
+  excluir(id: number): Observable<void>;
 }

@@ -7,7 +7,7 @@ const enum LinksEnum {
 }
 
 const enum VersaoEnum {
-  V1 = 'v1',
+  V1 = 'v1/',
 }
 
 const enum ApisEnum {

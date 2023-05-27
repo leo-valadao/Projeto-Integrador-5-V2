@@ -1,8 +1,8 @@
 export abstract class Conta {
   // Atributo(s):
-  public dataEmissao!: Date;
-  public dataVencimento!: Date;
-  public valor!: Number;
+  public emissao!: Date;
+  public vencimento!: Date;
+  public valor!: number;
 
   constructor() {}
 }

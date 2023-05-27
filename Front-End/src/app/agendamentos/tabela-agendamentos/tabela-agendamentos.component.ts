@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
-import { Table } from 'primeng/table';
+import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { Agendamento } from 'src/app/shared/domains/agendamento.model';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
 
@@ -12,8 +12,8 @@ import { AgendamentoService } from 'src/app/shared/services/agendamento.service'
 export class TabelaAgendamentosComponent {
   agendamentos!: Agendamento[];
   agendamentosSelecionados!: Agendamento[];
-  quantidadeTotalAgendamentos: Number = 10;
-  quantidadeAgendamentosExibidosPorPagina: Number = 10;
+  quantidadeTotalAgendamentos: number = 10;
+  quantidadeAgendamentosExibidosPorPagina: number = 10;
 
   colunas: { header: string; field: string; align: string }[] = [
     { header: 'ID', field: 'id', align: 'text-center' },
@@ -39,61 +39,8 @@ export class TabelaAgendamentosComponent {
 
   @ViewChild(Table) private tabelaAgendamentos!: Table;
 
-  constructor(private agendamentoService: AgendamentoService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
-  obterTodosAgendamentos(
-    numeroPagina: number,
-    quantidadePorPagina: number,
-    ordenarPor?: string
-  ): void {
-    this.agendamentoService
-      .obterTodosPorPagina(numeroPagina, quantidadePorPagina, ordenarPor)
-      .subscribe({
-        next: (resposta) => {
-          this.agendamentos = resposta.content;
-          this.quantidadeTotalAgendamentos = resposta.totalElements;
-        },
-        error: (erro) => {},
-        complete: () => {},
-      });
-  }
-
-  mudarPagina(evento: LazyLoadEvent) {
-    if (evento.first != undefined && evento.rows != undefined) {
-      this.obterTodosAgendamentos(
-        Math.floor(evento.first / evento.rows),
-        evento.rows,
-        'id'
-      );
-    }
-  }
-
-  mostrarFormularioAgendamentos(cliente: Agendamento | null) {
-    if (cliente) {
-      this.exibirFormularioAgendamento.emit(
-        JSON.parse(JSON.stringify(cliente))
-      );
-    } else {
-      this.exibirFormularioAgendamento.emit(new Agendamento());
-    }
-  }
-
-  excluirAgendamento(idAgendamento: number) {
-    this.agendamentoService.excluir(idAgendamento).subscribe({
-      next: (resposta) => {},
-      error: (erro) => {},
-      complete: () => {
-      
-      },
-    });
- 
-  }
-
-
-
-
-
-  
 }
