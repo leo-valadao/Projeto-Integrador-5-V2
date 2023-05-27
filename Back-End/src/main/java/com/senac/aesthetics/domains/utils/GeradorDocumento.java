@@ -1,4 +1,4 @@
-package com.senac.aesthetics.domains.util;
+package com.senac.aesthetics.domains.utils;
 
 import java.util.InputMismatchException;
 import java.util.Random;
