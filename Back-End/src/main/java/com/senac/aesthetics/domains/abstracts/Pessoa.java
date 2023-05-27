@@ -42,7 +42,7 @@ public abstract class Pessoa {
     @Email(message = "O E-Mail da Pessoa Está Inválido!")
     private String email;
 
-    @Column(name = "ESTADO_BRASILEIRO", length = 2)
+    @Column(name = "ESTADO_BRASILEIRO", length = 25)
     @Enumerated(EnumType.STRING)
     private EstadosBrasileirosEnum estadoBrasileiro;
 

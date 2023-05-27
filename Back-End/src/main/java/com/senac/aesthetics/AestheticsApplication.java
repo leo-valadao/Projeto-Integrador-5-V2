@@ -87,7 +87,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				c.setNome("Cliente " + i);
 				c.setTelefone("(12)34567-8910");
 				c.setEmail("teste" + i + "@teste.com");
-				c.setEstadoBrasileiro(EstadosBrasileirosEnum.GO);
+				c.setEstadoBrasileiro(EstadosBrasileirosEnum.GOIAS);
 				c.setCpf(gd.cpf(true));
 				c.setAlergias("Nenhuma");
 
@@ -109,7 +109,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				f.setNome("Funcionário " + i);
 				f.setTelefone("(12)34567-8910");
 				f.setEmail("teste" + i + "@teste.com");
-				f.setEstadoBrasileiro(EstadosBrasileirosEnum.GO);
+				f.setEstadoBrasileiro(EstadosBrasileirosEnum.GOIAS);
 				f.setCpf(gd.cpf(true));
 				f.setLogin("f" + i);
 				f.setSenha("f" + i);
@@ -188,7 +188,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				f.setNome("Fornecedor " + i);
 				f.setTelefone("(12)34567-8910");
 				f.setEmail("teste" + i + "@teste.com");
-				f.setEstadoBrasileiro(EstadosBrasileirosEnum.GO);
+				f.setEstadoBrasileiro(EstadosBrasileirosEnum.GOIAS);
 				f.setCnpj(gd.cnpj(true));
 
 				fos.inserir(f);
