@@ -12,7 +12,7 @@ export class OrdemServicoService
   extends ServicoGenericoService<OrdemServico>
   implements IntefaceGenericaComponentes<OrdemServico>
 {
-  override url = `${environment.CLIENTE}`;
+  override url = `${environment.ORDEM_SERVICO}`;
 
   constructor(protected override http: HttpClient) {
     super(http);

@@ -12,7 +12,7 @@ export class FuncionarioService
   extends ServicoGenericoService<Funcionario>
   implements IntefaceGenericaComponentes<Funcionario>
 {
-  override url = `${environment.CLIENTE}`;
+  override url = `${environment.FUNCIONARIO}`;
 
   constructor(protected override http: HttpClient) {
     super(http);

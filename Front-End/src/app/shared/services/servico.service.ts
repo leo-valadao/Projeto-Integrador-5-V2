@@ -12,7 +12,7 @@ export class ServicoService
   extends ServicoGenericoService<Servico>
   implements IntefaceGenericaComponentes<Servico>
 {
-  override url = `${environment.CLIENTE}`;
+  override url = `${environment.SERVICO}`;
 
   constructor(protected override http: HttpClient) {
     super(http);
