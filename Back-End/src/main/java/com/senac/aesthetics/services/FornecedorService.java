@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Fornecedor;
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.DataBaseException;
+import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.FornecedorRepository;
 
@@ -36,7 +36,7 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
         if (fornecedor.isPresent()) {
             return fornecedor.get();
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "Fornecedor Não Encontrado! ID: " + idFornecedor);
+            throw new ErroGenerico("Fornecedor Não Encontrado! ID: " + idFornecedor, TipoMensagemEnum.ERROR);
         }
     }
 
@@ -48,7 +48,7 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
         if (fornecedorRepository.existsById(fornecedor.getId())) {
             return fornecedorRepository.saveAndFlush(fornecedor);
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "Fornecedor Não Encontrado! ID: " + fornecedor.getId());
+            throw new ErroGenerico("Fornecedor Não Encontrado! ID: " + fornecedor.getId(), TipoMensagemEnum.ERROR);
         }
     }
 
@@ -56,7 +56,7 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
         if (fornecedorRepository.existsById(idFornecedor)) {
             fornecedorRepository.deleteById(idFornecedor);
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "Fornecedor Não Encontrado! ID: " + idFornecedor);
+            throw new ErroGenerico("Fornecedor Não Encontrado! ID: " + idFornecedor, TipoMensagemEnum.ERROR);
         }
     }
 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Agendamento;
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.DataBaseException;
+import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.AgendamentoRepository;
 
@@ -36,7 +36,7 @@ public class AgendamentoService implements InterfaceGenericaResource<Agendamento
         if (agendamento.isPresent()) {
             return agendamento.get();
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "Agendamento Não Encontrado! ID: " + idAgendamento);
+            throw new ErroGenerico("Agendamento Não Encontrado! ID: " + idAgendamento, TipoMensagemEnum.ERROR);
         }
     }
 
@@ -48,8 +48,7 @@ public class AgendamentoService implements InterfaceGenericaResource<Agendamento
         if (agendamentoRepository.existsById(agendamento.getId())) {
             return agendamentoRepository.saveAndFlush(agendamento);
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR,
-                    "Agendamento Não Encontrado! ID: " + agendamento.getId());
+            throw new ErroGenerico("Agendamento Não Encontrado! ID: " + agendamento.getId(), TipoMensagemEnum.ERROR);
         }
     }
 
@@ -57,7 +56,7 @@ public class AgendamentoService implements InterfaceGenericaResource<Agendamento
         if (agendamentoRepository.existsById(idAgendamento)) {
             agendamentoRepository.deleteById(idAgendamento);
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "Agendamento Não Encontrado! ID: " + idAgendamento);
+            throw new ErroGenerico("Agendamento Não Encontrado! ID: " + idAgendamento, TipoMensagemEnum.ERROR);
         }
     }
 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.OrdemServico;
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.DataBaseException;
+import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.OrdemServicoRepository;
 
@@ -36,7 +36,7 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
         if (ordemServico.isPresent()) {
             return ordemServico.get();
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "OrdemServico Não Encontrado! ID: " + idOrdemServico);
+            throw new ErroGenerico("OrdemServico Não Encontrado! ID: " + idOrdemServico, TipoMensagemEnum.ERROR);
         }
     }
 
@@ -48,8 +48,7 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
         if (ordemServicoRepository.existsById(ordemServico.getId())) {
             return ordemServicoRepository.saveAndFlush(ordemServico);
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR,
-                    "OrdemServico Não Encontrado! ID: " + ordemServico.getId());
+            throw new ErroGenerico("OrdemServico Não Encontrado! ID: " + ordemServico.getId(), TipoMensagemEnum.ERROR);
         }
     }
 
@@ -57,7 +56,7 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
         if (ordemServicoRepository.existsById(idOrdemServico)) {
             ordemServicoRepository.deleteById(idOrdemServico);
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "OrdemServico Não Encontrado! ID: " + idOrdemServico);
+            throw new ErroGenerico("OrdemServico Não Encontrado! ID: " + idOrdemServico, TipoMensagemEnum.ERROR);
         }
     }
 

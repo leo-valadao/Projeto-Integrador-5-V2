@@ -9,10 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class DataBaseException extends RuntimeException {
+public class ErroGenerico extends RuntimeException {
 
     // Atributos:
-    private TipoMensagemEnum tipo;
     private String mensagem;
+    private TipoMensagemEnum tipo;
     
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Cliente;
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.DataBaseException;
+import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.ClienteRepository;
 
@@ -36,7 +36,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         if (cliente.isPresent()) {
             return cliente.get();
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "Cliente Não Encontrado! ID: " + idCliente);
+            throw new ErroGenerico("Cliente Não Encontrado! ID: " + idCliente, TipoMensagemEnum.ERROR);
         }
     }
 
@@ -48,7 +48,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         if (clienteRepository.existsById(cliente.getId())) {
             return clienteRepository.saveAndFlush(cliente);
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "Cliente Não Encontrado! ID: " + cliente.getId());
+            throw new ErroGenerico("Cliente Não Encontrado! ID: " + cliente.getId(), TipoMensagemEnum.ERROR);
         }
     }
 
@@ -56,7 +56,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         if (clienteRepository.existsById(idCliente)) {
             clienteRepository.deleteById(idCliente);
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "Cliente Não Encontrado! ID: " + idCliente);
+            throw new ErroGenerico("Cliente Não Encontrado! ID: " + idCliente, TipoMensagemEnum.ERROR);
         }
     }
 

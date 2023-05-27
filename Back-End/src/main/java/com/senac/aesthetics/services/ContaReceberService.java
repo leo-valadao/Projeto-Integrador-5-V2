@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.ContaReceber;
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.DataBaseException;
+import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.ContaReceberRepository;
 
@@ -36,7 +36,7 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
         if (contaReceber.isPresent()) {
             return contaReceber.get();
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "ContaReceber Não Encontrado! ID: " + idContaReceber);
+            throw new ErroGenerico("ContaReceber Não Encontrado! ID: " + idContaReceber, TipoMensagemEnum.ERROR);
         }
     }
 
@@ -48,8 +48,7 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
         if (contaReceberRepository.existsById(contaReceber.getId())) {
             return contaReceberRepository.saveAndFlush(contaReceber);
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR,
-                    "ContaReceber Não Encontrado! ID: " + contaReceber.getId());
+            throw new ErroGenerico("ContaReceber Não Encontrado! ID: " + contaReceber.getId(), TipoMensagemEnum.ERROR);
         }
     }
 
@@ -57,7 +56,7 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
         if (contaReceberRepository.existsById(idContaReceber)) {
             contaReceberRepository.deleteById(idContaReceber);
         } else {
-            throw new DataBaseException(TipoMensagemEnum.ERROR, "ContaReceber Não Encontrado! ID: " + idContaReceber);
+            throw new ErroGenerico("ContaReceber Não Encontrado! ID: " + idContaReceber, TipoMensagemEnum.ERROR);
         }
     }
 
