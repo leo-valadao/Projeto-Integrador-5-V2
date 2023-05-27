@@ -1,12 +1,66 @@
 package com.senac.aesthetics;
 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.senac.aesthetics.domains.Agendamento;
+import com.senac.aesthetics.domains.Cliente;
+import com.senac.aesthetics.domains.ContaPagar;
+import com.senac.aesthetics.domains.ContaReceber;
+import com.senac.aesthetics.domains.Fornecedor;
+import com.senac.aesthetics.domains.Funcionario;
+import com.senac.aesthetics.domains.OrdemServico;
+import com.senac.aesthetics.domains.Servico;
+import com.senac.aesthetics.domains.enums.EstadosBrasileirosEnum;
+import com.senac.aesthetics.domains.enums.StatusAgendamentoEnum;
+import com.senac.aesthetics.domains.enums.StatusContaPagarEnum;
+import com.senac.aesthetics.domains.enums.StatusContaReceberEnum;
+import com.senac.aesthetics.domains.enums.StatusOrdemServicoEnum;
+import com.senac.aesthetics.domains.util.GeradorDocumento;
+import com.senac.aesthetics.services.AgendamentoService;
+import com.senac.aesthetics.services.ClienteService;
+import com.senac.aesthetics.services.ContaPagarService;
+import com.senac.aesthetics.services.ContaReceberService;
+import com.senac.aesthetics.services.FornecedorService;
+import com.senac.aesthetics.services.FuncionarioService;
+import com.senac.aesthetics.services.OrdemServicoService;
+import com.senac.aesthetics.services.ServicoService;
+
+// TODO: REMOVER A INTERFACE ApplicationRunner AO MIGRAR PARA PRODUÇÃO
 @SpringBootApplication
 public class AestheticsApplication implements ApplicationRunner {
+
+	// TODO: REMOVER ESTES AUTOWIRED AO MIGRAR PARA PRODUÇÃO
+	@Autowired
+	AgendamentoService as;
+
+	@Autowired
+	ClienteService cs;
+
+	@Autowired
+	ContaPagarService cps;
+
+	@Autowired
+	ContaReceberService crs;
+
+	@Autowired
+	FornecedorService fos;
+
+	@Autowired
+	FuncionarioService fus;
+
+	@Autowired
+	OrdemServicoService oss;
+
+	@Autowired
+	ServicoService ss;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AestheticsApplication.class, args);
@@ -17,18 +71,150 @@ public class AestheticsApplication implements ApplicationRunner {
 
 	}
 
-	// REMOVER O MÉTODO ABAIXO E A INTERFACE ApplicationRunner NA PRODUÇÃO!
+	// TODO: REMOVER O MÉTODO run AO MIGRAR PARA PRODUÇÃO!
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
-		Boolean inserirDadosDeTeste = false;
+		Boolean inserirDadosDeTeste = true;
 
 		if (inserirDadosDeTeste) {
-			// System.out.println("\nInserindo dados de teste...\n");
+			System.out.println("\nInserindo dados de teste...\n");
+			Random r = new Random();
+			GeradorDocumento gd = new GeradorDocumento();
 
-			// TODO: COLOCAR OS VALORES DE TESTE!
+			for (int i = 1; i <= 250; i++) {
+				Cliente c = new Cliente();
+				c.setNome("Cliente " + i);
+				c.setTelefone("(12)34567-8910");
+				c.setEmail("teste" + i + "@teste.com");
+				c.setUf(EstadosBrasileirosEnum.GO);
+				c.setCpf(gd.cpf(true));
+				c.setAlergias("Nenhuma");
 
-			// System.out.println("Valores de teste inseridos!\n");
+				cs.inserir(c);
+			}
+
+			for (int i = 1; i <= 250; i++) {
+				Servico s = new Servico();
+				s.setNome("Serviço " + i);
+				s.setDescricao("Descrição " + i);
+				s.setPrecoCusto(BigDecimal.valueOf(100.00));
+				s.setPrecoVenda(BigDecimal.valueOf(100.00));
+
+				ss.inserir(s);
+			}
+
+			for (int i = 1; i <= 250; i++) {
+				Funcionario f = new Funcionario();
+				f.setNome("Funcionário " + i);
+				f.setTelefone("(12)34567-8910");
+				f.setEmail("teste" + i + "@teste.com");
+				f.setUf(EstadosBrasileirosEnum.GO);
+				f.setCpf(gd.cpf(true));
+				f.setLogin("f" + i);
+				f.setSenha("f" + i);
+				f.setComissao(BigDecimal.valueOf(100.00));
+
+				fus.inserir(f);
+			}
+
+			for (int i = 1; i <= 250; i++) {
+				Agendamento a = new Agendamento();
+				a.setData(new Date());
+				a.setHora(new Date());
+				Integer num = r.nextInt(3) + 1;
+				if (num == 1) {
+					a.setStatus(StatusAgendamentoEnum.ABERTO);
+				} else if (num == 2) {
+					a.setStatus(StatusAgendamentoEnum.CANCELADO);
+				} else {
+					a.setStatus(StatusAgendamentoEnum.CONFIRMADO);
+				}
+				a.setObservacao("Cliente chato >:/");
+				a.setCliente(cs.obterPorId(Long.valueOf(i)));
+				a.setRespAgendamento(fus.obterPorId(Long.valueOf(i)));
+				a.setServico(ss.obterPorId(Long.valueOf(i)));
+
+				as.inserir(a);
+			}
+
+			for (int i = 1; i <= 250; i++) {
+				OrdemServico os = new OrdemServico();
+				os.setDataHoraInicio(new Date());
+				os.setDataHoraTermino(new Date());
+				Integer num = r.nextInt(4) + 1;
+				if (num == 1) {
+					os.setStatus(StatusOrdemServicoEnum.ABERTO);
+				} else if (num == 2) {
+					os.setStatus(StatusOrdemServicoEnum.CANCELADO);
+				} else if (num == 3) {
+					os.setStatus(StatusOrdemServicoEnum.CONCLUIDO);
+				} else {
+					os.setStatus(StatusOrdemServicoEnum.EM_EXECUCAO);
+				}
+
+				os.setValor(BigDecimal.valueOf(100.00));
+				os.setAgendamento(as.obterPorId(Long.valueOf(i)));
+				os.setServico(ss.obterPorId(Long.valueOf(i)));
+				os.setRespOS(fus.obterPorId(Long.valueOf(i)));
+				os.setExecServico(fus.obterPorId(Long.valueOf(i)));
+
+				oss.inserir(os);
+			}
+
+			for (int i = 1; i <= 250; i++) {
+				ContaReceber cr = new ContaReceber();
+				cr.setEmissao(new Date(122, 5, 7));
+				cr.setVencimento(new Date(124, 5, 7));
+				cr.setValor(BigDecimal.valueOf(100.00));
+				cr.setValorRecebido(BigDecimal.valueOf(100.00));
+				cr.setRecebimento(new Date());
+				Integer num = r.nextInt(3) + 1;
+				if (num == 1) {
+					cr.setStatus(StatusContaReceberEnum.ABERTO);
+				} else if (num == 2) {
+					cr.setStatus(StatusContaReceberEnum.CANCELADO);
+				} else {
+					cr.setStatus(StatusContaReceberEnum.RECEBIDO);
+				}
+				cr.setOrdemServico(oss.obterPorId(Long.valueOf(i)));
+				cr.setCliente(cs.obterPorId(Long.valueOf(i)));
+
+				crs.inserir(cr);
+			}
+
+			for (int i = 1; i <= 250; i++) {
+				Fornecedor f = new Fornecedor();
+				f.setNome("Fornecedor " + i);
+				f.setTelefone("(12)34567-8910");
+				f.setEmail("teste" + i + "@teste.com");
+				f.setUf(EstadosBrasileirosEnum.GO);
+				f.setCnpj(gd.cnpj(true));
+
+				fos.inserir(f);
+			}
+
+			for (int i = 1; i <= 250; i++) {
+				ContaPagar cp = new ContaPagar();
+				cp.setEmissao(new Date(122, 5, 7));
+				cp.setVencimento(new Date(124, 5, 7));
+				cp.setValor(BigDecimal.valueOf(100.00));
+				cp.setValorPago(BigDecimal.valueOf(100.00));
+				cp.setPagamento(new Date());
+				Integer num = r.nextInt(3) + 1;
+				if (num == 1) {
+					cp.setStatus(StatusContaPagarEnum.ABERTO);
+				} else if (num == 2) {
+					cp.setStatus(StatusContaPagarEnum.CANCELADO);
+				} else {
+					cp.setStatus(StatusContaPagarEnum.PAGO);
+				}
+				cp.setFornecedor(fos.obterPorId(Long.valueOf(i)));
+
+				cps.inserir(cp);
+			}
+
+			System.out.println("Valores de teste inseridos!\n");
 		}
 	}
 
