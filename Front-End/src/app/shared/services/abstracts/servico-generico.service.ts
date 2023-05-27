@@ -1,48 +1,42 @@
-import { Injectable } from '@angular/core';
-import { IntefaceGenericaComponentes } from '../../interfaces/interface-generica-componentes.interface';
-import { Observable } from 'rxjs';
-import { Page } from '../../domains/others/pagina.page';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { IntefaceGenericaComponentes } from "../../interfaces/interface-generica-componentes.interface";
+import { Observable } from "rxjs";
+import { Pagina } from "../../domains/others/pagina.page";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: "root",
 })
-export abstract class ServicoGenericoService<T>
-  implements IntefaceGenericaComponentes<T>
-{
-  url: String = '';
+export abstract class ServicoGenericoService<T> implements IntefaceGenericaComponentes<T> {
+	url: String = "";
 
-  constructor(protected http: HttpClient) {}
+	constructor(protected http: HttpClient) {}
 
-  obterTodosPorPagina(
-    numeroPagina?: number,
-    quantidadePorPagina?: number,
-    ordenarPor?: string
-  ): Observable<Page<T>> {
-    let url = `${this.url}?numeroPagina=${numeroPagina}&quantidadePorPagina=${quantidadePorPagina}`;
+	obterTodosPorPagina(numeroPagina?: number, quantidadePorPagina?: number, ordenarPor?: string): Observable<Pagina<T>> {
+		let url = `${this.url}?numeroPagina=${numeroPagina}&quantidadePorPagina=${quantidadePorPagina}`;
 
-    if (ordenarPor) {
-      url += `&ordenarPor=${ordenarPor}`;
-    }
+		if (ordenarPor) {
+			url += `&ordenarPor=${ordenarPor}`;
+		}
 
-    return this.http.get<Page<T>>(url);
-  }
+		return this.http.get<Pagina<T>>(url);
+	}
 
-  inserir(objeto: T): Observable<T> {
-    let url = `${this.url}`;
+	inserir(objeto: T): Observable<T> {
+		let url = `${this.url}`;
 
-    return this.http.post<T>(url, objeto);
-  }
+		return this.http.post<T>(url, objeto);
+	}
 
-  atualizar(objeto: T): Observable<T> {
-    let url = `${this.url}`;
+	atualizar(objeto: T): Observable<T> {
+		let url = `${this.url}`;
 
-    return this.http.put<T>(url, objeto);
-  }
+		return this.http.put<T>(url, objeto);
+	}
 
-  excluir(idT: number): Observable<void> {
-    let url = `?id=${idT}`;
+	excluir(idT: number): Observable<void> {
+		let url = `?id=${idT}`;
 
-    return this.http.delete<void>(url);
-  }
+		return this.http.delete<void>(url);
+	}
 }
