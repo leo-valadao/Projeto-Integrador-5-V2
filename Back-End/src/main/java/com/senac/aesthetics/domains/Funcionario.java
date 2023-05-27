@@ -40,7 +40,7 @@ public class Funcionario extends PessoaFisica {
     @Column(name = "ID_FUNCIONARIO")
     private Long id;
 
-    @Column(name = "LOGIN", nullable = false, length = 30)
+    @Column(name = "LOGIN", nullable = false, length = 30, unique = true)
     @NotBlank(message = "O Login do Funcionário Deve Ser Informado e Não Pode Estar Vazio!")
     @Size(max = 30, message = "O Tamanho Máximo do Login do Funcionário é de 30 Caracteres!")
     private String login;
