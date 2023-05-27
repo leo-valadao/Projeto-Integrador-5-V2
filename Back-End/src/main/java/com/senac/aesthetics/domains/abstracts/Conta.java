@@ -30,14 +30,14 @@ import lombok.Setter;
 public abstract class Conta {
 
     // Atributos:
-    @Column(name = "EMISSAO", nullable = false)
+    @Column(name = "DATA_EMISSAO", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     @PastOrPresent(message = "A Data da Emissão da Conta Deve Ser Uma Data no Presente ou no Passado!")
     @NotNull(message = "A Data da Emissão da Conta Deve Ser Informada!")
     private Date dataEmissao;
 
-    @Column(name = "VENCIMENTO", nullable = false)
+    @Column(name = "DATA_VENCIMENTO", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     @FutureOrPresent(message = "A Data do Vencimento da Conta Deve Ser Uma Data no Presente ou no Futuro!")

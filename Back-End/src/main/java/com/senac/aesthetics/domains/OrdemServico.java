@@ -84,7 +84,7 @@ public class OrdemServico {
     private Funcionario responsavelPelaOS;
 
     @ManyToOne
-    @JoinColumn(name = "ID_FUNCIONARIO_EXECUTA_SERVICO_FK", referencedColumnName = "ID_FUNCIONARIO")
+    @JoinColumn(name = "ID_FUNCIONARIO_EXECUTAR_SERVICO_FK", referencedColumnName = "ID_FUNCIONARIO")
     private Funcionario executorServico;
 
 }
