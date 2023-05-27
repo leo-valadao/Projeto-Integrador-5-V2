@@ -1,29 +1,30 @@
-export enum EstadosBrasileriosEnum {
-  AC, // Acre
-  AL, // Alagoas
-  AP, // Amapá
-  AM, // Amazonas
-  BA, // Bahia
-  CE, // Ceará
-  DF, // Distrito Federal
-  ES, // Espírito Santo
-  GO, // Goiás
-  MA, // Maranhão
-  MT, // Mato Grosso
-  MS, // Mato Grosso do Sul
-  MG, // Minas Gerais
-  PA, // Pará
-  PB, // Paraíba
-  PR, // Paraná
-  PE, // Pernambuco
-  PI, // Piauí
-  RJ, // Rio de Janeiro
-  RN, // Rio Grande do Norte
-  RS, // Rio Grande do Sul
-  RO, // Rondônia
-  RR, // Roraima
-  SC, // Santa Catarina
-  SP, // São Paulo
-  SE, // Sergipe
-  TO, // Tocantins
+export enum EstadosBrasileirosEnum {
+	// São 27 Opções!
+	ACRE = "Acre (AC)",
+	ALAGOAS = "Alagoas (AL)",
+	AMAZONAS = "Amazonas (AM)",
+	AMAPA = "Amapá (AP)",
+	BAHIA = "Bahia (BA)",
+	CEARA = "Ceará (CE)",
+	DISTRITOFEDERAL = "Distrito Federal (DF)",
+	ESPIRITOSANTO = "Espírito Santo (ES)",
+	GOIAS = "Goiás (GO)",
+	MARANHAO = "Maranhão (MA)",
+	MINASGERAIS = "Minas Gerais (MG)",
+	MATOGROSSOSUL = "Mato Grosso do Sul (MS)",
+	MATOGROSSO = "Mato Grosso (MT)",
+	PARA = "Pará (PA)",
+	PARAIBA = "Paraíba (PB)",
+	PERNAMBUCO = "Pernambuco (PE)",
+	PIAUI = "Piauí (PI)",
+	PARANA = "Paraná (PR)",
+	RIODEJANEIRO = "Rio de Janeiro (RJ)",
+	RIOGRANDENORTE = "Rio Grande do Norte (RN)",
+	RONDONIA = "Rondônia (RO)",
+	RORAIMA = "Roraima (RR)",
+	RIOGRANDESUL = "Rio Grande do Sul (RS)",
+	SANTACATARINA = "Santa Catarina (SC)",
+	SERGIPE = "Sergipe (SE)",
+	SAOPAULO = "São Paulo (SP)",
+	TOCANTINS = "Tocantins (TO)",
 }
