@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Agendamento } from '../domains/agendamento.model';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { IntefaceGenericaComponentes } from '../interfaces/interface-generica-componentes.interface';
 import { ServicoGenericoService } from './abstracts/servico-generico.service';
+import { Agendamento } from '../domains/agendamento.model';
+import { IntefaceGenericaComponentes } from '../interfaces/interface-generica-componentes.interface';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class AgendamentoService
   extends ServicoGenericoService<Agendamento>
   implements IntefaceGenericaComponentes<Agendamento>
 {
-  override url: String = `${environment.AGENDAMENTO}`;
+  override url = `${environment.AGENDAMENTO}`;
 
   constructor(protected override http: HttpClient) {
     super(http);

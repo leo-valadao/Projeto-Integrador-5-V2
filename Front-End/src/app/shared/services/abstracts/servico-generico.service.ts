@@ -15,8 +15,8 @@ export abstract class ServicoGenericoService<T>
   constructor(protected http: HttpClient) {}
 
   obterTodosPorPagina(
-    numeroPagina?: Number,
-    quantidadePorPagina?: Number,
+    numeroPagina?: number,
+    quantidadePorPagina?: number,
     ordenarPor?: string
   ): Observable<Page<T>> {
     let url = `${this.url}?numeroPagina=${numeroPagina}&quantidadePorPagina=${quantidadePorPagina}`;
@@ -40,7 +40,7 @@ export abstract class ServicoGenericoService<T>
     return this.http.put<T>(url, objeto);
   }
 
-  excluir(idT: Number): Observable<void> {
+  excluir(idT: number): Observable<void> {
     let url = `?id=${idT}`;
 
     return this.http.delete<void>(url);

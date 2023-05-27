@@ -5,11 +5,11 @@ import { Servico } from './servico.model';
 
 export class OrdemServico {
   // Atributo(s):
-  public readonly id!: Number;
+  public readonly id!: number;
   public dataHoraInicio!: Date;
   public dataHoraTermino!: Date;
   public status!: StatusOrdemServicoEnum;
-  public valor!: Number;
+  public valor!: number;
 
   // Relacionamento(s):
   public agendamento!: Agendamento;

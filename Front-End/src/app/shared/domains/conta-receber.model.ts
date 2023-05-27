@@ -6,9 +6,9 @@ import { OrdemServico } from './ordem-servico.model';
 
 export class ContaReceber extends Conta {
   // Atributo(s):
-  public readonly id!: Number;
-  public valorRecebido!: Number;
-  public dataRecebimento!: Date;
+  public readonly id!: number;
+  public valorRecebido!: number;
+  public recebimento!: Date;
   public status!: StatusContaReceberEnum;
 
   // Relacionamento(s):

@@ -6,23 +6,23 @@ export class Page<T> {
       sorted: boolean;
       unsorted: boolean;
     };
-    offset: Number;
-    pageSize: Number;
-    pageNumber: Number;
+    offset: number;
+    pageSize: number;
+    pagenumber: number;
     paged: boolean;
     unpaged: boolean;
   };
-  public totalPages!: Number;
-  public totalElements!: Number;
+  public totalPages!: number;
+  public totalElements!: number;
   public last!: boolean;
-  public size!: Number;
-  public Number!: Number;
+  public size!: number;
+  public number!: number;
   public sort!: {
     empty: boolean;
     sorted: boolean;
     unsorted: boolean;
   };
-  public numberOfElements!: Number;
+  public numberOfElements!: number;
   public first!: boolean;
   public empty!: boolean;
 

@@ -4,9 +4,9 @@ import { Fornecedor } from './fornecedor.model';
 
 export class ContaPagar extends Conta {
   // Atributo(s):
-  public readonly id!: Number;
-  public valorPago!: Number;
-  public dataPagamento!: Date;
+  public readonly id!: number;
+  public valorPago!: number;
+  public pagamento!: Date;
   public status!: StatusContaPagarEnum;
 
   // Relacionamento(s):

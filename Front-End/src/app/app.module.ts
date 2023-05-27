@@ -22,7 +22,6 @@ import { DropdownModule } from 'primeng/dropdown';
 
 // Aesthetics:
 import { AppComponent } from './app.component';
-// Agendamentos:
 import { AgendamentosComponent } from './agendamentos/agendamentos.component';
 import { FiltroAgendamentosComponent } from './agendamentos/filtro-agendamentos/filtro-agendamentos.component';
 import { FormularioAgendamentosComponent } from './agendamentos/formulario-agendamentos/formulario-agendamentos.component';
