@@ -21,7 +21,7 @@ export class MensagensGenericasService {
 		});
 	}
 
-	mensagemPadraoErro(erro: ErroGenerico) {
+	mensagemPadraoDeErro(erro: ErroGenerico) {
 		this.messageService.add({
 			key: this.toastPrincipal,
 			severity: erro.tipoMensagem,
