@@ -57,16 +57,16 @@ public class Funcionario extends PessoaFisica {
     private BigDecimal comissao;
 
     // Relacionamentos:
-    @OneToMany(orphanRemoval = false, mappedBy = "respAgendamento")
+    @OneToMany(orphanRemoval = false, mappedBy = "funcionario")
     @JsonIgnore
     private List<Agendamento> agendamentos;
 
-    @OneToMany(orphanRemoval = false, mappedBy = "respOS")
+    @OneToMany(orphanRemoval = false, mappedBy = "responsavelPelaOS")
     @JsonIgnore
-    private List<OrdemServico> respPeloLancamento;
+    private List<OrdemServico> responsavelPeloLancamento;
 
-    @OneToMany(orphanRemoval = false, mappedBy = "execServico")
+    @OneToMany(orphanRemoval = false, mappedBy = "executorServico")
     @JsonIgnore
-    private List<OrdemServico> respExecServico;
+    private List<OrdemServico> responsavelExecutarServico;
 
 }
