@@ -23,7 +23,7 @@ import com.senac.aesthetics.domains.enums.StatusAgendamentoEnum;
 import com.senac.aesthetics.domains.enums.StatusContaPagarEnum;
 import com.senac.aesthetics.domains.enums.StatusContaReceberEnum;
 import com.senac.aesthetics.domains.enums.StatusOrdemServicoEnum;
-import com.senac.aesthetics.domains.util.GeradorDocumento;
+import com.senac.aesthetics.domains.utils.GeradorDocumento;
 import com.senac.aesthetics.services.AgendamentoService;
 import com.senac.aesthetics.services.ClienteService;
 import com.senac.aesthetics.services.ContaPagarService;
@@ -87,7 +87,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				c.setNome("Cliente " + i);
 				c.setTelefone("(12)34567-8910");
 				c.setEmail("teste" + i + "@teste.com");
-				c.setUf(EstadosBrasileirosEnum.GO);
+				c.setEstadoBrasileiro(EstadosBrasileirosEnum.GO);
 				c.setCpf(gd.cpf(true));
 				c.setAlergias("Nenhuma");
 
@@ -109,7 +109,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				f.setNome("Funcionário " + i);
 				f.setTelefone("(12)34567-8910");
 				f.setEmail("teste" + i + "@teste.com");
-				f.setUf(EstadosBrasileirosEnum.GO);
+				f.setEstadoBrasileiro(EstadosBrasileirosEnum.GO);
 				f.setCpf(gd.cpf(true));
 				f.setLogin("f" + i);
 				f.setSenha("f" + i);
@@ -132,7 +132,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				}
 				a.setObservacao("Cliente chato >:/");
 				a.setCliente(cs.obterPorId(Long.valueOf(i)));
-				a.setRespAgendamento(fus.obterPorId(Long.valueOf(i)));
+				a.setFuncionario(fus.obterPorId(Long.valueOf(i)));
 				a.setServico(ss.obterPorId(Long.valueOf(i)));
 
 				as.inserir(a);
@@ -156,19 +156,19 @@ public class AestheticsApplication implements ApplicationRunner {
 				os.setValor(BigDecimal.valueOf(100.00));
 				os.setAgendamento(as.obterPorId(Long.valueOf(i)));
 				os.setServico(ss.obterPorId(Long.valueOf(i)));
-				os.setRespOS(fus.obterPorId(Long.valueOf(i)));
-				os.setExecServico(fus.obterPorId(Long.valueOf(i)));
+				os.setResponsavelPelaOS(fus.obterPorId(Long.valueOf(i)));
+				os.setExecutorServico(fus.obterPorId(Long.valueOf(i)));
 
 				oss.inserir(os);
 			}
 
 			for (int i = 1; i <= 250; i++) {
 				ContaReceber cr = new ContaReceber();
-				cr.setEmissao(new Date(122, 5, 7));
-				cr.setVencimento(new Date(124, 5, 7));
+				cr.setDataEmissao(new Date(122, 5, 7));
+				cr.setDataVencimento(new Date(124, 5, 7));
 				cr.setValor(BigDecimal.valueOf(100.00));
 				cr.setValorRecebido(BigDecimal.valueOf(100.00));
-				cr.setRecebimento(new Date());
+				cr.setDataRecebimento(new Date());
 				Integer num = r.nextInt(3) + 1;
 				if (num == 1) {
 					cr.setStatus(StatusContaReceberEnum.ABERTO);
@@ -188,7 +188,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				f.setNome("Fornecedor " + i);
 				f.setTelefone("(12)34567-8910");
 				f.setEmail("teste" + i + "@teste.com");
-				f.setUf(EstadosBrasileirosEnum.GO);
+				f.setEstadoBrasileiro(EstadosBrasileirosEnum.GO);
 				f.setCnpj(gd.cnpj(true));
 
 				fos.inserir(f);
@@ -196,11 +196,11 @@ public class AestheticsApplication implements ApplicationRunner {
 
 			for (int i = 1; i <= 250; i++) {
 				ContaPagar cp = new ContaPagar();
-				cp.setEmissao(new Date(122, 5, 7));
-				cp.setVencimento(new Date(124, 5, 7));
+				cp.setDataEmissao(new Date(122, 5, 7));
+				cp.setDataVencimento(new Date(124, 5, 7));
 				cp.setValor(BigDecimal.valueOf(100.00));
 				cp.setValorPago(BigDecimal.valueOf(100.00));
-				cp.setPagamento(new Date());
+				cp.setDataPagamento(new Date());
 				Integer num = r.nextInt(3) + 1;
 				if (num == 1) {
 					cp.setStatus(StatusContaPagarEnum.ABERTO);

@@ -73,7 +73,7 @@ public class Agendamento {
     @ManyToOne
     @JoinColumn(name = "ID_RESPONSAVEL_AGENDAMENTO_FK", referencedColumnName = "ID_FUNCIONARIO")
     @NotNull(message = "O Responsável do Agendamento Deve Ser Informado!")
-    private Funcionario respAgendamento;
+    private Funcionario funcionario;
 
     @ManyToOne
     @JoinColumn(name = "ID_SERVICO_FK", referencedColumnName = "ID_SERVICO")

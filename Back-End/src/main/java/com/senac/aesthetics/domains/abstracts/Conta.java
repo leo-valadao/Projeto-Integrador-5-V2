@@ -35,14 +35,14 @@ public abstract class Conta {
     @Temporal(TemporalType.TIMESTAMP)
     @PastOrPresent(message = "A Data da Emissão da Conta Deve Ser Uma Data no Presente ou no Passado!")
     @NotNull(message = "A Data da Emissão da Conta Deve Ser Informada!")
-    private Date emissao;
+    private Date dataEmissao;
 
     @Column(name = "VENCIMENTO", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     @FutureOrPresent(message = "A Data do Vencimento da Conta Deve Ser Uma Data no Presente ou no Futuro!")
     @NotNull(message = "A Data do Vencimento da Conta Deve Ser Informada!")
-    private Date vencimento;
+    private Date dataVencimento;
 
     @Column(name = "VALOR", nullable = false, precision = 10, scale = 2)
     @Digits(integer = 10, fraction = 2, message = "O Valor Máximo da Conta é de R$ 1.000.000,00 (1 Milhão)!")

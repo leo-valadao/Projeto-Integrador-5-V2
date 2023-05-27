@@ -54,7 +54,7 @@ public class ContaReceber extends Conta {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     @PastOrPresent(message = "A Data de Recebimento da Conta a Receber Deve Ser Uma Data no Presente ou no Passado!")
-    private Date recebimento;
+    private Date dataRecebimento;
 
     @Column(name = "STATUS", length = 15, nullable = false)
     @Enumerated(EnumType.STRING)

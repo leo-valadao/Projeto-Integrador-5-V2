@@ -81,10 +81,10 @@ public class OrdemServico {
     @ManyToOne
     @JoinColumn(name = "ID_FUNCIONARIO_RESPONSAVEL_OS_FK", referencedColumnName = "ID_FUNCIONARIO")
     @NotNull(message = "O Reponsável Pelo Lançamento da Ordem de Serviço Deve Ser Informado!")
-    private Funcionario respOS;
+    private Funcionario responsavelPelaOS;
 
     @ManyToOne
     @JoinColumn(name = "ID_FUNCIONARIO_EXECUTA_SERVICO_FK", referencedColumnName = "ID_FUNCIONARIO")
-    private Funcionario execServico;
+    private Funcionario executorServico;
 
 }

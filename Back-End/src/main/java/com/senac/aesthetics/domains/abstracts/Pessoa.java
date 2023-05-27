@@ -37,13 +37,13 @@ public abstract class Pessoa {
     @Telefone(message = "O Telefone da Pessoa Está Inválido!")
     private String telefone;
 
-    @Column(name = "E-MAIL", length = 50)
+    @Column(name = "EMAIL", length = 50)
     @Size(max = 50, message = "O Tamanho Máximo do E-Mail da Pessoa é de 50 Caracteres!")
     @Email(message = "O E-Mail da Pessoa Está Inválido!")
     private String email;
 
-    @Column(name = "UF", length = 2)
+    @Column(name = "ESTADO_BRASILEIRO", length = 2)
     @Enumerated(EnumType.STRING)
-    private EstadosBrasileirosEnum uf;
+    private EstadosBrasileirosEnum estadoBrasileiro;
 
 }

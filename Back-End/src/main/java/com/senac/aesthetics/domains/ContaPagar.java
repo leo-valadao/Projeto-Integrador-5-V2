@@ -54,7 +54,7 @@ public class ContaPagar extends Conta {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     @PastOrPresent(message = "A Data de Pagamaneto da Conta a Pagar Deve Ser Uma Data no Presente ou no Passado!")
-    private Date pagamento;
+    private Date dataPagamento;
 
     @Column(name = "STATUS", length = 15, nullable = false)
     @Enumerated(EnumType.STRING)
