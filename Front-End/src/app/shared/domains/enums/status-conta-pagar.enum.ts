@@ -1,5 +1,5 @@
 export enum StatusContaPagarEnum {
-  ABERTO,
-  CANCELADO,
-  PAGO,
+	ABERTO,
+	CANCELADO,
+	PAGO,
 }

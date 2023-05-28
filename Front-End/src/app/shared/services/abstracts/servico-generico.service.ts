@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { IntefaceGenericaComponentes } from "../../interfaces/interface-generica-componentes.interface";
-import { Observable } from "rxjs";
-import { Pagina } from "../../domains/others/pagina.page";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { IntefaceGenericaComponentes } from '../../interfaces/interface-generica-componentes.interface';
+import { Observable } from 'rxjs';
+import { Pagina } from '../../domains/others/pagina.page';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-	providedIn: "root",
+	providedIn: 'root',
 })
 export abstract class ServicoGenericoService<T> implements IntefaceGenericaComponentes<T> {
-	url: String = "";
+	url: string = '';
 
 	constructor(protected http: HttpClient) {}
 

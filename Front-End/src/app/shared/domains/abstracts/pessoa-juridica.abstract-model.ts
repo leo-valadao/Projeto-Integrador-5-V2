@@ -1,10 +1,10 @@
 import { Pessoa } from './pessoa.abstract-model';
 
 export abstract class PessoaJuridica extends Pessoa {
-  // Atributo(s):
-  public cnpj!: String;
+	// Atributo(s):
+	public cnpj!: string;
 
-  constructor() {
-    super();
-  }
+	constructor() {
+		super();
+	}
 }

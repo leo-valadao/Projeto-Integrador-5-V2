@@ -1,10 +1,10 @@
-import { EstadosBrasileirosEnum } from "../enums/estados-brasileiros.enum";
+import { EstadosBrasileirosEnum } from '../enums/estados-brasileiros.enum';
 
 export abstract class Pessoa {
 	// Atributo(s):
-	public nome!: String;
-	public telefone!: String;
-	public email!: String;
+	public nome!: string;
+	public telefone!: string;
+	public email!: string;
 	public estadoBrasileiro!: EstadosBrasileirosEnum;
 
 	constructor() {}

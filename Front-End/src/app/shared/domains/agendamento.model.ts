@@ -8,9 +8,9 @@ export class Agendamento {
 	// Atributo(s):
 	public readonly id!: number;
 	public data!: Date;
-	public hora!: Time;
+	public hora!: Date;
 	public status!: StatusAgendamentoEnum;
-	public observacao!: String;
+	public observacao!: string;
 
 	// Relacionamento(s):
 	public cliente!: Cliente;
