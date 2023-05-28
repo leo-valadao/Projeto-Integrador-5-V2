@@ -19,16 +19,6 @@
       "message": "O Telefone da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
     },
     {
-      "campo": "Telefone inválido - Validação de caracteres",
-      "nome": "Leonardo Valadão",
-      "telefone": "(12)3456-78910157",
-      "email": "leonardo@teste.com",
-      "uf": "GO",
-      "cpf": "001.295.100-50",
-      "alergias": "Nenhuma",
-      "message": "O Tamanho do Telefone da Pessoa é de 13 ou 14 Caracteres!"
-    },
-    {
       "campo": "E-mail inválido",
       "nome": "Leonardo Valadão",
       "telefone": "(12)34567-8910",

@@ -38,7 +38,7 @@ Cypress.Commands.add("GetAllProfissionalById", (id) => {
 Cypress.Commands.add("PutProfissional", (payload) => {
   cy.api({
     method: "PUT",
-    url: `${url}/profissional`,
+    url: `${url}/funcionario`,
     body: payload,
     failOnStatusCode: false,
   }).then((response) => {
@@ -49,7 +49,7 @@ Cypress.Commands.add("PutProfissional", (payload) => {
 Cypress.Commands.add("DeleteProfissional", (id) => {
   cy.api({
     method: "DELETE",
-    url: `${url}/profissional`,
+    url: `${url}/funcionario`,
     qs: {
       id: id,
     },
