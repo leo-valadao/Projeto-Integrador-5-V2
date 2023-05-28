@@ -50,7 +50,7 @@ public class Agendamento {
     private Date data;
 
     @Column(name = "HORA", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     @Temporal(TemporalType.TIME)
     @NotNull(message = "A Hora do Agendamento Deve Ser Informada!")
     private Date hora;
