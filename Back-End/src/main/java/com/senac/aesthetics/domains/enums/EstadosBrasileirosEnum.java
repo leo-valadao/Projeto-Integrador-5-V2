@@ -1,5 +1,10 @@
 package com.senac.aesthetics.domains.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum EstadosBrasileirosEnum {
     ACRE("Acre (AC)"),
     ALAGOAS("Alagoas (AL)"),
@@ -31,11 +36,4 @@ public enum EstadosBrasileirosEnum {
 
     private String nomeCompleto;
 
-    EstadosBrasileirosEnum(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
 }
