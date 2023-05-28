@@ -1,33 +1,36 @@
-import { Injectable } from "@angular/core";
-import { MessageService } from "primeng/api";
-import { ErroGenerico } from "../../domains/others/erro-generico.error";
-import { TipoMensagemEnum } from "../../domains/enums/tipo-mensagem.enum";
+import { Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { ErroGenerico } from '../../domains/others/erro-generico.error';
+import { TipoMensagemEnum } from '../../domains/enums/tipo-mensagem.enum';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
-	providedIn: "root",
+	providedIn: 'root',
 })
 export class MensagensGenericasService {
-	toastPrincipal: string = "toast";
+	toastPrincipal: string = 'toast';
 
 	constructor(private messageService: MessageService) {}
 
-	mensagemPadraoDeSucesso(classe: Object, verboOperacaoRealizada: string) {
+	mensagemPadraoDeSucesso(nomeDaClasse: string, verboOperacaoRealizada: string) {
 		this.messageService.add({
 			key: this.toastPrincipal,
 			severity: TipoMensagemEnum.SUCCESS,
-			summary: `${classe.constructor.name} ${verboOperacaoRealizada}!`,
-			detail: `${classe.constructor.name} ${verboOperacaoRealizada.toLowerCase} com sucesso!`,
+			summary: `${nomeDaClasse} ${verboOperacaoRealizada}!`,
+			detail: `${nomeDaClasse} ${verboOperacaoRealizada.toLowerCase()} com sucesso!`,
 			life: 5000,
 		});
 	}
 
-	mensagemPadraoDeErro(erro: ErroGenerico) {
-		this.messageService.add({
-			key: this.toastPrincipal,
-			severity: erro.tipoMensagem,
-			summary: `Erro!`,
-			detail: `${erro.mensagem}`,
-			life: 10000,
-		});
+	mensagemPadraoDeErro(erros: HttpErrorResponse) {
+		for (let erro of erros.error.mensagens) {
+			this.messageService.add({
+				key: this.toastPrincipal,
+				severity: TipoMensagemEnum.ERROR,
+				summary: `Erro!`,
+				detail: `${erro}`,
+				life: 10000,
+			});
+		}
 	}
 }
