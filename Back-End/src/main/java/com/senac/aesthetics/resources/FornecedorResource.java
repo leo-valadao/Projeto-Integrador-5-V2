@@ -33,7 +33,7 @@ public class FornecedorResource implements InterfaceGenericaCliente<Fornecedor> 
     public ResponseEntity<Page<Fornecedor>> obterTodosComPaginacao(
             @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
             @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) {
+            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
         Page<Fornecedor> fornecedors = fornecedorService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
                 ordernarPor);
 
@@ -41,28 +41,28 @@ public class FornecedorResource implements InterfaceGenericaCliente<Fornecedor> 
     }
 
     @GetMapping(params = "id")
-    public ResponseEntity<Fornecedor> obterPorId(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<Fornecedor> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
         Fornecedor fornecedor = fornecedorService.obterPorId(id);
 
         return ResponseEntity.ok(fornecedor);
     }
 
     @PostMapping
-    public ResponseEntity<Fornecedor> inserir(@RequestBody @Valid Fornecedor fornecedor) {
+    public ResponseEntity<Fornecedor> inserir(@RequestBody @Valid Fornecedor fornecedor) throws Exception {
         Fornecedor fornecedorInserido = fornecedorService.inserir(fornecedor);
 
         return ResponseEntity.created(null).body(fornecedorInserido);
     }
 
     @PutMapping
-    public ResponseEntity<Fornecedor> atualizar(@RequestBody @Valid Fornecedor fornecedor) {
+    public ResponseEntity<Fornecedor> atualizar(@RequestBody @Valid Fornecedor fornecedor) throws Exception {
         Fornecedor fornecedorAtualizado = fornecedorService.atualizar(fornecedor);
 
         return ResponseEntity.ok(fornecedorAtualizado);
     }
 
     @DeleteMapping(params = "id")
-    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) throws Exception {
         fornecedorService.excluir(id);
 
         return ResponseEntity.noContent().build();

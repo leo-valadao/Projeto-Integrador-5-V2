@@ -33,7 +33,7 @@ public class OrdemServicoResource implements InterfaceGenericaCliente<OrdemServi
     public ResponseEntity<Page<OrdemServico>> obterTodosComPaginacao(
             @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
             @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) {
+            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
         Page<OrdemServico> ordemServicos = ordemServicoService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
                 ordernarPor);
 
@@ -41,28 +41,28 @@ public class OrdemServicoResource implements InterfaceGenericaCliente<OrdemServi
     }
 
     @GetMapping(params = "id")
-    public ResponseEntity<OrdemServico> obterPorId(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<OrdemServico> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
         OrdemServico ordemServico = ordemServicoService.obterPorId(id);
 
         return ResponseEntity.ok(ordemServico);
     }
 
     @PostMapping
-    public ResponseEntity<OrdemServico> inserir(@RequestBody @Valid OrdemServico ordemServico) {
+    public ResponseEntity<OrdemServico> inserir(@RequestBody @Valid OrdemServico ordemServico) throws Exception {
         OrdemServico ordemServicoInserido = ordemServicoService.inserir(ordemServico);
 
         return ResponseEntity.created(null).body(ordemServicoInserido);
     }
 
     @PutMapping
-    public ResponseEntity<OrdemServico> atualizar(@RequestBody @Valid OrdemServico ordemServico) {
+    public ResponseEntity<OrdemServico> atualizar(@RequestBody @Valid OrdemServico ordemServico) throws Exception {
         OrdemServico ordemServicoAtualizado = ordemServicoService.atualizar(ordemServico);
 
         return ResponseEntity.ok(ordemServicoAtualizado);
     }
 
     @DeleteMapping(params = "id")
-    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) throws Exception {
         ordemServicoService.excluir(id);
 
         return ResponseEntity.noContent().build();

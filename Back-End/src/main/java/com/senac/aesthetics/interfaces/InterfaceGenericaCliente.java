@@ -17,14 +17,14 @@ public interface InterfaceGenericaCliente<T> {
     public ResponseEntity<Page<T>> obterTodosComPaginacao(
             @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
             @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor);
+            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception;
 
-    public ResponseEntity<T> obterPorId(@RequestParam(name = "id") Long id);
+    public ResponseEntity<T> obterPorId(@RequestParam(name = "id") Long id) throws Exception;
 
-    public ResponseEntity<T> inserir(@RequestBody @Valid T T);
+    public ResponseEntity<T> inserir(@RequestBody @Valid T T) throws Exception;
 
-    public ResponseEntity<T> atualizar(@RequestBody @Valid T T);
+    public ResponseEntity<T> atualizar(@RequestBody @Valid T T) throws Exception;
 
-    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id);
+    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) throws Exception;
 
 }

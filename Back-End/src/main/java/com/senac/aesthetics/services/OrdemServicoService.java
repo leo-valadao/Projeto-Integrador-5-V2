@@ -1,5 +1,6 @@
 package com.senac.aesthetics.services;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,39 +25,45 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
 
     // Métodos:
     public Page<OrdemServico> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) {
+            String ordenarPor) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return ordemServicoRepository.findAll(pagina);
     }
 
-    public OrdemServico obterPorId(Long idOrdemServico) {
+    public OrdemServico obterPorId(Long idOrdemServico) throws Exception {
         Optional<OrdemServico> ordemServico = ordemServicoRepository.findById(idOrdemServico);
 
         if (ordemServico.isPresent()) {
             return ordemServico.get();
         } else {
-            throw new ErroGenerico("OrdemServico Não Encontrado! ID: " + idOrdemServico, TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(
+                    Arrays.asList("OrdemServico Não Encontrado! ID: " + idOrdemServico),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
-    public OrdemServico inserir(OrdemServico ordemServico) {
+    public OrdemServico inserir(OrdemServico ordemServico) throws Exception {
         return ordemServicoRepository.save(ordemServico);
     }
 
-    public OrdemServico atualizar(OrdemServico ordemServico) {
+    public OrdemServico atualizar(OrdemServico ordemServico) throws Exception {
         if (ordemServicoRepository.existsById(ordemServico.getId())) {
             return ordemServicoRepository.saveAndFlush(ordemServico);
         } else {
-            throw new ErroGenerico("OrdemServico Não Encontrado! ID: " + ordemServico.getId(), TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(
+                    Arrays.asList("OrdemServico Não Encontrado! ID: " + ordemServico.getId()),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
-    public void excluir(Long idOrdemServico) {
+    public void excluir(Long idOrdemServico) throws Exception {
         if (ordemServicoRepository.existsById(idOrdemServico)) {
             ordemServicoRepository.deleteById(idOrdemServico);
         } else {
-            throw new ErroGenerico("OrdemServico Não Encontrado! ID: " + idOrdemServico, TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(
+                    Arrays.asList("OrdemServico Não Encontrado! ID: " + idOrdemServico),
+                    TipoMensagemEnum.ERROR);
         }
     }
 

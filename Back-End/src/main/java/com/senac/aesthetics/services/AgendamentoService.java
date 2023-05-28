@@ -1,5 +1,6 @@
 package com.senac.aesthetics.services;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,39 +25,45 @@ public class AgendamentoService implements InterfaceGenericaResource<Agendamento
 
     // Métodos:
     public Page<Agendamento> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) {
+            String ordenarPor) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return agendamentoRepository.findAll(pagina);
     }
 
-    public Agendamento obterPorId(Long idAgendamento) {
+    public Agendamento obterPorId(Long idAgendamento) throws Exception {
         Optional<Agendamento> agendamento = agendamentoRepository.findById(idAgendamento);
 
         if (agendamento.isPresent()) {
             return agendamento.get();
         } else {
-            throw new ErroGenerico("Agendamento Não Encontrado! ID: " + idAgendamento, TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(
+                    Arrays.asList("Agendamento Não Encontrado! ID: " + idAgendamento),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
-    public Agendamento inserir(Agendamento agendamento) {
+    public Agendamento inserir(Agendamento agendamento) throws Exception {
         return agendamentoRepository.save(agendamento);
     }
 
-    public Agendamento atualizar(Agendamento agendamento) {
+    public Agendamento atualizar(Agendamento agendamento) throws Exception {
         if (agendamentoRepository.existsById(agendamento.getId())) {
             return agendamentoRepository.saveAndFlush(agendamento);
         } else {
-            throw new ErroGenerico("Agendamento Não Encontrado! ID: " + agendamento.getId(), TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(
+                    Arrays.asList("Agendamento Não Encontrado! ID: " + agendamento.getId()),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
-    public void excluir(Long idAgendamento) {
+    public void excluir(Long idAgendamento) throws Exception {
         if (agendamentoRepository.existsById(idAgendamento)) {
             agendamentoRepository.deleteById(idAgendamento);
         } else {
-            throw new ErroGenerico("Agendamento Não Encontrado! ID: " + idAgendamento, TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(
+                    Arrays.asList("Agendamento Não Encontrado! ID: " + idAgendamento),
+                    TipoMensagemEnum.ERROR);
         }
     }
 

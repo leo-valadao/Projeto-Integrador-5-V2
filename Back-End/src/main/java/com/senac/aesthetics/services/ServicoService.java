@@ -1,5 +1,6 @@
 package com.senac.aesthetics.services;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,39 +25,42 @@ public class ServicoService implements InterfaceGenericaResource<Servico> {
 
     // Métodos:
     public Page<Servico> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) {
+            String ordenarPor) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return servicoRepository.findAll(pagina);
     }
 
-    public Servico obterPorId(Long idServico) {
+    public Servico obterPorId(Long idServico) throws Exception {
         Optional<Servico> servico = servicoRepository.findById(idServico);
 
         if (servico.isPresent()) {
             return servico.get();
         } else {
-            throw new ErroGenerico("Servico Não Encontrado! ID: " + idServico, TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(Arrays.asList("Servico Não Encontrado! ID: " + idServico),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
-    public Servico inserir(Servico servico) {
+    public Servico inserir(Servico servico) throws Exception {
         return servicoRepository.save(servico);
     }
 
-    public Servico atualizar(Servico servico) {
+    public Servico atualizar(Servico servico) throws Exception {
         if (servicoRepository.existsById(servico.getId())) {
             return servicoRepository.saveAndFlush(servico);
         } else {
-            throw new ErroGenerico("Servico Não Encontrado! ID: " + servico.getId(), TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(Arrays.asList("Servico Não Encontrado! ID: " + servico.getId()),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
-    public void excluir(Long idServico) {
+    public void excluir(Long idServico) throws Exception {
         if (servicoRepository.existsById(idServico)) {
             servicoRepository.deleteById(idServico);
         } else {
-            throw new ErroGenerico("Servico Não Encontrado! ID: " + idServico, TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(Arrays.asList("Servico Não Encontrado! ID: " + idServico),
+                    TipoMensagemEnum.ERROR);
         }
     }
 

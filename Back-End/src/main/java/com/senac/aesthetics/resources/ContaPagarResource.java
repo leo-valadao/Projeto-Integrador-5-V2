@@ -33,7 +33,7 @@ public class ContaPagarResource implements InterfaceGenericaCliente<ContaPagar> 
     public ResponseEntity<Page<ContaPagar>> obterTodosComPaginacao(
             @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
             @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) {
+            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
         Page<ContaPagar> contaPagars = contaPagarService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
                 ordernarPor);
 
@@ -41,28 +41,28 @@ public class ContaPagarResource implements InterfaceGenericaCliente<ContaPagar> 
     }
 
     @GetMapping(params = "id")
-    public ResponseEntity<ContaPagar> obterPorId(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<ContaPagar> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
         ContaPagar contaPagar = contaPagarService.obterPorId(id);
 
         return ResponseEntity.ok(contaPagar);
     }
 
     @PostMapping
-    public ResponseEntity<ContaPagar> inserir(@RequestBody @Valid ContaPagar contaPagar) {
+    public ResponseEntity<ContaPagar> inserir(@RequestBody @Valid ContaPagar contaPagar) throws Exception {
         ContaPagar contaPagarInserido = contaPagarService.inserir(contaPagar);
 
         return ResponseEntity.created(null).body(contaPagarInserido);
     }
 
     @PutMapping
-    public ResponseEntity<ContaPagar> atualizar(@RequestBody @Valid ContaPagar contaPagar) {
+    public ResponseEntity<ContaPagar> atualizar(@RequestBody @Valid ContaPagar contaPagar) throws Exception {
         ContaPagar contaPagarAtualizado = contaPagarService.atualizar(contaPagar);
 
         return ResponseEntity.ok(contaPagarAtualizado);
     }
 
     @DeleteMapping(params = "id")
-    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) throws Exception {
         contaPagarService.excluir(id);
 
         return ResponseEntity.noContent().build();

@@ -33,7 +33,7 @@ public class ContaReceberResource implements InterfaceGenericaCliente<ContaReceb
     public ResponseEntity<Page<ContaReceber>> obterTodosComPaginacao(
             @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
             @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) {
+            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
         Page<ContaReceber> contaRecebers = contaReceberService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
                 ordernarPor);
 
@@ -41,28 +41,28 @@ public class ContaReceberResource implements InterfaceGenericaCliente<ContaReceb
     }
 
     @GetMapping(params = "id")
-    public ResponseEntity<ContaReceber> obterPorId(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<ContaReceber> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
         ContaReceber contaReceber = contaReceberService.obterPorId(id);
 
         return ResponseEntity.ok(contaReceber);
     }
 
     @PostMapping
-    public ResponseEntity<ContaReceber> inserir(@RequestBody @Valid ContaReceber contaReceber) {
+    public ResponseEntity<ContaReceber> inserir(@RequestBody @Valid ContaReceber contaReceber) throws Exception {
         ContaReceber contaReceberInserido = contaReceberService.inserir(contaReceber);
 
         return ResponseEntity.created(null).body(contaReceberInserido);
     }
 
     @PutMapping
-    public ResponseEntity<ContaReceber> atualizar(@RequestBody @Valid ContaReceber contaReceber) {
+    public ResponseEntity<ContaReceber> atualizar(@RequestBody @Valid ContaReceber contaReceber) throws Exception {
         ContaReceber contaReceberAtualizado = contaReceberService.atualizar(contaReceber);
 
         return ResponseEntity.ok(contaReceberAtualizado);
     }
 
     @DeleteMapping(params = "id")
-    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) throws Exception {
         contaReceberService.excluir(id);
 
         return ResponseEntity.noContent().build();

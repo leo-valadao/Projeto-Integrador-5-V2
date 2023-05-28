@@ -33,7 +33,7 @@ public class ServicoResource implements InterfaceGenericaCliente<Servico> {
     public ResponseEntity<Page<Servico>> obterTodosComPaginacao(
             @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
             @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) {
+            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
         Page<Servico> servicos = servicoService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
                 ordernarPor);
 
@@ -41,28 +41,28 @@ public class ServicoResource implements InterfaceGenericaCliente<Servico> {
     }
 
     @GetMapping(params = "id")
-    public ResponseEntity<Servico> obterPorId(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<Servico> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
         Servico servico = servicoService.obterPorId(id);
 
         return ResponseEntity.ok(servico);
     }
 
     @PostMapping
-    public ResponseEntity<Servico> inserir(@RequestBody @Valid Servico servico) {
+    public ResponseEntity<Servico> inserir(@RequestBody @Valid Servico servico) throws Exception {
         Servico servicoInserido = servicoService.inserir(servico);
 
         return ResponseEntity.created(null).body(servicoInserido);
     }
 
     @PutMapping
-    public ResponseEntity<Servico> atualizar(@RequestBody @Valid Servico servico) {
+    public ResponseEntity<Servico> atualizar(@RequestBody @Valid Servico servico) throws Exception {
         Servico servicoAtualizado = servicoService.atualizar(servico);
 
         return ResponseEntity.ok(servicoAtualizado);
     }
 
     @DeleteMapping(params = "id")
-    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<Void> excluir(@RequestParam(name = "id") Long id) throws Exception {
         servicoService.excluir(id);
 
         return ResponseEntity.noContent().build();

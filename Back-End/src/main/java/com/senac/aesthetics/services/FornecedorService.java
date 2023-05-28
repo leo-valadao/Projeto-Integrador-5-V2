@@ -1,5 +1,6 @@
 package com.senac.aesthetics.services;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,39 +25,43 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
 
     // Métodos:
     public Page<Fornecedor> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) {
+            String ordenarPor) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return fornecedorRepository.findAll(pagina);
     }
 
-    public Fornecedor obterPorId(Long idFornecedor) {
+    public Fornecedor obterPorId(Long idFornecedor) throws Exception {
         Optional<Fornecedor> fornecedor = fornecedorRepository.findById(idFornecedor);
 
         if (fornecedor.isPresent()) {
             return fornecedor.get();
         } else {
-            throw new ErroGenerico("Fornecedor Não Encontrado! ID: " + idFornecedor, TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(Arrays.asList("Fornecedor Não Encontrado! ID: " + idFornecedor),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
-    public Fornecedor inserir(Fornecedor fornecedor) {
+    public Fornecedor inserir(Fornecedor fornecedor) throws Exception {
         return fornecedorRepository.save(fornecedor);
     }
 
-    public Fornecedor atualizar(Fornecedor fornecedor) {
+    public Fornecedor atualizar(Fornecedor fornecedor) throws Exception {
         if (fornecedorRepository.existsById(fornecedor.getId())) {
             return fornecedorRepository.saveAndFlush(fornecedor);
         } else {
-            throw new ErroGenerico("Fornecedor Não Encontrado! ID: " + fornecedor.getId(), TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(
+                    Arrays.asList("Fornecedor Não Encontrado! ID: " + fornecedor.getId()),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
-    public void excluir(Long idFornecedor) {
+    public void excluir(Long idFornecedor) throws Exception {
         if (fornecedorRepository.existsById(idFornecedor)) {
             fornecedorRepository.deleteById(idFornecedor);
         } else {
-            throw new ErroGenerico("Fornecedor Não Encontrado! ID: " + idFornecedor, TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(Arrays.asList("Fornecedor Não Encontrado! ID: " + idFornecedor),
+                    TipoMensagemEnum.ERROR);
         }
     }
 

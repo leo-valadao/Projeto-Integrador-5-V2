@@ -1,5 +1,6 @@
 package com.senac.aesthetics.services;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,39 +25,43 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
 
     // Métodos:
     public Page<Cliente> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) {
+            String ordenarPor) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
         return clienteRepository.findAll(pagina);
     }
 
-    public Cliente obterPorId(Long idCliente) {
+    public Cliente obterPorId(Long idCliente) throws Exception {
         Optional<Cliente> cliente = clienteRepository.findById(idCliente);
 
         if (cliente.isPresent()) {
             return cliente.get();
         } else {
-            throw new ErroGenerico("Cliente Não Encontrado! ID: " + idCliente, TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(Arrays.asList(("Cliente Não Encontrado! ID: " + idCliente)),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
-    public Cliente inserir(Cliente cliente) {
+    public Cliente inserir(Cliente cliente) throws Exception {
         return clienteRepository.save(cliente);
     }
 
-    public Cliente atualizar(Cliente cliente) {
+    public Cliente atualizar(Cliente cliente) throws Exception {
         if (clienteRepository.existsById(cliente.getId())) {
             return clienteRepository.saveAndFlush(cliente);
         } else {
-            throw new ErroGenerico("Cliente Não Encontrado! ID: " + cliente.getId(), TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(
+                    Arrays.asList(("Cliente Não Encontrado! ID: " + cliente.getId())),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
-    public void excluir(Long idCliente) {
+    public void excluir(Long idCliente) throws Exception {
         if (clienteRepository.existsById(idCliente)) {
             clienteRepository.deleteById(idCliente);
         } else {
-            throw new ErroGenerico("Cliente Não Encontrado! ID: " + idCliente, TipoMensagemEnum.ERROR);
+            throw new ErroGenerico(Arrays.asList(("Cliente Não Encontrado! ID: " + idCliente)),
+                    TipoMensagemEnum.ERROR);
         }
     }
 
