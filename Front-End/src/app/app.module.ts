@@ -20,6 +20,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { ListboxModule } from 'primeng/listbox';
 
 // Aesthetics:
 import { AppComponent } from './app.component';
@@ -117,6 +119,8 @@ import { Rotas } from './app.routes';
 		ToastModule,
 		DropdownModule,
 		InputTextareaModule,
+		SelectButtonModule,
+		ListboxModule,
 		RouterModule.forRoot(Rotas, { onSameUrlNavigation: 'reload' }),
 	],
 	providers: [MessageService],
