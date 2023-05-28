@@ -20,7 +20,7 @@ Cypress.Commands.add("GetPessoa", () => {
 });
 
 Cypress.Commands.add("GetProfissional", () => {
-  cy.request({
+  cy.api({
     method: "POST",
     url: "https://www.4devs.com.br/ferramentas_online.php",
     form: true,
@@ -47,5 +47,17 @@ Cypress.Commands.add("PostClienteDel", (payload) => {
   }).then((response) => {
     expect(response.status).to.eql(201);
     Cypress.env("id_delete", response.body.id);
+  });
+});
+
+Cypress.Commands.add("PostFuncionarioDel", (payload) => {
+  cy.api({
+    method: "POST",
+    url: `${url}/funcionario`,
+    body: payload,
+    failOnStatusCode: false,
+  }).then((response) => {
+    expect(response.status).to.eql(201);
+    Cypress.env("profDel_id", response.body.id);
   });
 });

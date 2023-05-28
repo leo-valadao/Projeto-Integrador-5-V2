@@ -55,7 +55,7 @@ describe("/api/v1/cliente", () => {
         expect(res.body.telefone).to.eql(payload.telefone);
         expect(res.body.email).to.eql(payload.email);
         expect(res.body.cpf).to.eql(payload.cpf);
-        expect(res.body.uf).to.eql("GO");
+        expect(res.body.estadoBrasileiro).to.eql("GOIAS");
         expect(res.body.alergias).to.eql("Nenhuma");
       });
     });
@@ -80,7 +80,7 @@ describe("/api/v1/cliente", () => {
         expect(res.body.nome).to.eql(payloadPut.nome);
         expect(res.body.telefone).to.eql(payloadPut.telefone);
         expect(res.body.email).to.eql(payloadPut.email);
-        expect(res.body.uf).to.eql(payloadPut.uf);
+        expect(res.body.estadoBrasileiro).to.eql(payloadPut.estadoBrasileiro);
         expect(res.body.alergias).to.eql(payloadPut.alergias);
       });
     });
@@ -107,6 +107,7 @@ describe("/api/v1/cliente", () => {
         expect(res.status).to.eql(204);
       });
     });
+    
   });
 
   //TODO: Validação de telefone está com erro
@@ -120,4 +121,5 @@ describe("/api/v1/cliente", () => {
       });
     });
   });
+
 });
