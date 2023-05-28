@@ -1,5 +1,7 @@
 package com.senac.aesthetics.errors;
 
+import java.util.List;
+
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +14,7 @@ import lombok.Setter;
 public class ErroGenerico extends RuntimeException {
 
     // Atributos:
-    private String mensagem;
+    private List<String> mensagens;
     private TipoMensagemEnum tipo;
-    
+
 }

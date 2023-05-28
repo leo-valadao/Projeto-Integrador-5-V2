@@ -1,8 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { TipoMensagemEnum } from '../enums/tipo-mensagem.enum';
 
 export class ErroGenerico {
-  public mensagem!: String;
-  public tipoMensagem!: TipoMensagemEnum;
+	public mensagens!: string[];
+	public tipoMensagem!: TipoMensagemEnum;
 
-  constructor() {}
+	constructor() {}
 }
