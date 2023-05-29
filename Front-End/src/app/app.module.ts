@@ -24,6 +24,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ListboxModule } from 'primeng/listbox';
 
 // Aesthetics:
+import { Rotas } from './app.routes';
 import { AppComponent } from './app.component';
 import { AgendamentosComponent } from './agendamentos/agendamentos.component';
 import { FiltroAgendamentosComponent } from './agendamentos/filtro-agendamentos/filtro-agendamentos.component';
@@ -60,7 +61,9 @@ import { ServicosComponent } from './servicos/servicos.component';
 import { FiltroServicosComponent } from './servicos/filtro-servicos/filtro-servicos.component';
 import { FormularioServicosComponent } from './servicos/formulario-servicos/formulario-servicos.component';
 import { TabelaServicosComponent } from './servicos/tabela-servicos/tabela-servicos.component';
-import { Rotas } from './app.routes';
+import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
+import { CreditosComponent } from './creditos/creditos.component';
+import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
 
 @NgModule({
 	declarations: [
@@ -100,6 +103,9 @@ import { Rotas } from './app.routes';
 		FiltroFornecedoresComponent,
 		TabelaFornecedoresComponent,
 		FormularioFornecedoresComponent,
+		PaginaInicialComponent,
+		CreditosComponent,
+		SobreNosComponent,
 	],
 	imports: [
 		BrowserModule,
