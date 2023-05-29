@@ -19,7 +19,6 @@ import { MensagensGenericasService } from 'src/app/shared/services/utils/mensage
 	styles: [],
 })
 export class FormularioAgendamentosComponent implements OnInit {
-	// Variáveis:
 	exibirFormulario: Boolean = false;
 	funcionarios!: Funcionario[];
 	funcionarioSelecionado!: Funcionario;
@@ -29,7 +28,6 @@ export class FormularioAgendamentosComponent implements OnInit {
 	servicoSelecionado!: Servico;
 	status!: string[];
 
-	// Variáveis de Entrada(s) e Saída(s):
 	@Input() agendamento: Agendamento = new Agendamento();
 	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
 

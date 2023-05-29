@@ -43,15 +43,10 @@ export class TabelaAgendamentosComponent {
 				this.agendamentos = resposta.content;
 				this.quantidadeTotalAgendamentos = resposta.totalElements;
 			},
-			error: (erro: HttpErrorResponse) => {},
-			complete: () => {},
+			error: (erro: HttpErrorResponse) => {
+				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
+			},
 		});
-	}
-
-	mudarPagina(evento: TableLazyLoadEvent) {
-		if (evento.first != undefined && evento.rows != undefined) {
-			this.obterTodosAgendamentos(Math.floor(evento.first / evento.rows), evento.rows, 'id');
-		}
 	}
 
 	mostrarFormularioAgendamentos(agendamento: Agendamento | null) {
@@ -70,14 +65,17 @@ export class TabelaAgendamentosComponent {
 			error: (erro: HttpErrorResponse) => {
 				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
 			},
-			complete: () => {
-				this.atualizarTabela();
-			},
 		});
 		this.atualizarTabela();
 	}
 
 	atualizarTabela() {
 		this.obterTodosAgendamentos(Math.floor(Number(this.tabelaAgendamentos.first) / Number(this.tabelaAgendamentos.rows)), Number(this.tabelaAgendamentos._rows));
+	}
+
+	mudarPagina(evento: TableLazyLoadEvent) {
+		if (evento.first != undefined && evento.rows != undefined) {
+			this.obterTodosAgendamentos(Math.floor(evento.first / evento.rows), evento.rows, 'id');
+		}
 	}
 }
