@@ -27,7 +27,7 @@ export class FormularioAgendamentosComponent implements OnInit {
 	clienteSelecionado!: Cliente;
 	servicos!: Servico[];
 	servicoSelecionado!: Servico;
-	status!: SelectItem[];
+	status!: string[];
 
 	// Variáveis de Entrada(s) e Saída(s):
 	@Input() agendamento: Agendamento = new Agendamento();
@@ -45,15 +45,14 @@ export class FormularioAgendamentosComponent implements OnInit {
 		this.obterTodosClientes();
 		this.obterTodosServicos();
 		this.obterTodosFuncionarios();
-		// this.status = Object.keys(StatusAgendamentoEnum).map((value) => ({ label: value, value: value }));
+		this.status = Object.keys(StatusAgendamentoEnum).map((value) => value);
 	}
 
 	salvarAgendamento() {
-		this.agendamento.status = StatusAgendamentoEnum.ABERTO;
-
 		if (this.agendamento.id) {
 			this.atualizarAgendamento();
 		} else {
+			this.agendamento.status = StatusAgendamentoEnum.ABERTO;
 			this.inserirAgendamento();
 		}
 	}
@@ -63,6 +62,7 @@ export class FormularioAgendamentosComponent implements OnInit {
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Agendamento', 'Atualizado');
 				this.atualizarTabela.emit();
+				this.atualizarTabelaEFecharFormulario();
 			},
 			error: (erro: HttpErrorResponse) => {
 				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
@@ -75,6 +75,7 @@ export class FormularioAgendamentosComponent implements OnInit {
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Agendamento', 'Inserido');
 				this.atualizarTabela.emit();
+				this.atualizarTabelaEFecharFormulario();
 			},
 			error: (erro: HttpErrorResponse) => {
 				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
@@ -116,5 +117,10 @@ export class FormularioAgendamentosComponent implements OnInit {
 				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
 			},
 		});
+	}
+
+	atualizarTabelaEFecharFormulario() {
+		this.atualizarTabela.emit();
+		this.exibirFormulario = false;
 	}
 }

@@ -6,6 +6,7 @@ import { Agendamento } from 'src/app/shared/domains/agendamento.model';
 import { ErroGenerico } from 'src/app/shared/domains/others/erro-generico.error';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
 import { FormularioAgendamentosComponent } from '../formulario-agendamentos/formulario-agendamentos.component';
+import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 
 @Component({
 	selector: 'app-tabela-agendamentos',
@@ -15,25 +16,25 @@ import { FormularioAgendamentosComponent } from '../formulario-agendamentos/form
 export class TabelaAgendamentosComponent {
 	agendamentos!: Agendamento[];
 	agendamentosSelecionados!: Agendamento[];
-	quantidadeTotalAgendamentos: number = 10;
-	quantidadeAgendamentosExibidosPorPagina: number = 10;
+	quantidadeTotalAgendamentos!: number;
+	quantidadeAgendamentosExibidosPorPagina: number = 30;
 
-	colunas: { header: string; field: string; align: string }[] = [
-		{ header: 'ID', field: 'id', align: 'text-center' },
-		{ header: 'Data', field: 'data', align: 'text-center' },
-		{ header: 'Horário', field: 'hora', align: 'text-center' },
-		{ header: 'Status do Agendamento', field: 'status', align: 'text-center' },
-		{ header: 'Obsrvação', field: 'observacao', align: 'text-center' },
-		{ header: 'Cliente', field: 'cliente', align: 'text-center' },
-		{ header: 'Funcionário', field: 'funcionario', align: 'text-center' },
-		{ header: 'Serviço', field: 'servico', align: 'text-center' },
+	colunas: { header: string; field: string }[] = [
+		{ header: 'ID', field: 'id' },
+		{ header: 'Data', field: 'data' },
+		{ header: 'Horário', field: 'hora' },
+		{ header: 'Status do Agendamento', field: 'status' },
+		{ header: 'Obsrvação', field: 'observacao' },
+		{ header: 'Cliente', field: 'cliente' },
+		{ header: 'Funcionário', field: 'funcionario' },
+		{ header: 'Serviço', field: 'servico' },
 	];
 
 	@Output() exibirFormularioAgendamento: EventEmitter<Agendamento> = new EventEmitter<Agendamento>();
 
 	@ViewChild(Table) private tabelaAgendamentos!: Table;
 
-	constructor(private agendamentoService: AgendamentoService) {}
+	constructor(private agendamentoService: AgendamentoService, private mensagensGenericasService: MensagensGenericasService) {}
 
 	ngOnInit(): void {
 		this.obterTodosAgendamentos(0, 30);
@@ -56,9 +57,9 @@ export class TabelaAgendamentosComponent {
 		}
 	}
 
-	mostrarFormularioAgendamentos(cliente: Agendamento | null) {
-		if (cliente) {
-			this.exibirFormularioAgendamento.emit(JSON.parse(JSON.stringify(cliente)));
+	mostrarFormularioAgendamentos(agendamento: Agendamento | null) {
+		if (agendamento) {
+			this.exibirFormularioAgendamento.emit(JSON.parse(JSON.stringify(agendamento)));
 		} else {
 			this.exibirFormularioAgendamento.emit(new Agendamento());
 		}
@@ -66,8 +67,12 @@ export class TabelaAgendamentosComponent {
 
 	excluirAgendamento(idAgendamento: number) {
 		this.agendamentoService.excluir(idAgendamento).subscribe({
-			next: (resposta) => {},
-			error: (erro: HttpErrorResponse) => {},
+			next: () => {
+				this.mensagensGenericasService.mensagemPadraoDeSucesso('Agendamentos', 'excluído');
+			},
+			error: (erro: HttpErrorResponse) => {
+				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
+			},
 			complete: () => {
 				this.atualizarTabela();
 			},
@@ -76,8 +81,6 @@ export class TabelaAgendamentosComponent {
 	}
 
 	atualizarTabela() {
-		if (this.tabelaAgendamentos.first && this.tabelaAgendamentos.rows && this.tabelaAgendamentos._rows) {
-			this.obterTodosAgendamentos(Math.floor(this.tabelaAgendamentos.first / this.tabelaAgendamentos.rows), this.tabelaAgendamentos._rows);
-		}
+		this.obterTodosAgendamentos(Math.floor(Number(this.tabelaAgendamentos.first) / Number(this.tabelaAgendamentos.rows)), Number(this.tabelaAgendamentos._rows));
 	}
 }

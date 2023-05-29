@@ -13,7 +13,9 @@ export class AgendamentosComponent {
 	@ViewChild(TabelaAgendamentosComponent) tabelaAgendamentos!: TabelaAgendamentosComponent;
 
 	exibirFormularioAgendamento(agendamento: Agendamento) {
-		this.formularioAgendamentos.agendamento = agendamento;
+		if (agendamento.id){
+			this.formularioAgendamentos.agendamento = agendamento;
+		}
 		this.formularioAgendamentos.exibirFormulario = true;
 	}
 

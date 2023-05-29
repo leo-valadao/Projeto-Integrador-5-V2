@@ -5,9 +5,7 @@
 	[modal]="true"
 	[style]="{ width: '50vw', height: '' }"
 	*ngIf="exibirFormulario">
-	<form
-		class="d-flex flex-column gap-3"
-		(ngSubmit)="salvarAgendamento()">
+	<form class="d-flex flex-column gap-3">
 		<div class="d-flex flex-row gap-3">
 			<div class="d-flex flex-column w-100">
 				<label for="agendamento.data">Data do Agendamento:</label>
@@ -32,6 +30,7 @@
 					dataType="string"
 					[showTime]="true"
 					[timeOnly]="true"
+					[showSeconds]="true"
 					[showIcon]="true"
 					styleClass="w-100" />
 			</div>
@@ -46,7 +45,6 @@
 					data-cy="agendamento.status"
 					name="agendamento.status"
 					[options]="status"
-					optionLabel="value"
 					styleClass="w-100" />
 			</div>
 		</div>
