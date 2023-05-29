@@ -1,11 +1,11 @@
-import { Component, ViewChild } from "@angular/core";
-import { TabelaAgendamentosComponent } from "./tabela-agendamentos/tabela-agendamentos.component";
-import { FormularioAgendamentosComponent } from "./formulario-agendamentos/formulario-agendamentos.component";
-import { Agendamento } from "../shared/domains/agendamento.model";
+import { Component, ViewChild } from '@angular/core';
+import { TabelaAgendamentosComponent } from './tabela-agendamentos/tabela-agendamentos.component';
+import { FormularioAgendamentosComponent } from './formulario-agendamentos/formulario-agendamentos.component';
+import { Agendamento } from '../shared/domains/agendamento.model';
 
 @Component({
-	selector: "app-agendamentos",
-	templateUrl: "./agendamentos.component.html",
+	selector: 'app-agendamentos',
+	templateUrl: './agendamentos.component.html',
 	styles: [],
 })
 export class AgendamentosComponent {

@@ -3,7 +3,8 @@
 	header="Cadastro de Agendamento"
 	[(visible)]="exibirFormulario"
 	[modal]="true"
-	[style]="{ width: '50vw', height: '' }">
+	[style]="{ width: '50vw', height: '' }"
+	*ngIf="exibirFormulario">
 	<form
 		class="d-flex flex-column gap-3"
 		(ngSubmit)="salvarAgendamento()">

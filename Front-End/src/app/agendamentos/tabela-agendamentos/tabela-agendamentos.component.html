@@ -1,7 +1,6 @@
 <div class="p-4">
+	<!-- Tabela PrimeNG -->
 	<p-table
-		id="dtAgendamentos"
-		styleClass="p-datatable-gridlines"
 		[columns]="colunas"
 		[value]="agendamentos"
 		[(selection)]="agendamentosSelecionados"
@@ -11,10 +10,13 @@
 		[lazy]="true"
 		[showCurrentPageReport]="true"
 		[autoLayout]="true"
-		currentPageReportTemplate="Mostrando do {first}º ao {last}º de {totalRecords} agendamentos"
 		[rowsPerPageOptions]="[10, 30, 50, 100]"
-		(onLazyLoad)="mudarPagina($event)">
+		(onLazyLoad)="mudarPagina($event)"
+		currentPageReportTemplate="Mostrando do {first}º ao {last}º de {totalRecords} agendamentos"
+		id="dtAgendamentos"
+		styleClass="p-datatable-gridlines">
 		<ng-template pTemplate="caption">
+			<!-- Barra do Topo da Tabela -->
 			<div class="d-flex align-items-center justify-content-between">
 				Agendamentos
 				<button
@@ -27,48 +29,56 @@
 			</div>
 		</ng-template>
 
+		<!-- Cabeçalho da Tabela -->
 		<ng-template
 			pTemplate="header"
 			let-columns>
 			<tr>
+				<!-- Botão de Selecionar Todos os Itens da Tabela -->
 				<th class="flex align-items-center justify-content-between align-middle text-center">
 					<p-tableHeaderCheckbox />
 				</th>
 
+				<!-- Título de Cada Coluna -->
 				<th
 					*ngFor="let col of columns"
 					class="align-middle text-center">
 					{{ col.header }}
 				</th>
 
+				<!-- Título da Coluna dos Botões de Ações -->
 				<th class="align-middle text-center align-items-center">Ações</th>
 			</tr>
 		</ng-template>
 
+		<!-- Tabela -->
 		<ng-template
 			pTemplate="body"
-			let-cliente
+			let-item
 			let-columns="columns">
+			<!-- Botão de Selecionar o Item da Tabela (Individual) -->
 			<tr>
 				<td class="align-middle text-center">
-					<p-tableCheckbox [value]="cliente"></p-tableCheckbox>
+					<p-tableCheckbox [value]="item" />
 				</td>
 
-				<!-- <td
+				<!-- Itens da Tabela -->
+				<td
 					*ngFor="let col of columns"
 					class="align-middle {{ col.align }}">
-					{{ cliente[col.field]["nome"] ? cliente[col.field]["nome"] : cliente[col.field] }}
-				</td> -->
+					{{ item[col.field]['nome'] ? item[col.field]['nome'] : item[col.field] }}
+				</td>
 
+				<!-- Botões de Ações de Cada Item da Tabela -->
 				<td class="align-middle text-center gap-3">
 					<i
 						class="pi pi-pencil"
 						style="font-size: 2rem"
-						(click)="mostrarFormularioAgendamentos(cliente)"></i>
+						(click)="mostrarFormularioAgendamentos(item)"></i>
 					<i
 						class="pi pi-trash ms-3"
 						style="font-size: 2rem; color: rgb(255, 0, 0) !important"
-						(click)="excluirAgendamento(cliente.id)"></i>
+						(click)="excluirAgendamento(item.id)"></i>
 				</td>
 			</tr>
 		</ng-template>

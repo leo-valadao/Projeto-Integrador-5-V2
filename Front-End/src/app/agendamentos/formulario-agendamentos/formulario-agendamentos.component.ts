@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { Agendamento } from 'src/app/shared/domains/agendamento.model';
 import { Cliente } from 'src/app/shared/domains/cliente.model';
@@ -35,7 +34,6 @@ export class FormularioAgendamentosComponent implements OnInit {
 	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
 
 	constructor(
-		private formBuilder: FormBuilder,
 		private agendamentoService: AgendamentoService,
 		private funcionarioService: FuncionarioService,
 		private clienteService: ClienteService,
@@ -44,37 +42,10 @@ export class FormularioAgendamentosComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.funcionarioService.obterTodosPorPagina(0, 1000).subscribe({
-			next: (resposta: Pagina<Funcionario>) => {
-				this.funcionarios = resposta.content;
-				this.mensagensGenericasService.mensagemPadraoDeSucesso('Funcionario', 'Carregados');
-			},
-			error: (erro: HttpErrorResponse) => {
-				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
-			},
-		});
-
-		this.servicoService.obterTodosPorPagina(0, 1000).subscribe({
-			next: (resposta: Pagina<Servico>) => {
-				this.servicos = resposta.content;
-				this.mensagensGenericasService.mensagemPadraoDeSucesso('Servico', 'Carregados');
-			},
-			error: (erro: HttpErrorResponse) => {
-				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
-			},
-		});
-
-		this.clienteService.obterTodosPorPagina(0, 1000).subscribe({
-			next: (resposta: Pagina<Cliente>) => {
-				this.clientes = resposta.content;
-				this.mensagensGenericasService.mensagemPadraoDeSucesso('Cliente', 'Carregados');
-			},
-			error: (erro: HttpErrorResponse) => {
-				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
-			},
-		});
-
-		this.status = Object.keys(StatusAgendamentoEnum).map((value) => ({ label: value, value: value }));
+		this.obterTodosClientes();
+		this.obterTodosServicos();
+		this.obterTodosFuncionarios();
+		// this.status = Object.keys(StatusAgendamentoEnum).map((value) => ({ label: value, value: value }));
 	}
 
 	salvarAgendamento() {
@@ -104,6 +75,42 @@ export class FormularioAgendamentosComponent implements OnInit {
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Agendamento', 'Inserido');
 				this.atualizarTabela.emit();
+			},
+			error: (erro: HttpErrorResponse) => {
+				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
+			},
+		});
+	}
+
+	obterTodosClientes() {
+		// TODO: Trocar consulta para uma mais apropriada, pois essa só retorna os 1000 últimos clientes registrados no banco de dados
+		this.clienteService.obterTodosPorPagina(0, 1000).subscribe({
+			next: (resposta: Pagina<Cliente>) => {
+				this.clientes = resposta.content;
+			},
+			error: (erro: HttpErrorResponse) => {
+				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
+			},
+		});
+	}
+
+	obterTodosServicos() {
+		// TODO: Trocar consulta para uma mais apropriada, pois essa só retorna os 1000 últimos serviços registrados no banco de dados
+		this.servicoService.obterTodosPorPagina(0, 1000).subscribe({
+			next: (resposta: Pagina<Servico>) => {
+				this.servicos = resposta.content;
+			},
+			error: (erro: HttpErrorResponse) => {
+				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
+			},
+		});
+	}
+
+	obterTodosFuncionarios() {
+		// TODO: Trocar consulta para uma mais apropriada, pois essa só retorna os 1000 últimos funcionários registrados no banco de dados
+		this.funcionarioService.obterTodosPorPagina(0, 1000).subscribe({
+			next: (resposta: Pagina<Funcionario>) => {
+				this.funcionarios = resposta.content;
 			},
 			error: (erro: HttpErrorResponse) => {
 				this.mensagensGenericasService.mensagemPadraoDeErro(erro);

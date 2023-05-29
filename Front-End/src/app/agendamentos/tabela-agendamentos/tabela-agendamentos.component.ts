@@ -5,6 +5,7 @@ import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { Agendamento } from 'src/app/shared/domains/agendamento.model';
 import { ErroGenerico } from 'src/app/shared/domains/others/erro-generico.error';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
+import { FormularioAgendamentosComponent } from '../formulario-agendamentos/formulario-agendamentos.component';
 
 @Component({
 	selector: 'app-tabela-agendamentos',
@@ -24,7 +25,7 @@ export class TabelaAgendamentosComponent {
 		{ header: 'Status do Agendamento', field: 'status', align: 'text-center' },
 		{ header: 'Obsrvação', field: 'observacao', align: 'text-center' },
 		{ header: 'Cliente', field: 'cliente', align: 'text-center' },
-		{ header: 'Funcionário', field: 'respAgendamento', align: 'text-center' },
+		{ header: 'Funcionário', field: 'funcionario', align: 'text-center' },
 		{ header: 'Serviço', field: 'servico', align: 'text-center' },
 	];
 
@@ -35,7 +36,7 @@ export class TabelaAgendamentosComponent {
 	constructor(private agendamentoService: AgendamentoService) {}
 
 	ngOnInit(): void {
-		this.obterTodosAgendamentos(0, 30, 'id');
+		this.obterTodosAgendamentos(0, 30);
 	}
 
 	obterTodosAgendamentos(numeroPagina: number, quantidadePorPagina: number, ordenarPor?: string): void {
