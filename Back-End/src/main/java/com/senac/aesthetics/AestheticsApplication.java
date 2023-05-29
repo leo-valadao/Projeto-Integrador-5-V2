@@ -81,8 +81,9 @@ public class AestheticsApplication implements ApplicationRunner {
 			System.out.println("\nInserindo dados de teste...\n");
 			Random r = new Random();
 			GeradorDocumento gd = new GeradorDocumento();
+			Integer quantidadeDeTestes = 50;
 
-			for (int i = 1; i <= 250; i++) {
+			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Cliente c = new Cliente();
 				c.setNome("Cliente " + i);
 				c.setTelefone("(12)34567-8910");
@@ -94,7 +95,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				cs.inserir(c);
 			}
 
-			for (int i = 1; i <= 250; i++) {
+			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Servico s = new Servico();
 				s.setNome("Serviço " + i);
 				s.setDescricao("Descrição " + i);
@@ -104,7 +105,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				ss.inserir(s);
 			}
 
-			for (int i = 1; i <= 250; i++) {
+			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Funcionario f = new Funcionario();
 				f.setNome("Funcionário " + i);
 				f.setTelefone("(12)34567-8910");
@@ -118,7 +119,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				fus.inserir(f);
 			}
 
-			for (int i = 1; i <= 250; i++) {
+			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Agendamento a = new Agendamento();
 				a.setData(new Date());
 				a.setHora(new Date());
@@ -138,7 +139,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				as.inserir(a);
 			}
 
-			for (int i = 1; i <= 250; i++) {
+			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				OrdemServico os = new OrdemServico();
 				os.setDataHoraInicio(new Date());
 				os.setDataHoraTermino(new Date());
@@ -162,7 +163,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				oss.inserir(os);
 			}
 
-			for (int i = 1; i <= 250; i++) {
+			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				ContaReceber cr = new ContaReceber();
 				cr.setDataEmissao(new Date(122, 5, 7));
 				cr.setDataVencimento(new Date(124, 5, 7));
@@ -183,7 +184,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				crs.inserir(cr);
 			}
 
-			for (int i = 1; i <= 250; i++) {
+			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Fornecedor f = new Fornecedor();
 				f.setNome("Fornecedor " + i);
 				f.setTelefone("(12)34567-8910");
@@ -194,7 +195,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				fos.inserir(f);
 			}
 
-			for (int i = 1; i <= 250; i++) {
+			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				ContaPagar cp = new ContaPagar();
 				cp.setDataEmissao(new Date(122, 5, 7));
 				cp.setDataVencimento(new Date(124, 5, 7));
