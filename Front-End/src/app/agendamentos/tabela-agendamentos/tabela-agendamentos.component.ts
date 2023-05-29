@@ -1,11 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
 import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { Agendamento } from 'src/app/shared/domains/agendamento.model';
-import { ErroGenerico } from 'src/app/shared/domains/others/erro-generico.error';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
-import { FormularioAgendamentosComponent } from '../formulario-agendamentos/formulario-agendamentos.component';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 
 @Component({
