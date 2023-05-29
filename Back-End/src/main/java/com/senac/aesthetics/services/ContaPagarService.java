@@ -1,6 +1,5 @@
 package com.senac.aesthetics.services;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class ContaPagarService implements InterfaceGenericaResource<ContaPagar> 
         if (contaPagar.isPresent()) {
             return contaPagar.get();
         } else {
-            throw new ErroGenerico(Arrays.asList("ContaPagar Não Encontrado! ID: " + idContaPagar),
+            throw new ErroGenerico("ContaPagar Não Encontrado! ID: " + idContaPagar,
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -50,7 +49,7 @@ public class ContaPagarService implements InterfaceGenericaResource<ContaPagar> 
         if (contaPagarRepository.existsById(contaPagar.getId())) {
             return contaPagarRepository.saveAndFlush(contaPagar);
         } else {
-            throw new ErroGenerico(Arrays.asList("ContaPagar Não Encontrado! ID: " + contaPagar.getId()),
+            throw new ErroGenerico("ContaPagar Não Encontrado! ID: " + contaPagar.getId(),
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -59,7 +58,7 @@ public class ContaPagarService implements InterfaceGenericaResource<ContaPagar> 
         if (contaPagarRepository.existsById(idContaPagar)) {
             contaPagarRepository.deleteById(idContaPagar);
         } else {
-            throw new ErroGenerico(Arrays.asList("ContaPagar Não Encontrado! ID: " + idContaPagar),
+            throw new ErroGenerico("ContaPagar Não Encontrado! ID: " + idContaPagar,
                     TipoMensagemEnum.ERROR);
         }
     }

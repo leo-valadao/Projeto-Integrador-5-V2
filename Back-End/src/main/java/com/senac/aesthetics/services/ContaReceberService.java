@@ -1,6 +1,5 @@
 package com.senac.aesthetics.services;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,7 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
         if (contaReceber.isPresent()) {
             return contaReceber.get();
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("ContaReceber Não Encontrado! ID: " + idContaReceber),
+            throw new ErroGenerico("ContaReceber Não Encontrado! ID: " + idContaReceber,
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -51,8 +49,7 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
         if (contaReceberRepository.existsById(contaReceber.getId())) {
             return contaReceberRepository.saveAndFlush(contaReceber);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("ContaReceber Não Encontrado! ID: " + contaReceber.getId()),
+            throw new ErroGenerico("ContaReceber Não Encontrado! ID: " + contaReceber.getId(),
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -61,8 +58,7 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
         if (contaReceberRepository.existsById(idContaReceber)) {
             contaReceberRepository.deleteById(idContaReceber);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("ContaReceber Não Encontrado! ID: " + idContaReceber),
+            throw new ErroGenerico("ContaReceber Não Encontrado! ID: " + idContaReceber,
                     TipoMensagemEnum.ERROR);
         }
     }

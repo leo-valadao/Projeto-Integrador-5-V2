@@ -1,6 +1,5 @@
 package com.senac.aesthetics.services;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,7 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
         if (ordemServico.isPresent()) {
             return ordemServico.get();
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("OrdemServico Não Encontrado! ID: " + idOrdemServico),
+            throw new ErroGenerico("OrdemServico Não Encontrado! ID: " + idOrdemServico,
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -51,8 +49,7 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
         if (ordemServicoRepository.existsById(ordemServico.getId())) {
             return ordemServicoRepository.saveAndFlush(ordemServico);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("OrdemServico Não Encontrado! ID: " + ordemServico.getId()),
+            throw new ErroGenerico("OrdemServico Não Encontrado! ID: " + ordemServico.getId(),
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -61,8 +58,7 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
         if (ordemServicoRepository.existsById(idOrdemServico)) {
             ordemServicoRepository.deleteById(idOrdemServico);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("OrdemServico Não Encontrado! ID: " + idOrdemServico),
+            throw new ErroGenerico("OrdemServico Não Encontrado! ID: " + idOrdemServico,
                     TipoMensagemEnum.ERROR);
         }
     }

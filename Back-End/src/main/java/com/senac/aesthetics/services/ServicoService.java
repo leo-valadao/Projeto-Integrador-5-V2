@@ -1,6 +1,5 @@
 package com.senac.aesthetics.services;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class ServicoService implements InterfaceGenericaResource<Servico> {
         if (servico.isPresent()) {
             return servico.get();
         } else {
-            throw new ErroGenerico(Arrays.asList("Servico Não Encontrado! ID: " + idServico),
+            throw new ErroGenerico("Servico Não Encontrado! ID: " + idServico,
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -50,7 +49,7 @@ public class ServicoService implements InterfaceGenericaResource<Servico> {
         if (servicoRepository.existsById(servico.getId())) {
             return servicoRepository.saveAndFlush(servico);
         } else {
-            throw new ErroGenerico(Arrays.asList("Servico Não Encontrado! ID: " + servico.getId()),
+            throw new ErroGenerico("Servico Não Encontrado! ID: " + servico.getId(),
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -59,7 +58,7 @@ public class ServicoService implements InterfaceGenericaResource<Servico> {
         if (servicoRepository.existsById(idServico)) {
             servicoRepository.deleteById(idServico);
         } else {
-            throw new ErroGenerico(Arrays.asList("Servico Não Encontrado! ID: " + idServico),
+            throw new ErroGenerico("Servico Não Encontrado! ID: " + idServico,
                     TipoMensagemEnum.ERROR);
         }
     }

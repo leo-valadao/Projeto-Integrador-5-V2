@@ -1,6 +1,5 @@
 package com.senac.aesthetics.services;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         if (cliente.isPresent()) {
             return cliente.get();
         } else {
-            throw new ErroGenerico(Arrays.asList(("Cliente Não Encontrado! ID: " + idCliente)),
+            throw new ErroGenerico(("Cliente Não Encontrado! ID: " + idCliente),
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -50,8 +49,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         if (clienteRepository.existsById(cliente.getId())) {
             return clienteRepository.saveAndFlush(cliente);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList(("Cliente Não Encontrado! ID: " + cliente.getId())),
+            throw new ErroGenerico(("Cliente Não Encontrado! ID: " + cliente.getId()),
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -60,7 +58,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         if (clienteRepository.existsById(idCliente)) {
             clienteRepository.deleteById(idCliente);
         } else {
-            throw new ErroGenerico(Arrays.asList(("Cliente Não Encontrado! ID: " + idCliente)),
+            throw new ErroGenerico(("Cliente Não Encontrado! ID: " + idCliente),
                     TipoMensagemEnum.ERROR);
         }
     }

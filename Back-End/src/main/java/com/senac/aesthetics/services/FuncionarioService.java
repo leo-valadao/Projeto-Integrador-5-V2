@@ -1,6 +1,5 @@
 package com.senac.aesthetics.services;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,7 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
         if (funcionario.isPresent()) {
             return funcionario.get();
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("Funcionario Não Encontrado! ID: " + idFuncionario),
+            throw new ErroGenerico("Funcionario Não Encontrado! ID: " + idFuncionario,
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -51,8 +49,7 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
         if (funcionarioRepository.existsById(funcionario.getId())) {
             return funcionarioRepository.saveAndFlush(funcionario);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("Funcionario Não Encontrado! ID: " + funcionario.getId()),
+            throw new ErroGenerico("Funcionario Não Encontrado! ID: " + funcionario.getId(),
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -61,8 +58,7 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
         if (funcionarioRepository.existsById(idFuncionario)) {
             funcionarioRepository.deleteById(idFuncionario);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("Funcionario Não Encontrado! ID: " + idFuncionario),
+            throw new ErroGenerico("Funcionario Não Encontrado! ID: " + idFuncionario,
                     TipoMensagemEnum.ERROR);
         }
     }

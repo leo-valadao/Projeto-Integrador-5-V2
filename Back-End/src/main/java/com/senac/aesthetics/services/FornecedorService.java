@@ -1,6 +1,5 @@
 package com.senac.aesthetics.services;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
         if (fornecedor.isPresent()) {
             return fornecedor.get();
         } else {
-            throw new ErroGenerico(Arrays.asList("Fornecedor Não Encontrado! ID: " + idFornecedor),
+            throw new ErroGenerico("Fornecedor Não Encontrado! ID: " + idFornecedor,
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -50,8 +49,7 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
         if (fornecedorRepository.existsById(fornecedor.getId())) {
             return fornecedorRepository.saveAndFlush(fornecedor);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("Fornecedor Não Encontrado! ID: " + fornecedor.getId()),
+            throw new ErroGenerico("Fornecedor Não Encontrado! ID: " + fornecedor.getId(),
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -60,7 +58,7 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
         if (fornecedorRepository.existsById(idFornecedor)) {
             fornecedorRepository.deleteById(idFornecedor);
         } else {
-            throw new ErroGenerico(Arrays.asList("Fornecedor Não Encontrado! ID: " + idFornecedor),
+            throw new ErroGenerico("Fornecedor Não Encontrado! ID: " + idFornecedor,
                     TipoMensagemEnum.ERROR);
         }
     }

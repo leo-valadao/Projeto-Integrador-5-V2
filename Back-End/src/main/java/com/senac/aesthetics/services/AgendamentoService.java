@@ -1,6 +1,5 @@
 package com.senac.aesthetics.services;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,7 @@ public class AgendamentoService implements InterfaceGenericaResource<Agendamento
         if (agendamento.isPresent()) {
             return agendamento.get();
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("Agendamento Não Encontrado! ID: " + idAgendamento),
+            throw new ErroGenerico("Agendamento Não Encontrado! ID: " + idAgendamento,
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -51,8 +49,7 @@ public class AgendamentoService implements InterfaceGenericaResource<Agendamento
         if (agendamentoRepository.existsById(agendamento.getId())) {
             return agendamentoRepository.saveAndFlush(agendamento);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("Agendamento Não Encontrado! ID: " + agendamento.getId()),
+            throw new ErroGenerico("Agendamento Não Encontrado! ID: " + agendamento.getId(),
                     TipoMensagemEnum.ERROR);
         }
     }
@@ -61,8 +58,7 @@ public class AgendamentoService implements InterfaceGenericaResource<Agendamento
         if (agendamentoRepository.existsById(idAgendamento)) {
             agendamentoRepository.deleteById(idAgendamento);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("Agendamento Não Encontrado! ID: " + idAgendamento),
+            throw new ErroGenerico("Agendamento Não Encontrado! ID: " + idAgendamento,
                     TipoMensagemEnum.ERROR);
         }
     }
