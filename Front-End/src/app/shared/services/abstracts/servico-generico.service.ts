@@ -35,7 +35,7 @@ export abstract class ServicoGenericoService<T> implements IntefaceGenericaCompo
 	}
 
 	excluir(idT: number): Observable<void> {
-		let url = `?id=${idT}`;
+		let url = `${this.url}?id=${idT}`;
 
 		return this.http.delete<void>(url);
 	}
