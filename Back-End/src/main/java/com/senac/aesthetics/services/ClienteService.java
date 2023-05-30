@@ -1,5 +1,6 @@
 package com.senac.aesthetics.services;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Cliente;
-import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.ClienteRepository;
 
@@ -36,8 +35,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         if (cliente.isPresent()) {
             return cliente.get();
         } else {
-            throw new ErroGenerico(("Cliente Não Encontrado! ID: " + idCliente),
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("Cliente Não Encontrado! ID: " + idCliente);
         }
     }
 
@@ -49,8 +47,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         if (clienteRepository.existsById(cliente.getId())) {
             return clienteRepository.saveAndFlush(cliente);
         } else {
-            throw new ErroGenerico(("Cliente Não Encontrado! ID: " + cliente.getId()),
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("Cliente Não Encontrado! ID: " + cliente.getId());
         }
     }
 
@@ -58,8 +55,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         if (clienteRepository.existsById(idCliente)) {
             clienteRepository.deleteById(idCliente);
         } else {
-            throw new ErroGenerico(("Cliente Não Encontrado! ID: " + idCliente),
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("Cliente Não Encontrado! ID: " + idCliente);
         }
     }
 

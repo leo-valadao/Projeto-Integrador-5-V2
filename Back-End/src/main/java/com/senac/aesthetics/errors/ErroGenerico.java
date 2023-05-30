@@ -9,10 +9,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ErroGenerico extends RuntimeException {
+public class ErroGenerico {
 
     // Atributos:
     private String mensagem;
-    private TipoMensagemEnum tipo;
+    private TipoMensagemEnum tipoMensagem;
+    private Exception excecao;
 
 }

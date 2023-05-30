@@ -1,6 +1,9 @@
 package com.senac.aesthetics.errors;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,9 +18,16 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(Exception.class)
   protected ResponseEntity<ErroGenerico> handleException(Exception ex) {
     ErroGenerico erro = new ErroGenerico(
-        "Erro Interno no Servidor! \n Entre em Contato a Equipe do Aesthetics em service-desk@aesthetics.com!",
-        TipoMensagemEnum.ERROR);
-    return ResponseEntity.internalServerError().body(erro);
+        "Erro Interno no Servidor! Entre em Contato a Equipe do Aesthetics em service-desk@aesthetics.com!",
+        TipoMensagemEnum.ERROR, ex);
+    return new ResponseEntity<ErroGenerico>(erro, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  @ExceptionHandler(NoSuchElementException.class)
+  protected ResponseEntity<ErroGenerico> handleNoSuchElementException(
+      NoSuchElementException ex) {
+    ErroGenerico erro = new ErroGenerico(ex.getMessage(), TipoMensagemEnum.ERROR, ex);
+    return new ResponseEntity<ErroGenerico>(erro, HttpStatus.NOT_FOUND);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -27,16 +37,16 @@ public class GlobalExceptionHandler {
     for (ObjectError erro : ex.getBindingResult().getAllErrors()) {
       erros.append(erro.getDefaultMessage() + " \n ");
     }
-    ErroGenerico erro = new ErroGenerico(erros.toString().trim(), TipoMensagemEnum.ERROR);
-    return ResponseEntity.internalServerError().body(erro);
+    IllegalArgumentException excecao = new IllegalArgumentException(erros.toString().trim());
+    ErroGenerico erro = new ErroGenerico(excecao.getMessage(), TipoMensagemEnum.ERROR, excecao);
+    return new ResponseEntity<ErroGenerico>(erro, HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler(DataIntegrityViolationException.class)
   protected ResponseEntity<ErroGenerico> handleDataIntegrityViolationException(
       DataIntegrityViolationException ex) {
-    ErroGenerico erro = new ErroGenerico(
-        "Não foi possível executar a ação pois o objeto esta ligado a outros objetos!",
-        TipoMensagemEnum.ERROR);
-    return ResponseEntity.badRequest().body(erro);
+    ErroGenerico erro = new ErroGenerico("O objeto não pode ser excluído pois há outro objeto ligado a ele!",
+        TipoMensagemEnum.ERROR, ex);
+    return new ResponseEntity<ErroGenerico>(erro, HttpStatus.CONFLICT);
   }
 }

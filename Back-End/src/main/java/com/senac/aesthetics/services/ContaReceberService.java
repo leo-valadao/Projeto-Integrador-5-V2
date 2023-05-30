@@ -1,5 +1,6 @@
 package com.senac.aesthetics.services;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.ContaReceber;
-import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.ContaReceberRepository;
 
@@ -36,8 +35,7 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
         if (contaReceber.isPresent()) {
             return contaReceber.get();
         } else {
-            throw new ErroGenerico("ContaReceber Não Encontrado! ID: " + idContaReceber,
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("ContaReceber Não Encontrado! ID: " + idContaReceber);
         }
     }
 
@@ -49,8 +47,7 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
         if (contaReceberRepository.existsById(contaReceber.getId())) {
             return contaReceberRepository.saveAndFlush(contaReceber);
         } else {
-            throw new ErroGenerico("ContaReceber Não Encontrado! ID: " + contaReceber.getId(),
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("ContaReceber Não Encontrado! ID: " + contaReceber.getId());
         }
     }
 
@@ -58,8 +55,7 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
         if (contaReceberRepository.existsById(idContaReceber)) {
             contaReceberRepository.deleteById(idContaReceber);
         } else {
-            throw new ErroGenerico("ContaReceber Não Encontrado! ID: " + idContaReceber,
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("ContaReceber Não Encontrado! ID: " + idContaReceber);
         }
     }
 

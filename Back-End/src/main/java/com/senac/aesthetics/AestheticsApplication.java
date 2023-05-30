@@ -81,7 +81,7 @@ public class AestheticsApplication implements ApplicationRunner {
 			System.out.println("\nInserindo dados de teste...\n");
 			Random r = new Random();
 			GeradorDocumento gd = new GeradorDocumento();
-			Integer quantidadeDeTestes = 50;
+			Integer quantidadeDeTestes = 10;
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Cliente c = new Cliente();

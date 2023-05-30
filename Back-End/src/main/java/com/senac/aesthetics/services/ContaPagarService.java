@@ -1,5 +1,6 @@
 package com.senac.aesthetics.services;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.ContaPagar;
-import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.ContaPagarRepository;
 
@@ -36,8 +35,7 @@ public class ContaPagarService implements InterfaceGenericaResource<ContaPagar> 
         if (contaPagar.isPresent()) {
             return contaPagar.get();
         } else {
-            throw new ErroGenerico("ContaPagar Não Encontrado! ID: " + idContaPagar,
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("ContaPagar Não Encontrado! ID: " + idContaPagar);
         }
     }
 
@@ -49,8 +47,7 @@ public class ContaPagarService implements InterfaceGenericaResource<ContaPagar> 
         if (contaPagarRepository.existsById(contaPagar.getId())) {
             return contaPagarRepository.saveAndFlush(contaPagar);
         } else {
-            throw new ErroGenerico("ContaPagar Não Encontrado! ID: " + contaPagar.getId(),
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("ContaPagar Não Encontrado! ID: " + contaPagar.getId());
         }
     }
 
@@ -58,8 +55,7 @@ public class ContaPagarService implements InterfaceGenericaResource<ContaPagar> 
         if (contaPagarRepository.existsById(idContaPagar)) {
             contaPagarRepository.deleteById(idContaPagar);
         } else {
-            throw new ErroGenerico("ContaPagar Não Encontrado! ID: " + idContaPagar,
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("ContaPagar Não Encontrado! ID: " + idContaPagar);
         }
     }
 

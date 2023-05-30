@@ -1,5 +1,6 @@
 package com.senac.aesthetics.services;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Funcionario;
-import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.FuncionarioRepository;
 
@@ -36,8 +35,7 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
         if (funcionario.isPresent()) {
             return funcionario.get();
         } else {
-            throw new ErroGenerico("Funcionario Não Encontrado! ID: " + idFuncionario,
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("Funcionario Não Encontrado! ID: " + idFuncionario);
         }
     }
 
@@ -49,8 +47,7 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
         if (funcionarioRepository.existsById(funcionario.getId())) {
             return funcionarioRepository.saveAndFlush(funcionario);
         } else {
-            throw new ErroGenerico("Funcionario Não Encontrado! ID: " + funcionario.getId(),
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("Funcionario Não Encontrado! ID: " + funcionario.getId());
         }
     }
 
@@ -58,8 +55,7 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
         if (funcionarioRepository.existsById(idFuncionario)) {
             funcionarioRepository.deleteById(idFuncionario);
         } else {
-            throw new ErroGenerico("Funcionario Não Encontrado! ID: " + idFuncionario,
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("Funcionario Não Encontrado! ID: " + idFuncionario);
         }
     }
 
