@@ -39,6 +39,13 @@ public class AgendamentoService implements InterfaceGenericaResource<Agendamento
         }
     }
 
+    public Page<Agendamento> obterAgendamentosPorFiltro(Integer numeroPagina, Integer quantidadePorPagina,
+            String ordenarPor, Agendamento filtro) {
+        Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
+
+        return this.agendamentoRepository.obterAgendamentosPorFiltro(filtro, pagina);
+    }
+
     public Agendamento inserir(Agendamento agendamento) throws Exception {
         return agendamentoRepository.save(agendamento);
     }

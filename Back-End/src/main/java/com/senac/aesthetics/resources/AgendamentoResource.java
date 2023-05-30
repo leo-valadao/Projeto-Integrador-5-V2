@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.senac.aesthetics.domains.Agendamento;
 import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
+import com.senac.aesthetics.services.AgendamentoService;
 
 import jakarta.validation.Valid;
 
@@ -26,7 +27,8 @@ public class AgendamentoResource implements InterfaceGenericaCliente<Agendamento
 
     // Obejtos:
     @Autowired
-    private InterfaceGenericaResource<Agendamento> agendamentoService;
+    // private InterfaceGenericaResource<Agendamento> agendamentoService;
+    private AgendamentoService agendamentoService;
 
     // API's:
     @GetMapping
@@ -36,6 +38,19 @@ public class AgendamentoResource implements InterfaceGenericaCliente<Agendamento
             @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
         Page<Agendamento> agendamentos = agendamentoService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
                 ordernarPor);
+
+        return ResponseEntity.ok(agendamentos);
+    }
+
+    @GetMapping("/filtro")
+    public ResponseEntity<Page<Agendamento>> obterAgendamentosPorFiltro(
+            @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
+            @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
+            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor,
+            @RequestBody(required = false) Agendamento filtro) throws Exception {
+        Page<Agendamento> agendamentos = agendamentoService.obterAgendamentosPorFiltro(numeroPagina,
+                quantidadePorPagina,
+                ordernarPor, filtro);
 
         return ResponseEntity.ok(agendamentos);
     }

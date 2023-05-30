@@ -1,6 +1,7 @@
 package com.senac.aesthetics;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.util.Date;
 import java.util.Random;
 
@@ -122,7 +123,7 @@ public class AestheticsApplication implements ApplicationRunner {
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Agendamento a = new Agendamento();
 				a.setData(new Date());
-				a.setHora(new Date());
+				a.setHora(new Time(new Date().getTime()));
 				Integer num = r.nextInt(3) + 1;
 				if (num == 1) {
 					a.setStatus(StatusAgendamentoEnum.ABERTO);

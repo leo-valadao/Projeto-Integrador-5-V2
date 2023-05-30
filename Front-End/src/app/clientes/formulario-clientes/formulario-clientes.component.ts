@@ -12,7 +12,7 @@ import { MensagensGenericasService } from 'src/app/shared/services/utils/mensage
 })
 export class FormularioClientesComponent implements OnInit {
 	exibirFormulario: Boolean = false;
-	estadosBrasileiro!: string[];
+	estadosBrasileiros!: { value: string; label: string }[];
 
 	@Input() cliente: Cliente = new Cliente();
 	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
@@ -20,7 +20,7 @@ export class FormularioClientesComponent implements OnInit {
 	constructor(private clienteService: ClienteService, private mensagensGenericasService: MensagensGenericasService) {}
 
 	ngOnInit(): void {
-		this.estadosBrasileiro = Object.keys(EstadosBrasileirosEnum).map((value) => value);
+		this.estadosBrasileiros = Object.entries(EstadosBrasileirosEnum).map(([value, label]) => ({ value, label }));
 	}
 
 	salvarCliente() {

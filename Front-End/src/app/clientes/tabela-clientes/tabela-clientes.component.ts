@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { Cliente } from 'src/app/shared/domains/cliente.model';
+import { EstadosBrasileirosEnum } from 'src/app/shared/domains/enums/estados-brasileiros.enum';
 import { ClienteService } from 'src/app/shared/services/cliente.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 
@@ -15,6 +16,7 @@ export class TabelaClientesComponent {
 	clientesSelecionados!: Cliente[];
 	quantidadeTotalClientes!: number;
 	quantidadeClientesExibidosPorPagina: number = 30;
+	estadosBrasileiros!: { value: string; label: string }[];
 
 	colunas: { header: string; field: string }[] = [
 		{ header: 'ID', field: 'id' },
@@ -33,6 +35,7 @@ export class TabelaClientesComponent {
 	constructor(private clienteService: ClienteService, private mensagensGenericasService: MensagensGenericasService) {}
 
 	ngOnInit(): void {
+		this.estadosBrasileiros = Object.entries(EstadosBrasileirosEnum).map(([value, label]) => ({ value, label }));
 		this.obterTodosClientes(0, 30);
 	}
 
