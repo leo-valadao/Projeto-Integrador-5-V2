@@ -60,12 +60,12 @@ export class TabelaClientesComponent {
 		this.clienteService.excluir(idCliente).subscribe({
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Clientes', 'excluído');
+				this.atualizarTabela();
 			},
 			error: (erro: HttpErrorResponse) => {
 				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
 			},
 		});
-		this.atualizarTabela();
 	}
 
 	atualizarTabela() {
