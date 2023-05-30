@@ -12,7 +12,7 @@ import lombok.Setter;
 public class ErroGenerico extends RuntimeException {
 
     // Atributos:
-    private String mensagens;
+    private String mensagem;
     private TipoMensagemEnum tipo;
 
 }

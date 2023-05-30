@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
       MethodArgumentNotValidException ex) {
     StringBuilder erros = new StringBuilder();
     for (ObjectError erro : ex.getBindingResult().getAllErrors()) {
-      erros.append(erro.getDefaultMessage() + "\n");
+      erros.append(erro.getDefaultMessage() + " \n ");
     }
     ErroGenerico erro = new ErroGenerico(erros.toString().trim(), TipoMensagemEnum.ERROR);
     return ResponseEntity.internalServerError().body(erro);
