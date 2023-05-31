@@ -38,5 +38,87 @@
       "alergias": "Nenhuma",
       "message": "O Tamanho Máximo do E-Mail da Pessoa é de 50 Caracteres!"
     }
+  ],
+  "cadastrarClientes": [
+    {
+      "nome": "Mariah Luiza Sueli Santos",
+      "telefone": "(62)99776-7614",
+      "email": "mariahluizasantos@ads.com.br",
+      "estadoBrasileiro": "GOIAS",
+      "cpf": "915.800.721-00",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Larissa Betina Carvalho",
+      "telefone": "(62)99690-1421",
+      "email": "larissa-carvalho73@ads.com.br",
+      "estadoBrasileiro": "GOIAS",
+      "cpf": "182.427.681-88",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Nair Marlene Betina Figueiredo",
+      "telefone": "(62)98844-1646",
+      "email": "nair_figueiredo@ads.com.br",
+      "estadoBrasileiro": "GOIAS",
+      "cpf": "121.280.841-05",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Laura Elza Vanessa Rodrigues",
+      "telefone": "(62)98975-7089",
+      "email": "laura-rodrigues90@ads.com",
+      "estadoBrasileiro": "GOIAS",
+      "cpf": "360.039.061-97",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Aurora Natália Carolina Melo",
+      "telefone": "(62)98652-7818",
+      "email": "aurora_melo@ads.com.br",
+      "estadoBrasileiro": "GOIAS",
+      "cpf": "180.030.481-17",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Sandra Antônia Peixoto",
+      "telefone": "(62)99958-8976",
+      "email": "sandra-peixoto83@ads.com.br",
+      "estadoBrasileiro": "GOIAS",
+      "cpf": "666.116.741-60",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Emily Isabela Débora Gomes",
+      "telefone": "(62)99424-9858",
+      "email": "emily_isabela@ads.com.br",
+      "estadoBrasileiro": "GOIAS",
+      "cpf": "813.080.221-07",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Larissa Cristiane Almada",
+      "telefone": "(62)99244-1087",
+      "email": "larissa.cristiane@ads.com.br",
+      "estadoBrasileiro": "GOIAS",
+      "cpf": "245.091.911-20",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Isabelly Alice Nascimento",
+      "telefone": "(62)99422-9616",
+      "email": "isabelly_nascimento@ads.com.br",
+      "estadoBrasileiro": "GOIAS",
+      "cpf": "518.920.321-20",
+      "alergias": "Nenhuma"
+    },
+    {
+      "nome": "Helena Eduarda Heloise Nunes",
+      "telefone": "(62)99899-0814",
+      "email": "helena_eduarda_nunes@ads.com.br",
+      "estadoBrasileiro": "GOIAS",
+      "cpf": "544.713.721-73",
+      "alergias": "Nenhuma"
+    }
   ]
 }
