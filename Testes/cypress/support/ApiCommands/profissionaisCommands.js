@@ -1,6 +1,5 @@
 export const url = Cypress.env("apiUrl");
 
-//TODO: ADAPTAR AO NOVO PROJETO BACK-END
 Cypress.Commands.add("PostProfissional", (payload) => {
   cy.api({
     method: "POST",
