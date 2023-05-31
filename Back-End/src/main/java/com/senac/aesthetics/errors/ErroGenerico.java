@@ -14,6 +14,6 @@ public class ErroGenerico {
     // Atributos:
     private String mensagem;
     private TipoMensagemEnum tipoMensagem;
-    private Exception excecao;
+    private String nomeDaExcecao;
 
 }
