@@ -1,7 +1,7 @@
 package com.senac.aesthetics.domains.abstracts;
 
 import com.senac.aesthetics.domains.enums.EstadosBrasileirosEnum;
-import com.senac.aesthetics.domains.enums.TipoPessoa;
+import com.senac.aesthetics.domains.enums.TipoPessoaEnum;
 import com.senac.aesthetics.validations.anotations.CPFCNPJ;
 import com.senac.aesthetics.validations.anotations.Telefone;
 
@@ -61,7 +61,7 @@ public class Pessoa {
 
     @Column(name = "TIPO_PESSOA", length = 15, nullable = false)
     @Enumerated(EnumType.STRING)
-    private TipoPessoa tipoPessoa;
+    private TipoPessoaEnum tipoPessoa;
 
     @Column(name = "CPF_CNPJ", length = 18, nullable = false)
     @NotBlank(message = "O CPF/CNPJ da Pessoa Deve Ser Informado e Não Pode Estar Vazio!")

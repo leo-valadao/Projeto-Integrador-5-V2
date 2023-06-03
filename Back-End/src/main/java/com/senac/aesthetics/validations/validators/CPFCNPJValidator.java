@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.senac.aesthetics.domains.abstracts.Pessoa;
-import com.senac.aesthetics.domains.enums.TipoPessoa;
+import com.senac.aesthetics.domains.enums.TipoPessoaEnum;
 import com.senac.aesthetics.validations.anotations.CPFCNPJ;
 
 import jakarta.validation.ConstraintValidator;
@@ -21,10 +21,10 @@ public class CPFCNPJValidator implements ConstraintValidator<CPFCNPJ, Pessoa> {
     Matcher matcher = padrao.matcher(pessoa.getCpfOuCnpj().toString());
 
     if (matcher.matches()) {
-      if (pessoa.getTipoPessoa() == TipoPessoa.PESSOA_FISICA && validarCPF(pessoa.getCpfOuCnpj())) {
+      if (pessoa.getTipoPessoa() == TipoPessoaEnum.PESSOA_FISICA && validarCPF(pessoa.getCpfOuCnpj())) {
         return true;
       }
-      if (pessoa.getTipoPessoa() == TipoPessoa.PESSOA_JURIDICA && validarCNPJ(pessoa.getCpfOuCnpj())) {
+      if (pessoa.getTipoPessoa() == TipoPessoaEnum.PESSOA_JURIDICA && validarCNPJ(pessoa.getCpfOuCnpj())) {
         return true;
       }
       return false;

@@ -13,4 +13,5 @@ public enum TipoMensagemEnum {
     ERROR("error");
 
     private String tipo;
+
 }

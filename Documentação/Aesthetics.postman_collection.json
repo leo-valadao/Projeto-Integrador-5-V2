@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"data\":\"13/05/2023\",\n    \"hora\":\"12:34:00\",\n    \"status\":\"ABERTO\",\n    \"observacao\":\"Nada a se observar\",\n    \"cliente\":{ \"id\":1 },\n    \"respAgendamento\":{ \"id\":1 },\n    \"servico\":{ \"id\":2 }\n}",
+							"raw": "{\n    \"data\":\"13/05/2023\",\n    \"hora\":\"12:34:00\",\n    \"status\":\"ABERTO\",\n    \"observacao\":\"Nada a se observar\",\n    \"cliente\":{ \"id\":1 },\n    \"funcionario\":{ \"id\":1 },\n    \"servico\":{ \"id\":2 }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -190,7 +190,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\":\"Leonardo Valadão\",\n    \"telefone\":\"(12)34567-8910\",\n    \"email\":\"leonardo@teste.com\",\n    \"uf\":\"GO\",\n    \"cpf\":\"001.295.100-50\",\n    \"alergias\":\"Nenhuma\"\n}",
+							"raw": "{\n    \"pessoa\": {\n        \"nome\": \"Leonardo Valadão\",\n        \"telefone\": \"(12)34567-8910\",\n        \"email\": \"leonardo@teste.com\",\n        \"estadoBrasileiro\": \"GOIAS\",\n        \"tipoPessoa\": \"PESSOA_FISICA\",\n        \"cpfOuCnpj\": \"001.295.100-50\"\n    },\n    \"alergias\": \"Nenhuma\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -303,7 +303,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 1,\n    \"nome\":\"Leonardo Valadão de Oliveira\",\n    \"telefone\":\"(10)98765-4321\",\n    \"email\":\"leonardo@teste2.com\",\n    \"uf\":\"SP\",\n    \"alergias\":\"Todas\"\n}",
+							"raw": "{\n    \"id\":11,\n    \"pessoa\": {\n        \"nome\": \"Leonardo Valadão TESTE\",\n        \"telefone\": \"(12)34567-8910\",\n        \"email\": \"leonardo@teste.com\",\n        \"estadoBrasileiro\": \"GOIAS\",\n        \"tipoPessoa\": \"PESSOA_JURIDICA\",\n        \"cpfOuCnpj\": \"45.237.741/0001-29\"\n    },\n    \"alergias\": \"Nenhuma\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -331,7 +331,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/cliente?id=1",
+							"raw": "localhost:8080/api/v1/cliente?id=11",
 							"host": [
 								"localhost"
 							],
@@ -344,7 +344,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "11"
 								}
 							]
 						}
@@ -709,7 +709,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\":\"Leonardo Valadão\",\n    \"telefone\":\"(12)34567-8910\",\n    \"email\":\"leonardo@teste.com\",\n    \"uf\":\"GO\",\n    \"cnpj\":\"88.445.538/0001-50\"\n}",
+							"raw": "{\n    \"pessoa\": {\n        \"nome\": \"Leonardo Valadão\",\n        \"telefone\": \"(12)34567-8910\",\n        \"email\": \"leonardo@teste.com\",\n        \"estadoBrasileiro\": \"GOIAS\",\n        \"tipoPessoa\": \"PESSOA_FISICA\",\n        \"cpfOuCnpj\": \"001.295.100-50\"\n    },\n    \"endereco\": \"Rua 1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -822,7 +822,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\":1,\n    \"nome\":\"Leonardo Valadão Oliveira\",\n    \"telefone\":\"(12)34567-8910\",\n    \"email\":\"leonardo@teste.com\",\n    \"uf\":\"GO\",\n    \"cnpj\":\"31.187.812/0001-11\"\n}",
+							"raw": "{\n    \"id\": 11,\n    \"pessoa\": {\n        \"nome\": \"Leonardo Valadão\",\n        \"telefone\": \"(12)34567-8910\",\n        \"email\": \"leonardo@teste.com\",\n        \"estadoBrasileiro\": \"GOIAS\",\n        \"tipoPessoa\": \"PESSOA_JURIDICA\",\n        \"cpfOuCnpj\": \"45.237.741/0001-29\"\n    },\n    \"endereco\": \"Rua 1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -850,7 +850,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/fornecedor?id=1",
+							"raw": "localhost:8080/api/v1/fornecedor?id=11",
 							"host": [
 								"localhost"
 							],
@@ -863,7 +863,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "11"
 								}
 							]
 						}
@@ -1046,7 +1046,7 @@
 			]
 		},
 		{
-			"name": "Profissional",
+			"name": "Funcionário",
 			"item": [
 				{
 					"name": "Inserir Funcionário",
@@ -1055,7 +1055,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\":\"Leonardo Valadão\",\n    \"telefone\":\"(12)34567-8910\",\n    \"email\":\"leonardo@teste.com\",\n    \"uf\":\"GO\",\n    \"cpf\":\"612.527.870-06\",\n    \"login\":\"leo\",\n    \"senha\":123456,\n    \"comissao\":12.34\n}",
+							"raw": "{\n    \"pessoa\": {\n        \"nome\": \"Leonardo Valadão\",\n        \"telefone\": \"(12)34567-8910\",\n        \"email\": \"leonardo@teste.com\",\n        \"estadoBrasileiro\": \"GOIAS\",\n        \"tipoPessoa\": \"PESSOA_FISICA\",\n        \"cpfOuCnpj\": \"001.295.100-50\"\n    },\n    \"login\": \"leo\",\n    \"senha\": 123456,\n    \"comissao\": 12.34\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1168,7 +1168,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\":1,\n    \"nome\":\"Leonardo Oliveira\",\n    \"telefone\":\"(12)34567-8910\",\n    \"email\":\"leonardo@teste.com\",\n    \"uf\":\"GO\",\n    \"login\":\"leo\",\n    \"senha\":\"senha\",\n    \"comissao\":4\n}",
+							"raw": "{\n    \"id\": 11,\n    \"pessoa\": {\n        \"nome\": \"Leonardo Valadão\",\n        \"telefone\": \"(12)34567-8910\",\n        \"email\": \"leonardo@teste.com\",\n        \"estadoBrasileiro\": \"GOIAS\",\n        \"tipoPessoa\": \"PESSOA_JURIDICA\",\n        \"cpfOuCnpj\": \"45.237.741/0001-29\"\n    },\n    \"login\": \"leo\",\n    \"senha\": 123456,\n    \"comissao\": 12.34\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1196,7 +1196,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/funcionario?id=1",
+							"raw": "localhost:8080/api/v1/funcionario?id=11",
 							"host": [
 								"localhost"
 							],
@@ -1209,7 +1209,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "11"
 								}
 							]
 						}

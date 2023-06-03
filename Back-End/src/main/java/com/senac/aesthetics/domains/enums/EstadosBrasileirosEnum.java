@@ -6,6 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum EstadosBrasileirosEnum {
+
+    // São 27 Estados (Contando com o Distrito Federal)
     ACRE("Acre (AC)"),
     ALAGOAS("Alagoas (AL)"),
     AMAZONAS("Amazonas (AM)"),
