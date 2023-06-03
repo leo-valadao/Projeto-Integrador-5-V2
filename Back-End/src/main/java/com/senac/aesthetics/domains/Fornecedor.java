@@ -1,7 +1,5 @@
 package com.senac.aesthetics.domains;
 
-import com.senac.aesthetics.domains.abstracts.Pessoa;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

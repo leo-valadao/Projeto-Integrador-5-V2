@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.senac.aesthetics.domains.abstracts.Pessoa;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

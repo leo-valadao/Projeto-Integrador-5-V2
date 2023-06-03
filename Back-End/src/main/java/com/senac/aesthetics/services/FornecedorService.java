@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Fornecedor;
-import com.senac.aesthetics.domains.abstracts.Pessoa;
+import com.senac.aesthetics.domains.Pessoa;
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.ExcecaoRegraNegocio;
 import com.senac.aesthetics.errors.Erros;

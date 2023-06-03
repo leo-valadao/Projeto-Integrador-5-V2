@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.senac.aesthetics.domains.abstracts.Pessoa;
+import com.senac.aesthetics.domains.Pessoa;
 import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.PessoaRepository;
 

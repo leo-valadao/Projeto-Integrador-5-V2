@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.senac.aesthetics.domains.abstracts.Pessoa;
+import com.senac.aesthetics.domains.Pessoa;
 import com.senac.aesthetics.domains.enums.TipoPessoaEnum;
 import com.senac.aesthetics.validations.anotations.CPFCNPJ;
 

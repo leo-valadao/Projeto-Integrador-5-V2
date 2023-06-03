@@ -1,4 +1,4 @@
-package com.senac.aesthetics.domains.abstracts;
+package com.senac.aesthetics.domains;
 
 import com.senac.aesthetics.domains.enums.EstadosBrasileirosEnum;
 import com.senac.aesthetics.domains.enums.TipoPessoaEnum;
