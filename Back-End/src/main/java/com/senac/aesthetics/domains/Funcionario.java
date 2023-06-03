@@ -6,12 +6,16 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.aesthetics.domains.abstracts.Pessoa;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -32,9 +36,14 @@ import lombok.Setter;
 // Java Persistence API:
 @Entity
 @Table(name = "FUNCIONARIOS")
-public class Funcionario extends Pessoa {
+public class Funcionario {
 
     // Atributos:
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_FUNCIONARIO")
+    private Long id;
+
     @Column(name = "LOGIN", nullable = false, length = 30, unique = true)
     @NotBlank(message = "O Login do Funcionário Deve Ser Informado e Não Pode Estar Vazio!")
     @Size(max = 30, message = "O Tamanho Máximo do Login do Funcionário é de 30 Caracteres!")
@@ -51,7 +60,11 @@ public class Funcionario extends Pessoa {
     @NotNull(message = "O Valor da Comissão Deve Ser Informado!")
     private BigDecimal comissao;
 
-    // Relacionamentos:
+    // Relacionamentos: 
+    @OneToOne(fetch = FetchType.EAGER, optional = false, orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ID_PESSOA_FK", unique = true, nullable = false)
+    private Pessoa pessoa;
+
     @OneToMany(orphanRemoval = false, mappedBy = "funcionario")
     @JsonIgnore
     private List<Agendamento> agendamentos;

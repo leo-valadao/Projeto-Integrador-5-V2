@@ -12,9 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -31,14 +29,14 @@ import lombok.Setter;
 
 // Java Persistence API:
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "PESSOAS")
 @CPFCNPJ(message = "O CPF/CNPJ da Pessoa Deve Ser Válido e Deve Conter a Pontuação! CPF: 123.456.789-01 / CNPJ: 12.345.678/9012-34")
-public abstract class Pessoa {
+public class Pessoa {
 
     // Atributos:
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "ID_PESSOA")
     private Long id;
 
     @Column(name = "NOME", length = 100, nullable = false)
