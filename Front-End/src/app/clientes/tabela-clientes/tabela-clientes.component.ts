@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { Cliente } from 'src/app/shared/domains/cliente.model';
 import { EstadosBrasileirosEnum } from 'src/app/shared/domains/enums/estados-brasileiros.enum';
+import { Pessoa } from 'src/app/shared/domains/pessoa.model';
 import { ClienteService } from 'src/app/shared/services/cliente.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 
@@ -39,7 +40,7 @@ export class TabelaClientesComponent {
 		});
 	}
 
-	mostrarFormularioClientes(cliente: Cliente | null) {
+	mostrarFormularioClientes(cliente?: Cliente) {
 		if (cliente) {
 			this.exibirFormularioCliente.emit(JSON.parse(JSON.stringify(cliente)));
 		} else {

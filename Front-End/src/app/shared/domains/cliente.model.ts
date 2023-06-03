@@ -8,5 +8,9 @@ export class Cliente {
 	// Relacionamento(s):
 	public pessoa!: Pessoa;
 
-	constructor() {}
+	constructor(pessoa?: Pessoa) {
+		if (pessoa) {
+			this.pessoa = pessoa;
+		}
+	}
 }

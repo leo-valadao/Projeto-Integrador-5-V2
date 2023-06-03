@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cliente } from 'src/app/shared/domains/cliente.model';
 import { EstadosBrasileirosEnum } from 'src/app/shared/domains/enums/estados-brasileiros.enum';
+import { Pessoa } from 'src/app/shared/domains/pessoa.model';
 import { ClienteService } from 'src/app/shared/services/cliente.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 
@@ -14,7 +15,7 @@ export class FormularioClientesComponent implements OnInit {
 	exibirFormulario: Boolean = false;
 	estadosBrasileiro!: string[];
 
-	@Input() cliente: Cliente = new Cliente();
+	@Input() cliente: Cliente = new Cliente(new Pessoa());
 	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
 
 	constructor(private clienteService: ClienteService, private mensagensGenericasService: MensagensGenericasService) {}

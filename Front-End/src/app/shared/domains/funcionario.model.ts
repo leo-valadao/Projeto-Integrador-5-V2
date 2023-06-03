@@ -10,5 +10,9 @@ export class Funcionario {
 	// Relacionamento(s):
 	public pessoa!: Pessoa;
 
-	constructor() {}
+	constructor(pessoa?: Pessoa) {
+		if (pessoa) {
+			this.pessoa = pessoa;
+		}
+	}
 }

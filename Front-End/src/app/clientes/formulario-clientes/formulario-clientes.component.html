@@ -12,7 +12,7 @@
 				<input
 					type="text"
 					pInputText
-					[(ngModel)]="cliente.nome"
+					[(ngModel)]="cliente.pessoa.nome"
 					name="cliente.nome"
 					data-cy="cliente.nome" />
 			</div>
@@ -21,7 +21,7 @@
 				<label for="cliente.cpf">CPF:</label>
 				<p-inputMask
 					mask="999.999.999-99"
-					[(ngModel)]="cliente.cpf"
+					[(ngModel)]="cliente.pessoa.cpfOuCnpj"
 					name="cliente.cpf"
 					data-cy="cliente.cpf"
 					styleClass="w-100" />
@@ -30,7 +30,7 @@
 			<div class="d-flex flex-column w-100">
 				<label for="cliente.estadoBrasileiro">Estado:</label>
 				<p-dropdown
-					[(ngModel)]="cliente.estadoBrasileiro"
+					[(ngModel)]="cliente.pessoa.estadoBrasileiro"
 					field="cliente.estadoBrasileiro"
 					data-cy="cliente.estadoBrasileiro"
 					name="cliente.estadoBrasileiro"
@@ -45,7 +45,7 @@
 				<input
 					type="text"
 					pInputText
-					[(ngModel)]="cliente.email"
+					[(ngModel)]="cliente.pessoa.email"
 					name="cliente.email"
 					data-cy="cliente.email" />
 			</div>
@@ -54,7 +54,7 @@
 				<label for="cliente.telefone">Telefone:</label>
 				<p-inputMask
 					mask="(99)99999-999?9"
-					[(ngModel)]="cliente.telefone"
+					[(ngModel)]="cliente.pessoa.telefone"
 					name="cliente.telefone"
 					data-cy="cliente.telefone"
 					styleClass="w-100" />
