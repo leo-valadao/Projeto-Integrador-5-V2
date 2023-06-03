@@ -63,7 +63,7 @@ public class ContaPagar extends Conta {
 
     // Relacionamentos:
     @ManyToOne
-    @JoinColumn(name = "ID_FORNECEDOR_FK", referencedColumnName = "ID_FORNECEDOR")
+    @JoinColumn(name = "ID_FORNECEDOR_FK")
     @NotNull(message = "O Fornecedor da Conta a Pagar Deve Ser Informado!")
     private Fornecedor fornecedor;
 
