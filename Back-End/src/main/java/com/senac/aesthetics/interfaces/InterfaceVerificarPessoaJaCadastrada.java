@@ -6,6 +6,6 @@ import com.senac.aesthetics.domains.abstracts.Pessoa;
 
 public interface InterfaceVerificarPessoaJaCadastrada {
 
-  public Optional<Pessoa> verificarPessoaJaCadastrada(String cpfOuCnpj) throws Exception;
+  public Optional<Pessoa> verificarPessoaJaCadastrada(String cpfOuCnpj);
 
 }

@@ -1,5 +1,7 @@
 package com.senac.aesthetics.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -8,10 +10,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Funcionario;
 import com.senac.aesthetics.domains.abstracts.Pessoa;
+import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
+import com.senac.aesthetics.errors.BusinessRuleException;
+import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.FuncionarioRepository;
@@ -45,7 +51,8 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
     }
 
     public Funcionario inserir(Funcionario funcionario) throws Exception {
-        this.verificarPessoaJaCadastrada(funcionario);
+        this.validarFuncionario(funcionario);
+        this.associarFuncionarioAPessoaJaCadastrada(funcionario);
 
         return funcionarioRepository.save(funcionario);
     }
@@ -66,12 +73,33 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
         }
     }
 
-    private void verificarPessoaJaCadastrada(Funcionario funcionario) throws Exception {
+    private void associarFuncionarioAPessoaJaCadastrada(Funcionario funcionario) throws Exception {
         Optional<Pessoa> pessoaJaCadastrada = pessoaService
                 .verificarPessoaJaCadastrada(funcionario.getPessoa().getCpfOuCnpj());
 
         if (pessoaJaCadastrada.isPresent()) {
             funcionario.setPessoa(pessoaJaCadastrada.get());
+        }
+    }
+
+    private void validarFuncionario(Funcionario funcionario) throws Exception {
+        List<String> mensagensErros = new ArrayList<String>();
+
+        this.verificarFuncionarioJaEstaCadastrado(funcionario, mensagensErros);
+
+        if (mensagensErros.size() > 0) {
+            throw new BusinessRuleException(
+                    new ErroGenerico(mensagensErros, TipoMensagemEnum.ERROR, this.getClass().getSimpleName(),
+                            HttpStatus.CONFLICT));
+        }
+    }
+
+    private void verificarFuncionarioJaEstaCadastrado(Funcionario funcionario, List<String> mensagensErros) {
+        Optional<Funcionario> funcionarioaCadastrada = funcionarioRepository
+                .obterPorCpfOuCnpj(funcionario.getPessoa().getCpfOuCnpj());
+
+        if (funcionarioaCadastrada.isPresent()) {
+            mensagensErros.add("Funcionario Já Cadastrado! CPF: " + funcionario.getPessoa().getCpfOuCnpj());
         }
     }
 

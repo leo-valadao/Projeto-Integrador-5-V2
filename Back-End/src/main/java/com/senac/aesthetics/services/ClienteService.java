@@ -1,5 +1,7 @@
 package com.senac.aesthetics.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -8,10 +10,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Cliente;
 import com.senac.aesthetics.domains.abstracts.Pessoa;
+import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
+import com.senac.aesthetics.errors.BusinessRuleException;
+import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.ClienteRepository;
@@ -45,7 +51,8 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
     }
 
     public Cliente inserir(Cliente cliente) throws Exception {
-        this.verificarPessoaJaCadastrada(cliente);
+        this.validarCliente(cliente);
+        this.associarClienteAPessoaJaCadastrada(cliente);
 
         return clienteRepository.save(cliente);
     }
@@ -66,7 +73,19 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         }
     }
 
-    private void verificarPessoaJaCadastrada(Cliente cliente) throws Exception {
+    private void validarCliente(Cliente cliente) throws Exception {
+        List<String> mensagensErros = new ArrayList<String>();
+
+        this.verificarClienteJaEstaCadastrado(cliente, mensagensErros);
+
+        if (mensagensErros.size() > 0) {
+            throw new BusinessRuleException(
+                    new ErroGenerico(mensagensErros, TipoMensagemEnum.ERROR, this.getClass().getSimpleName(),
+                            HttpStatus.CONFLICT));
+        }
+    }
+
+    private void associarClienteAPessoaJaCadastrada(Cliente cliente) {
         Optional<Pessoa> pessoaJaCadastrada = pessoaService
                 .verificarPessoaJaCadastrada(cliente.getPessoa().getCpfOuCnpj());
 
@@ -74,4 +93,13 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
             cliente.setPessoa(pessoaJaCadastrada.get());
         }
     }
+
+    private void verificarClienteJaEstaCadastrado(Cliente cliente, List<String> mensagensErros) {
+        Optional<Cliente> clienteaCadastrada = clienteRepository.obterPorCpfOuCnpj(cliente.getPessoa().getCpfOuCnpj());
+
+        if (clienteaCadastrada.isPresent()) {
+            mensagensErros.add("Cliente Já Cadastrado! CPF: " + cliente.getPessoa().getCpfOuCnpj());
+        }
+    }
+
 }

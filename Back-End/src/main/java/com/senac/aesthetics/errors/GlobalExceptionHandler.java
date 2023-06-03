@@ -19,15 +19,21 @@ public class GlobalExceptionHandler {
   protected ResponseEntity<ErroGenerico> handleException(Exception ex) {
     ErroGenerico erro = new ErroGenerico(
         "Erro Interno no Servidor! Entre em Contato a Equipe do Aesthetics em service-desk@aesthetics.com!",
-        TipoMensagemEnum.ERROR, ex.getClass().getSimpleName());
-    return new ResponseEntity<ErroGenerico>(erro, HttpStatus.INTERNAL_SERVER_ERROR);
+        TipoMensagemEnum.ERROR, ex.getClass().getSimpleName(), HttpStatus.INTERNAL_SERVER_ERROR);
+    return new ResponseEntity<ErroGenerico>(erro, erro.getHttpStatus());
+  }
+
+  @ExceptionHandler(BusinessRuleException.class)
+  protected ResponseEntity<ErroGenerico> handleBusinessRuleException(BusinessRuleException ex) {
+    return new ResponseEntity<ErroGenerico>(ex.getErroGenerico(), ex.getErroGenerico().getHttpStatus());
   }
 
   @ExceptionHandler(NoSuchElementException.class)
   protected ResponseEntity<ErroGenerico> handleNoSuchElementException(
       NoSuchElementException ex) {
-    ErroGenerico erro = new ErroGenerico(ex.getMessage(), TipoMensagemEnum.ERROR, ex.getClass().getSimpleName());
-    return new ResponseEntity<ErroGenerico>(erro, HttpStatus.NOT_FOUND);
+    ErroGenerico erro = new ErroGenerico(ex.getMessage(), TipoMensagemEnum.ERROR,
+        ex.getClass().getSimpleName(), HttpStatus.NOT_FOUND);
+    return new ResponseEntity<ErroGenerico>(erro, erro.getHttpStatus());
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -39,16 +45,16 @@ public class GlobalExceptionHandler {
     }
     IllegalArgumentException excecao = new IllegalArgumentException(erros.toString().trim());
     ErroGenerico erro = new ErroGenerico(excecao.getMessage(), TipoMensagemEnum.ERROR, excecao.getClass()
-        .getSimpleName());
-    return new ResponseEntity<ErroGenerico>(erro, HttpStatus.BAD_REQUEST);
+        .getSimpleName(), HttpStatus.BAD_REQUEST);
+    return new ResponseEntity<ErroGenerico>(erro, erro.getHttpStatus());
   }
 
   @ExceptionHandler(DataIntegrityViolationException.class)
   protected ResponseEntity<ErroGenerico> handleDataIntegrityViolationException(
       DataIntegrityViolationException ex) {
     ErroGenerico erro = new ErroGenerico("Violação da integridade dos dados!",
-        TipoMensagemEnum.ERROR, ex.getClass().getSimpleName());
-    return new ResponseEntity<ErroGenerico>(erro, HttpStatus.CONFLICT);
+        TipoMensagemEnum.ERROR, ex.getClass().getSimpleName(), HttpStatus.CONFLICT);
+    return new ResponseEntity<ErroGenerico>(erro, erro.getHttpStatus());
   }
 
 }

@@ -16,7 +16,7 @@ public class PessoaService implements InterfaceVerificarPessoaJaCadastrada {
   private PessoaRepository pessoaRepository;
 
   @Override
-  public Optional<Pessoa> verificarPessoaJaCadastrada(String cpfOuCnpj) throws Exception {
+  public Optional<Pessoa> verificarPessoaJaCadastrada(String cpfOuCnpj) {
     return pessoaRepository.findByCpfOuCnpj(cpfOuCnpj);
   }
 
