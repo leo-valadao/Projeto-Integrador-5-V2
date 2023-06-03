@@ -12,7 +12,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ErroGenerico {
+public class Erros {
 
     // Atributos:
     private List<String> mensagens;
@@ -20,17 +20,17 @@ public class ErroGenerico {
     private String nomeDaExcecao;
     private HttpStatus httpStatus;
 
-    public ErroGenerico() {
+    public Erros() {
     }
 
-    public ErroGenerico(String mensagem, TipoMensagemEnum tipoMensagem, String nomeDaExcecao, HttpStatus httpStatus) {
+    public Erros(String mensagem, TipoMensagemEnum tipoMensagem, String nomeDaExcecao, HttpStatus httpStatus) {
         this.mensagens = Arrays.asList(mensagem);
         this.tipoMensagem = tipoMensagem;
         this.nomeDaExcecao = nomeDaExcecao;
         this.httpStatus = httpStatus;
     }
 
-    public ErroGenerico(List<String> mensagens, TipoMensagemEnum tipoMensagem, String nomeDaExcecao,
+    public Erros(List<String> mensagens, TipoMensagemEnum tipoMensagem, String nomeDaExcecao,
             HttpStatus httpStatus) {
         this.mensagens = mensagens;
         this.tipoMensagem = tipoMensagem;

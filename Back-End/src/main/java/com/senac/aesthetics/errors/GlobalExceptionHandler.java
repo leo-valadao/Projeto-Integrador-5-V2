@@ -16,45 +16,45 @@ import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
 public class GlobalExceptionHandler {
 
   @ExceptionHandler(Exception.class)
-  protected ResponseEntity<ErroGenerico> handleException(Exception ex) {
-    ErroGenerico erro = new ErroGenerico(
+  protected ResponseEntity<Erros> handleException(Exception ex) {
+    Erros erro = new Erros(
         "Erro Interno no Servidor! Entre em Contato a Equipe do Aesthetics em service-desk@aesthetics.com!",
         TipoMensagemEnum.ERROR, ex.getClass().getSimpleName(), HttpStatus.INTERNAL_SERVER_ERROR);
-    return new ResponseEntity<ErroGenerico>(erro, erro.getHttpStatus());
+    return new ResponseEntity<Erros>(erro, erro.getHttpStatus());
   }
 
-  @ExceptionHandler(BusinessRuleException.class)
-  protected ResponseEntity<ErroGenerico> handleBusinessRuleException(BusinessRuleException ex) {
-    return new ResponseEntity<ErroGenerico>(ex.getErroGenerico(), ex.getErroGenerico().getHttpStatus());
+  @ExceptionHandler(ExcecaoRegraNegocio.class)
+  protected ResponseEntity<Erros> handleBusinessRuleException(ExcecaoRegraNegocio ex) {
+    return new ResponseEntity<Erros>(ex.getErroGenerico(), ex.getErroGenerico().getHttpStatus());
   }
 
   @ExceptionHandler(NoSuchElementException.class)
-  protected ResponseEntity<ErroGenerico> handleNoSuchElementException(
+  protected ResponseEntity<Erros> handleNoSuchElementException(
       NoSuchElementException ex) {
-    ErroGenerico erro = new ErroGenerico(ex.getMessage(), TipoMensagemEnum.ERROR,
+    Erros erro = new Erros(ex.getMessage(), TipoMensagemEnum.ERROR,
         ex.getClass().getSimpleName(), HttpStatus.NOT_FOUND);
-    return new ResponseEntity<ErroGenerico>(erro, erro.getHttpStatus());
+    return new ResponseEntity<Erros>(erro, erro.getHttpStatus());
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  protected ResponseEntity<ErroGenerico> handleMethodArgumentNotValidException(
+  protected ResponseEntity<Erros> handleMethodArgumentNotValidException(
       MethodArgumentNotValidException ex) {
     StringBuilder erros = new StringBuilder();
     for (ObjectError erro : ex.getBindingResult().getAllErrors()) {
       erros.append(erro.getDefaultMessage() + " \n ");
     }
     IllegalArgumentException excecao = new IllegalArgumentException(erros.toString().trim());
-    ErroGenerico erro = new ErroGenerico(excecao.getMessage(), TipoMensagemEnum.ERROR, excecao.getClass()
+    Erros erro = new Erros(excecao.getMessage(), TipoMensagemEnum.ERROR, excecao.getClass()
         .getSimpleName(), HttpStatus.BAD_REQUEST);
-    return new ResponseEntity<ErroGenerico>(erro, erro.getHttpStatus());
+    return new ResponseEntity<Erros>(erro, erro.getHttpStatus());
   }
 
   @ExceptionHandler(DataIntegrityViolationException.class)
-  protected ResponseEntity<ErroGenerico> handleDataIntegrityViolationException(
+  protected ResponseEntity<Erros> handleDataIntegrityViolationException(
       DataIntegrityViolationException ex) {
-    ErroGenerico erro = new ErroGenerico("Violação da integridade dos dados!",
+    Erros erro = new Erros("Violação da integridade dos dados!",
         TipoMensagemEnum.ERROR, ex.getClass().getSimpleName(), HttpStatus.CONFLICT);
-    return new ResponseEntity<ErroGenerico>(erro, erro.getHttpStatus());
+    return new ResponseEntity<Erros>(erro, erro.getHttpStatus());
   }
 
 }

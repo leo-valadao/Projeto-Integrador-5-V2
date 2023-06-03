@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class BusinessRuleException extends Exception {
-  
-  private ErroGenerico erroGenerico;
+public class ExcecaoRegraNegocio extends Exception {
+
+  private Erros erroGenerico;
 
 }

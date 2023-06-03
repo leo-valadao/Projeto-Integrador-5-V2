@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Cliente;
 import com.senac.aesthetics.domains.abstracts.Pessoa;
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.BusinessRuleException;
-import com.senac.aesthetics.errors.ErroGenerico;
+import com.senac.aesthetics.errors.ExcecaoRegraNegocio;
+import com.senac.aesthetics.errors.Erros;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.ClienteRepository;
@@ -79,8 +79,8 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         this.verificarClienteJaEstaCadastrado(cliente, mensagensErros);
 
         if (mensagensErros.size() > 0) {
-            throw new BusinessRuleException(
-                    new ErroGenerico(mensagensErros, TipoMensagemEnum.ERROR, this.getClass().getSimpleName(),
+            throw new ExcecaoRegraNegocio(
+                    new Erros(mensagensErros, TipoMensagemEnum.ERROR, this.getClass().getSimpleName(),
                             HttpStatus.CONFLICT));
         }
     }
