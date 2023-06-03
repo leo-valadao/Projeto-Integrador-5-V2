@@ -44,7 +44,7 @@ public class Cliente {
     private String alergias;
 
     // Relacionamentos:
-    @OneToOne(fetch = FetchType.EAGER, optional = false, orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.EAGER, optional = false, orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_PESSOA_FK", unique = true, nullable = false)
     private Pessoa pessoa;
 

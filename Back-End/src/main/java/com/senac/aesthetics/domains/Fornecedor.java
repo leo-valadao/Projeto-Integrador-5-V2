@@ -40,7 +40,7 @@ public class Fornecedor {
     private String endereco;
 
     // Relacionamentos:
-    @OneToOne(fetch = FetchType.EAGER, optional = false, orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.EAGER, optional = false, orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_PESSOA_FK", unique = true, nullable = false)
     private Pessoa pessoa;
 

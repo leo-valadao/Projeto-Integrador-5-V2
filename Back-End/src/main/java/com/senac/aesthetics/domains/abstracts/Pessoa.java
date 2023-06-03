@@ -63,7 +63,7 @@ public class Pessoa {
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa;
 
-    @Column(name = "CPF_CNPJ", length = 18, nullable = false, unique = true)
+    @Column(name = "CPF_CNPJ", length = 18, nullable = false)
     @NotBlank(message = "O CPF/CNPJ da Pessoa Deve Ser Informado e Não Pode Estar Vazio!")
     @Size(min = 14, max = 18, message = "O CPF/CNPJ da Pessoa Deve Ter 14 (CPF) ou 18 (CNPJ) Caracteres! O CPF/CNPJ da Pessoa Deve Ser Válido e Deve Conter a Pontuação! CPF: 123.456.789-01 / CNPJ: 12.345.678/9012-34")
     private String cpfOuCnpj;

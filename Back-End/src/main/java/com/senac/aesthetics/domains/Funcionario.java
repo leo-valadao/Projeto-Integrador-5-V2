@@ -60,8 +60,8 @@ public class Funcionario {
     @NotNull(message = "O Valor da Comissão Deve Ser Informado!")
     private BigDecimal comissao;
 
-    // Relacionamentos: 
-    @OneToOne(fetch = FetchType.EAGER, optional = false, orphanRemoval = true, cascade = CascadeType.PERSIST)
+    // Relacionamentos:
+    @OneToOne(fetch = FetchType.EAGER, optional = false, orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_PESSOA_FK", unique = true, nullable = false)
     private Pessoa pessoa;
 
