@@ -76,7 +76,7 @@ public class AestheticsApplication implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 
 		Boolean inserirDadosDeTeste = true;
-		/*
+
 		if (inserirDadosDeTeste) {
 			System.out.println("\nInserindo dados de teste...\n");
 			Random r = new Random();
@@ -85,11 +85,11 @@ public class AestheticsApplication implements ApplicationRunner {
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Cliente c = new Cliente();
-				c.setNome("Cliente " + i);
-				c.setTelefone("(12)34567-8910");
-				c.setEmail("teste" + i + "@teste.com");
-				c.setEstadoBrasileiro(EstadosBrasileirosEnum.GOIAS);
-				c.setCpf(gd.cpf(true));
+				c.getPessoa().setNome("Cliente " + i);
+				c.getPessoa().setTelefone("(12)34567-8910");
+				c.getPessoa().setEmail("teste" + i + "@teste.com");
+				c.getPessoa().setEstadoBrasileiro(EstadosBrasileirosEnum.GOIAS);
+				c.getPessoa().setCpfOuCnpj(gd.cpf(true));
 				c.setAlergias("Nenhuma");
 
 				cs.inserir(c);
@@ -107,11 +107,11 @@ public class AestheticsApplication implements ApplicationRunner {
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Funcionario f = new Funcionario();
-				f.setNome("Funcionário " + i);
-				f.setTelefone("(12)34567-8910");
-				f.setEmail("teste" + i + "@teste.com");
-				f.setEstadoBrasileiro(EstadosBrasileirosEnum.GOIAS);
-				f.setCpf(gd.cpf(true));
+				f.getPessoa().setNome("Funcionário " + i);
+				f.getPessoa().setTelefone("(12)34567-8910");
+				f.getPessoa().setEmail("teste" + i + "@teste.com");
+				f.getPessoa().setEstadoBrasileiro(EstadosBrasileirosEnum.GOIAS);
+				f.getPessoa().setCpfOuCnpj(gd.cpf(true));
 				f.setLogin("f" + i);
 				f.setSenha("f" + i);
 				f.setComissao(BigDecimal.valueOf(100.00));
@@ -186,11 +186,11 @@ public class AestheticsApplication implements ApplicationRunner {
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Fornecedor f = new Fornecedor();
-				f.setNome("Fornecedor " + i);
-				f.setTelefone("(12)34567-8910");
-				f.setEmail("teste" + i + "@teste.com");
-				f.setEstadoBrasileiro(EstadosBrasileirosEnum.GOIAS);
-				f.setCnpj(gd.cnpj(true));
+				f.getPessoa().setNome("Fornecedor " + i);
+				f.getPessoa().setTelefone("(12)34567-8910");
+				f.getPessoa().setEmail("teste" + i + "@teste.com");
+				f.getPessoa().setEstadoBrasileiro(EstadosBrasileirosEnum.GOIAS);
+				f.getPessoa().setCpfOuCnpj(gd.cnpj(true));
 
 				fos.inserir(f);
 			}
@@ -216,7 +216,7 @@ public class AestheticsApplication implements ApplicationRunner {
 			}
 
 			System.out.println("Valores de teste inseridos!\n");
-		}*/
+		}
 	}
 
 }
