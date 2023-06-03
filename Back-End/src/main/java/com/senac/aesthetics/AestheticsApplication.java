@@ -18,11 +18,13 @@ import com.senac.aesthetics.domains.Fornecedor;
 import com.senac.aesthetics.domains.Funcionario;
 import com.senac.aesthetics.domains.OrdemServico;
 import com.senac.aesthetics.domains.Servico;
+import com.senac.aesthetics.domains.abstracts.Pessoa;
 import com.senac.aesthetics.domains.enums.EstadosBrasileirosEnum;
 import com.senac.aesthetics.domains.enums.StatusAgendamentoEnum;
 import com.senac.aesthetics.domains.enums.StatusContaPagarEnum;
 import com.senac.aesthetics.domains.enums.StatusContaReceberEnum;
 import com.senac.aesthetics.domains.enums.StatusOrdemServicoEnum;
+import com.senac.aesthetics.domains.enums.TipoPessoa;
 import com.senac.aesthetics.domains.utils.GeradorDocumento;
 import com.senac.aesthetics.services.AgendamentoService;
 import com.senac.aesthetics.services.ClienteService;
@@ -85,6 +87,8 @@ public class AestheticsApplication implements ApplicationRunner {
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Cliente c = new Cliente();
+				c.setPessoa(new Pessoa());
+				c.getPessoa().setTipoPessoa(TipoPessoa.PESSOA_FISICA);
 				c.getPessoa().setNome("Cliente " + i);
 				c.getPessoa().setTelefone("(12)34567-8910");
 				c.getPessoa().setEmail("teste" + i + "@teste.com");
@@ -107,6 +111,8 @@ public class AestheticsApplication implements ApplicationRunner {
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Funcionario f = new Funcionario();
+				f.setPessoa(new Pessoa());
+				f.getPessoa().setTipoPessoa(TipoPessoa.PESSOA_FISICA);
 				f.getPessoa().setNome("Funcionário " + i);
 				f.getPessoa().setTelefone("(12)34567-8910");
 				f.getPessoa().setEmail("teste" + i + "@teste.com");
@@ -186,6 +192,8 @@ public class AestheticsApplication implements ApplicationRunner {
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				Fornecedor f = new Fornecedor();
+				f.setPessoa(new Pessoa());
+				f.getPessoa().setTipoPessoa(TipoPessoa.PESSOA_JURIDICA);
 				f.getPessoa().setNome("Fornecedor " + i);
 				f.getPessoa().setTelefone("(12)34567-8910");
 				f.getPessoa().setEmail("teste" + i + "@teste.com");
