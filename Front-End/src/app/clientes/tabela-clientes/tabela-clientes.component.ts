@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { Cliente } from 'src/app/shared/domains/cliente.model';
+import { EstadosBrasileirosEnum } from 'src/app/shared/domains/enums/estados-brasileiros.enum';
 import { ClienteService } from 'src/app/shared/services/cliente.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 
@@ -15,16 +16,6 @@ export class TabelaClientesComponent {
 	clientesSelecionados!: Cliente[];
 	quantidadeTotalClientes!: number;
 	quantidadeClientesExibidosPorPagina: number = 30;
-
-	colunas: { header: string; field: string }[] = [
-		{ header: 'ID', field: 'id' },
-		{ header: 'Nome', field: 'nome' },
-		{ header: 'Telefone', field: 'telefone' },
-		{ header: 'E-Mail', field: 'email' },
-		{ header: 'Estado', field: 'estadoBrasileiro' },
-		{ header: 'CPF', field: 'cpf' },
-		{ header: 'Alergias', field: 'alergias' },
-	];
 
 	@Output() exibirFormularioCliente: EventEmitter<Cliente> = new EventEmitter<Cliente>();
 
@@ -76,5 +67,9 @@ export class TabelaClientesComponent {
 		if (evento.first != undefined && evento.rows != undefined) {
 			this.obterTodosClientes(Math.floor(evento.first / evento.rows), evento.rows, 'id');
 		}
+	}
+
+	obterEstadoBrasileiro(valor: string) {
+		return Object.values(EstadosBrasileirosEnum)[Object.keys(EstadosBrasileirosEnum).indexOf(valor)];
 	}
 }

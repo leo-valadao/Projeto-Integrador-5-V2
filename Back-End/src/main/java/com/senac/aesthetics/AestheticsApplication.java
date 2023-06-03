@@ -77,7 +77,7 @@ public class AestheticsApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
-		Boolean inserirDadosDeTeste = false;
+		Boolean inserirDadosDeTeste = true;
 
 		if (inserirDadosDeTeste) {
 			System.out.println("\nInserindo dados de teste...\n");

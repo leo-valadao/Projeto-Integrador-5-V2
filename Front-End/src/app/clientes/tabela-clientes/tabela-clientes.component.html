@@ -1,7 +1,6 @@
 <div class="px-4 pb-4">
 	<!-- Tabela PrimeNG -->
 	<p-table
-		[columns]="colunas"
 		[value]="clientes"
 		[(selection)]="clientesSelecionados"
 		[paginator]="true"
@@ -40,11 +39,13 @@
 				</th>
 
 				<!-- Título de Cada Coluna -->
-				<th
-					*ngFor="let col of columns"
-					class="align-middle text-center">
-					{{ col.header }}
-				</th>
+				<th class="align-middle text-center">ID</th>
+				<th class="align-middle text-center">Nome</th>
+				<th class="align-middle text-center">Telefone</th>
+				<th class="align-middle text-center">E-Mail</th>
+				<th class="align-middle text-center">Estado</th>
+				<th class="align-middle text-center">CPF / CNPJ</th>
+				<th class="align-middle text-center">Alergias</th>
 
 				<!-- Título da Coluna dos Botões de Ações -->
 				<th class="align-middle text-center align-items-center">Ações</th>
@@ -63,10 +64,26 @@
 				</td>
 
 				<!-- Itens da Tabela -->
-				<td
-					*ngFor="let col of columns"
-					class="align-middle text-center">
-					{{ item[col.field]['nome'] ? item[col.field]['nome'] : item[col.field] }}
+				<td class="align-middle text-center">
+					{{ item.id }}
+				</td>
+				<td class="align-middle text-center">
+					{{ item.pessoa.nome }}
+				</td>
+				<td class="align-middle text-center">
+					{{ item.pessoa.telefone }}
+				</td>
+				<td class="align-middle text-center">
+					{{ item.pessoa.email }}
+				</td>
+				<td class="align-middle text-center">
+					{{ obterEstadoBrasileiro(item.pessoa.estadoBrasileiro) }}
+				</td>
+				<td class="align-middle text-center">
+					{{ item.pessoa.cpfOuCnpj }}
+				</td>
+				<td class="align-middle text-center">
+					{{ item.alergias }}
 				</td>
 
 				<!-- Botões de Ações de Cada Item da Tabela -->
