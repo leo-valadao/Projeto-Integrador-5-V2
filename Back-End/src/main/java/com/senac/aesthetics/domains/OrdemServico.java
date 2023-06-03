@@ -69,22 +69,22 @@ public class OrdemServico {
 
     // Relacionamentos:
     @OneToOne
-    @JoinColumn(name = "ID_AGENDAMENTO_FK", referencedColumnName = "ID_AGENDAMENTO", unique = true)
+    @JoinColumn(name = "ID_AGENDAMENTO_FK")
     @NotNull(message = "O Agendamento da Ordem de Serviço Deve Ser Informado!")
     private Agendamento agendamento;
 
     @ManyToOne
-    @JoinColumn(name = "ID_SERVICO_FK", referencedColumnName = "ID_SERVICO")
+    @JoinColumn(name = "ID_SERVICO_FK")
     @NotNull(message = "O Serviço da Ordem de Serviço Deve Ser Informado!")
     private Servico servico;
 
     @ManyToOne
-    @JoinColumn(name = "ID_FUNCIONARIO_RESPONSAVEL_OS_FK", referencedColumnName = "ID_FUNCIONARIO")
+    @JoinColumn(name = "ID_FUNCIONARIO_RESPONSAVEL_OS_FK")
     @NotNull(message = "O Reponsável Pelo Lançamento da Ordem de Serviço Deve Ser Informado!")
     private Funcionario responsavelPelaOS;
 
     @ManyToOne
-    @JoinColumn(name = "ID_FUNCIONARIO_EXECUTAR_SERVICO_FK", referencedColumnName = "ID_FUNCIONARIO")
+    @JoinColumn(name = "ID_FUNCIONARIO_EXECUTAR_SERVICO_FK")
     private Funcionario executorServico;
 
 }

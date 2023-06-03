@@ -6,21 +6,21 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.senac.aesthetics.validations.CPFValidator;
+import com.senac.aesthetics.validations.validators.CPFCNPJValidator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-@Constraint(validatedBy = CPFValidator.class)
+@Constraint(validatedBy = CPFCNPJValidator.class)
 @Documented
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CPF {
+public @interface CPFCNPJ {
 
-    String message() default "Formato de CPF Inválido!";
+  String message() default "Formato de CPF ou CNPJ Inválido!";
 
-    Class<?>[] groups() default {};
+  Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+  Class<? extends Payload>[] payload() default {};
 
 }

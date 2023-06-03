@@ -11,7 +11,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Fornecedor;
+import com.senac.aesthetics.domains.abstracts.Pessoa;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
+import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.FornecedorRepository;
 
 @Service
@@ -20,6 +22,9 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
     // Objetos:
     @Autowired
     private FornecedorRepository fornecedorRepository;
+
+    @Autowired
+    private InterfaceVerificarPessoaJaCadastrada pessoaService;
 
     // Métodos:
     public Page<Fornecedor> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
@@ -40,6 +45,8 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
     }
 
     public Fornecedor inserir(Fornecedor fornecedor) throws Exception {
+        this.verificarPessoaJaCadastrada(fornecedor);
+
         return fornecedorRepository.save(fornecedor);
     }
 
@@ -56,6 +63,15 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
             fornecedorRepository.deleteById(idFornecedor);
         } else {
             throw new NoSuchElementException("Fornecedor Não Encontrado! ID: " + idFornecedor);
+        }
+    }
+
+    private void verificarPessoaJaCadastrada(Fornecedor fornecedor) throws Exception {
+        Optional<Pessoa> pessoaJaCadastrada = pessoaService
+                .verificarPessoaJaCadastrada(fornecedor.getPessoa().getCpfOuCnpj());
+
+        if (pessoaJaCadastrada.isPresent()) {
+            fornecedor.setPessoa(pessoaJaCadastrada.get());
         }
     }
 

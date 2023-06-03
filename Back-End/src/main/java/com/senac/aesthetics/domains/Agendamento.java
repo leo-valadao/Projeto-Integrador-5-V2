@@ -66,22 +66,22 @@ public class Agendamento {
 
     // Relacionamentos:
     @ManyToOne
-    @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLIENTE")
+    @JoinColumn(name = "ID_FK")
     @NotNull(message = "O Cliente do Agendamento Deve Ser Informado!")
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "ID_RESPONSAVEL_AGENDAMENTO_FK", referencedColumnName = "ID_FUNCIONARIO")
+    @JoinColumn(name = "ID_RESPONSAVEL_AGENDAMENTO_FK")
     @NotNull(message = "O Responsável do Agendamento Deve Ser Informado!")
     private Funcionario funcionario;
 
     @ManyToOne
-    @JoinColumn(name = "ID_SERVICO_FK", referencedColumnName = "ID_SERVICO")
+    @JoinColumn(name = "ID_SERVICO_FK")
     @NotNull(message = "O Serviço do Agendamento Deve Ser Informado!")
     private Servico servico;
 
     @OneToOne(mappedBy = "agendamento")
-    @JoinColumn(name = "ID_ORDEM_SERVICO_FK", referencedColumnName = "ID_ORDEM_SERVICO")
+    @JoinColumn(name = "ID_ORDEM_SERVICO_FK")
     @JsonIgnore
     private OrdemServico ordemServico;
 

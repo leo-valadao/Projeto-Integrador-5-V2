@@ -63,11 +63,11 @@ public class ContaReceber extends Conta {
 
     // Relacionamentos:
     @ManyToOne
-    @JoinColumn(name = "ID_ORDEM_SERVICO_FK", referencedColumnName = "ID_ORDEM_SERVICO")
+    @JoinColumn(name = "ID_ORDEM_SERVICO_FK")
     private OrdemServico ordemServico;
 
     @ManyToOne
-    @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLIENTE")
+    @JoinColumn(name = "ID_FK")
     @NotNull(message = "O Cliente da Conta a Receber Deve Ser Informado!")
     private Cliente cliente;
 

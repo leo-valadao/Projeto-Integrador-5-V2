@@ -6,7 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.senac.aesthetics.validations.TelefoneValidator;
+import com.senac.aesthetics.validations.validators.TelefoneValidator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

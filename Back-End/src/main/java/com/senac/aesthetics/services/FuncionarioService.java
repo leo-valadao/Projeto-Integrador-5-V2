@@ -11,7 +11,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Funcionario;
+import com.senac.aesthetics.domains.abstracts.Pessoa;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
+import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.FuncionarioRepository;
 
 @Service
@@ -20,6 +22,9 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
     // Objetos:
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+
+    @Autowired
+    private InterfaceVerificarPessoaJaCadastrada pessoaService;
 
     // Métodos:
     public Page<Funcionario> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
@@ -40,6 +45,8 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
     }
 
     public Funcionario inserir(Funcionario funcionario) throws Exception {
+        this.verificarPessoaJaCadastrada(funcionario);
+
         return funcionarioRepository.save(funcionario);
     }
 
@@ -56,6 +63,15 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
             funcionarioRepository.deleteById(idFuncionario);
         } else {
             throw new NoSuchElementException("Funcionario Não Encontrado! ID: " + idFuncionario);
+        }
+    }
+
+    private void verificarPessoaJaCadastrada(Funcionario funcionario) throws Exception {
+        Optional<Pessoa> pessoaJaCadastrada = pessoaService
+                .verificarPessoaJaCadastrada(funcionario.getPessoa().getCpfOuCnpj());
+
+        if (pessoaJaCadastrada.isPresent()) {
+            funcionario.setPessoa(pessoaJaCadastrada.get());
         }
     }
 

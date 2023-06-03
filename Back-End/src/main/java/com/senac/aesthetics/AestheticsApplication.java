@@ -76,7 +76,7 @@ public class AestheticsApplication implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 
 		Boolean inserirDadosDeTeste = true;
-
+		/*
 		if (inserirDadosDeTeste) {
 			System.out.println("\nInserindo dados de teste...\n");
 			Random r = new Random();
@@ -216,7 +216,7 @@ public class AestheticsApplication implements ApplicationRunner {
 			}
 
 			System.out.println("Valores de teste inseridos!\n");
-		}
+		}*/
 	}
 
 }

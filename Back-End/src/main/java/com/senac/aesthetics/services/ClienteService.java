@@ -11,7 +11,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Cliente;
+import com.senac.aesthetics.domains.abstracts.Pessoa;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
+import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.ClienteRepository;
 
 @Service
@@ -20,6 +22,9 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
     // Objetos:
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private InterfaceVerificarPessoaJaCadastrada pessoaService;
 
     // Métodos:
     public Page<Cliente> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
@@ -40,6 +45,8 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
     }
 
     public Cliente inserir(Cliente cliente) throws Exception {
+        this.verificarPessoaJaCadastrada(cliente);
+
         return clienteRepository.save(cliente);
     }
 
@@ -59,4 +66,12 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         }
     }
 
+    private void verificarPessoaJaCadastrada(Cliente cliente) throws Exception {
+        Optional<Pessoa> pessoaJaCadastrada = pessoaService
+                .verificarPessoaJaCadastrada(cliente.getPessoa().getCpfOuCnpj());
+
+        if (pessoaJaCadastrada.isPresent()) {
+            cliente.setPessoa(pessoaJaCadastrada.get());
+        }
+    }
 }
