@@ -3,7 +3,7 @@ package com.senac.aesthetics.domains;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.senac.aesthetics.domains.abstracts.PessoaFisica;
+import com.senac.aesthetics.domains.abstracts.Pessoa;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,14 +27,9 @@ import lombok.Setter;
 // Java Persistence API:
 @Entity
 @Table(name = "CLIENTES")
-public class Cliente extends PessoaFisica {
+public class Cliente extends Pessoa {
 
     // Atributos:
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CLIENTE")
-    private Long id;
-
     @Column(name = "ALERGIAS", length = 100)
     @Size(max = 100, message = "O Tamanho Máximo das Alergias do Cliente é de 100 Caracteres!")
     private String alergias;

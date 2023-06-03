@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.senac.aesthetics.domains.abstracts.PessoaFisica;
+import com.senac.aesthetics.domains.abstracts.Pessoa;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,14 +32,9 @@ import lombok.Setter;
 // Java Persistence API:
 @Entity
 @Table(name = "FUNCIONARIOS")
-public class Funcionario extends PessoaFisica {
+public class Funcionario extends Pessoa {
 
     // Atributos:
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_FUNCIONARIO")
-    private Long id;
-
     @Column(name = "LOGIN", nullable = false, length = 30, unique = true)
     @NotBlank(message = "O Login do Funcionário Deve Ser Informado e Não Pode Estar Vazio!")
     @Size(max = 30, message = "O Tamanho Máximo do Login do Funcionário é de 30 Caracteres!")

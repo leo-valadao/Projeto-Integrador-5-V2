@@ -1,6 +1,6 @@
 package com.senac.aesthetics.domains;
 
-import com.senac.aesthetics.domains.abstracts.PessoaJuridica;
+import com.senac.aesthetics.domains.abstracts.Pessoa;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,12 +22,9 @@ import lombok.Setter;
 // Java Persistence API:
 @Entity
 @Table(name = "FORNECEDORES")
-public class Fornecedor extends PessoaJuridica {
+public class Fornecedor extends Pessoa {
 
     // Atributos:
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_FORNECEDOR")
-    private Long id;
+    private String localizacao;
 
 }
