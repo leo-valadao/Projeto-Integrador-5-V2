@@ -40,7 +40,7 @@ export class TabelaAgendamentosComponent {
 
 	mostrarFormularioAgendamentos(agendamento: Agendamento | null) {
 		if (agendamento) {
-			this.exibirFormularioAgendamento.emit(JSON.parse(JSON.stringify(agendamento)));
+			this.exibirFormularioAgendamento.emit(agendamento);
 		} else {
 			this.exibirFormularioAgendamento.emit(new Agendamento());
 		}
