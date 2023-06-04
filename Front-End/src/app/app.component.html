@@ -3,15 +3,15 @@
 	styleClass="w-auto"
 	toaster-options="{'body-output-type': 'trustedHtml'}" />
 
-<div class="d-flex flex-column">
-	<div class="d-flex flex-row">
-		<app-painel-lateral />
-		<div class="d-flex flex-column vw-100">
-			<app-cabecalho />
-			<div class="border">
+<div class="flex flex-column">
+	<div class="flex flex-row">
+		<app-painel-lateral style="background-color: #f8f9fa" />
+		<div class="flex flex-column w-screen">
+			<app-cabecalho style="background-color: #f8f9fa" />
+			<div class="border-1 border-black-alpha-10" style="min-height: 92.8vh; background-color: white;">
 				<router-outlet />
 			</div>
 		</div>
 	</div>
-	<app-rodape />
+	<app-rodape style="background-color: #f8f9fa" />
 </div>

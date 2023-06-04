@@ -17,7 +17,7 @@
 		styleClass="p-datatable-gridlines">
 		<ng-template pTemplate="caption">
 			<!-- Barra do Topo da Tabela -->
-			<div class="d-flex align-items-center justify-content-between">
+			<div class="flex align-items-center justify-content-between">
 				Agendamentos
 				<button
 					pButton
@@ -34,11 +34,6 @@
 			pTemplate="header"
 			let-columns>
 			<tr>
-				<!-- Botão de Selecionar Todos os Itens da Tabela -->
-				<th class="flex align-items-center justify-content-between align-middle text-center">
-					<p-tableHeaderCheckbox />
-				</th>
-
 				<!-- Título de Cada Coluna -->
 				<th
 					*ngFor="let col of columns"
@@ -58,10 +53,6 @@
 			let-columns="columns">
 			<!-- Botão de Selecionar o Item da Tabela (Individual) -->
 			<tr>
-				<td class="align-middle text-center">
-					<p-tableCheckbox [value]="item" />
-				</td>
-
 				<!-- Itens da Tabela -->
 				<td
 					*ngFor="let col of columns"
@@ -70,14 +61,14 @@
 				</td>
 
 				<!-- Botões de Ações de Cada Item da Tabela -->
-				<td class="align-middle text-center gap-3">
+				<td class="flex flex-row justify-content-around">
 					<i
 						class="pi pi-pencil"
-						style="font-size: 2rem"
+						style="font-size: 2rem; color: black !important"
 						(click)="mostrarFormularioAgendamentos(item)"></i>
 					<i
-						class="pi pi-trash ms-3"
-						style="font-size: 2rem; color: rgb(255, 0, 0) !important"
+						class="pi pi-trash"
+						style="font-size: 2rem; color: red !important"
 						(click)="excluirAgendamento(item.id)"></i>
 				</td>
 			</tr>
