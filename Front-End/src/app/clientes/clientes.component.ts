@@ -13,9 +13,8 @@ export class ClientesComponent {
 	@ViewChild(TabelaClientesComponent) tabelaClientes!: TabelaClientesComponent;
 
 	exibirFormularioCliente(cliente: Cliente) {
-		if (cliente.id) {
-			this.formularioClientes.cliente = cliente;
-		}
+		this.formularioClientes.cliente = cliente;
+
 		this.formularioClientes.exibirFormulario = true;
 	}
 

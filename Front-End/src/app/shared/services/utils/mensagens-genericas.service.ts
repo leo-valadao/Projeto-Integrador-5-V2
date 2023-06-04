@@ -23,9 +23,7 @@ export class MensagensGenericasService {
 	}
 
 	mensagemPadraoDeErro(erro: HttpErrorResponse) {
-		let erros: string[] = erro.error.mensagem.split('\n');
-
-		for (let mensagem of erros) {
+		for (let mensagem of erro.error.mensagens) {
 			this.messageService.add({
 				key: this.toastPrincipal,
 				severity: TipoMensagemEnum.ERROR,
