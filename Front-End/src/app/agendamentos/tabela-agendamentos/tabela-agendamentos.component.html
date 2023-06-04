@@ -1,7 +1,6 @@
-<div class="px-4 pb-4">
+<div class="px-3 pb-3">
 	<!-- Tabela PrimeNG -->
 	<p-table
-		[columns]="colunas"
 		[value]="agendamentos"
 		[(selection)]="agendamentosSelecionados"
 		[paginator]="true"
@@ -35,11 +34,14 @@
 			let-columns>
 			<tr>
 				<!-- Título de Cada Coluna -->
-				<th
-					*ngFor="let col of columns"
-					class="align-middle text-center">
-					{{ col.header }}
-				</th>
+				<th class="align-middle text-center">ID</th>
+				<th class="align-middle text-center">Data</th>
+				<th class="align-middle text-center">Horário</th>
+				<th class="align-middle text-center">Status</th>
+				<th class="align-middle text-center">Observação</th>
+				<th class="align-middle text-center">Cliente</th>
+				<th class="align-middle text-center">Funcionário</th>
+				<th class="align-middle text-center">Serviço</th>
 
 				<!-- Título da Coluna dos Botões de Ações -->
 				<th class="align-middle text-center align-items-center">Ações</th>
@@ -51,14 +53,16 @@
 			pTemplate="body"
 			let-item
 			let-columns="columns">
-			<!-- Botão de Selecionar o Item da Tabela (Individual) -->
 			<tr>
 				<!-- Itens da Tabela -->
-				<td
-					*ngFor="let col of columns"
-					class="align-middle text-center">
-					{{ item[col.field]['nome'] ? item[col.field]['nome'] : item[col.field] }}
-				</td>
+				<td class="align-middle text-center">{{ item.id }}</td>
+				<td class="align-middle text-center">{{ item.data }}</td>
+				<td class="align-middle text-center">{{ item.hora }}</td>
+				<td class="align-middle text-center">{{ item.status }}</td>
+				<td class="align-middle text-center">{{ item.observacao }}</td>
+				<td class="align-middle text-center">{{ item.cliente.pessoa.nome }}</td>
+				<td class="align-middle text-center">{{ item.funcionario.pessoa.nome }}</td>
+				<td class="align-middle text-center">{{ item.servico.nome }}</td>
 
 				<!-- Botões de Ações de Cada Item da Tabela -->
 				<td class="flex flex-row justify-content-around">
