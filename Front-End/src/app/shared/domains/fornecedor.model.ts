@@ -1,10 +1,15 @@
-import { PessoaJuridica } from './abstracts/pessoa-juridica.abstract-model';
+import { Pessoa } from './pessoa.model';
 
-export class Fornecedor extends PessoaJuridica {
-  // Atributo(s):
-  public readonly id!: number;
+export class Fornecedor {
+	// Atributo(s):
+	public readonly id!: number;
 
-  constructor() {
-    super();
-  }
+	// Relacionamento(s):
+	public pessoa!: Pessoa;
+
+	constructor(pessoa?: Pessoa) {
+		if (pessoa) {
+			this.pessoa = pessoa;
+		}
+	}
 }

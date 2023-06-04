@@ -61,12 +61,12 @@ export class TabelaAgendamentosComponent {
 		this.agendamentoService.excluir(idAgendamento).subscribe({
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Agendamentos', 'excluído');
+				this.atualizarTabela();
 			},
 			error: (erro: HttpErrorResponse) => {
 				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
 			},
 		});
-		this.atualizarTabela();
 	}
 
 	atualizarTabela() {

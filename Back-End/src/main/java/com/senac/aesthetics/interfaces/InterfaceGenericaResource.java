@@ -11,14 +11,14 @@ public interface InterfaceGenericaResource<T> {
 
     public Page<T> obterTodosComPaginacao(
             Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor)  throws Exception;
+            String ordenarPor) throws Exception;
 
     public T obterPorId(Long idT) throws Exception;
 
-    public T inserir(T T)  throws Exception;
+    public T inserir(T T) throws Exception;
 
-    public T atualizar(T T)  throws Exception;
+    public T atualizar(T T) throws Exception;
 
-    public void excluir(Long idT)  throws Exception;
+    public void excluir(Long idT) throws Exception;
 
 }

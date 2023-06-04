@@ -22,13 +22,15 @@ export class MensagensGenericasService {
 		});
 	}
 
-	mensagemPadraoDeErro(erros: HttpErrorResponse) {
-		for (let erro of erros.error.mensagens) {
+	mensagemPadraoDeErro(erro: HttpErrorResponse) {
+		let erros: string[] = erro.error.mensagem.split('\n');
+
+		for (let mensagem of erros) {
 			this.messageService.add({
 				key: this.toastPrincipal,
 				severity: TipoMensagemEnum.ERROR,
 				summary: `Erro!`,
-				detail: `${erro}`,
+				detail: `${mensagem.trim()}`,
 				life: 10000,
 			});
 		}

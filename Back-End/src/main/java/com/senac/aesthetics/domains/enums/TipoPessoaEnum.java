@@ -5,13 +5,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum TipoMensagemEnum {
+public enum TipoPessoaEnum {
 
-    SUCESS("sucess"),
-    INFO("info"),
-    WARN("warn"),
-    ERROR("error");
+  PESSOA_FISICA("Pessoa Física"),
+  PESSOA_JURIDICA("Pessoa Jurídica");
 
-    private String tipo;
+  private String tipo;
 
 }

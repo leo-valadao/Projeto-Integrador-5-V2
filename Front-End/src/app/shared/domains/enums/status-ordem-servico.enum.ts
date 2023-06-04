@@ -1,6 +1,6 @@
 export enum StatusOrdemServicoEnum {
-	ABERTO = 'ABERTO',
-	CANCELADO = 'CANCELADO',
-	EM_EXECUCAO = 'EM_EXECUCAO',
-	CONCLUIDO = 'CONCLUIDO',
+	ABERTO = 'Aberto',
+	CANCELADO = 'Cancelado',
+	EM_EXECUCAO = 'Em Execução',
+	CONCLUIDO = 'Concluído',
 }

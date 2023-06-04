@@ -1,4 +1,4 @@
-package com.senac.aesthetics.validations;
+package com.senac.aesthetics.validations.validators;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

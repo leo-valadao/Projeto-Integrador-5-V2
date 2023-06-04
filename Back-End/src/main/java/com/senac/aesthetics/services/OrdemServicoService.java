@@ -1,6 +1,6 @@
 package com.senac.aesthetics.services;
 
-import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.OrdemServico;
-import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
-import com.senac.aesthetics.errors.ErroGenerico;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.OrdemServicoRepository;
 
@@ -37,9 +35,7 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
         if (ordemServico.isPresent()) {
             return ordemServico.get();
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("OrdemServico Não Encontrado! ID: " + idOrdemServico),
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("OrdemServico Não Encontrado! ID: " + idOrdemServico);
         }
     }
 
@@ -51,9 +47,7 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
         if (ordemServicoRepository.existsById(ordemServico.getId())) {
             return ordemServicoRepository.saveAndFlush(ordemServico);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("OrdemServico Não Encontrado! ID: " + ordemServico.getId()),
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("OrdemServico Não Encontrado! ID: " + ordemServico.getId());
         }
     }
 
@@ -61,9 +55,7 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
         if (ordemServicoRepository.existsById(idOrdemServico)) {
             ordemServicoRepository.deleteById(idOrdemServico);
         } else {
-            throw new ErroGenerico(
-                    Arrays.asList("OrdemServico Não Encontrado! ID: " + idOrdemServico),
-                    TipoMensagemEnum.ERROR);
+            throw new NoSuchElementException("OrdemServico Não Encontrado! ID: " + idOrdemServico);
         }
     }
 

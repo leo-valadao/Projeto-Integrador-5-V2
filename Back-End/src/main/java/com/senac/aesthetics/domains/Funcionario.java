@@ -4,14 +4,17 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.senac.aesthetics.domains.abstracts.PessoaFisica;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -32,7 +35,7 @@ import lombok.Setter;
 // Java Persistence API:
 @Entity
 @Table(name = "FUNCIONARIOS")
-public class Funcionario extends PessoaFisica {
+public class Funcionario {
 
     // Atributos:
     @Id
@@ -57,6 +60,10 @@ public class Funcionario extends PessoaFisica {
     private BigDecimal comissao;
 
     // Relacionamentos:
+    @OneToOne(fetch = FetchType.EAGER, optional = false, orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_PESSOA_FK", unique = true, nullable = false)
+    private Pessoa pessoa;
+
     @OneToMany(orphanRemoval = false, mappedBy = "funcionario")
     @JsonIgnore
     private List<Agendamento> agendamentos;

@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 // Importa os Estilos de Outros Componentes Instaldos na Aplicação
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~/node_modules/primeflex/primeflex.css';
 @import 'primeng/resources/themes/lara-light-blue/theme.css';
 @import 'primeng/resources/primeng.css';
 @import 'primeicons/primeicons.css';
@@ -13,4 +13,10 @@ body {
 // Define o Toast Aparecer na Frente de Qualquer Outro Componente
 #toast-container {
 	z-index: 9999999;
+}
+
+li:hover {
+	cursor: pointer;
+	background-color: rgb(230, 230, 230);
+	border-radius: 5px;
 }

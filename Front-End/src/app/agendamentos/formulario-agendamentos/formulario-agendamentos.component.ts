@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SelectItem } from 'primeng/api';
 import { Agendamento } from 'src/app/shared/domains/agendamento.model';
 import { Cliente } from 'src/app/shared/domains/cliente.model';
 import { StatusAgendamentoEnum } from 'src/app/shared/domains/enums/status-agendamento.enum';

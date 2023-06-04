@@ -1,13 +1,18 @@
-import { PessoaFisica } from './abstracts/pessoa-fisica.abstract-model';
+import { Pessoa } from './pessoa.model';
 
-export class Funcionario extends PessoaFisica {
+export class Funcionario {
 	// Atributo(s):
 	public readonly id!: number;
 	public login!: string;
 	public senha!: string;
 	public comissao!: number;
 
-	constructor() {
-		super();
+	// Relacionamento(s):
+	public pessoa!: Pessoa;
+
+	constructor(pessoa?: Pessoa) {
+		if (pessoa) {
+			this.pessoa = pessoa;
+		}
 	}
 }

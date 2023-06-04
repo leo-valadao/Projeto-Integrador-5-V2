@@ -38,7 +38,7 @@ Cypress.Commands.add("GetProfissional", () => {
   });
 });
 
-Cypress.Commands.add("PostClienteDel", (payload) => {
+Cypress.Commands.add("postAndGetIdCliente", (payload) => {
   cy.request({
     method: "POST",
     url: `${url}/cliente`,
@@ -46,11 +46,11 @@ Cypress.Commands.add("PostClienteDel", (payload) => {
     failOnStatusCode: false,
   }).then((response) => {
     expect(response.status).to.eql(201);
-    Cypress.env("id_delete", response.body.id);
+    Cypress.env("cli_id", response.body.id);
   });
 });
 
-Cypress.Commands.add("PostFuncionarioDel", (payload) => {
+Cypress.Commands.add("PostAndGetIdProfissional", (payload) => {
   cy.api({
     method: "POST",
     url: `${url}/funcionario`,
@@ -58,6 +58,28 @@ Cypress.Commands.add("PostFuncionarioDel", (payload) => {
     failOnStatusCode: false,
   }).then((response) => {
     expect(response.status).to.eql(201);
-    Cypress.env("profDel_id", response.body.id);
+    Cypress.env("func_id", response.body.id);
+  });
+});
+
+Cypress.Commands.add("clearFuncionarios", () => {
+  cy.GetAllProfissionais().then((response) => {
+    response.body.content.forEach((data) => {
+      cy.DeleteProfissional(data.id).then((res) => {
+        cy.log("Remove ID: " + data.id);
+        expect(res.status).to.eql(204);
+      });
+    });
+  });
+});
+
+Cypress.Commands.add("clearClientes", () => {
+  cy.GetAllClients().then((response) => {
+    response.body.content.forEach((data) => {
+      cy.DeleteCliente(data.id).then((res) => {
+        cy.log("Remove ID: " + data.id);
+        expect(res.status).to.eql(204);
+      });
+    });
   });
 });

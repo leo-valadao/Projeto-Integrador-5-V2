@@ -18,80 +18,6 @@ export function payloadPostAgendamento(
   return payload;
 }
 
-export function payloadPostCliente() {
-  const payload = {
-    nome: Cypress.env("nome"),
-    telefone: Cypress.env("telefone").replace(/\s/g, ""),
-    email: Cypress.env("email"),
-    estadoBrasileiro: "GOIAS",
-    cpf: Cypress.env("cpf"),
-    alergias: "Nenhuma",
-  };
-  //.replace(/\s/g, "")
-
-  return payload;
-}
-
-export function payloadPutCliente(id) {
-  const payload = {
-    id: id,
-    nome: Cypress.env("nomePut"),
-    cpf: Cypress.env("cpfPut"),
-    telefone: Cypress.env("telefonePut").replace(/\s/g, ""),
-    estadoBrasileiro: "GOIAS",
-    email: Cypress.env("emailPut"),
-    alergias: "Shampoo de Camomila",
-  };
-
-  return payload;
-}
-
-export function payloadPostProfissional() {
-  const payload = {
-    nome: Cypress.env("profissional_nome"),
-    telefone: Cypress.env("profissional_celular").replace(/\s/g, ""),
-    email: Cypress.env("profissional_email"),
-    estadoBrasileiro: "GOIAS",
-    cpf: Cypress.env("profissional_cpf"),
-    login: Cypress.env("profissional_senha"),
-    senha: Cypress.env("profissional_senha"),
-    comissao: 12.5,
-  };
-
-  return payload;
-}
-
-export function payloadDelProfissional() {
-  const payload = {
-    nome: Cypress.env("profissionalDel_nome"),
-    telefone: Cypress.env("profissionalDel_celular").replace(/\s/g, ""),
-    email: Cypress.env("profissionalDel_email"),
-    estadoBrasileiro: "GOIAS",
-    cpf: Cypress.env("profissionalDel_cpf"),
-    login: Cypress.env("profissionalDel_senha"),
-    senha: Cypress.env("profissionalDel_senha"),
-    comissao: 12.5,
-  };
-
-  return payload;
-}
-
-export function payloadPutProfissional(id) {
-  const payload = {
-    id: id,
-    nome: Cypress.env("putNome_prof"),
-    cpf: Cypress.env("putCpf_prof"),
-    estadoBrasileiro: "GOIAS",
-    telefone: Cypress.env("putTelefone_prof").replace(/\s/g, ""),
-    email: Cypress.env("putEmail_prof"),
-    login: Cypress.env("putSenha_prof"),
-    senha: Cypress.env("putSenha_prof"),
-    comissao: 10.00,
-  };
-
-  return payload;
-}
-
 export function payloadPostServico() {
   const payload = {
     nome: `Serviço ${uuid.v4().substring(24)}`,
@@ -122,3 +48,113 @@ export function payloadPutServico(servico_id) {
 
   return payload;
 }
+
+//#region Generate payload Clientes
+export function payloadCliente() {
+  const payload = {
+    nome: "Amanda Isabela Costa",
+    telefone: "(62)98610-6651",
+    email: "amanda_isabela@ads.com.br",
+    estadoBrasileiro: "GOIAS",
+    cpf: "748.107.331-73",
+    alergias: "Nenhuma",
+  };
+  return payload;
+}
+
+export function payloadClienteExistente() {
+  const payload = {
+    nome: "Mariah Luiza Sueli Santos",
+    telefone: "(62)99776-7614",
+    email: "mariahluizasantos@ads.com.br",
+    estadoBrasileiro: "GOIAS",
+    cpf: "915.800.721-00",
+    alergias: "Nenhuma",
+  };
+  return payload;
+}
+
+export function payloadAlterarCliente(id) {
+  const payload = {
+    id: id,
+    nome: "Eloá Carolina Luzia Cavalcanti",
+    telefone: "(62)98315-8853",
+    estadoBrasileiro: "GOIAS",
+    cpf: "748.107.331-73",
+    email: "eloa.carolina@ads.com",
+    alergias: "Shampoo de Camomila",
+  };
+  return payload;
+}
+
+export function payloadDelCliente() {
+  const payload = {
+    nome: "Valentina Teresinha da Costa",
+    telefone: "(62)98875-9222",
+    email: "valentina-dacosta81@ads.com",
+    estadoBrasileiro: "GOIAS",
+    cpf: "107.778.781-27",
+    alergias: "Nenhuma",
+  };
+  return payload;
+}
+//#endregion
+
+//#region Generate payload Profissionais
+export function payloadFuncionarioExistente() {
+  const payload = {
+    nome: "Nina Rayssa Santos",
+    telefone: "(62)99458-2405",
+    email: "nina.rayssa@ads.com.br",
+    estadoBrasileiro: "GOIAS",
+    cpf: "792.042.471-26",
+    login: "4sYDagS4H4",
+    senha: "4sYDagS4H4",
+    comissao: 10.0,
+  };
+  return payload;
+}
+
+export function payloadFuncionario() {
+  const payload = {
+    nome: "Anthony Antonio Davi Rodrigues",
+    telefone: "(62)98806-4927",
+    email: "anthony_antonio@ads.com.br",
+    estadoBrasileiro: "GOIAS",
+    cpf: "206.388.281-98",
+    login: "R6xgFzI9Sg",
+    senha: "R6xgFzI9Sg",
+    comissao: 10.0,
+  };
+  return payload;
+}
+
+export function payloadAlterarFuncionario(id) {
+  const payload = {
+    id: id,
+    nome: "Anthony Antonio Davi",
+    telefone: "(62)99732-1270",
+    email: "anthony_davi@ads.com.br",
+    estadoBrasileiro: "GOIAS",
+    cpf: "206.388.281-98",
+    login: "Kptu2j5FNW",
+    senha: "Kptu2j5FNW",
+    comissao: 15.0,
+  };
+  return payload;
+}
+
+export function payloadDelFuncionario() {
+  const payload = {
+    nome: "Rosângela Isabella Silva",
+    telefone: "(62)98733-9871",
+    email: "rosangelaisabellasilva@ads.com.br",
+    estadoBrasileiro: "GOIAS",
+    cpf: "961.156.991-26",
+    login: "a5LcyyyyL3",
+    senha: "a5LcyyyyL3",
+    comissao: 15.0,
+  };
+  return payload;
+}
+//#endregion

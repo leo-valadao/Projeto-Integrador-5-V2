@@ -1,13 +1,13 @@
 <p-dialog
-	[contentStyle]="{ overflow: 'visible' }"
 	header="Cadastro de Agendamento"
-	[(visible)]="exibirFormulario"
+	[contentStyle]="{ overflow: 'visible' }"
 	[modal]="true"
 	[style]="{ width: '50vw', height: '' }"
+	[(visible)]="exibirFormulario"
 	*ngIf="exibirFormulario">
-	<form class="d-flex flex-column gap-3">
-		<div class="d-flex flex-row gap-3">
-			<div class="d-flex flex-column w-100">
+	<form class="flex flex-column gap-3">
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-100">
 				<label for="agendamento.data">Data do Agendamento:</label>
 				<p-calendar
 					[(ngModel)]="agendamento.data"
@@ -20,7 +20,7 @@
 					styleClass="w-100" />
 			</div>
 
-			<div class="d-flex flex-column w-100">
+			<div class="flex flex-column w-100">
 				<label for="agendamento.hora">Hora do Agendamento:</label>
 				<p-calendar
 					[(ngModel)]="agendamento.hora"
@@ -37,7 +37,7 @@
 
 			<div
 				*ngIf="agendamento.id"
-				class="d-flex flex-column w-100">
+				class="flex flex-column w-100">
 				<label for="agendamento.status">Status:</label>
 				<p-dropdown
 					[(ngModel)]="agendamento.status"
@@ -49,8 +49,8 @@
 			</div>
 		</div>
 
-		<div class="d-flex flex-row gap-3">
-			<div class="d-flex flex-column w-100">
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-100">
 				<label for="agendamento.cliente">Cliente:</label>
 				<p-dropdown
 					[(ngModel)]="agendamento.cliente"
@@ -62,7 +62,7 @@
 					styleClass="w-100" />
 			</div>
 
-			<div class="d-flex flex-column w-100">
+			<div class="flex flex-column w-100">
 				<label for="agendamento.servico">Serviço:</label>
 				<p-dropdown
 					[(ngModel)]="agendamento.servico"
@@ -74,7 +74,7 @@
 					styleClass="w-100" />
 			</div>
 
-			<div class="d-flex flex-column w-100">
+			<div class="flex flex-column w-100">
 				<label for="agendamento.funcionario">Funcionário:</label>
 				<p-dropdown
 					[(ngModel)]="agendamento.funcionario"
@@ -87,7 +87,7 @@
 			</div>
 		</div>
 
-		<div class="d-flex flex-column">
+		<div class="flex flex-column">
 			<label for="agendamento.observacao">Observações:</label>
 			<textarea
 				[(ngModel)]="agendamento.observacao"
