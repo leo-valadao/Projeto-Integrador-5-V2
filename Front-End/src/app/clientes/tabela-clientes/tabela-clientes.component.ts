@@ -42,7 +42,7 @@ export class TabelaClientesComponent {
 
 	mostrarFormularioClientes(cliente?: Cliente) {
 		if (cliente) {
-			this.exibirFormularioCliente.emit(JSON.parse(JSON.stringify(cliente)));
+			this.exibirFormularioCliente.emit(cliente);
 		} else {
 			this.exibirFormularioCliente.emit(new Cliente());
 		}

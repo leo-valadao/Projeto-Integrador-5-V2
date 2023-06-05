@@ -15,7 +15,7 @@ export class FormularioClientesComponent implements OnInit {
 	exibirFormulario: Boolean = false;
 	estadosBrasileiro!: string[];
 
-	@Input() cliente: Cliente = new Cliente(new Pessoa());
+	@Input() cliente: Cliente = new Cliente();
 	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
 
 	constructor(private clienteService: ClienteService, private mensagensGenericasService: MensagensGenericasService) {}

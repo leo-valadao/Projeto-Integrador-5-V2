@@ -14,5 +14,6 @@ export class ContaPagar extends Conta {
 
 	constructor() {
 		super();
+		this.fornecedor = new Fornecedor();
 	}
 }

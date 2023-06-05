@@ -16,17 +16,6 @@ export class TabelaAgendamentosComponent {
 	quantidadeTotalAgendamentos!: number;
 	quantidadeAgendamentosExibidosPorPagina: number = 30;
 
-	colunas: { header: string; field: string }[] = [
-		{ header: 'ID', field: 'id' },
-		{ header: 'Data', field: 'data' },
-		{ header: 'Horário', field: 'hora' },
-		{ header: 'Status do Agendamento', field: 'status' },
-		{ header: 'Obsrvação', field: 'observacao' },
-		{ header: 'Cliente', field: 'cliente' },
-		{ header: 'Funcionário', field: 'funcionario' },
-		{ header: 'Serviço', field: 'servico' },
-	];
-
 	@Output() exibirFormularioAgendamento: EventEmitter<Agendamento> = new EventEmitter<Agendamento>();
 
 	@ViewChild(Table) private tabelaAgendamentos!: Table;
@@ -51,7 +40,7 @@ export class TabelaAgendamentosComponent {
 
 	mostrarFormularioAgendamentos(agendamento: Agendamento | null) {
 		if (agendamento) {
-			this.exibirFormularioAgendamento.emit(JSON.parse(JSON.stringify(agendamento)));
+			this.exibirFormularioAgendamento.emit(agendamento);
 		} else {
 			this.exibirFormularioAgendamento.emit(new Agendamento());
 		}

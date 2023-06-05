@@ -8,10 +8,6 @@ export class Servico {
 	public descricao!: string;
 	public precoCusto!: number;
 	public precoVenda!: number;
-
-	// Relacionamento(s):
-	public agendamentos!: Agendamento[];
-	public ordensServicos!: OrdemServico[];
-
+	
 	constructor() {}
 }

@@ -17,5 +17,9 @@ export class Agendamento {
 	public funcionario!: Funcionario;
 	public servico!: Servico;
 
-	constructor() {}
+	constructor() {
+		this.cliente = new Cliente();
+		this.funcionario = new Funcionario();
+		this.servico = new Servico();
+	}
 }

@@ -7,7 +7,7 @@
 	*ngIf="exibirFormulario">
 	<form class="flex flex-column gap-3">
 		<div class="flex flex-row gap-3">
-			<div class="flex flex-column w-100">
+			<div class="flex flex-column w-full">
 				<label for="agendamento.data">Data do Agendamento:</label>
 				<p-calendar
 					[(ngModel)]="agendamento.data"
@@ -17,10 +17,10 @@
 					dataType="string"
 					[showTime]="false"
 					[showIcon]="true"
-					styleClass="w-100" />
+					styleClass="w-full" />
 			</div>
 
-			<div class="flex flex-column w-100">
+			<div class="flex flex-column w-full">
 				<label for="agendamento.hora">Hora do Agendamento:</label>
 				<p-calendar
 					[(ngModel)]="agendamento.hora"
@@ -30,14 +30,14 @@
 					dataType="string"
 					[showTime]="true"
 					[timeOnly]="true"
-					[showSeconds]="true"
+					[showSeconds]="false"
 					[showIcon]="true"
-					styleClass="w-100" />
+					styleClass="w-full" />
 			</div>
 
 			<div
 				*ngIf="agendamento.id"
-				class="flex flex-column w-100">
+				class="flex flex-column w-full">
 				<label for="agendamento.status">Status:</label>
 				<p-dropdown
 					[(ngModel)]="agendamento.status"
@@ -45,12 +45,12 @@
 					data-cy="agendamento.status"
 					name="agendamento.status"
 					[options]="status"
-					styleClass="w-100" />
+					styleClass="w-full" />
 			</div>
 		</div>
 
 		<div class="flex flex-row gap-3">
-			<div class="flex flex-column w-100">
+			<div class="flex flex-column w-full">
 				<label for="agendamento.cliente">Cliente:</label>
 				<p-dropdown
 					[(ngModel)]="agendamento.cliente"
@@ -58,11 +58,11 @@
 					data-cy="agendamento.cliente"
 					name="agendamento.cliente"
 					[options]="clientes"
-					optionLabel="nome"
-					styleClass="w-100" />
+					optionLabel="pessoa.nome"
+					styleClass="w-full" />
 			</div>
 
-			<div class="flex flex-column w-100">
+			<div class="flex flex-column w-full">
 				<label for="agendamento.servico">Serviço:</label>
 				<p-dropdown
 					[(ngModel)]="agendamento.servico"
@@ -71,10 +71,10 @@
 					name="agendamento.servico"
 					[options]="servicos"
 					optionLabel="nome"
-					styleClass="w-100" />
+					styleClass="w-full" />
 			</div>
 
-			<div class="flex flex-column w-100">
+			<div class="flex flex-column w-full">
 				<label for="agendamento.funcionario">Funcionário:</label>
 				<p-dropdown
 					[(ngModel)]="agendamento.funcionario"
@@ -82,8 +82,8 @@
 					data-cy="agendamento.funcionario"
 					name="agendamento.funcionario"
 					[options]="funcionarios"
-					optionLabel="nome"
-					styleClass="w-100" />
+					optionLabel="pessoa.nome"
+					styleClass="w-full" />
 			</div>
 		</div>
 
@@ -93,6 +93,8 @@
 				[(ngModel)]="agendamento.observacao"
 				data-cy="agendamento.observacao"
 				pInputTextarea
+				style="width: 100%;"
+				[autoResize]="true"
 				name="agendamento.observacao">
 			</textarea>
 		</div>
@@ -100,7 +102,7 @@
 		<p-button
 			data-cy="agendamento.submit"
 			label="Salvar Agendamento"
-			styleClass="w-100"
+			styleClass="w-full"
 			(onClick)="salvarAgendamento()" />
 	</form>
 </p-dialog>

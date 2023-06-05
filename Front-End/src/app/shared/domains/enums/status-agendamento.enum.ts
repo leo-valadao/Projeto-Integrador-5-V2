@@ -1,5 +1,5 @@
 export enum StatusAgendamentoEnum {
-	ABERTO = "Aberto",
-	CANCELADO = "Cancelado",
-	CONFIRMADO = "Confirmado",
+	ABERTO,
+	CANCELADO,
+	CONFIRMADO,
 }
