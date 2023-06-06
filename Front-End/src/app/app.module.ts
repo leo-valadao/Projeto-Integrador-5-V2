@@ -22,6 +22,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ListboxModule } from 'primeng/listbox';
+import { SplitterModule } from 'primeng/splitter';
 
 // Aesthetics:
 import { Rotas } from './app.routes';
@@ -127,6 +128,7 @@ import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
 		InputTextareaModule,
 		SelectButtonModule,
 		ListboxModule,
+		SplitterModule,
 		RouterModule.forRoot(Rotas, { onSameUrlNavigation: 'reload' }),
 	],
 	providers: [MessageService],

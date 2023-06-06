@@ -1,1 +1,60 @@
-<p>formulario-servicos works!</p>
+<p-dialog
+	header="Cadastro de Serviço"
+	[contentStyle]="{ overflow: 'visible' }"
+	[modal]="true"
+	[style]="{ width: '50vw', height: '' }"
+	[(visible)]="exibirFormulario"
+	*ngIf="exibirFormulario">
+	<form class="flex flex-column gap-3">
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-100">
+				<label for="servico.nome">Nome:</label>
+				<input
+					type="text"
+					pInputText
+					[(ngModel)]="servico.nome"
+					name="servico.nome"
+					data-cy="servico.nome" />
+			</div>
+		</div>
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-100">
+				<label for="servico.descricao">Descrição:</label>
+				<input
+					type="text"
+					pInputText
+					[(ngModel)]="servico.descricao"
+					name="servico.descricao"
+					data-cy="servico.descricao" />
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-50">
+				<label for="servico.precoCusto">Preço de Custo:</label>
+				<input
+					type="number"
+					pInputText
+					[(ngModel)]="servico.precoCusto"
+					name="servico.precoCusto"
+					data-cy="servico.precoCusto" />
+			</div>
+
+			<div class="flex flex-column w-75">
+				<label for="servico.precoVenda">Preço de Venda:</label>
+				<input
+					type="number"
+					pInputText
+					[(ngModel)]="servico.precoVenda"
+					name="servico.precoVenda"
+					data-cy="servico.precoVenda" />
+			</div>
+		</div>
+
+		<p-button
+			data-cy="servico.submit"
+			label="Salvar Serviço"
+			styleClass="w-100"
+			(onClick)="salvarServico()" />
+	</form>
+</p-dialog>
