@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.senac.aesthetics.domains.enums.StatusAgendamentoEnum;
 
 import jakarta.persistence.Column;
@@ -44,12 +45,14 @@ public class Agendamento {
     private Long id;
 
     @Column(name = "DATA", nullable = false)
+    @JsonSerialize(as = Date.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     @NotNull(message = "A Data do Agendamento Deve Ser Informada!")
     private Date data;
 
     @Column(name = "HORA", nullable = false)
+    @JsonSerialize(as = Date.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     @Temporal(TemporalType.TIME)
     @NotNull(message = "A Hora do Agendamento Deve Ser Informada!")
