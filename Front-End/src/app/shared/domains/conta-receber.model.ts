@@ -17,7 +17,5 @@ export class ContaReceber extends Conta {
 
 	constructor() {
 		super();
-		this.ordemServico = new OrdemServico();
-		this.cliente = new Cliente();
 	}
 }

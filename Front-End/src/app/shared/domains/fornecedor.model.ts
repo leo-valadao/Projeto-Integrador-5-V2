@@ -7,7 +7,5 @@ export class Fornecedor {
 	// Relacionamento(s):
 	public pessoa!: Pessoa;
 
-	constructor() {
-		this.pessoa = new Pessoa();
-	}
+	constructor() {}
 }
