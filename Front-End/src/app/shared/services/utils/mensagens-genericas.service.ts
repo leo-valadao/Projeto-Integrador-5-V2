@@ -22,8 +22,8 @@ export class MensagensGenericasService {
 		});
 	}
 
-	mensagemPadraoDeErro(erro: HttpErrorResponse) {
-		for (let mensagem of erro.error.mensagens) {
+	mensagemPadraoDeErro(resposta: HttpErrorResponse) {
+		for (let mensagem of resposta.error.mensagens) {
 			this.messageService.add({
 				key: this.toastPrincipal,
 				severity: TipoMensagemEnum.ERROR,
