@@ -1,5 +1,7 @@
 package com.senac.aesthetics.errors;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -39,13 +41,11 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(MethodArgumentNotValidException.class)
   protected ResponseEntity<Erros> handleMethodArgumentNotValidException(
       MethodArgumentNotValidException ex) {
-    StringBuilder erros = new StringBuilder();
+    List<String> erros = new ArrayList<String>();
     for (ObjectError erro : ex.getBindingResult().getAllErrors()) {
-      erros.append(erro.getDefaultMessage() + " \n ");
+      erros.add(erro.getDefaultMessage());
     }
-    IllegalArgumentException excecao = new IllegalArgumentException(erros.toString().trim());
-    Erros erro = new Erros(excecao.getMessage(), TipoMensagemEnum.ERROR, excecao.getClass()
-        .getSimpleName(), HttpStatus.BAD_REQUEST);
+    Erros erro = new Erros(erros, TipoMensagemEnum.ERROR, ex.getClass().getSimpleName(), HttpStatus.BAD_REQUEST);
     return new ResponseEntity<Erros>(erro, erro.getHttpStatus());
   }
 

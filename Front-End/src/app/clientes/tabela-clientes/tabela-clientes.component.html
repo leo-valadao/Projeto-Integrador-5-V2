@@ -80,10 +80,12 @@
 				<td class="flex flex-row justify-content-around">
 					<i
 						class="pi pi-pencil"
+						data-cy="cliente.editar"
 						style="font-size: 2rem; color: black !important"
 						(click)="mostrarFormularioClientes(item)"></i>
 					<i
 						class="pi pi-trash"
+						data-cy="cliente.excluir"
 						style="font-size: 2rem; color: red !important"
 						(click)="excluirCliente(item.id)"></i>
 				</td>

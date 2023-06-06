@@ -10,6 +10,7 @@
 			<div class="flex flex-column w-full">
 				<label for="agendamento.data">Data do Agendamento:</label>
 				<p-calendar
+					#agendamentoData="ngModel"
 					[(ngModel)]="agendamento.data"
 					data-cy="agendamento.data"
 					name="agendamento.data"
@@ -17,22 +18,36 @@
 					dataType="string"
 					[showTime]="false"
 					[showIcon]="true"
-					styleClass="w-full" />
+					styleClass="w-full"
+					[required]="true"
+					[minDate]="dataMinima" />
+				<small
+					*ngIf="!validacaoCamposService.campoValido(agendamentoData)"
+					style="color: red">
+					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YY</b>!
+				</small>
 			</div>
 
 			<div class="flex flex-column w-full">
 				<label for="agendamento.hora">Hora do Agendamento:</label>
 				<p-calendar
+					#agendamentoHora="ngModel"
 					[(ngModel)]="agendamento.hora"
 					data-cy="agendamento.hora"
 					name="agendamento.hora"
-					dateFormat="HH:mm"
-					dataType="string"
+					dateFormat="HH:mm:ss"
 					[showTime]="true"
 					[timeOnly]="true"
 					[showSeconds]="false"
 					[showIcon]="true"
-					styleClass="w-full" />
+					dataType="string"
+					styleClass="w-full"
+					[required]="true" />
+				<small
+					*ngIf="!validacaoCamposService.campoValido(agendamentoHora)"
+					style="color: red">
+					<b>Hora Inválida!</b> A hora deve ter o formato: <b>HH:MM</b>!
+				</small>
 			</div>
 
 			<div
@@ -45,6 +60,7 @@
 					data-cy="agendamento.status"
 					name="agendamento.status"
 					[options]="status"
+					[required]="true"
 					styleClass="w-full" />
 			</div>
 		</div>
@@ -53,37 +69,62 @@
 			<div class="flex flex-column w-full">
 				<label for="agendamento.cliente">Cliente:</label>
 				<p-dropdown
+					#agendamentoCliente="ngModel"
 					[(ngModel)]="agendamento.cliente"
 					field="agendamento.cliente.nome"
 					data-cy="agendamento.cliente"
 					name="agendamento.cliente"
 					[options]="clientes"
 					optionLabel="pessoa.nome"
-					styleClass="w-full" />
+					styleClass="w-full"
+					[required]="true"
+					placeholder="Selecione um cliente" />
+				<small
+					*ngIf="!validacaoCamposService.campoValido(agendamentoCliente)"
+					style="color: red">
+					<b>Cliente Não Selecionado!</b>
+				</small>
 			</div>
 
 			<div class="flex flex-column w-full">
 				<label for="agendamento.servico">Serviço:</label>
 				<p-dropdown
+					#agendamentoServico="ngModel"
 					[(ngModel)]="agendamento.servico"
 					field="agendamento.servico.nome"
 					data-cy="agendamento.servico"
 					name="agendamento.servico"
 					[options]="servicos"
 					optionLabel="nome"
-					styleClass="w-full" />
+					styleClass="w-full"
+					[required]="true"
+					placeholder="Selecione um serviço"
+					(onBlur)="(null)" />
+				<small
+					*ngIf="!validacaoCamposService.campoValido(agendamentoServico)"
+					style="color: red">
+					<b>Serviço Não Selecionado!</b>
+				</small>
 			</div>
 
 			<div class="flex flex-column w-full">
 				<label for="agendamento.funcionario">Funcionário:</label>
 				<p-dropdown
+					#agendamentoFuncionario="ngModel"
 					[(ngModel)]="agendamento.funcionario"
 					field="agendamento.funcionario.nome"
 					data-cy="agendamento.funcionario"
 					name="agendamento.funcionario"
 					[options]="funcionarios"
 					optionLabel="pessoa.nome"
-					styleClass="w-full" />
+					styleClass="w-full"
+					[required]="true"
+					placeholder="Selecione um funcionário" />
+				<small
+					*ngIf="!validacaoCamposService.campoValido(agendamentoFuncionario)"
+					style="color: red">
+					<b>Funcionário Não Selecionado!</b>
+				</small>
 			</div>
 		</div>
 
@@ -93,8 +134,9 @@
 				[(ngModel)]="agendamento.observacao"
 				data-cy="agendamento.observacao"
 				pInputTextarea
-				style="width: 100%;"
+				style="width: 100%"
 				[autoResize]="true"
+				maxlength="500"
 				name="agendamento.observacao">
 			</textarea>
 		</div>
@@ -103,6 +145,7 @@
 			data-cy="agendamento.submit"
 			label="Salvar Agendamento"
 			styleClass="w-full"
+			[disabled]="!agendamentoValido()"
 			(onClick)="salvarAgendamento()" />
 	</form>
 </p-dialog>

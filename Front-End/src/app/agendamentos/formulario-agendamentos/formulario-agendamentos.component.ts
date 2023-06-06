@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Dropdown } from 'primeng/dropdown';
 import { Agendamento } from 'src/app/shared/domains/agendamento.model';
 import { Cliente } from 'src/app/shared/domains/cliente.model';
 import { StatusAgendamentoEnum } from 'src/app/shared/domains/enums/status-agendamento.enum';
@@ -11,6 +12,7 @@ import { ClienteService } from 'src/app/shared/services/cliente.service';
 import { FuncionarioService } from 'src/app/shared/services/funcionario.service';
 import { ServicoService } from 'src/app/shared/services/servico.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
+import { ValidacaoCamposService } from 'src/app/shared/services/utils/validacao-campos.service';
 
 @Component({
 	selector: 'app-formulario-agendamentos',
@@ -26,16 +28,18 @@ export class FormularioAgendamentosComponent implements OnInit {
 	servicos!: Servico[];
 	servicoSelecionado!: Servico;
 	status!: string[];
+	dataMinima: Date = new Date('01/01/' + (new Date().getFullYear() - 1).toString());
 
 	@Input() agendamento: Agendamento = new Agendamento();
-	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
+	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();	
 
 	constructor(
 		private agendamentoService: AgendamentoService,
 		private funcionarioService: FuncionarioService,
 		private clienteService: ClienteService,
 		private servicoService: ServicoService,
-		private mensagensGenericasService: MensagensGenericasService
+		private mensagensGenericasService: MensagensGenericasService,
+		public validacaoCamposService: ValidacaoCamposService
 	) {}
 
 	ngOnInit(): void {
@@ -119,5 +123,12 @@ export class FormularioAgendamentosComponent implements OnInit {
 	atualizarTabelaEFecharFormulario() {
 		this.atualizarTabela.emit();
 		this.exibirFormulario = false;
+	}
+
+	agendamentoValido(): boolean {
+		if (this.agendamento.data && this.agendamento.hora && this.agendamento.cliente && this.agendamento.servico && this.agendamento.funcionario) {
+			return true;
+		}
+		return false;
 	}
 }
