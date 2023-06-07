@@ -54,27 +54,13 @@
 			let-columns="columns">
 			<tr>
 				<!-- Itens da Tabela -->
-				<td class="align-middle text-center">
-					{{ item.id }}
-				</td>
-				<td class="align-middle text-center">
-					{{ item.pessoa.nome }}
-				</td>
-				<td class="align-middle text-center">
-					{{ item.pessoa.telefone }}
-				</td>
-				<td class="align-middle text-center">
-					{{ item.pessoa.email }}
-				</td>
-				<td class="align-middle text-center">
-					{{ obterEstadoBrasileiro(item.pessoa.estadoBrasileiro) }}
-				</td>
-				<td class="align-middle text-center">
-					{{ item.pessoa.cpfOuCnpj }}
-				</td>
-				<td class="align-middle text-center">
-					{{ item.alergias }}
-				</td>
+				<td class="align-middle text-center">{{ item.id }}</td>
+				<td class="align-middle text-center">{{ item.pessoa.nome }}</td>
+				<td class="align-middle text-center">{{ item.pessoa.telefone }}</td>
+				<td class="align-middle text-center">{{ item.pessoa.email }}</td>
+				<td class="align-middle text-center">{{ obterEstadoBrasileiro(item.pessoa.estadoBrasileiro) }}</td>
+				<td class="align-middle text-center">{{ item.pessoa.cpfOuCnpj }}</td>
+				<td class="align-middle text-center" title="{{ item.alergias }}">{{ item.alergias }}</td>
 
 				<!-- Botões de Ações de Cada Item da Tabela -->
 				<td class="flex flex-row justify-content-around">
