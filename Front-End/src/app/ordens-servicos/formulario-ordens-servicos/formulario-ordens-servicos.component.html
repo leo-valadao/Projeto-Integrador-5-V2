@@ -1,1 +1,133 @@
-<p>formulario-ordens-servicos works!</p>
+<p-dialog
+	header="Cadastro de Ordem de Serviço"
+	[contentStyle]="{ overflow: 'visible' }"
+	[modal]="true"
+	[style]="{ width: '50vw', height: '' }"
+	[(visible)]="exibirFormulario"
+	*ngIf="exibirFormulario">
+	<form class="flex flex-column gap-3">
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.dataHoraInicio">Data de Inicio:</label>                                                          
+				<p-calendar
+					[(ngModel)]="ordemServico.dataHoraInicio"
+					data-cy="ordemServico.dataHoraInicio"
+					name="ordemServico.dataHoraInicio"
+					dateFormat="dd/mm/yy"
+					dataType="string"
+					[showTime]="true"
+					[showIcon]="true"
+                    [timeOnly]="true"
+					[showSeconds]="false"
+					styleClass="w-full" />
+			
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.dataHoraTermino">Data Final:</label>
+				<p-calendar
+                [(ngModel)]="ordemServico.dataHoraTermino"
+                data-cy="ordemServico.dataHoraTermino"
+                name="ordemServico.dataHoraTermino"
+                dateFormat="dd/mm/yy"
+                dataType="string"
+                [showTime]="true"
+                [showIcon]="true"
+                [timeOnly]="true"
+                [showSeconds]="false"
+                styleClass="w-full" />
+			</div>
+
+			<div
+				*ngIf="ordemServico.id"
+				class="flex flex-column w-full">
+				<label for="ordemServico.status">Status:</label>
+				<p-dropdown
+					[(ngModel)]="ordemServico.status"
+					field="ordemServico.status"
+					data-cy="ordemServico.status"
+					name="ordemServico.status"
+					[options]="status"
+					styleClass="w-full" />
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.agendamento">Agendamento:</label>
+				<p-dropdown
+					[(ngModel)]="ordemServico.agendamento"
+					field="ordemServico.agendamento.id"
+					data-cy="ordemServico.agendamento"
+					name="ordemServico.agendamento"
+					[options]="agendamentos"
+					optionLabel="nome"
+					styleClass="w-full" />
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.servico">Serviço:</label>
+				<p-dropdown
+					[(ngModel)]="ordemServico.servico"
+					field="ordemServico.servico.nome"
+					data-cy="ordemServico.servico"
+					name="ordemServico.servico"
+					[options]="servicos"
+					optionLabel="nome"
+					styleClass="w-full" />
+			</div>
+
+			
+		</div>
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.responsavelPelaOS">Funcionário Responsável OS:</label>
+				<p-dropdown
+					[(ngModel)]="ordemServico.responsavelPelaOS"
+					field="ordemServico.responsavelPelaOS"
+					data-cy="ordemServico.responsavelPelaOS"
+					name="ordemServico.responsavelPelaOS"
+					[options]="funcionarios"
+					optionLabel="nome"
+					styleClass="w-full" />
+			</div>
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.executorServico">Funcionário Responsável:</label>
+				<p-dropdown
+					[(ngModel)]="ordemServico.executorServico"
+					field="ordemServico.vexecutorServico"
+					data-cy="ordemServico.executorServico"
+					name="ordemServico.executorServico"
+					[options]="funcionarios"
+					optionLabel="nome"
+					styleClass="w-full" />
+			</div>
+
+			
+		</div>
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column">
+				<label for="ordemServico.valor">Valor:</label>
+				<input
+					[(ngModel)]="ordemServico.valor"
+					data-cy="ordemServico.valor"
+					
+					type="number"
+					style="width: 100%"
+					
+					name="ordemServico.valor">
+				
+			</div>
+
+			
+		</div>
+
+		
+
+		<p-button
+			data-cy="ordemServico.submit"
+			label="Salvar Ordem de Serviço"
+			styleClass="w-full"
+			(onClick)="salvarOrdemServico()" />
+	</form>
+</p-dialog>
