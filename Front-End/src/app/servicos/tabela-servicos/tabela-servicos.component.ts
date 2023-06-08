@@ -1,8 +1,68 @@
-import { Component } from '@angular/core';
-
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Table, TableLazyLoadEvent } from 'primeng/table';
+import { Servico } from 'src/app/shared/domains/servico.model';
+import { ServicoService } from 'src/app/shared/services/servico.service';
+import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 @Component({
-  selector: 'app-tabela-servicos',
-  templateUrl: './tabela-servicos.component.html',
-  styles: [],
+	selector: 'app-tabela-servicos',
+	templateUrl: './tabela-servicos.component.html',
+	styles: [],
 })
-export class TabelaServicosComponent {}
+export class TabelaServicosComponent {
+	servicos!: Servico[];
+	quantidadeTotalServicos!: number;
+	quantidadeServicosExibidosPorPagina: number = 30;
+
+	@Output() exibirFormularioServico: EventEmitter<Servico> = new EventEmitter<Servico>();
+
+	@ViewChild(Table) private tabelaServicos!: Table;
+
+	constructor(private servicoService: ServicoService, private mensagensGenericasService: MensagensGenericasService) {}
+
+	ngOnInit(): void {
+		this.obterTodosServicos(0, 30);
+	}
+
+	obterTodosServicos(numeroPagina: number, quantidadePorPagina: number, ordenarPor?: string): void {
+		this.servicoService.obterTodosPorPagina(numeroPagina, quantidadePorPagina, ordenarPor).subscribe({
+			next: (resposta) => {
+				this.servicos = resposta.content;
+				this.quantidadeTotalServicos = resposta.totalElements;
+			},
+			error: (erro: HttpErrorResponse) => {
+				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
+			},
+		});
+	}
+
+	mostrarFormularioServicos(servico?: Servico) {
+		if (servico) {
+			this.exibirFormularioServico.emit(servico);
+		} else {
+			this.exibirFormularioServico.emit(new Servico());
+		}
+	}
+
+	excluirServico(idServico: number) {
+		this.servicoService.excluir(idServico).subscribe({
+			next: () => {
+				this.mensagensGenericasService.mensagemPadraoDeSucesso('Serviço', 'excluído');
+				this.atualizarTabela();
+			},
+			error: (erro: HttpErrorResponse) => {
+				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
+			},
+		});
+	}
+
+	atualizarTabela() {
+		this.obterTodosServicos(Math.floor(Number(this.tabelaServicos.first) / Number(this.tabelaServicos.rows)), Number(this.tabelaServicos._rows));
+	}
+
+	mudarPagina(evento: TableLazyLoadEvent) {
+		if (evento.first != undefined && evento.rows != undefined) {
+			this.obterTodosServicos(Math.floor(evento.first / evento.rows), evento.rows, 'id');
+		}
+	}
+}

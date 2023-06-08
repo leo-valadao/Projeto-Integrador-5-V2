@@ -1,1 +1,76 @@
-<p>tabela-servicos works!</p>
+<div class="px-4 pb-4">
+	<!-- Tabela PrimeNG -->
+	<p-table
+		[value]="servicos"
+		[paginator]="true"
+		[totalRecords]="quantidadeTotalServicos"
+		[rows]="quantidadeServicosExibidosPorPagina"
+		[lazy]="true"
+		[showCurrentPageReport]="true"
+		[autoLayout]="true"
+		[rowsPerPageOptions]="[10, 30, 50, 100]"
+		(onLazyLoad)="mudarPagina($event)"
+		currentPageReportTemplate="Mostrando do {first}º ao {last}º de {totalRecords} serviços"
+		#dtServicos
+		styleClass="p-datatable-gridlines">
+		<ng-template pTemplate="caption">
+			<!-- Barra do Topo da Tabela -->
+			<div class="flex align-items-center justify-content-between">
+				Clientes
+				<button
+					pButton
+					pRipple
+					icon="pi pi-plus"
+					label="Adicionar"
+					class="p-button-primary"
+					(click)="mostrarFormularioServicos()"></button>
+			</div>
+		</ng-template>
+
+		<!-- Cabeçalho da Tabela -->
+		<ng-template
+			pTemplate="header"
+			let-columns>
+			<tr>
+				<!-- Título de Cada Coluna -->
+				<th class="align-middle text-center">ID</th>
+				<th class="align-middle text-center">Nome</th>
+				<th class="align-middle text-center">Descrição</th>
+				<th class="align-middle text-center">Preço de Custo</th>
+				<th class="align-middle text-center">Preço de venda</th>
+
+				<!-- Título da Coluna dos Botões de Ações -->
+				<th class="align-middle text-center align-items-center">Ações</th>
+			</tr>
+		</ng-template>
+
+		<!-- Tabela -->
+		<ng-template
+			pTemplate="body"
+			let-item
+			let-columns="columns">
+			<tr>
+				<!-- Itens da Tabela -->
+				<td class="align-middle text-center">{{ item.id }}</td>
+				<td class="align-middle text-center">{{ item.nome }}</td>
+				<td class="align-middle text-center">{{ item.descricao }}</td>
+				<td class="align-middle text-center">{{ item.precoCusto | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}</td>
+				<td class="align-middle text-center">{{ item.precoVenda | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}</td>
+
+				<!-- Botões de Ações de Cada Item da Tabela -->
+				<td class="flex flex-row justify-content-around">
+					<i
+						class="pi pi-pencil"
+						data-cy="servico.editar"
+						style="font-size: 2rem; color: black !important"
+						(click)="mostrarFormularioServicos(item)"></i>
+					<i
+						class="pi pi-trash"
+						data-cy="servico.excluir"
+						style="font-size: 2rem; color: red !important"
+						(click)="excluirServico(item.id)"></i>
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</div>

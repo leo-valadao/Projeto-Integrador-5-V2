@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePtBr from '@angular/common/locales/pt';
 
 // Prime NG:
 import { MessageService } from 'primeng/api';
@@ -22,6 +25,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ListboxModule } from 'primeng/listbox';
+import { SplitterModule } from 'primeng/splitter';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 // Aesthetics:
 import { Rotas } from './app.routes';
@@ -64,6 +69,8 @@ import { TabelaServicosComponent } from './servicos/tabela-servicos/tabela-servi
 import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
 import { CreditosComponent } from './creditos/creditos.component';
 import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
+
+registerLocaleData(localePtBr, 'pt-BR');
 
 @NgModule({
 	declarations: [
@@ -127,9 +134,11 @@ import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
 		InputTextareaModule,
 		SelectButtonModule,
 		ListboxModule,
+		SplitterModule,
+		InputNumberModule,
 		RouterModule.forRoot(Rotas, { onSameUrlNavigation: 'reload' }),
 	],
-	providers: [MessageService],
+	providers: [MessageService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
