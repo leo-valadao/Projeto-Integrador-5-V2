@@ -1,9 +1,10 @@
-import "@bahmutov/cy-api";
+
 import "./commands";
 import "./ApiCommands/agendamentoCommands";
 import "./ApiCommands/clientesCommands";
 import "./ApiCommands/profissionaisCommands";
 import "./ApiCommands/servicosCommands";
+import '@bahmutov/cy-api'
 
 // before(() => {
 //   cy.GetPessoa().then((res) => {

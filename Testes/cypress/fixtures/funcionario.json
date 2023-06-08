@@ -1,186 +1,263 @@
 {
   "validaCampos": [
     {
-      "campo": "O campo nome é obrigatório",
-      "telefone": "(12)34567-8910",
-      "email": "leonardo@teste.com",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "001.295.100-50",
-      "login": "4sYDagS4H4",
-      "senha": "4sYDagS4H4",
-      "alergias": "Nenhuma",
-      "comissao": 10.0,
-      "message": "O Nome da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
-    },
-    {
-      "campo": "O campo telefone é obrigatório",
-      "nome": "Leonardo Valadão",
-      "email": "leonardo@teste.com",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "001.295.100-50",
-      "login": "4sYDagS4H4",
-      "senha": "4sYDagS4H4",
-      "alergias": "Nenhuma",
-      "comissao": 10.0,
-      "message": "O Telefone da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
-    },
-    {
-      "campo": "E-mail inválido",
-      "nome": "Leonardo Valadão",
-      "telefone": "(12)34567-8910",
-      "email": "leonardo.teste.com",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "001.295.100-50",
-      "login": "4sYDagS4H4",
-      "senha": "4sYDagS4H4",
-      "alergias": "Nenhuma",
-      "comissao": 10.0,
-      "message": "O E-Mail da Pessoa Está Inválido!"
-    },
-    {
-      "campo": "E-mail acima de 50 caracteres",
-      "nome": "Leonardo Valadão",
-      "telefone": "(12)34567-8910",
-      "email": "teste_email_com_mais__de_50_caracteres@teste.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "001.295.100-50",
-      "login": "4sYDagS4H4",
-      "senha": "4sYDagS4H4",
-      "alergias": "Nenhuma",
-      "comissao": 10.0,
-      "message": "O Tamanho Máximo do E-Mail da Pessoa é de 50 Caracteres!"
-    },
-    {
-      "campo": "O Valor da Comissão é obrigatório!",
-      "nome": "Nina Rayssa Santos",
-      "telefone": "(62)99458-2405",
-      "email": "nina.rayssa@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "792.042.471-26",
-      "login": "4sYDagS4H4",
-      "senha": "4sYDagS4H4",
-      "message": "O Valor da Comissão Deve Ser Informado!"
-    },
-    {
-      "campo": "Campo Login é obrigatório!",
-      "nome": "Nina Rayssa Santos",
-      "telefone": "(62)99458-2405",
-      "email": "nina.rayssa@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "792.042.471-26",
-      "senha": "4sYDagS4H4",
-      "comissao": 10.0,
-      "message": "O Login do Funcionário Deve Ser Informado e Não Pode Estar Vazio!"
-    },
-    {
-      "campo": "Campo Senha é obrigatório!",
-      "nome": "Nina Rayssa Santos",
-      "telefone": "(62)99458-2405",
-      "email": "nina.rayssa@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "792.042.471-26",
-      "login": "4sYDagS4H4",
-      "comissao": 10.0,
-      "message": "A Senha do Funcionário Deve Ser Informado e Não Pode Estar Vazio!"
-    }
-  ],
-  "cadastrarFuncionarios": [
-    {
-      "nome": "Nina Rayssa Santos",
-      "telefone": "(62)99458-2405",
-      "email": "nina.rayssa@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "792.042.471-26",
+      "pessoa": {
+        "campo": "O campo nome é obrigatório",
+        "telefone": "(12)34567-8910",
+        "email": "leonardo@teste.com",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "001.295.100-50",
+        "message": "O Nome da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
+      },
       "login": "4sYDagS4H4",
       "senha": "4sYDagS4H4",
       "comissao": 10.0
     },
     {
-      "nome": "Valentina Sarah Cláudia Alves",
-      "telefone": "(62)99134-1535",
-      "email": "valentina_sarah@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "402.839.241-10",
+      "pessoa": {
+        "campo": "O campo telefone é obrigatório",
+        "nome": "Leonardo Valadão",
+        "email": "leonardo@teste.com",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "001.295.100-50",
+        "message": "O Telefone da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
+      },
+      "login": "4sYDagS4H4",
+      "senha": "4sYDagS4H4",
+      "comissao": 10.0
+    },
+    {
+      "pessoa": {
+        "campo": "E-mail inválido",
+        "nome": "Leonardo Valadão",
+        "telefone": "(12)34567-8910",
+        "email": "leonardo.teste.com",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "001.295.100-50",
+        "message": "O E-Mail da Pessoa Está Inválido!"
+      },
+      "login": "4sYDagS4H4",
+      "senha": "4sYDagS4H4",
+      "comissao": 10.0
+    },
+    {
+      "pessoa": {
+        "campo": "E-mail acima de 50 caracteres",
+        "nome": "Leonardo Valadão",
+        "telefone": "(12)34567-8910",
+        "email": "teste_email_com_mais__de_50_caracteres@teste.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "001.295.100-50",
+        "message": "O Tamanho Máximo do E-Mail da Pessoa é de 50 Caracteres!"
+      },
+      "login": "4sYDagS4H4",
+      "senha": "4sYDagS4H4",
+      "comissao": 10.0
+    },
+    {
+      "pessoa": {
+        "campo": "O Valor da Comissão é obrigatório!",
+        "nome": "Nina Rayssa Santos",
+        "telefone": "(62)99458-2405",
+        "email": "nina.rayssa@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "792.042.471-26",
+        "message": "O Valor da Comissão Deve Ser Informado!"
+      },
+      "login": "4sYDagS4H4",
+      "senha": "4sYDagS4H4"
+    },
+    {
+      "pessoa": {
+        "campo": "Campo Login é obrigatório!",
+        "nome": "Nina Rayssa Santos",
+        "telefone": "(62)99458-2405",
+        "email": "nina.rayssa@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "792.042.471-26",
+        "message": "O Login do Funcionário Deve Ser Informado e Não Pode Estar Vazio!"
+      },
+      "senha": "4sYDagS4H4",
+      "comissao": 10.0
+    },
+    {
+      "pessoa": {
+        "campo": "Campo Senha é obrigatório!",
+        "nome": "Nina Rayssa Santos",
+        "telefone": "(62)99458-2405",
+        "email": "nina.rayssa@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "792.042.471-26",
+        "message": "A Senha do Funcionário Deve Ser Informado e Não Pode Estar Vazio!"
+      },
+      "login": "4sYDagS4H4",
+      "comissao": 10.0
+    },
+    {
+      "pessoa": {
+        "campo": "Informar CPF para pessoa JURIDICA",
+        "nome": "Nina Rayssa Santos",
+        "telefone": "(62)99458-2405",
+        "email": "nina.rayssa@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_JURIDICA",
+        "cpfOuCnpj": "792.042.471-27",
+        "message": "O CPF/CNPJ da Pessoa Deve Ser Válido e Deve Conter a Pontuação! CPF: 123.456.789-01 / CNPJ: 12.345.678/9012-34"
+      },
+      "login": "4sYDagS4H4",
+      "senha": "4sYDagS4H4",
+      "comissao": 10.0
+    },
+    {
+      "pessoa": {
+        "campo": "Informar CNPJ para pessoa FISICA",
+        "nome": "Nina Rayssa Santos",
+        "telefone": "(62)99458-2405",
+        "email": "nina.rayssa@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "84.192.255/0001-93",
+        "message": "O CPF/CNPJ da Pessoa Deve Ser Válido e Deve Conter a Pontuação! CPF: 123.456.789-01 / CNPJ: 12.345.678/9012-34"
+      },
+      "login": "4sYDagS4H4",
+      "senha": "4sYDagS4H4",
+      "comissao": 10.0
+    }
+  ],
+  "cadastrarFuncionarios": [
+    {
+      "pessoa": {
+        "nome": "Nina Rayssa Santos",
+        "telefone": "(62)99458-2405",
+        "email": "nina.rayssa@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "792.042.471-26"
+      },
+      "login": "4sYDagS4H4",
+      "senha": "4sYDagS4H4",
+      "comissao": 10.0
+    },
+    {
+      "pessoa": {
+        "nome": "Valentina Sarah Cláudia Alves",
+        "telefone": "(62)99134-1535",
+        "email": "valentina_sarah@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "402.839.241-10"
+      },
       "login": "rgjDEwobAM",
       "senha": "rgjDEwobAM",
       "comissao": 10.0
     },
     {
-      "nome": "Benedito Felipe Mário das Neves",
-      "telefone": "(62)98920-3599",
-      "email": "beneditofelipedasneves@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "095.804.891-65",
+      "pessoa": {
+        "nome": "Benedito Felipe Mário das Neves",
+        "telefone": "(62)98920-3599",
+        "email": "beneditofelipedasneves@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "095.804.891-65"
+      },
       "login": "ykCPwOUB3O",
       "senha": "ykCPwOUB3O",
       "comissao": 10.0
     },
     {
-      "nome": "Aurora Eloá Nina Gonçalves",
-      "telefone": "(62)98159-9044",
-      "email": "aurora.eloa.goncalves@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "967.844.631-61",
+      "pessoa": {
+        "nome": "Aurora Eloá Nina Gonçalves",
+        "telefone": "(62)98159-9044",
+        "email": "aurora.eloa.goncalves@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "967.844.631-61"
+      },
       "login": "gZqF7gLyGO",
       "senha": "gZqF7gLyGO",
       "comissao": 10.0
     },
     {
-      "nome": "Márcio Kauê Carvalho",
-      "telefone": "(62)98580-3624",
-      "email": "marciokauecarvalho@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "393.375.401-18",
+      "pessoa": {
+        "nome": "Márcio Kauê Carvalho",
+        "telefone": "(62)98580-3624",
+        "email": "marciokauecarvalho@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "393.375.401-18"
+      },
       "login": "w9tlyzmsjl",
       "senha": "w9tlyzmsjl",
       "comissao": 10.0
     },
     {
-      "nome": "Laís Elza Moreira",
-      "telefone": "(62)98366-3736",
-      "email": "laiselzamoreira@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "170.654.001-90",
+      "pessoa": {
+        "nome": "Laís Elza Moreira",
+        "telefone": "(62)98366-3736",
+        "email": "laiselzamoreira@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "170.654.001-90"
+      },
       "login": "rkqkrj6jph",
       "senha": "rkqkrj6jph",
       "comissao": 10.0
     },
     {
-      "nome": "Ruan Pietro Ian de Paula",
-      "telefone": "(62)99765-3863",
-      "email": "ruan_pietro@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "316.039.331-31",
+      "pessoa": {
+        "nome": "Ruan Pietro Ian de Paula",
+        "telefone": "(62)99765-3863",
+        "email": "ruan_pietro@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "316.039.331-31"
+      },
       "login": "B8hlbELZyD",
       "senha": "B8hlbELZyD",
       "comissao": 10.0
     },
     {
-      "nome": "Ricardo Levi Danilo Viana",
-      "telefone": "(62)98419-2745",
-      "email": "ricardo.levi@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "775.136.301-00",
+      "pessoa": {
+        "nome": "Ricardo Levi Danilo Viana",
+        "telefone": "(62)98419-2745",
+        "email": "ricardo.levi@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "775.136.301-00"
+      },
       "login": "KFYyO0rCUd",
       "senha": "KFYyO0rCUd",
       "comissao": 10.0
     },
     {
-      "nome": "Breno Julio Victor Moraes",
-      "telefone": "(62)98822-4421",
-      "email": "brenojuliomoraes@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "165.196.431-90",
+      "pessoa": {
+        "nome": "Breno Julio Victor Moraes",
+        "telefone": "(62)98822-4421",
+        "email": "brenojuliomoraes@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "165.196.431-90"
+      },
       "login": "7hBMnjTtlN",
       "senha": "7hBMnjTtlN",
       "comissao": 10.0
     },
     {
-      "nome": "Carolina Kamilly Almada",
-      "telefone": "(62)98530-6872",
-      "email": "carolina.kamilly@ads.com",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "742.270.811-57",
+      "pessoa": {
+        "nome": "Carolina Kamilly Almada",
+        "telefone": "(62)98530-6872",
+        "email": "carolina.kamilly@ads.com",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "742.270.811-57"
+      },
       "login": "f8d7Y9KGUG",
       "senha": "f8d7Y9KGUG",
       "comissao": 10.0
