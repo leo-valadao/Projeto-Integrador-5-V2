@@ -11,7 +11,6 @@ import { MensagensGenericasService } from 'src/app/shared/services/utils/mensage
 })
 export class TabelaServicosComponent {
 	servicos!: Servico[];
-	servicosSelecionados!: Servico[];
 	quantidadeTotalServicos!: number;
 	quantidadeServicosExibidosPorPagina: number = 30;
 
