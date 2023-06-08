@@ -127,8 +127,8 @@ export class FormularioAgendamentosComponent implements OnInit {
 
 	agendamentoInvalido(): boolean {
 		if (this.agendamento.data && this.agendamento.hora && this.agendamento.cliente && this.agendamento.servico && this.agendamento.funcionario) {
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 }

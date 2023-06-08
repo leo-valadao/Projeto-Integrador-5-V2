@@ -8,7 +8,7 @@
 	<form class="flex flex-column gap-3">
 		<div class="flex flex-row gap-3">
 			<div class="flex flex-column w-full">
-				<label for="agendamento.data">Data do Agendamento:</label>
+				<label for="agendamento.data">Data do Agendamento: <b style="color: red">*</b></label>
 				<p-calendar
 					#agendamentoData="ngModel"
 					[(ngModel)]="agendamento.data"
@@ -29,7 +29,7 @@
 			</div>
 
 			<div class="flex flex-column w-full">
-				<label for="agendamento.hora">Hora do Agendamento:</label>
+				<label for="agendamento.hora">Hora do Agendamento: <b style="color: red">*</b></label>
 				<p-calendar
 					#agendamentoHora="ngModel"
 					[(ngModel)]="agendamento.hora"
@@ -67,7 +67,7 @@
 
 		<div class="flex flex-row gap-3">
 			<div class="flex flex-column w-full">
-				<label for="agendamento.cliente">Cliente:</label>
+				<label for="agendamento.cliente">Cliente: <b style="color: red">*</b></label>
 				<p-dropdown
 					#agendamentoCliente="ngModel"
 					[(ngModel)]="agendamento.cliente"
@@ -87,7 +87,7 @@
 			</div>
 
 			<div class="flex flex-column w-full">
-				<label for="agendamento.servico">Serviço:</label>
+				<label for="agendamento.servico">Serviço: <b style="color: red">*</b></label>
 				<p-dropdown
 					#agendamentoServico="ngModel"
 					[(ngModel)]="agendamento.servico"
@@ -108,7 +108,7 @@
 			</div>
 
 			<div class="flex flex-column w-full">
-				<label for="agendamento.funcionario">Funcionário:</label>
+				<label for="agendamento.funcionario">Funcionário: <b style="color: red">*</b></label>
 				<p-dropdown
 					#agendamentoFuncionario="ngModel"
 					[(ngModel)]="agendamento.funcionario"
