@@ -1,27 +1,32 @@
-
-<p-splitter [style]="{ height: '600px' }" [panelSizes]="[20, 80]" [minSizes]="[10, 0]" styleClass="mb-5">
-   
-    <ng-template pTemplate>
-        <p-splitter layout="vertical" [panelSizes]="[15, 85]">
-            <ng-template pTemplate>
-                <div style="flex-grow: 1;" class="flex align-items-center justify-content-center">
-                    <p>oi</p>
-                    <td></td>
-                    <p>oi</p>
-                 </div>
-             
-            </ng-template>
-            <ng-template pTemplate>
-                <p-splitter [panelSizes]="[20, 80]">
-                    <ng-template pTemplate>
-                        <div class="col flex align-items-center justify-content-center">Panel 2</div>
-                        <div class="col flex align-items-center justify-content-center">Panel 2</div>
-                    </ng-template>
-                    <ng-template pTemplate>
-                        <div class="col flex align-items-center justify-content-center">Panel 3</div>
-                    </ng-template>
-                </p-splitter>
-            </ng-template>
-        </p-splitter>
-    </ng-template>
+<p-splitter
+	[style]="{ height: '600px' }"
+	[panelSizes]="[20, 80]"
+	[minSizes]="[10, 0]"
+	styleClass="mb-5">
+	<ng-template pTemplate>
+		<p-splitter
+			layout="vertical"
+			[panelSizes]="[15, 85]">
+			<ng-template pTemplate>
+				<div
+					style="flex-grow: 1"
+					class="flex align-items-center justify-content-center">
+					<p>oi</p>
+					<td></td>
+					<p>oi</p>
+				</div>
+			</ng-template>
+			<ng-template pTemplate>
+				<p-splitter [panelSizes]="[20, 80]">
+					<ng-template pTemplate>
+						<div class="flex flex-column w-full flex align-items-center justify-content-center">Panel 2</div>
+						<div class="flex flex-column w-full flex align-items-center justify-content-center">Panel 2</div>
+					</ng-template>
+					<ng-template pTemplate>
+						<div class="flex flex-column w-full flex align-items-center justify-content-center">Panel 3</div>
+					</ng-template>
+				</p-splitter>
+			</ng-template>
+		</p-splitter>
+	</ng-template>
 </p-splitter>

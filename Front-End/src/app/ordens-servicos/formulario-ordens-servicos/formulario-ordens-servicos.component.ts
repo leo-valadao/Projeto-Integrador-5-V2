@@ -1,6 +1,6 @@
 import { OrdemServicoService } from './../../shared/services/ordem-servico.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { OrdemServico } from 'src/app/shared/domains/ordem-servico.model';
 import { StatusOrdemServicoEnum } from 'src/app/shared/domains/enums/status-ordem-servico.enum';
 import { Pagina } from 'src/app/shared/domains/others/pagina.page';
@@ -11,32 +11,44 @@ import { Funcionario } from 'src/app/shared/domains/funcionario.model';
 import { FuncionarioService } from 'src/app/shared/services/funcionario.service';
 import { Servico } from 'src/app/shared/domains/servico.model';
 import { ServicoService } from 'src/app/shared/services/servico.service';
+import { ValidacaoCamposService } from 'src/app/shared/services/utils/validacao-campos.service';
+import { InputNumber } from 'primeng/inputnumber';
+import { NgModel } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-formulario-ordens-servicos',
 	templateUrl: './formulario-ordens-servicos.component.html',
 	styles: [],
 })
-export class FormularioOrdensServicosComponent {
+export class FormularioOrdensServicosComponent implements OnInit {
 	exibirFormulario: Boolean = false;
 	funcionarios!: Funcionario[];
-	funcionarioSelecionado!: Funcionario;
 	agendamentos!: Agendamento[];
-	agendamentosSelecionado!: Agendamento;
 	servicos!: Servico[];
-	servicoSelecionado!: Servico;
 	status!: string[];
+	dataMinima: Date = new Date('01/01/' + (new Date().getFullYear() - 1).toString());
 
 	@Input() ordemServico: OrdemServico = new OrdemServico();
 	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
+
+	@ViewChild('ordemServicoValor') valorOrdemServico!: NgModel;
 
 	constructor(
 		private agendamentoService: AgendamentoService,
 		private funcionarioService: FuncionarioService,
 		private servicoService: ServicoService,
 		private ordemServicoService: OrdemServicoService,
-		private mensagensGenericasService: MensagensGenericasService
+		private mensagensGenericasService: MensagensGenericasService,
+		public validacaoCamposService: ValidacaoCamposService
 	) {}
+
+	ngOnInit(): void {
+		this.obterTodosAgendamentos();
+		this.obterTodosServicos();
+		this.obterTodosFuncionarios();
+		this.status = Object.keys(StatusOrdemServicoEnum).map((value) => value);
+	}
 
 	salvarOrdemServico() {
 		if (this.ordemServico.id) {
@@ -74,10 +86,9 @@ export class FormularioOrdensServicosComponent {
 	}
 
 	obterTodosAgendamentos() {
-		// TODO: Trocar consulta para uma mais apropriada, pois essa só retorna os 1000 últimos clientes registrados no banco de dados
-		this.agendamentoService.obterTodosPorPagina(0, 1000).subscribe({
-			next: (resposta: Pagina<Agendamento>) => {
-				this.agendamentos = resposta.content;
+		this.agendamentoService.obterAgendamentosSemOrdemServiço().subscribe({
+			next: (resposta: Agendamento[]) => {
+				this.agendamentos = resposta;
 			},
 			error: (erro: HttpErrorResponse) => {
 				this.mensagensGenericasService.mensagemPadraoDeErro(erro);
@@ -112,5 +123,14 @@ export class FormularioOrdensServicosComponent {
 	atualizarTabelaEFecharFormulario() {
 		this.atualizarTabela.emit();
 		this.exibirFormulario = false;
+	}
+
+	definirValorOrdemServico() {
+		this.ordemServico.valor = this.ordemServico.servico.precoVenda;
+	}
+
+	validarValorOrdemServico() {
+		this.valorOrdemServico.control.markAsTouched();
+		this.validacaoCamposService.campoInvalido(this.valorOrdemServico);
 	}
 }

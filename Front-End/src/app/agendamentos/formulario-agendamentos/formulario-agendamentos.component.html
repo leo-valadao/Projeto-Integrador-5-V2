@@ -12,15 +12,16 @@
 				<p-calendar
 					#agendamentoData="ngModel"
 					[(ngModel)]="agendamento.data"
+					[minDate]="dataMinima"
+					[showTime]="false"
+					[showIcon]="true"
+					[required]="true"
+					field="agendamento.data"
 					data-cy="agendamento.data"
 					name="agendamento.data"
 					dateFormat="dd/mm/yy"
 					dataType="string"
-					[showTime]="false"
-					[showIcon]="true"
-					styleClass="w-full"
-					[required]="true"
-					[minDate]="dataMinima" />
+					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(agendamentoData)"
 					style="color: red">
@@ -80,7 +81,7 @@
 					[required]="true"
 					placeholder="Selecione um cliente" />
 				<small
-					*ngIf="!validacaoCamposService.campoInvalido(agendamentoCliente)"
+					*ngIf="validacaoCamposService.campoInvalido(agendamentoCliente)"
 					style="color: red">
 					<b>Cliente Não Selecionado!</b>
 				</small>

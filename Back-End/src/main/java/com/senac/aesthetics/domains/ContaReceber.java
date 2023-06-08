@@ -51,7 +51,7 @@ public class ContaReceber extends Conta {
     private BigDecimal valorRecebido;
 
     @Column(name = "DATA_RECEBIMENTO")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
     @PastOrPresent(message = "A Data de Recebimento da Conta a Receber Deve Ser Uma Data no Presente ou no Passado!")
     private Date dataRecebimento;
