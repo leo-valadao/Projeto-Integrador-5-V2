@@ -1,123 +1,191 @@
 {
   "validaCampos": [
     {
-      "campo": "O campo nome é obrigatório",
-      "telefone": "(12)34567-8910",
-      "email": "leonardo@teste.com",
-      "uf": "GO",
-      "cpf": "001.295.100-50",
-      "alergias": "Nenhuma",
-      "message": "O Nome da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
+      "pessoa": {
+        "campo": "O campo nome é obrigatório",
+        "telefone": "(12)34567-8910",
+        "email": "leonardo@teste.com",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "001.295.100-50",
+        "message": "O Nome da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
+      },
+      "alergias": "Nenhuma"
     },
     {
-      "campo": "O campo telefone é obrigatório",
-      "nome": "Leonardo Valadão",
-      "email": "leonardo@teste.com",
-      "uf": "GO",
-      "cpf": "001.295.100-50",
-      "alergias": "Nenhuma",
-      "message": "O Telefone da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
+      "pessoa": {
+        "campo": "O campo telefone é obrigatório",
+        "nome": "Leonardo Valadão",
+        "email": "leonardo@teste.com",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "001.295.100-50",
+        "message": "O Telefone da Pessoa Deve Ser Informado e Não Pode Estar Vazio!"
+      },
+      "alergias": "Nenhuma"
     },
     {
-      "campo": "E-mail inválido",
-      "nome": "Leonardo Valadão",
-      "telefone": "(12)34567-8910",
-      "email": "leonardo.teste.com",
-      "uf": "GO",
-      "cpf": "001.295.100-50",
-      "alergias": "Nenhuma",
-      "message": "O E-Mail da Pessoa Está Inválido!"
+      "pessoa": {
+        "campo": "E-mail inválido",
+        "nome": "Leonardo Valadão",
+        "telefone": "(12)34567-8910",
+        "email": "leonardo.teste.com",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "001.295.100-50",
+        "message": "O E-Mail da Pessoa Está Inválido!"
+      },
+      "alergias": "Nenhuma"
     },
     {
-      "campo": "E-mail acima de 50 caracteres",
-      "nome": "Leonardo Valadão",
-      "telefone": "(12)34567-8910",
-      "email": "teste_email_com_mais__de_50_caracteres@teste.com.br",
-      "uf": "GO",
-      "cpf": "001.295.100-50",
-      "alergias": "Nenhuma",
-      "message": "O Tamanho Máximo do E-Mail da Pessoa é de 50 Caracteres!"
+      "pessoa": {
+        "campo": "E-mail acima de 50 caracteres",
+        "nome": "Leonardo Valadão",
+        "telefone": "(12)34567-8910",
+        "email": "teste_email_com_mais__de_50_caracteres@teste.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "001.295.100-50",
+        "message": "O Tamanho Máximo do E-Mail da Pessoa é de 50 Caracteres!"
+      },
+      "alergias": "Nenhuma"
+    },
+    {
+      "pessoa": {
+        "campo": "Informar CNPJ para pessoa FISICA",
+        "nome": "Leonardo Valadão",
+        "telefone": "(62)99958-8976",
+        "email": "leonardo@teste.com",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "84.192.255/0001-93",
+        "message": "O CPF/CNPJ da Pessoa Deve Ser Válido e Deve Conter a Pontuação! CPF: 123.456.789-01 / CNPJ: 12.345.678/9012-34"
+      },
+      "alergias": "Nenhuma"
+    },
+    {
+      "pessoa": {
+        "campo": "Informar CPF para pessoa JURIDICA",
+        "nome": "Leonardo Valadão",
+        "telefone": "(62)99958-8976",
+        "email": "leonardo@teste.com",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_JURIDICA",
+        "cpfOuCnpj": "001.295.100-50",
+        "message": "O CPF/CNPJ da Pessoa Deve Ser Válido e Deve Conter a Pontuação! CPF: 123.456.789-01 / CNPJ: 12.345.678/9012-34"
+      },
+      "alergias": "Nenhuma"
     }
   ],
   "cadastrarClientes": [
     {
-      "nome": "Mariah Luiza Sueli Santos",
-      "telefone": "(62)99776-7614",
-      "email": "mariahluizasantos@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "915.800.721-00",
+      "pessoa": {
+        "nome": "Mariah Luiza Sueli Santos",
+        "telefone": "(62)99776-7614",
+        "email": "mariahluizasantos@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "915.800.721-00"
+      },
       "alergias": "Nenhuma"
     },
     {
-      "nome": "Larissa Betina Carvalho",
-      "telefone": "(62)99690-1421",
-      "email": "larissa-carvalho73@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "182.427.681-88",
+      "pessoa": {
+        "nome": "Larissa Betina Carvalho",
+        "telefone": "(62)99690-1421",
+        "email": "larissa-carvalho73@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "182.427.681-88"
+      },
       "alergias": "Nenhuma"
     },
     {
-      "nome": "Nair Marlene Betina Figueiredo",
-      "telefone": "(62)98844-1646",
-      "email": "nair_figueiredo@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "121.280.841-05",
+      "pessoa": {
+        "nome": "Nair Marlene Betina Figueiredo",
+        "telefone": "(62)98844-1646",
+        "email": "nair_figueiredo@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "121.280.841-05"
+      },
       "alergias": "Nenhuma"
     },
     {
-      "nome": "Laura Elza Vanessa Rodrigues",
-      "telefone": "(62)98975-7089",
-      "email": "laura-rodrigues90@ads.com",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "360.039.061-97",
+      "pessoa": {
+        "nome": "Laura Elza Vanessa Rodrigues",
+        "telefone": "(62)98975-7089",
+        "email": "laura-rodrigues90@ads.com",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "360.039.061-97"
+      },
       "alergias": "Nenhuma"
     },
     {
-      "nome": "Aurora Natália Carolina Melo",
-      "telefone": "(62)98652-7818",
-      "email": "aurora_melo@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "180.030.481-17",
+      "pessoa": {
+        "nome": "Aurora Natália Carolina Melo",
+        "telefone": "(62)98652-7818",
+        "email": "aurora_melo@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "180.030.481-17"
+      },
       "alergias": "Nenhuma"
     },
     {
-      "nome": "Sandra Antônia Peixoto",
-      "telefone": "(62)99958-8976",
-      "email": "sandra-peixoto83@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "666.116.741-60",
+      "pessoa": {
+        "nome": "Sandra Antônia Peixoto",
+        "telefone": "(62)99958-8976",
+        "email": "sandra-peixoto83@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "666.116.741-60"
+      },
       "alergias": "Nenhuma"
     },
     {
-      "nome": "Emily Isabela Débora Gomes",
-      "telefone": "(62)99424-9858",
-      "email": "emily_isabela@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "813.080.221-07",
+      "pessoa": {
+        "nome": "Emily Isabela Débora Gomes",
+        "telefone": "(62)99424-9858",
+        "email": "emily_isabela@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "813.080.221-07"
+      },
       "alergias": "Nenhuma"
     },
     {
-      "nome": "Larissa Cristiane Almada",
-      "telefone": "(62)99244-1087",
-      "email": "larissa.cristiane@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "245.091.911-20",
+      "pessoa": {
+        "nome": "Larissa Cristiane Almada",
+        "telefone": "(62)99244-1087",
+        "email": "larissa.cristiane@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "245.091.911-20"
+      },
       "alergias": "Nenhuma"
     },
     {
-      "nome": "Isabelly Alice Nascimento",
-      "telefone": "(62)99422-9616",
-      "email": "isabelly_nascimento@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "518.920.321-20",
+      "pessoa": {
+        "nome": "Isabelly Alice Nascimento",
+        "telefone": "(62)99422-9616",
+        "email": "isabelly_nascimento@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "518.920.321-20"
+      },
       "alergias": "Nenhuma"
     },
     {
-      "nome": "Helena Eduarda Heloise Nunes",
-      "telefone": "(62)99899-0814",
-      "email": "helena_eduarda_nunes@ads.com.br",
-      "estadoBrasileiro": "GOIAS",
-      "cpf": "544.713.721-73",
+      "pessoa": {
+        "nome": "Helena Eduarda Heloise Nunes",
+        "telefone": "(62)99899-0814",
+        "email": "helena_eduarda_nunes@ads.com.br",
+        "estadoBrasileiro": "GOIAS",
+        "tipoPessoa": "PESSOA_FISICA",
+        "cpfOuCnpj": "544.713.721-73"
+      },
       "alergias": "Nenhuma"
     }
   ]

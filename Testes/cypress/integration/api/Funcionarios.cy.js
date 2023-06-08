@@ -8,12 +8,12 @@ describe("/api/v1/funcionario", () => {
 
   context("POST", () => {
     cadastrarFuncionarios.forEach(function (payload) {
-      it(`Deve cadastrar funcionario: ${payload.nome}`, () => {
+      it(`Deve cadastrar funcionario: ${payload.pessoa.nome}`, () => {
         cy.PostProfissional(payload).then((res) => {
           expect(res.status).to.eql(201);
-          expect(res.body.nome).to.eql(payload.nome);
-          expect(res.body.telefone).to.eql(payload.telefone);
-          expect(res.body.email).to.eql(payload.email);
+          expect(res.body.pessoa.nome).to.eql(payload.pessoa.nome);
+          expect(res.body.pessoa.telefone).to.eql(payload.pessoa.telefone);
+          expect(res.body.pessoa.email).to.eql(payload.pessoa.email);
           expect(res.body.login).to.eql(payload.login);
           expect(res.body.senha).to.eql(payload.senha);
           expect(res.body.comissao).to.eql(payload.comissao);
@@ -24,17 +24,18 @@ describe("/api/v1/funcionario", () => {
     it("Deve retornar erro ao cadastrar funcionario duplicado", () => {
       const payload = payloadFuncionarioExistente();
       cy.PostProfissional(payload).then((res) => {
-        expect(res.status).to.eql(500);
+        expect(res.status).to.eql(409);
+        expect(res.body.mensagens[0]).contain(`Funcionario Já Cadastrado! CPF: ${payload.pessoa.cpfOuCnpj}`);
       });
     });
   });
 
   context("Validar campos obrigatórios", () => {
     validaCampos.forEach(function (payload) {
-      it(`${payload.campo}`, () => {
+      it(`${payload.pessoa.campo}`, () => {
         cy.PostProfissional(payload).then((res) => {
           expect(res.status).to.eql(400);
-          expect(res.body.mensagem).to.eql(payload.message);
+          expect(res.body.mensagens[0]).contain(payload.pessoa.message);
         });
       });
     });
@@ -58,15 +59,26 @@ describe("/api/v1/funcionario", () => {
       const payload = payloadFuncionario();
       cy.GetAllProfissionalById(id).then((res) => {
         expect(res.status).to.eql(200);
-        expect(res.body.nome).to.eql(payload.nome);
-        expect(res.body.telefone).to.eql(payload.telefone);
-        expect(res.body.email).to.eql(payload.email);
-        expect(res.body.uf).to.eql(payload.uf);
+        expect(res.body.id).to.eql(id);
+        expect(res.body.pessoa.nome).to.eql(payload.pessoa.nome);
+        expect(res.body.pessoa.telefone).to.eql(payload.pessoa.telefone);
+        expect(res.body.pessoa.email).to.eql(payload.pessoa.email);
+        expect(res.body.pessoa.tipoPessoa).to.eql(payload.pessoa.tipoPessoa);
+        expect(res.body.pessoa.cpfOuCnpj).to.eql(payload.pessoa.cpfOuCnpj);
+        expect(res.body.pessoa.estadoBrasileiro).to.eql(payload.pessoa.estadoBrasileiro);
         expect(res.body.login).to.eql(payload.login);
         expect(res.body.senha).to.eql(payload.senha);
         expect(res.body.comissao).to.eql(payload.comissao);
       });
     });
+
+    it("Deve retornar erro ao pesquisar funcionário inexistente", () => {
+      cy.GetAllProfissionalById("99999").then((res) => {
+        expect(res.status).to.eql(404);
+        expect(res.body.mensagens[0]).to.eql("Funcionario Não Encontrado! ID: 99999");
+        expect(res.body.httpStatus).to.eql("NOT_FOUND");
+      });
+    })
   });
 
   context("PUT", () => {
@@ -76,10 +88,12 @@ describe("/api/v1/funcionario", () => {
       cy.PutProfissional(payload).then((res) => {
         expect(res.status).to.eql(200);
         expect(res.body.id).to.eql(payload.id);
-        expect(res.body.nome).to.eql(payload.nome);
-        expect(res.body.telefone).to.eql(payload.telefone);
-        expect(res.body.email).to.eql(payload.email);
-        expect(res.body.estadoBrasileiro).to.eql(payload.estadoBrasileiro);
+        expect(res.body.pessoa.nome).to.eql(payload.pessoa.nome);
+        expect(res.body.pessoa.telefone).to.eql(payload.pessoa.telefone);
+        expect(res.body.pessoa.email).to.eql(payload.pessoa.email);
+        expect(res.body.pessoa.tipoPessoa).to.eql(payload.pessoa.tipoPessoa);
+        expect(res.body.pessoa.cpfOuCnpj).to.eql(payload.pessoa.cpfOuCnpj);
+        expect(res.body.pessoa.estadoBrasileiro).to.eql(payload.pessoa.estadoBrasileiro);
         expect(res.body.login).to.eql(payload.login);
         expect(res.body.senha).to.eql(payload.senha);
         expect(res.body.comissao).to.eql(payload.comissao);
@@ -96,6 +110,15 @@ describe("/api/v1/funcionario", () => {
       const id = Cypress.env("func_id");
       cy.DeleteProfissional(id).then((res) => {
         expect(res.status).to.eql(204);
+      });
+    });
+
+    it("Deve retornar erro ao excluir profissional inexistente", () => {
+      const id = Cypress.env("func_id");
+      cy.DeleteProfissional(id).then((res) => {
+        expect(res.status).to.eql(404);
+        expect(res.body.mensagens[0]).to.eql(`Funcionario Não Encontrado! ID: ${id}`);
+        expect(res.body.httpStatus).to.eql("NOT_FOUND");
       });
     });
   });
