@@ -51,7 +51,7 @@ public class ContaPagar extends Conta {
     private BigDecimal valorPago;
 
     @Column(name = "DATA_PAGAMENTO")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
     @PastOrPresent(message = "A Data de Pagamaneto da Conta a Pagar Deve Ser Uma Data no Presente ou no Passado!")
     private Date dataPagamento;

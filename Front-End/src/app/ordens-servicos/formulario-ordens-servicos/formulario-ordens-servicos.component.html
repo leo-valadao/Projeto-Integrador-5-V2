@@ -1,1 +1,192 @@
-<p>formulario-ordens-servicos works!</p>
+<p-dialog
+	header="Cadastro de Ordem de Serviço"
+	[contentStyle]="{ overflow: 'visible' }"
+	[modal]="true"
+	[style]="{ width: 'max-content', height: '' }"
+	[(visible)]="exibirFormulario"
+	*ngIf="exibirFormulario">
+	<form class="flex flex-column gap-3">
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.dataHoraInicio">Data / Hora do Início: <b style="color: red">*</b></label>
+				<p-calendar
+					#ordemServicoDataHoraInicio="ngModel"
+					[(ngModel)]="ordemServico.dataHoraInicio"
+					[minDate]="dataMinima"
+					[showTime]="true"
+					[showIcon]="true"
+					[required]="true"
+					[showSeconds]="false"
+					name="ordemServico.dataHoraInicio"
+					field="ordemServico.dataHoraInicio"
+					data-cy="ordemServico.dataHoraInicio"
+					dataType="string"
+					styleClass="w-full"
+					dateFormat="dd/mm/yy" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(ordemServicoDataHoraInicio)"
+					style="color: red">
+					<b>Data e Hora Inválida!</b> A data e hora deve ter o formato: <b>DD/MM/YY HH:MM</b>!
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.dataHoraTermino">Data / Hora do Término: <b style="color: red">*</b></label>
+				<p-calendar
+					#ordemServicoDataHoraTermino="ngModel"
+					[(ngModel)]="ordemServico.dataHoraTermino"
+					[showTime]="true"
+					[showIcon]="true"
+					[required]="true"
+					[showSeconds]="false"
+					field="ordemServico.dataHoraTermino"
+					data-cy="ordemServico.dataHoraTermino"
+					name="ordemServico.dataHoraTermino"
+					dateFormat="dd/mm/yy"
+					dataType="string"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(ordemServicoDataHoraTermino)"
+					style="color: red">
+					<b>Data e Hora Inválida!</b> A data e hora deve ter o formato: <b>DD/MM/YY HH:MM</b>!
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.status">Status: <b style="color: red">*</b></label>
+				<p-dropdown
+					#ordemServicoStatus="ngModel"
+					[(ngModel)]="ordemServico.status"
+					[options]="status"
+					[required]="true"
+					field="ordemServico.status"
+					data-cy="ordemServico.status"
+					name="ordemServico.status"
+					styleClass="w-full" />
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.agendamento">Agendamento: <b style="color: red">*</b></label>
+				<p-dropdown
+					#ordemServicoAgendamento="ngModel"
+					[(ngModel)]="ordemServico.agendamento"
+					field="ordemServico.agendamento.id"
+					data-cy="ordemServico.agendamento"
+					name="ordemServico.agendamento"
+					emptyMessage="Nenhum agendamento sem ordem de serviço!"
+					[options]="agendamentos"
+					[required]="true"
+					placeholder="Selecione um agendamento"
+					styleClass="w-full">
+					<ng-template
+						let-item
+						pTemplate="selectedItem">
+						<div class="flex align-items-center">
+							<div>ID: {{ item.id }} - Data: {{ item.data }} Hora: {{ item.hora }}</div>
+						</div>
+					</ng-template>
+					<ng-template
+						let-item
+						pTemplate="item">
+						<div class="flex align-items-center">
+							<div>ID: {{ item.id }} - Data: {{ item.data }} Hora: {{ item.hora }}</div>
+						</div>
+					</ng-template>
+				</p-dropdown>
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(ordemServicoAgendamento)"
+					style="color: red">
+					<b>Agendamento Não Selecionado!</b>!
+				</small>
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.servico">Serviço: <b style="color: red">*</b></label>
+				<p-dropdown
+					#ordemServicoServico="ngModel"
+					[(ngModel)]="ordemServico.servico"
+					field="ordemServico.servico.nome"
+					data-cy="ordemServico.servico"
+					name="ordemServico.servico"
+					[options]="servicos"
+					[required]="true"
+					optionLabel="nome"
+					styleClass="w-full"
+					placeholder="Selecione um serviço"
+					(onChange)="definirValorOrdemServico()"
+					(onBlur)="validarValorOrdemServico()" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(ordemServicoServico)"
+					style="color: red">
+					<b>Serviço Não Selecionado!</b>
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.valor">Valor: <b style="color: red">*</b></label>
+				<p-inputNumber
+					#ordemServicoValor="ngModel"
+					[(ngModel)]="ordemServico.valor"
+					[styleClass]="'w-full'"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.campoInvalido(ordemServicoValor) }"
+					[readonly]="true"
+					[allowEmpty]="false"
+					[required]="true"
+					[max]="1000000"
+					[min]="0"
+					mode="currency"
+					inputId="currency-brazil"
+					currency="BRL"
+					locale="pt-BR"
+					field="ordemServico.valor"
+					data-cy="ordemServico.valor"
+					name="ordemServico.valor" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(ordemServicoValor)"
+					style="color: red">
+					<b>Valor Inválido!</b>
+				</small>
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.responsavelPelaOS">Funcionário Responsável Pela OS: <b style="color: red">*</b></label>
+				<p-dropdown
+					[(ngModel)]="ordemServico.responsavelPelaOS"
+					field="ordemServico.responsavelPelaOS"
+					data-cy="ordemServico.responsavelPelaOS"
+					name="ordemServico.responsavelPelaOS"
+					[options]="funcionarios"
+					[required]="true"
+					optionLabel="pessoa.nome"
+					placeholder="Selecione um responsável pela OS"
+					styleClass="w-full" />
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="ordemServico.executorServico">Funcionário Que Realizará o Serviço: <b style="color: red">*</b></label>
+				<p-dropdown
+					[(ngModel)]="ordemServico.executorServico"
+					field="ordemServico.vexecutorServico"
+					data-cy="ordemServico.executorServico"
+					name="ordemServico.executorServico"
+					[options]="funcionarios"
+					[required]="true"
+					optionLabel="pessoa.nome"
+					placeholder="Selecione um responsável para realizar o serviço"
+					styleClass="w-full" />
+			</div>
+		</div>
+
+		<p-button
+			data-cy="ordemServico.submit"
+			label="Salvar Ordem de Serviço"
+			styleClass="w-full"
+			(onClick)="salvarOrdemServico()" />
+	</form>
+</p-dialog>

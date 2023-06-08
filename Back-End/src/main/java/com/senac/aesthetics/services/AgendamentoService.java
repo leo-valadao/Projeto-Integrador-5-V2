@@ -1,5 +1,6 @@
 package com.senac.aesthetics.services;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -12,10 +13,12 @@ import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Agendamento;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
+import com.senac.aesthetics.interfaces.InterfaceServiceObterAgendamentosSemOrdemServico;
 import com.senac.aesthetics.repositories.AgendamentoRepository;
 
 @Service
-public class AgendamentoService implements InterfaceGenericaResource<Agendamento> {
+public class AgendamentoService
+        implements InterfaceGenericaResource<Agendamento>, InterfaceServiceObterAgendamentosSemOrdemServico {
 
     // Objetos:
     @Autowired
@@ -37,6 +40,10 @@ public class AgendamentoService implements InterfaceGenericaResource<Agendamento
         } else {
             throw new NoSuchElementException("Agendamento Não Encontrado! ID: " + idAgendamento);
         }
+    }
+
+    public List<Agendamento> obterAgendamentosSemOrdemServiço() throws Exception {
+        return agendamentoRepository.obterAgendamentosSemOrdemServiço();
     }
 
     public Agendamento inserir(Agendamento agendamento) throws Exception {

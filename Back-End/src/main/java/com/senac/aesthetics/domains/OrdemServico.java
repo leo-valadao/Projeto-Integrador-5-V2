@@ -45,13 +45,13 @@ public class OrdemServico {
     private Long id;
 
     @Column(name = "DATA_HORA_INICIO", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull(message = "A Data e Horário do Início da Ordem de Serviço Deve Ser Informada!")
     private Date dataHoraInicio;
 
     @Column(name = "DATA_HORA_TERMINO", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull(message = "A Data e Horário do Término da Ordem de Serviço Deve Ser Informada!")
     private Date dataHoraTermino;

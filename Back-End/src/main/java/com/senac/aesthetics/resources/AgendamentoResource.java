@@ -1,5 +1,7 @@
 package com.senac.aesthetics.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +18,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.senac.aesthetics.domains.Agendamento;
 import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
+import com.senac.aesthetics.interfaces.InterfaceResourceObterAgendamentosSemOrdemServico;
+import com.senac.aesthetics.interfaces.InterfaceServiceObterAgendamentosSemOrdemServico;
 
 import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/agendamento")
-public class AgendamentoResource implements InterfaceGenericaCliente<Agendamento> {
+public class AgendamentoResource
+        implements InterfaceGenericaCliente<Agendamento>, InterfaceResourceObterAgendamentosSemOrdemServico {
 
     // Obejtos:
     @Autowired
     private InterfaceGenericaResource<Agendamento> agendamentoService;
+
+    @Autowired
+    private InterfaceServiceObterAgendamentosSemOrdemServico agendamentoService2;
 
     // API's:
     @GetMapping
@@ -45,6 +53,13 @@ public class AgendamentoResource implements InterfaceGenericaCliente<Agendamento
         Agendamento agendamento = agendamentoService.obterPorId(id);
 
         return ResponseEntity.ok(agendamento);
+    }
+
+    @GetMapping(value = "/sem-ordem-servico")
+    public ResponseEntity<List<Agendamento>> obterAgendamentosSemOrdemServiço() throws Exception {
+        List<Agendamento> agendamentos = agendamentoService2.obterAgendamentosSemOrdemServiço();
+
+        return ResponseEntity.ok(agendamentos);
     }
 
     @PostMapping
