@@ -25,7 +25,10 @@ describe("/api/v1/funcionario", () => {
       const payload = payloadFuncionarioExistente();
       cy.PostProfissional(payload).then((res) => {
         expect(res.status).to.eql(409);
+<<<<<<< Updated upstream:Testes/cypress/integration/api/Funcionarios.cy.js
         expect(res.body.mensagens[0]).contain(`Funcionario Já Cadastrado! CPF: ${payload.pessoa.cpfOuCnpj}`);
+=======
+>>>>>>> Stashed changes:Testes/cypress/integration/api/API_Funcionarios.cy.js
       });
     });
   });
@@ -72,6 +75,7 @@ describe("/api/v1/funcionario", () => {
       });
     });
 
+<<<<<<< Updated upstream:Testes/cypress/integration/api/Funcionarios.cy.js
     it("Deve retornar erro ao pesquisar funcionário inexistente", () => {
       cy.GetAllProfissionalById("99999").then((res) => {
         expect(res.status).to.eql(404);
@@ -79,6 +83,16 @@ describe("/api/v1/funcionario", () => {
         expect(res.body.httpStatus).to.eql("NOT_FOUND");
       });
     })
+=======
+    it("Deve retornar erro ao pesquisar profissional por Id inexistente", () => {
+      const id = "999"
+
+      cy.GetAllProfissionalById(id).then((res) => {
+        expect(res.status).to.eql(404);
+        expect(res.body.mensagem).to.eql(`Funcionario Não Encontrado! ID: ${id}`)
+      });
+    });
+>>>>>>> Stashed changes:Testes/cypress/integration/api/API_Funcionarios.cy.js
   });
 
   context("PUT", () => {
@@ -117,8 +131,12 @@ describe("/api/v1/funcionario", () => {
       const id = Cypress.env("func_id");
       cy.DeleteProfissional(id).then((res) => {
         expect(res.status).to.eql(404);
+<<<<<<< Updated upstream:Testes/cypress/integration/api/Funcionarios.cy.js
         expect(res.body.mensagens[0]).to.eql(`Funcionario Não Encontrado! ID: ${id}`);
         expect(res.body.httpStatus).to.eql("NOT_FOUND");
+=======
+        expect(res.body.mensagem).to.eql(`Funcionario Não Encontrado! ID: ${id}`)
+>>>>>>> Stashed changes:Testes/cypress/integration/api/API_Funcionarios.cy.js
       });
     });
   });

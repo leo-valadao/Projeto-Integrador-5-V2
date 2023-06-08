@@ -29,6 +29,7 @@ describe("/api/v1/cliente", () => {
       const payload = payloadClienteExistente();
       cy.PostCliente(payload).then((res) => {
         expect(res.status).to.eql(409);
+<<<<<<< Updated upstream:Testes/cypress/integration/api/Clientes.cy.js
         expect(res.body.mensagens[0]).contain(
           `Cliente Já Cadastrado! CPF: ${payload.pessoa.cpfOuCnpj}`
         );
@@ -36,6 +37,12 @@ describe("/api/v1/cliente", () => {
     });
   });
   
+=======
+      });
+    });
+  });
+
+>>>>>>> Stashed changes:Testes/cypress/integration/api/API_Clientes.cy.js
   context("Validar campos obrigatórios", () => {
     validaCampos.forEach(function (cliente) {
       it(`${cliente.pessoa.campo}`, () => {
@@ -85,6 +92,14 @@ describe("/api/v1/cliente", () => {
         expect(res.body.httpStatus).to.eql("NOT_FOUND");
       });
     });
+
+    it("Deve retornar erro ao pesquisar cliente por ID inexistente", () => {
+      const id = "999"
+      cy.GetClienteById(id).then((res) => {
+        expect(res.status).to.eql(404);
+        expect(res.body.mensagem).to.eql(`Cliente Não Encontrado! ID: ${id}`)
+      });
+    });
   });
 
   context("PUT", () => {
@@ -120,10 +135,17 @@ describe("/api/v1/cliente", () => {
     });
 
     it("Deve retornar erro ao excluir cliente inexistente", () => {
+<<<<<<< Updated upstream:Testes/cypress/integration/api/Clientes.cy.js
       cy.DeleteCliente("99999").then((res) => {
         expect(res.status).to.eql(404);
         expect(res.body.mensagens[0]).to.eql("Cliente Não Encontrado! ID: 99999");
         expect(res.body.httpStatus).to.eql("NOT_FOUND");
+=======
+      const id = Cypress.env("cli_id");
+      cy.DeleteCliente(id).then((res) => {
+        expect(res.status).to.eql(404);
+        expect(res.body.mensagem).to.eql(`Cliente Não Encontrado! ID: ${id}`)
+>>>>>>> Stashed changes:Testes/cypress/integration/api/API_Clientes.cy.js
       });
     });
   });
