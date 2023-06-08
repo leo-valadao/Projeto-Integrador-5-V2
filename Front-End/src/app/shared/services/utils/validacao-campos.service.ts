@@ -7,15 +7,14 @@ import { NgModel } from '@angular/forms';
 export class ValidacaoCamposService {
 	constructor() {}
 
-	campoValido(campo: NgModel): boolean {
+	campoInvalido(campo: NgModel): boolean {
 		if (campo.touched) {
 			if (campo.valid && campo.model) {
-				return true;
-			} else {
-				campo.control.markAsDirty();
 				return false;
 			}
+			campo.control.markAsDirty();
+			return true;
 		}
-		return true;
+		return false;
 	}
 }

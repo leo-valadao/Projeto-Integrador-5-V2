@@ -2,12 +2,12 @@
 	header="Cadastro de Cliente"
 	[contentStyle]="{ overflow: 'visible' }"
 	[modal]="true"
-	[style]="{ width: '50vw', height: '' }"
+	[style]="{ width: 'min-content', height: '' }"
 	[(visible)]="exibirFormulario"
 	*ngIf="exibirFormulario">
 	<form class="flex flex-column gap-3">
 		<div class="flex flex-row gap-3">
-			<div class="flex flex-column w-100">
+			<div class="flex flex-column w-full">
 				<label for="cliente.nome">Nome:</label>
 				<input
 					type="text"
@@ -17,17 +17,17 @@
 					data-cy="cliente.nome" />
 			</div>
 
-			<div class="flex flex-column w-100">
+			<div class="flex flex-column w-full">
 				<label for="cliente.cpf">CPF:</label>
 				<p-inputMask
 					mask="999.999.999-99"
 					[(ngModel)]="cliente.pessoa.cpfOuCnpj"
 					name="cliente.cpf"
 					data-cy="cliente.cpf"
-					styleClass="w-100" />
+					styleClass="w-full" />
 			</div>
 
-			<div class="flex flex-column w-100">
+			<div class="flex flex-column w-full">
 				<label for="cliente.estadoBrasileiro">Estado:</label>
 				<p-dropdown
 					[(ngModel)]="cliente.pessoa.estadoBrasileiro"
@@ -35,7 +35,7 @@
 					data-cy="cliente.estadoBrasileiro"
 					name="cliente.estadoBrasileiro"
 					[options]="estadosBrasileiro"
-					styleClass="w-100" />
+					styleClass="w-full" />
 			</div>
 		</div>
 
@@ -57,7 +57,7 @@
 					[(ngModel)]="cliente.pessoa.telefone"
 					name="cliente.telefone"
 					data-cy="cliente.telefone"
-					styleClass="w-100" />
+					styleClass="w-full" />
 			</div>
 		</div>
 
@@ -74,7 +74,7 @@
 		<p-button
 			data-cy="cliente.submit"
 			label="Salvar Cliente"
-			styleClass="w-100"
+			styleClass="w-full"
 			(onClick)="salvarCliente()" />
 	</form>
 </p-dialog>

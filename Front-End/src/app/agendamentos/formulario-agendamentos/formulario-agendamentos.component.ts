@@ -31,7 +31,7 @@ export class FormularioAgendamentosComponent implements OnInit {
 	dataMinima: Date = new Date('01/01/' + (new Date().getFullYear() - 1).toString());
 
 	@Input() agendamento: Agendamento = new Agendamento();
-	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();	
+	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
 
 	constructor(
 		private agendamentoService: AgendamentoService,
@@ -125,10 +125,10 @@ export class FormularioAgendamentosComponent implements OnInit {
 		this.exibirFormulario = false;
 	}
 
-	agendamentoValido(): boolean {
+	agendamentoInvalido(): boolean {
 		if (this.agendamento.data && this.agendamento.hora && this.agendamento.cliente && this.agendamento.servico && this.agendamento.funcionario) {
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 }

@@ -1,4 +1,3 @@
-
 <div class="px-4 pb-4">
 	<!-- Tabela PrimeNG -->
 	<p-table
@@ -40,7 +39,6 @@
 				<th class="align-middle text-center">Descrição</th>
 				<th class="align-middle text-center">Preço de Custo</th>
 				<th class="align-middle text-center">Preço de venda</th>
-			
 
 				<!-- Título da Coluna dos Botões de Ações -->
 				<th class="align-middle text-center align-items-center">Ações</th>
@@ -54,31 +52,22 @@
 			let-columns="columns">
 			<tr>
 				<!-- Itens da Tabela -->
-				<td class="align-middle text-center">
-					{{ item.id }}
-				</td>
-				<td class="align-middle text-center">
-					{{ item.nome }}
-				</td>
-				<td class="align-middle text-center">
-					{{ item.descricao }}
-				</td>
-				<td class="align-middle text-center">
-					{{ item.precoCusto }}
-				</td>
-				<td class="align-middle text-center">
-					{{ item.precoVenda }}
-				</td>
-				
+				<td class="align-middle text-center">{{ item.id }}</td>
+				<td class="align-middle text-center">{{ item.nome }}</td>
+				<td class="align-middle text-center">{{ item.descricao }}</td>
+				<td class="align-middle text-center">{{ item.precoCusto | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}</td>
+				<td class="align-middle text-center">{{ item.precoVenda | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}</td>
 
 				<!-- Botões de Ações de Cada Item da Tabela -->
 				<td class="flex flex-row justify-content-around">
 					<i
 						class="pi pi-pencil"
+						data-cy="servico.editar"
 						style="font-size: 2rem; color: black !important"
 						(click)="mostrarFormularioServicos(item)"></i>
 					<i
 						class="pi pi-trash"
+						data-cy="servico.excluir"
 						style="font-size: 2rem; color: red !important"
 						(click)="excluirServico(item.id)"></i>
 				</td>

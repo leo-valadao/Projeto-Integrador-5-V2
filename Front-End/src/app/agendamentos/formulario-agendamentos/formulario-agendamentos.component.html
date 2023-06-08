@@ -2,7 +2,7 @@
 	header="Cadastro de Agendamento"
 	[contentStyle]="{ overflow: 'visible' }"
 	[modal]="true"
-	[style]="{ width: '50vw', height: '' }"
+	[style]="{ width: 'min-content', height: '' }"
 	[(visible)]="exibirFormulario"
 	*ngIf="exibirFormulario">
 	<form class="flex flex-column gap-3">
@@ -22,7 +22,7 @@
 					[required]="true"
 					[minDate]="dataMinima" />
 				<small
-					*ngIf="!validacaoCamposService.campoValido(agendamentoData)"
+					*ngIf="validacaoCamposService.campoInvalido(agendamentoData)"
 					style="color: red">
 					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YY</b>!
 				</small>
@@ -44,7 +44,7 @@
 					styleClass="w-full"
 					[required]="true" />
 				<small
-					*ngIf="!validacaoCamposService.campoValido(agendamentoHora)"
+					*ngIf="validacaoCamposService.campoInvalido(agendamentoHora)"
 					style="color: red">
 					<b>Hora Inválida!</b> A hora deve ter o formato: <b>HH:MM</b>!
 				</small>
@@ -79,9 +79,8 @@
 					styleClass="w-full"
 					[required]="true"
 					placeholder="Selecione um cliente" />
-			
-					<small
-					*ngIf="!validacaoCamposService.campoValido(agendamentoCliente)"
+				<small
+					*ngIf="!validacaoCamposService.campoInvalido(agendamentoCliente)"
 					style="color: red">
 					<b>Cliente Não Selecionado!</b>
 				</small>
@@ -102,7 +101,7 @@
 					placeholder="Selecione um serviço"
 					(onBlur)="(null)" />
 				<small
-					*ngIf="!validacaoCamposService.campoValido(agendamentoServico)"
+					*ngIf="validacaoCamposService.campoInvalido(agendamentoServico)"
 					style="color: red">
 					<b>Serviço Não Selecionado!</b>
 				</small>
@@ -122,7 +121,7 @@
 					[required]="true"
 					placeholder="Selecione um funcionário" />
 				<small
-					*ngIf="!validacaoCamposService.campoValido(agendamentoFuncionario)"
+					*ngIf="validacaoCamposService.campoInvalido(agendamentoFuncionario)"
 					style="color: red">
 					<b>Funcionário Não Selecionado!</b>
 				</small>
@@ -146,7 +145,7 @@
 			data-cy="agendamento.submit"
 			label="Salvar Agendamento"
 			styleClass="w-full"
-			[disabled]="!agendamentoValido()"
+			[disabled]="agendamentoInvalido()"
 			(onClick)="salvarAgendamento()" />
 	</form>
 </p-dialog>

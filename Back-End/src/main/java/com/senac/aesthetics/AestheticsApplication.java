@@ -103,8 +103,8 @@ public class AestheticsApplication implements ApplicationRunner {
 				Servico s = new Servico();
 				s.setNome("Serviço " + i);
 				s.setDescricao("Descrição " + i);
-				s.setPrecoCusto(BigDecimal.valueOf(100.00));
-				s.setPrecoVenda(BigDecimal.valueOf(100.00));
+				s.setPrecoCusto(BigDecimal.valueOf(1000000.00));
+				s.setPrecoVenda(BigDecimal.valueOf(1000000.00));
 
 				ss.inserir(s);
 			}

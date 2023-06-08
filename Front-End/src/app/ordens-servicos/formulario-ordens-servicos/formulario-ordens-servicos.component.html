@@ -2,13 +2,13 @@
 	header="Cadastro de Ordem de Serviço"
 	[contentStyle]="{ overflow: 'visible' }"
 	[modal]="true"
-	[style]="{ width: '50vw', height: '' }"
+	[style]="{ width: 'min-content', height: '' }"
 	[(visible)]="exibirFormulario"
 	*ngIf="exibirFormulario">
 	<form class="flex flex-column gap-3">
 		<div class="flex flex-row gap-3">
 			<div class="flex flex-column w-full">
-				<label for="ordemServico.dataHoraInicio">Data de Inicio:</label>                                                          
+				<label for="ordemServico.dataHoraInicio">Data de Inicio:</label>
 				<p-calendar
 					[(ngModel)]="ordemServico.dataHoraInicio"
 					data-cy="ordemServico.dataHoraInicio"
@@ -17,25 +17,24 @@
 					dataType="string"
 					[showTime]="true"
 					[showIcon]="true"
-                    [timeOnly]="true"
+					[timeOnly]="true"
 					[showSeconds]="false"
 					styleClass="w-full" />
-			
 			</div>
 
 			<div class="flex flex-column w-full">
 				<label for="ordemServico.dataHoraTermino">Data Final:</label>
 				<p-calendar
-                [(ngModel)]="ordemServico.dataHoraTermino"
-                data-cy="ordemServico.dataHoraTermino"
-                name="ordemServico.dataHoraTermino"
-                dateFormat="dd/mm/yy"
-                dataType="string"
-                [showTime]="true"
-                [showIcon]="true"
-                [timeOnly]="true"
-                [showSeconds]="false"
-                styleClass="w-full" />
+					[(ngModel)]="ordemServico.dataHoraTermino"
+					data-cy="ordemServico.dataHoraTermino"
+					name="ordemServico.dataHoraTermino"
+					dateFormat="dd/mm/yy"
+					dataType="string"
+					[showTime]="true"
+					[showIcon]="true"
+					[timeOnly]="true"
+					[showSeconds]="false"
+					styleClass="w-full" />
 			</div>
 
 			<div
@@ -76,8 +75,6 @@
 					optionLabel="nome"
 					styleClass="w-full" />
 			</div>
-
-			
 		</div>
 		<div class="flex flex-row gap-3">
 			<div class="flex flex-column w-full">
@@ -102,8 +99,6 @@
 					optionLabel="nome"
 					styleClass="w-full" />
 			</div>
-
-			
 		</div>
 		<div class="flex flex-row gap-3">
 			<div class="flex flex-column">
@@ -111,18 +106,11 @@
 				<input
 					[(ngModel)]="ordemServico.valor"
 					data-cy="ordemServico.valor"
-					
 					type="number"
 					style="width: 100%"
-					
-					name="ordemServico.valor">
-				
+					name="ordemServico.valor" />
 			</div>
-
-			
 		</div>
-
-		
 
 		<p-button
 			data-cy="ordemServico.submit"

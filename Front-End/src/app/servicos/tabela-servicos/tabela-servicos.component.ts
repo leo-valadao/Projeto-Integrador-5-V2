@@ -5,22 +5,21 @@ import { Servico } from 'src/app/shared/domains/servico.model';
 import { ServicoService } from 'src/app/shared/services/servico.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 @Component({
-  selector: 'app-tabela-servicos',
-  templateUrl: './tabela-servicos.component.html',
-  styles: [],
+	selector: 'app-tabela-servicos',
+	templateUrl: './tabela-servicos.component.html',
+	styles: [],
 })
 export class TabelaServicosComponent {
-  servicos!: Servico[];
-  servicosSelecionados!: Servico[];
+	servicos!: Servico[];
+	servicosSelecionados!: Servico[];
 	quantidadeTotalServicos!: number;
 	quantidadeServicosExibidosPorPagina: number = 30;
 
-  
 	@Output() exibirFormularioServico: EventEmitter<Servico> = new EventEmitter<Servico>();
 
 	@ViewChild(Table) private tabelaServicos!: Table;
 
-  constructor(private servicoService: ServicoService, private mensagensGenericasService: MensagensGenericasService) {}
+	constructor(private servicoService: ServicoService, private mensagensGenericasService: MensagensGenericasService) {}
 
 	ngOnInit(): void {
 		this.obterTodosServicos(0, 30);
@@ -40,7 +39,7 @@ export class TabelaServicosComponent {
 
 	mostrarFormularioServicos(servico?: Servico) {
 		if (servico) {
-			this.exibirFormularioServico.emit(JSON.parse(JSON.stringify(servico)));
+			this.exibirFormularioServico.emit(servico);
 		} else {
 			this.exibirFormularioServico.emit(new Servico());
 		}
@@ -67,7 +66,4 @@ export class TabelaServicosComponent {
 			this.obterTodosServicos(Math.floor(evento.first / evento.rows), evento.rows, 'id');
 		}
 	}
-
-	
-
 }

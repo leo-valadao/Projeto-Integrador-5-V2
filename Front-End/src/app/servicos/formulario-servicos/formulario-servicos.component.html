@@ -2,59 +2,118 @@
 	header="Cadastro de Serviço"
 	[contentStyle]="{ overflow: 'visible' }"
 	[modal]="true"
-	[style]="{ width: '50vw', height: '' }"
+	[style]="{ width: 'min-content', height: '' }"
 	[(visible)]="exibirFormulario"
 	*ngIf="exibirFormulario">
 	<form class="flex flex-column gap-3">
 		<div class="flex flex-row gap-3">
-			<div class="flex flex-column w-100">
-				<label for="servico.nome">Nome:</label>
+			<div class="flex flex-column w-full">
+				<label for="servico.nome">Nome: <b style="color: red">*</b></label>
 				<input
-					type="text"
-					pInputText
+					#servicoNome="ngModel"
 					[(ngModel)]="servico.nome"
-					name="servico.nome"
-					data-cy="servico.nome" />
-			</div>
-		</div>
-		<div class="flex flex-row gap-3">
-			<div class="flex flex-column w-100">
-				<label for="servico.descricao">Descrição:</label>
-				<input
+					[maxLength]="100"
+					[required]="true"
 					type="text"
 					pInputText
-					[(ngModel)]="servico.descricao"
-					name="servico.descricao"
-					data-cy="servico.descricao" />
+					field="servico.nome"
+					data-cy="servico.nome"
+					name="servico.nome" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(servicoNome)"
+					style="color: red">
+					<b>Nome Não Preenchido!</b>
+				</small>
 			</div>
 		</div>
 
 		<div class="flex flex-row gap-3">
-			<div class="flex flex-column w-50">
-				<label for="servico.precoCusto">Preço de Custo:</label>
-				<input
-					type="number"
-					pInputText
+			<div class="flex flex-column w-full">
+				<label for="servico.precoCusto">Preço de Custo: <b style="color: red">*</b></label>
+				<p-inputNumber
+					#servicoPrecoCusto="ngModel"
 					[(ngModel)]="servico.precoCusto"
-					name="servico.precoCusto"
-					data-cy="servico.precoCusto" />
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.campoInvalido(servicoPrecoCusto) }"
+					[max]="1000000"
+					[min]="0"
+					[allowEmpty]="false"
+					[showButtons]="true"
+					buttonLayout="horizontal"
+					inputId="horizontal"
+					spinnerMode="horizontal"
+					[step]="1"
+					decrementButtonClass="p-button-danger"
+					incrementButtonClass="p-button-success"
+					incrementButtonIcon="pi pi-plus"
+					decrementButtonIcon="pi pi-minus"
+					mode="currency"
+					inputId="currency-brazil"
+					currency="BRL"
+					locale="pt-BR"
+					field="servico.precoCusto"
+					data-cy="servico.precoCusto"
+					name="servico.precoCusto" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(servicoPrecoCusto)"
+					style="color: red">
+					<b>Preço de Custo Inválido!</b>
+				</small>
 			</div>
 
-			<div class="flex flex-column w-75">
-				<label for="servico.precoVenda">Preço de Venda:</label>
-				<input
-					type="number"
-					pInputText
+			<div class="flex flex-column w-full">
+				<label for="servico.precoVenda">Preço de Venda: <b style="color: red">*</b></label>
+				<p-inputNumber
+					#servicoPrecoVenda="ngModel"
 					[(ngModel)]="servico.precoVenda"
-					name="servico.precoVenda"
-					data-cy="servico.precoVenda" />
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.campoInvalido(servicoPrecoCusto) }"
+					[max]="1000000"
+					[min]="0"
+					[allowEmpty]="false"
+					[showButtons]="true"
+					buttonLayout="horizontal"
+					inputId="horizontal"
+					spinnerMode="horizontal"
+					[step]="1"
+					decrementButtonClass="p-button-danger"
+					incrementButtonClass="p-button-success"
+					incrementButtonIcon="pi pi-plus"
+					decrementButtonIcon="pi pi-minus"
+					mode="currency"
+					inputId="currency-brazil"
+					currency="BRL"
+					locale="pt-BR"
+					field="servico.precoVenda"
+					data-cy="servico.precoVenda"
+					name="servico.precoVenda" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(servicoPrecoVenda)"
+					style="color: red">
+					<b>Preço de Venda Inválido!</b>
+				</small>
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="servico.descricao">Descrição:</label>
+				<textarea
+					#servicoDescricao="ngModel"
+					[(ngModel)]="servico.descricao"
+					[maxLength]="500"
+					[autoResize]="true"
+					pInputTextarea
+					style="width: 100%"
+					field="servico.descricao"
+					data-cy="servico.descricao"
+					name="servico.descricao">
+				</textarea>
 			</div>
 		</div>
 
 		<p-button
+			(onClick)="salvarServico()"
+			styleClass="w-full"
 			data-cy="servico.submit"
-			label="Salvar Serviço"
-			styleClass="w-100"
-			(onClick)="salvarServico()" />
+			label="Salvar Serviço" />
 	</form>
 </p-dialog>
