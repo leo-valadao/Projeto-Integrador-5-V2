@@ -1,1 +1,73 @@
-<p>formulario-fornecedores works!</p>
+
+<p-dialog
+	header="Cadastro de Fornecedor"
+	[contentStyle]="{ overflow: 'visible' }"
+	[modal]="true"
+	[style]="{ width: '50vw', height: '' }"
+	[(visible)]="exibirFormulario"
+	*ngIf="exibirFormulario">
+	<form class="flex flex-column gap-3">
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-100">
+				<label for="fornecedor.nome">Nome:</label>
+				<input
+					type="text"
+					pInputText
+					[(ngModel)]="fornecedor.pessoa.nome"
+					name="fornecedor.nome"
+					data-cy="fornecedor.nome" />
+			</div>
+
+			<div class="flex flex-column w-100">
+				<label for="fornecedor.cpf">CPF:</label>
+				<p-inputMask
+					mask="999.999.999-99"
+					[(ngModel)]="fornecedor.pessoa.cpfOuCnpj"
+					name="fornecedor.cpf"
+					data-cy="fornecedor.cpf"
+					styleClass="w-100" />
+			</div>
+
+			<div class="flex flex-column w-100">
+				<label for="fornecedor.estadoBrasileiro">Estado:</label>
+				<p-dropdown
+					[(ngModel)]="fornecedor.pessoa.estadoBrasileiro"
+					field="fornecedor.estadoBrasileiro"
+					data-cy="fornecedor.estadoBrasileiro"
+					name="fornecedor.estadoBrasileiro"
+					[options]="estadosBrasileiro"
+					styleClass="w-100" />
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-75">
+				<label for="fornecedor.email">E-Mail:</label>
+				<input
+					type="text"
+					pInputText
+					[(ngModel)]="fornecedor.pessoa.email"
+					name="fornecedor.email"
+					data-cy="fornecedor.email" />
+			</div>
+
+			<div class="flex flex-column w-50">
+				<label for="fornecedor.telefone">Telefone:</label>
+				<p-inputMask
+					mask="(99)99999-999?9"
+					[(ngModel)]="fornecedor.pessoa.telefone"
+					name="fornecedor.telefone"
+					data-cy="fornecedor.telefone"
+					styleClass="w-100" />
+			</div>
+		</div>
+
+		
+
+		<p-button
+			data-cy="fornecedor.submit"
+			label="Salvar Cliente"
+			styleClass="w-100"
+			(onClick)="salvarForncedor()" />
+	</form>
+</p-dialog>
