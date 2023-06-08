@@ -1,1 +1,100 @@
-<p>formulario-funcionarios works!</p>
+<p-dialog
+	header="Cadastro de Funcionário"
+	[contentStyle]="{ overflow: 'visible' }"
+	[modal]="true"
+	[style]="{ width: '50vw', height: '' }"
+	[(visible)]="exibirFormulario"
+	*ngIf="exibirFormulario">
+	<form class="flex flex-column gap-3">
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-100">
+				<label for="funcionario.nome">Nome:</label>
+				<input
+					type="text"
+					pInputText
+					[(ngModel)]="funcionario.pessoa.nome"
+					name="funcionario.nome"
+					data-cy="funcionario.nome" />
+			</div>
+
+			<div class="flex flex-column w-100">
+				<label for="funcionario.cpf">CPF:</label>
+				<p-inputMask
+					mask="999.999.999-99"
+					[(ngModel)]="funcionario.pessoa.cpfOuCnpj"
+					name="funcionario.cpf"
+					data-cy="funcionario.cpf"
+					styleClass="w-100" />
+			</div>
+
+			<div class="flex flex-column w-100">
+				<label for="funcionario.estadoBrasileiro">Estado:</label>
+				<p-dropdown
+					[(ngModel)]="funcionario.pessoa.estadoBrasileiro"
+					field="funcionario.estadoBrasileiro"
+					data-cy="funcionario.estadoBrasileiro"
+					name="funcionario.estadoBrasileiro"
+					[options]="estadosBrasileiro"
+					styleClass="w-100" />
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-75">
+				<label for="funcionario.email">E-Mail:</label>
+				<input
+					type="text"
+					pInputText
+					[(ngModel)]="funcionario.pessoa.email"
+					name="funcionario.email"
+					data-cy="funcionario.email" />
+			</div>
+
+			<div class="flex flex-column w-50">
+				<label for="funcionario.telefone">Telefone:</label>
+				<p-inputMask
+					mask="(99)99999-999?9"
+					[(ngModel)]="funcionario.pessoa.telefone"
+					name="funcionario.telefone"
+					data-cy="funcionario.telefone"
+					styleClass="w-100" />
+			</div>
+		</div>
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-75">
+				<label for="funcionario.login">Login:</label>
+				<input
+					type="text"
+					pInputText
+					[(ngModel)]="funcionario.login"
+					name="funcionario.login"
+					data-cy="funcionario.login" />
+			</div>
+            <div class="flex flex-column w-75">
+				<label for="funcionario.senha">Senha:</label>
+				<input
+					type="text"
+					pInputText
+					[(ngModel)]="funcionario.senha"
+					name="funcionario.senha"
+					data-cy="funcionario.senha" />
+			</div>
+            <div class="flex flex-column w-75">
+				<label for="funcionario.comissao">Comissão:</label>
+				<input
+					type="number"
+					
+					[(ngModel)]="funcionario.comissao"
+					name="funcionario.comissao"
+					data-cy="funcionario.comissao" />
+			</div>
+		</div>
+
+		
+		<p-button
+			data-cy="funcionario.submit"
+			label="Salvar Funcionário"
+			styleClass="w-100"
+			(onClick)="salvarFuncionario()" />
+	</form>
+</p-dialog>

@@ -79,7 +79,8 @@
 					styleClass="w-full"
 					[required]="true"
 					placeholder="Selecione um cliente" />
-				<small
+			
+					<small
 					*ngIf="!validacaoCamposService.campoValido(agendamentoCliente)"
 					style="color: red">
 					<b>Cliente Não Selecionado!</b>
