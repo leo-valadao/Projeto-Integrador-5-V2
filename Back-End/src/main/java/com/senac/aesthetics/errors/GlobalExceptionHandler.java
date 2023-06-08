@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.hibernate.validator.internal.engine.ConstraintViolationImpl;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
+
+import io.micrometer.core.ipc.http.HttpSender.Response;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -54,6 +59,16 @@ public class GlobalExceptionHandler {
       DataIntegrityViolationException ex) {
     Erros erro = new Erros("Violação da integridade dos dados!",
         TipoMensagemEnum.ERROR, ex.getClass().getSimpleName(), HttpStatus.CONFLICT);
+    return new ResponseEntity<Erros>(erro, erro.getHttpStatus());
+  }
+
+  @ExceptionHandler(ConstraintViolationException.class)
+  protected ResponseEntity<Erros> handleConstraintViolationException(ConstraintViolationException ex) {
+    List<String> erros = new ArrayList<String>();
+    for (ConstraintViolation<?> violacao : ex.getConstraintViolations()) {
+      erros.add(violacao.getMessage());
+    }
+    Erros erro = new Erros(erros, TipoMensagemEnum.ERROR, ex.getClass().getSimpleName(), HttpStatus.BAD_REQUEST);
     return new ResponseEntity<Erros>(erro, erro.getHttpStatus());
   }
 

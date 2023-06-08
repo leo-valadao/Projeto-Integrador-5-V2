@@ -15,6 +15,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -50,13 +51,13 @@ public class Servico {
 
     @Column(name = "PRECO_CUSTO", nullable = false, precision = 10, scale = 2)
     @Digits(integer = 10, fraction = 2, message = "O Valor Máximo do Preço de Custo do Serviço é de R$ 1.000.000,00 (1 Milhão)!")
-    @PositiveOrZero(message = "O Valor do Preço de Custo do Serviço Deve Estar Entre R$ 0 (Zero) e R$ 1.000.000,00 (1 Milhão)!")
+    @Positive(message = "O Valor do Preço de Venda do Serviço Deve Ser Maior Que R$ 0 (Zero) e Menor Que R$ 1.000.000,00 (1 Milhão)!")
     @NotNull(message = "O Valor do Preço de Custo do Serviço Deve Ser Informado!")
     private BigDecimal precoCusto;
 
     @Column(name = "PRECO_VENDA", nullable = false, precision = 10, scale = 2)
     @Digits(integer = 10, fraction = 2, message = "O Valor Máximo do Preço de Venda do Serviço é de R$ 1.000.000,00 (1 Milhão)!")
-    @PositiveOrZero(message = "O Valor do Preço de Venda do Serviço Deve Estar Entre R$ 0 (Zero) e R$ 1.000.000,00 (1 Milhão)!")
+    @Positive(message = "O Valor do Preço de Venda do Serviço Deve Ser Maior Que R$ 0 (Zero) e Menor Que R$ 1.000.000,00 (1 Milhão)!")
     @NotNull(message = "O Valor do Preço de Venda do Serviço Deve Ser Informado!")
     private BigDecimal precoVenda;
 
