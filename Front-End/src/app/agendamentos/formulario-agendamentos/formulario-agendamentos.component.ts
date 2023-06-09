@@ -31,7 +31,7 @@ export class FormularioAgendamentosComponent implements OnInit {
 	dataMinima: Date = new Date('01/01/' + (new Date().getFullYear() - 1).toString());
 
 	@Input() agendamento: Agendamento = new Agendamento();
-	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();	
+	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
 
 	constructor(
 		private agendamentoService: AgendamentoService,

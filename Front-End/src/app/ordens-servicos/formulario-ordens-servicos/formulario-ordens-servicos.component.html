@@ -2,7 +2,7 @@
 	header="Cadastro de Ordem de Serviço"
 	[contentStyle]="{ overflow: 'visible' }"
 	[modal]="true"
-	[style]="{ width: 'max-content', height: '' }"
+	styleClass="min-w-max w-6"
 	[(visible)]="exibirFormulario"
 	*ngIf="exibirFormulario">
 	<form class="flex flex-column gap-3">
@@ -187,6 +187,7 @@
 			data-cy="ordemServico.submit"
 			label="Salvar Ordem de Serviço"
 			styleClass="w-full"
+			[disabled]="ordemServicoInvalido()"
 			(onClick)="salvarOrdemServico()" />
 	</form>
 </p-dialog>

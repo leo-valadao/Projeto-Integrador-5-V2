@@ -17,9 +17,9 @@ import { NgModel } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-formulario-ordens-servicos',
-  templateUrl: './formulario-ordens-servicos.component.html',
-  styles: [],
+	selector: 'app-formulario-ordens-servicos',
+	templateUrl: './formulario-ordens-servicos.component.html',
+	styles: [],
 })
 export class FormularioOrdensServicosComponent implements OnInit {
 	exibirFormulario: Boolean = false;
@@ -132,5 +132,21 @@ export class FormularioOrdensServicosComponent implements OnInit {
 	validarValorOrdemServico() {
 		this.valorOrdemServico.control.markAsTouched();
 		this.validacaoCamposService.campoInvalido(this.valorOrdemServico);
+	}
+
+	ordemServicoInvalido(): boolean {
+		if (
+			this.ordemServico.dataHoraInicio &&
+			this.ordemServico.dataHoraTermino &&
+			this.ordemServico.status &&
+			this.ordemServico.agendamento &&
+			this.ordemServico.servico &&
+			this.ordemServico.valor &&
+			this.ordemServico.responsavelPelaOS &&
+			this.ordemServico.executorServico
+		) {
+			return false;
+		}
+		return true;
 	}
 }
