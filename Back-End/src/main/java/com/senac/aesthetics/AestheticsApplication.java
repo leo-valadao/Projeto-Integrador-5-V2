@@ -199,6 +199,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				f.getPessoa().setEmail("teste" + i + "@teste.com");
 				f.getPessoa().setEstadoBrasileiro(EstadosBrasileirosEnum.GOIAS);
 				f.getPessoa().setCpfOuCnpj(gd.cnpj(true));
+				f.setEndereco("Endereço " + i);
 
 				fos.inserir(f);
 			}

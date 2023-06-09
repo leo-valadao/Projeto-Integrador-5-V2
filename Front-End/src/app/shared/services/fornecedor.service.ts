@@ -12,7 +12,7 @@ export class FornecedorService
   extends ServicoGenericoService<Fornecedor>
   implements IntefaceGenericaComponentes<Fornecedor>
 {
-  override url = `${environment.CONTA_PAGAR}`;
+  override url = `${environment.FORNECEDOR}`;
 
   constructor(protected override http: HttpClient) {
     super(http);

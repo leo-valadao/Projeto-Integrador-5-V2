@@ -1,1 +1,134 @@
-<p>formulario-fornecedores works!</p>
+<p-dialog
+	header="Cadastro de Fornecedor"
+	[contentStyle]="{ overflow: 'visible' }"
+	[modal]="true"
+	styleClass="min-w-max w-6"
+	[(visible)]="exibirFormulario"
+	*ngIf="exibirFormulario">
+	<form class="flex flex-column gap-3">
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="fornecedor.pessoa.nome">Nome: <b style="color: red">*</b></label>
+				<input
+					type="text"
+					pInputText
+					#fornecedorPessoaNome="ngModel"
+					[(ngModel)]="fornecedor.pessoa.nome"
+					[required]="true"
+					name="fornecedor.pessoa.nome"
+					data-cy="fornecedor.pessoa.nome" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(fornecedorPessoaNome)"
+					style="color: red">
+					<b>Nome Inválido!</b>
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="fornecedor.pessoa.tipoPessoa">Tipo de Pessoa: <b style="color: red">*</b></label>
+				<p-dropdown
+					#fornecedorPessoaTipoPessoa="ngModel"
+					[(ngModel)]="fornecedor.pessoa.tipoPessoa"
+					[options]="tiposPessoas"
+					[required]="true"
+					(onChange)="modificarMascaraCpfOuCnpj()"
+					field="fornecedor.pessoa.tipoPessoa"
+					data-cy="fornecedor.pessoa.tipoPessoa"
+					name="fornecedor.pessoa.tipoPessoa"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(fornecedorPessoaTipoPessoa)"
+					style="color: red">
+					<b>Tipo Pessoa Inválido!</b>
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="fornecedor.pessoa.cpfOuCnpj">CPF / CNPJ: <b style="color: red">*</b></label>
+				<p-inputMask
+					#fornecedorPessoaCpfOuCnpj="ngModel"
+					[(ngModel)]="fornecedor.pessoa.cpfOuCnpj"
+					[mask]="mascaraCpfCnpj"
+					[required]="true"
+					name="fornecedor.pessoa.cpfOuCnpj"
+					data-cy="fornecedor.pessoa.cpfOuCnpj"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(fornecedorPessoaCpfOuCnpj)"
+					style="color: red">
+					<b>CPF / CNPJ Inválido!</b> Os formatos devem ser:<br />
+					<b>CPF:</b> 123.456.789-01<br />
+					<b>CNPJ:</b> 12.345.678/9012-34!
+				</small>
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="fornecedor.pessoa.telefone">Telefone: <b style="color: red">*</b></label>
+				<p-inputMask
+					#fornecedorPessoaTelefone="ngModel"
+					[(ngModel)]="fornecedor.pessoa.telefone"
+					[required]="true"
+					mask="(99)99999-999?9"
+					field="fornecedor.pessoa.telefone"
+					name="fornecedor.pessoa.telefone"
+					data-cy="fornecedor.pessoa.telefone"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(fornecedorPessoaTelefone)"
+					style="color: red">
+					<b>Telefone Inválido!</b> Os formatos devem ser:<br />
+					<b>Celular:</b> (12)3456-7890<br />
+					<b>Fixo:</b> (12)34567-8901
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="fornecedor.pessoa.email">E-Mail:</label>
+				<input
+					type="text"
+					pInputText
+					[(ngModel)]="fornecedor.pessoa.email"
+					name="fornecedor.pessoa.email"
+					data-cy="fornecedor.pessoa.email" />
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="fornecedor.estadoBrasileiro">Estado:</label>
+				<p-dropdown
+					[(ngModel)]="fornecedor.pessoa.estadoBrasileiro"
+					field="fornecedor.estadoBrasileiro"
+					data-cy="fornecedor.estadoBrasileiro"
+					name="fornecedor.estadoBrasileiro"
+					placeholder="Selecione um estado"
+					[options]="estadosBrasileiro"
+					styleClass="w-full" />
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="fornecedor.endereco">Endereço:</label>
+				<textarea
+					pInputTextarea
+					#fornecedorendereco="ngModel"
+					[(ngModel)]="fornecedor.endereco"
+					[maxLength]="500"
+					[autoResize]="true"
+					style="width: 100%"
+					field="fornecedor.endereco"
+					data-cy="fornecedor.endereco"
+					name="fornecedor.endereco">
+				</textarea>
+			</div>
+		</div>
+
+		<p-button
+			data-cy="fornecedor.submit"
+			label="Salvar fornecedor"
+			styleClass="w-full"
+			[disabled]="fornecedorInvalido()"
+			(onClick)="salvarForncedor()" />
+	</form>
+</p-dialog>
