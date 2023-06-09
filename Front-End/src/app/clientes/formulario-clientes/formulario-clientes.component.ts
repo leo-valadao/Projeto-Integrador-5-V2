@@ -1,10 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { Cliente } from 'src/app/shared/domains/cliente.model';
 import { EstadosBrasileirosEnum } from 'src/app/shared/domains/enums/estados-brasileiros.enum';
+import { TipoPessoaEnum } from 'src/app/shared/domains/enums/tipo-pessoa.enum';
 import { Pessoa } from 'src/app/shared/domains/pessoa.model';
 import { ClienteService } from 'src/app/shared/services/cliente.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
+import { ValidacaoCamposService } from 'src/app/shared/services/utils/validacao-campos.service';
 
 @Component({
 	selector: 'app-formulario-clientes',
@@ -14,14 +17,18 @@ import { MensagensGenericasService } from 'src/app/shared/services/utils/mensage
 export class FormularioClientesComponent implements OnInit {
 	exibirFormulario: Boolean = false;
 	estadosBrasileiro!: string[];
+	tiposPessoas!: string[];
+	mascaraCpfCnpj: string = '999.999.999-99';
+	mascaraTelefone: string = '(99)99999-9999';
 
 	@Input() cliente: Cliente = new Cliente();
 	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
 
-	constructor(private clienteService: ClienteService, private mensagensGenericasService: MensagensGenericasService) {}
+	constructor(private clienteService: ClienteService, private mensagensGenericasService: MensagensGenericasService, public validacaoCamposService: ValidacaoCamposService) {}
 
 	ngOnInit(): void {
 		this.estadosBrasileiro = Object.keys(EstadosBrasileirosEnum).map((value) => value);
+		this.tiposPessoas = Object.keys(TipoPessoaEnum).map((value) => value);
 	}
 
 	salvarCliente() {
@@ -61,5 +68,20 @@ export class FormularioClientesComponent implements OnInit {
 	atualizarTabelaEFecharFormulario() {
 		this.atualizarTabela.emit();
 		this.exibirFormulario = false;
+	}
+
+	modificarMascaraCpfOuCnpj() {
+		if (this.cliente.pessoa.tipoPessoa == TipoPessoaEnum.PESSOA_FISICA) {
+			this.mascaraCpfCnpj = '999.999.999-99';
+		} else {
+			this.mascaraCpfCnpj = '99.999.999/9999-99';
+		}
+	}
+
+	clienteInvalido() {
+		if (this.cliente.pessoa.nome && this.cliente.pessoa.tipoPessoa && this.cliente.pessoa.cpfOuCnpj && this.cliente.pessoa.telefone) {
+			return false;
+		}
+		return true;
 	}
 }

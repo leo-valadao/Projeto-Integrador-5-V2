@@ -38,7 +38,7 @@ public class Cliente {
     @Column(name = "ID_CLIENTE")
     private Long id;
 
-    @Column(name = "ALERGIAS", length = 100)
+    @Column(name = "ALERGIAS", length = 500)
     @Size(max = 100, message = "O Tamanho Máximo das Alergias do Cliente é de 100 Caracteres!")
     private String alergias;
 
