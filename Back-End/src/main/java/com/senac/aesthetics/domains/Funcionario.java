@@ -17,6 +17,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -54,8 +56,10 @@ public class Funcionario {
     private String senha;
 
     @Column(name = "COMISSAO", nullable = false, precision = 10, scale = 2)
-    @Digits(integer = 10, fraction = 2, message = "O Valor Máximo da Comissão é de R$ 1.000.000,00 (1 Milhão)!")
-    @PositiveOrZero(message = "O Valor da Comissão Deve Estar Entre R$ 0 (Zero) e R$ 1.000.000,00 (1 Milhão)!")
+    @Digits(integer = 3, fraction = 2, message = "A Comissão do Funcionário Deve Estar Entre 0% á 100%!")
+    @Max(value = 100, message = "A Comissão do Funcionário Máxima é de 100%!")
+    @Min(value = 100, message = "A Comissão do Funcionário Mínimia é de 0%!")
+    @PositiveOrZero(message = "A Comissão do Funcionário Deve Estar Entre 0% á 100%!")
     @NotNull(message = "O Valor da Comissão Deve Ser Informado!")
     private BigDecimal comissao;
 
