@@ -17,5 +17,10 @@ export class OrdemServico {
 	public responsavelPelaOS!: Funcionario;
 	public executorServico!: Funcionario;
 
-	constructor() {}
+	constructor() {
+		this.agendamento = new Agendamento();
+		this.servico = new Servico();
+		this.responsavelPelaOS = new Funcionario();
+		this.executorServico = new Funcionario();
+	}
 }

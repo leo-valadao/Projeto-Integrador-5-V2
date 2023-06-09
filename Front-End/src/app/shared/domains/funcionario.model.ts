@@ -10,5 +10,7 @@ export class Funcionario {
 	// Relacionamento(s):
 	public pessoa!: Pessoa;
 
-	constructor() {}
+	constructor() {
+		this.pessoa = new Pessoa();
+	}
 }
