@@ -1,1 +1,85 @@
-<p>tabela-funcionarios works!</p>
+<div class="px-4 pb-4">
+	<!-- Tabela PrimeNG -->
+	<p-table
+		[value]="funcionarios"
+		[(selection)]="funcionariosSelecionados"
+		[paginator]="true"
+		[totalRecords]="quantidadeTotalFuncionarios"
+		[rows]="quantidadeFuncionariosExibidosPorPagina"
+		[lazy]="true"
+		[showCurrentPageReport]="true"
+		[autoLayout]="true"
+		[rowsPerPageOptions]="[10, 30, 50, 100]"
+		(onLazyLoad)="mudarPagina($event)"
+		currentPageReportTemplate="Mostrando do {first}º ao {last}º de {totalRecords} funcionários"
+		#dtFuncionarios
+		styleClass="p-datatable-gridlines">
+		<ng-template pTemplate="caption">
+			<!-- Barra do Topo da Tabela -->
+			<div class="flex align-items-center justify-content-between">
+				Funcionários
+				<button
+					pButton
+					pRipple
+					icon="pi pi-plus"
+					label="Adicionar"
+					class="p-button-primary"
+					(click)="mostrarFormularioFuncionarios()"></button>
+			</div>
+		</ng-template>
+
+		<!-- Cabeçalho da Tabela -->
+		<ng-template
+			pTemplate="header"
+			let-columns>
+			<tr>
+				<!-- Título de Cada Coluna -->
+				<th class="align-middle text-center">ID</th>
+				<th class="align-middle text-center">Nome</th>
+				<th class="align-middle text-center">Telefone</th>
+				<th class="align-middle text-center">E-Mail</th>
+				<th class="align-middle text-center">Estado</th>
+				<th class="align-middle text-center">CPF / CNPJ</th>
+				<th class="align-middle text-center">Login</th>
+				<th class="align-middle text-center">Senha</th>
+				<th class="align-middle text-center">Comissão</th>
+
+				<!-- Título da Coluna dos Botões de Ações -->
+				<th class="align-middle text-center align-items-center">Ações</th>
+			</tr>
+		</ng-template>
+
+		<!-- Tabela -->
+		<ng-template
+			pTemplate="body"
+			let-item
+			let-columns="columns">
+			<tr>
+				<!-- Itens da Tabela -->
+				<td class="align-middle text-center">{{ item.id }}</td>
+				<td class="align-middle text-center">{{ item.pessoa.nome }}</td>
+				<td class="align-middle text-center">{{ item.pessoa.telefone }}</td>
+				<td class="align-middle text-center">{{ item.pessoa.email }}</td>
+				<td class="align-middle text-center">{{ obterEstadoBrasileiro(item.pessoa.estadoBrasileiro) }}</td>
+				<td class="align-middle text-center">{{ item.pessoa.cpfOuCnpj }}</td>
+				<td class="align-middle text-center">{{ item.login }}</td>
+				<td class="align-middle text-center">{{ item.senha }}</td>
+				<td class="align-middle text-center">{{ item.comissao }}%</td>
+
+				<!-- Botões de Ações de Cada Item da Tabela -->
+				<td class="flex flex-row justify-content-around">
+					<i
+						class="pi pi-pencil"
+						data-cy="funcionario.editar"
+						style="font-size: 2rem; color: black !important"
+						(click)="mostrarFormularioFuncionarios(item)"></i>
+					<i
+						class="pi pi-trash"
+						data-cy="funcionario.excluir"
+						style="font-size: 2rem; color: red !important"
+						(click)="excluirFuncionario(item.id)"></i>
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</div>

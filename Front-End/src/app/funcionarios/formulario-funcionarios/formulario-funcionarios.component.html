@@ -1,1 +1,180 @@
-<p>formulario-funcionarios works!</p>
+<p-dialog
+	header="Cadastro de Funcionário"
+	[contentStyle]="{ overflow: 'visible' }"
+	[modal]="true"
+	styleClass="min-w-max w-6"
+	[(visible)]="exibirFormulario"
+	*ngIf="exibirFormulario">
+	<form class="flex flex-column gap-3">
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="funcionario.pessoa.nome">Nome: <b style="color: red">*</b></label>
+				<input
+					type="text"
+					pInputText
+					#funcionarioPessoaNome="ngModel"
+					[(ngModel)]="funcionario.pessoa.nome"
+					[required]="true"
+					name="funcionario.pessoa.nome"
+					data-cy="funcionario.pessoa.nome" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(funcionarioPessoaNome)"
+					style="color: red">
+					<b>Nome Inválido!</b>
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="funcionario.pessoa.tipoPessoa">Tipo de Pessoa: <b style="color: red">*</b></label>
+				<p-dropdown
+					#funcionarioPessoaTipoPessoa="ngModel"
+					[(ngModel)]="funcionario.pessoa.tipoPessoa"
+					[options]="tiposPessoas"
+					[required]="true"
+					(onChange)="modificarMascaraCpfOuCnpj()"
+					field="funcionario.pessoa.tipoPessoa"
+					data-cy="funcionario.pessoa.tipoPessoa"
+					name="funcionario.pessoa.tipoPessoa"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(funcionarioPessoaTipoPessoa)"
+					style="color: red">
+					<b>Tipo Pessoa Inválido!</b>
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="funcionario.pessoa.cpfOuCnpj">CPF / CNPJ: <b style="color: red">*</b></label>
+				<p-inputMask
+					#funcionarioPessoaCpfOuCnpj="ngModel"
+					[(ngModel)]="funcionario.pessoa.cpfOuCnpj"
+					[mask]="mascaraCpfCnpj"
+					[required]="true"
+					name="funcionario.pessoa.cpfOuCnpj"
+					data-cy="funcionario.pessoa.cpfOuCnpj"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(funcionarioPessoaCpfOuCnpj)"
+					style="color: red">
+					<b>CPF / CNPJ Inválido!</b> Os formatos devem ser:<br />
+					<b>CPF:</b> 123.456.789-01<br />
+					<b>CNPJ:</b> 12.345.678/9012-34!
+				</small>
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="funcionario.pessoa.telefone">Telefone: <b style="color: red">*</b></label>
+				<p-inputMask
+					#funcionarioPessoaTelefone="ngModel"
+					[(ngModel)]="funcionario.pessoa.telefone"
+					[required]="true"
+					mask="(99)99999-999?9"
+					field="funcionario.pessoa.telefone"
+					name="funcionario.pessoa.telefone"
+					data-cy="funcionario.pessoa.telefone"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(funcionarioPessoaTelefone)"
+					style="color: red">
+					<b>Telefone Inválido!</b> Os formatos devem ser:<br />
+					<b>Celular:</b> (12)3456-7890<br />
+					<b>Fixo:</b> (12)34567-8901
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="funcionario.pessoa.email">E-Mail:</label>
+				<input
+					type="text"
+					pInputText
+					[(ngModel)]="funcionario.pessoa.email"
+					name="funcionario.pessoa.email"
+					data-cy="funcionario.pessoa.email" />
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="funcionario.estadoBrasileiro">Estado:</label>
+				<p-dropdown
+					[(ngModel)]="funcionario.pessoa.estadoBrasileiro"
+					field="funcionario.estadoBrasileiro"
+					data-cy="funcionario.estadoBrasileiro"
+					name="funcionario.estadoBrasileiro"
+					[options]="estadosBrasileiro"
+					styleClass="w-full" />
+			</div>
+		</div>
+
+		<div class="flex flex-row gap-3">
+			<div class="flex flex-column w-full">
+				<label for="funcionario.login">Login: <b style="color: red">*</b></label>
+				<input
+					type="text"
+					pInputText
+					#funcionarioLogin="ngModel"
+					[(ngModel)]="funcionario.login"
+					[required]="true"
+					[maxlength]="30"
+					field="funcionario.login"
+					name="funcionario.login"
+					data-cy="funcionario.login" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(funcionarioLogin)"
+					style="color: red">
+					<b>Log-In Inválido!</b>
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="funcionario.senha">Senha: <b style="color: red">*</b></label>
+				<input
+					type="text"
+					pInputText
+					#funcionarioSenha="ngModel"
+					[(ngModel)]="funcionario.senha"
+					[required]="true"
+					[maxlength]="30"
+					field="funcionario.senha"
+					name="funcionario.senha"
+					data-cy="funcionario.senha" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(funcionarioSenha)"
+					style="color: red">
+					<b>Senha Inválido!</b>
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="funcionario.comissao">Comissão: <b style="color: red">*</b></label>
+				<p-inputNumber
+					#funcionarioComissao="ngModel"
+					[(ngModel)]="funcionario.comissao"
+					[max]="100"
+					[min]="0"
+					[required]="true"
+					[allowEmpty]="false"
+					[showButtons]="true"
+					suffix="%"
+					buttonLayout="horizontal"
+					inputId="percent"
+					spinnerMode="horizontal"
+					[step]="1"
+					decrementButtonClass="p-button-danger"
+					incrementButtonClass="p-button-success"
+					incrementButtonIcon="pi pi-plus"
+					decrementButtonIcon="pi pi-minus"
+					field="funcionario.comissao"
+					data-cy="funcionario.comissao"
+					name="funcionario.comissao" />
+			</div>
+		</div>
+
+		<p-button
+			data-cy="funcionario.submit"
+			label="Salvar Funcionário"
+			styleClass="w-full"
+			[disabled]="funcionarioInvalido()"
+			(onClick)="salvarFuncionario()" />
+	</form>
+</p-dialog>
