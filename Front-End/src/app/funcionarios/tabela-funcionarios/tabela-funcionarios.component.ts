@@ -6,16 +6,15 @@ import { Pessoa } from 'src/app/shared/domains/pessoa.model';
 import { FuncionarioService } from 'src/app/shared/services/funcionario.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 import { EstadosBrasileirosEnum } from 'src/app/shared/domains/enums/estados-brasileiros.enum';
-
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
-  selector: 'app-tabela-funcionarios',
-  templateUrl: './tabela-funcionarios.component.html',
-  styles: [],
+	selector: 'app-tabela-funcionarios',
+	templateUrl: './tabela-funcionarios.component.html',
+	styles: [],
 })
 export class TabelaFuncionariosComponent {
-
-  funcionarios!: Funcionario[];
+	funcionarios!: Funcionario[];
 	funcionariosSelecionados!: Funcionario[];
 	quantidadeTotalFuncionarios!: number;
 	quantidadeFuncionariosExibidosPorPagina: number = 30;
@@ -24,13 +23,13 @@ export class TabelaFuncionariosComponent {
 
 	@ViewChild(Table) private tabelaFuncionarios!: Table;
 
-	constructor(private funcionarioService: FuncionarioService, private mensagensGenericasService: MensagensGenericasService) {}
+	constructor(private funcionarioService: FuncionarioService, private mensagensGenericasService: MensagensGenericasService, private confirmationService: ConfirmationService) {}
 
 	ngOnInit(): void {
 		this.obterTodosFuncionarios(0, 30);
 	}
 
-  obterTodosFuncionarios(numeroPagina: number, quantidadePorPagina: number, ordenarPor?: string): void {
+	obterTodosFuncionarios(numeroPagina: number, quantidadePorPagina: number, ordenarPor?: string): void {
 		this.funcionarioService.obterTodosPorPagina(numeroPagina, quantidadePorPagina, ordenarPor).subscribe({
 			next: (resposta) => {
 				this.funcionarios = resposta.content;
@@ -50,7 +49,17 @@ export class TabelaFuncionariosComponent {
 		}
 	}
 
-	excluirFuncionario(idFuncionario: number) {
+	verificarExclusao(idAgendamento: number) {
+		this.confirmationService.confirm({
+			message: 'Tem certeza que deseja excluir este funcionário?',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => {
+				this.excluirFuncionario(idAgendamento);
+			},
+		});
+	}
+
+	private excluirFuncionario(idFuncionario: number) {
 		this.funcionarioService.excluir(idFuncionario).subscribe({
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Funcionário', 'excluído');
@@ -75,5 +84,4 @@ export class TabelaFuncionariosComponent {
 	obterEstadoBrasileiro(valor: string) {
 		return Object.values(EstadosBrasileirosEnum)[Object.keys(EstadosBrasileirosEnum).indexOf(valor)];
 	}
-
 }

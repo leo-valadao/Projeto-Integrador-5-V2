@@ -60,7 +60,11 @@
 				<td class="align-middle text-center">{{ item.pessoa.email }}</td>
 				<td class="align-middle text-center">{{ obterEstadoBrasileiro(item.pessoa.estadoBrasileiro) }}</td>
 				<td class="align-middle text-center">{{ item.pessoa.cpfOuCnpj }}</td>
-				<td class="align-middle text-center" title="{{ item.alergias }}">{{ item.alergias }}</td>
+				<td
+					class="align-middle text-center"
+					title="{{ item.alergias }}">
+					{{ item.alergias }}
+				</td>
 
 				<!-- Botões de Ações de Cada Item da Tabela -->
 				<td class="flex flex-row justify-content-around">
@@ -73,9 +77,12 @@
 						class="pi pi-trash"
 						data-cy="cliente.excluir"
 						style="font-size: 2rem; color: red !important"
-						(click)="excluirCliente(item.id)"></i>
+						(click)="verificarExclusao(item.id)"></i>
 				</td>
 			</tr>
 		</ng-template>
 	</p-table>
+
+	<!-- Pop-Up de Confirmação da Exclusão -->
+	<app-confirmar-exclusao nomeDoItemSendoExcluido="Cliente" />
 </div>

@@ -6,6 +6,7 @@ import { EstadosBrasileirosEnum } from 'src/app/shared/domains/enums/estados-bra
 import { Pessoa } from 'src/app/shared/domains/pessoa.model';
 import { FornecedorService } from 'src/app/shared/services/fornecedor.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
 	selector: 'app-tabela-fornecedores',
@@ -22,7 +23,7 @@ export class TabelaFornecedoresComponent implements OnInit {
 
 	@ViewChild(Table) private tabelaFornecedores!: Table;
 
-	constructor(private fornecedorService: FornecedorService, private mensagensGenericasService: MensagensGenericasService) {}
+	constructor(private fornecedorService: FornecedorService, private mensagensGenericasService: MensagensGenericasService, private confirmationService: ConfirmationService) {}
 
 	ngOnInit(): void {
 		this.obterTodosFornecedores(0, 30);
@@ -48,7 +49,17 @@ export class TabelaFornecedoresComponent implements OnInit {
 		}
 	}
 
-	excluirFornecedor(idFornecedor: number) {
+	verificarExclusao(idAgendamento: number) {
+		this.confirmationService.confirm({
+			message: 'Tem certeza que deseja excluir este fornecedor?',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => {
+				this.excluirFornecedor(idAgendamento);
+			},
+		});
+	}
+
+	private excluirFornecedor(idFornecedor: number) {
 		this.fornecedorService.excluir(idFornecedor).subscribe({
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Fornecedor', 'excluído');

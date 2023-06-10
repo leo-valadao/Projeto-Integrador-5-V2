@@ -68,9 +68,12 @@
 						class="pi pi-trash"
 						data-cy="servico.excluir"
 						style="font-size: 2rem; color: red !important"
-						(click)="excluirServico(item.id)"></i>
+						(click)="verificarExclusao(item.id)"></i>
 				</td>
 			</tr>
 		</ng-template>
 	</p-table>
+
+	<!-- Pop-Up de Confirmação da Exclusão -->
+	<app-confirmar-exclusao nomeDoItemSendoExcluido="Serviço" />
 </div>

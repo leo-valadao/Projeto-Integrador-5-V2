@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { Cliente } from 'src/app/shared/domains/cliente.model';
 import { EstadosBrasileirosEnum } from 'src/app/shared/domains/enums/estados-brasileiros.enum';
@@ -22,7 +23,7 @@ export class TabelaClientesComponent {
 
 	@ViewChild(Table) private tabelaClientes!: Table;
 
-	constructor(private clienteService: ClienteService, private mensagensGenericasService: MensagensGenericasService) {}
+	constructor(private clienteService: ClienteService, private mensagensGenericasService: MensagensGenericasService, private confirmationService: ConfirmationService) {}
 
 	ngOnInit(): void {
 		this.obterTodosClientes(0, 30);
@@ -48,7 +49,17 @@ export class TabelaClientesComponent {
 		}
 	}
 
-	excluirCliente(idCliente: number) {
+	verificarExclusao(idAgendamento: number) {
+		this.confirmationService.confirm({
+			message: 'Tem certeza que deseja excluir este cliente?',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => {
+				this.excluirCliente(idAgendamento);
+			},
+		});
+	}
+
+	private excluirCliente(idCliente: number) {
 		this.clienteService.excluir(idCliente).subscribe({
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Clientes', 'excluído');

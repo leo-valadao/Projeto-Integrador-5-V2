@@ -1,0 +1,27 @@
+<!-- Pop-Up de Confirmação da Exclusão -->
+<p-confirmDialog
+	#confirmarExclusao
+	styleClass="min-w-max w-6">
+	<!-- Título do Pop-Up -->
+	<ng-template pTemplate="header">
+		<h3>Excluir {{ nomeDoItemSendoExcluido }}</h3>
+	</ng-template>
+
+	<!-- Botões de Exclusão e Cancelamento da Exclusão -->
+	<ng-template pTemplate="footer">
+		<button
+			pButton
+			pRipple
+			label="Excluir"
+			icon="pi pi-trash"
+			class="p-button-danger"
+			(click)="confirmarExclusao.accept()"></button>
+		<button
+			pButton
+			pRipple
+			label="Cancelar"
+			icon="pi pi-times"
+			class="p-button-primary"
+			(click)="confirmarExclusao.reject()"></button>
+	</ng-template>
+</p-confirmDialog>

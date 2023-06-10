@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { Servico } from 'src/app/shared/domains/servico.model';
 import { ServicoService } from 'src/app/shared/services/servico.service';
@@ -18,7 +19,7 @@ export class TabelaServicosComponent {
 
 	@ViewChild(Table) private tabelaServicos!: Table;
 
-	constructor(private servicoService: ServicoService, private mensagensGenericasService: MensagensGenericasService) {}
+	constructor(private servicoService: ServicoService, private mensagensGenericasService: MensagensGenericasService, private confirmationService: ConfirmationService) {}
 
 	ngOnInit(): void {
 		this.obterTodosServicos(0, 30);
@@ -44,7 +45,17 @@ export class TabelaServicosComponent {
 		}
 	}
 
-	excluirServico(idServico: number) {
+	verificarExclusao(idAgendamento: number) {
+		this.confirmationService.confirm({
+			message: 'Tem certeza que deseja excluir este serviço?',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => {
+				this.excluirServico(idAgendamento);
+			},
+		});
+	}
+
+	private excluirServico(idServico: number) {
 		this.servicoService.excluir(idServico).subscribe({
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Serviço', 'excluído');

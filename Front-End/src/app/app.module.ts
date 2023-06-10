@@ -11,7 +11,7 @@ import { registerLocaleData } from '@angular/common';
 import localePtBr from '@angular/common/locales/pt';
 
 // Prime NG:
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
@@ -27,6 +27,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ListboxModule } from 'primeng/listbox';
 import { SplitterModule } from 'primeng/splitter';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 // Aesthetics:
 import { Rotas } from './app.routes';
@@ -69,6 +70,7 @@ import { TabelaServicosComponent } from './servicos/tabela-servicos/tabela-servi
 import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
 import { CreditosComponent } from './creditos/creditos.component';
 import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
+import { ConfirmarExclusaoComponent } from './shared/componentes-gerais/confirmar-exclusao/confirmar-exclusao.component';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -113,6 +115,7 @@ registerLocaleData(localePtBr, 'pt-BR');
 		PaginaInicialComponent,
 		CreditosComponent,
 		SobreNosComponent,
+  ConfirmarExclusaoComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -136,9 +139,10 @@ registerLocaleData(localePtBr, 'pt-BR');
 		ListboxModule,
 		SplitterModule,
 		InputNumberModule,
+		ConfirmDialogModule,
 		RouterModule.forRoot(Rotas, { onSameUrlNavigation: 'reload' }),
 	],
-	providers: [MessageService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
+	providers: [MessageService, ConfirmationService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

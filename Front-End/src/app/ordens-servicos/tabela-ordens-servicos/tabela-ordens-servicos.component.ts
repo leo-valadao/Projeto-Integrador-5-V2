@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { OrdemServico } from 'src/app/shared/domains/ordem-servico.model';
 import { OrdemServicoService } from 'src/app/shared/services/ordem-servico.service';
@@ -19,7 +20,7 @@ export class TabelaOrdensServicosComponent {
 
 	@ViewChild(Table) private tabelaordemServicos!: Table;
 
-	constructor(private ordemServicoService: OrdemServicoService, private mensagensGenericasService: MensagensGenericasService) {}
+	constructor(private ordemServicoService: OrdemServicoService, private mensagensGenericasService: MensagensGenericasService, private confirmationService: ConfirmationService) {}
 
 	ngOnInit(): void {
 		this.obterTodasOrdensServicos(0, 30);
@@ -45,7 +46,17 @@ export class TabelaOrdensServicosComponent {
 		}
 	}
 
-	excluirOrdemServico(idOrdemServico: number) {
+	verificarExclusao(idAgendamento: number) {
+		this.confirmationService.confirm({
+			message: 'Tem certeza que deseja excluir este ordem de serviço?',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => {
+				this.excluirOrdemServico(idAgendamento);
+			},
+		});
+	}
+
+	private excluirOrdemServico(idOrdemServico: number) {
 		this.ordemServicoService.excluir(idOrdemServico).subscribe({
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Ordem de Serviço', 'excluída');

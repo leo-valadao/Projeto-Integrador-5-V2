@@ -73,9 +73,12 @@
 						class="pi pi-trash"
 						data-cy="fornecedor.excluir"
 						style="font-size: 2rem; color: red !important"
-						(click)="excluirFornecedor(item.id)"></i>
+						(click)="verificarExclusao(item.id)"></i>
 				</td>
 			</tr>
 		</ng-template>
 	</p-table>
+
+	<!-- Pop-Up de Confirmação da Exclusão -->
+	<app-confirmar-exclusao nomeDoItemSendoExcluido="Fornecedor" />
 </div>

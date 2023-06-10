@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { Agendamento } from 'src/app/shared/domains/agendamento.model';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
@@ -20,7 +21,7 @@ export class TabelaAgendamentosComponent {
 
 	@ViewChild(Table) private tabelaAgendamentos!: Table;
 
-	constructor(private agendamentoService: AgendamentoService, private mensagensGenericasService: MensagensGenericasService) {}
+	constructor(private agendamentoService: AgendamentoService, private mensagensGenericasService: MensagensGenericasService, private confirmationService: ConfirmationService) {}
 
 	ngOnInit(): void {
 		this.obterTodosAgendamentos(0, 30);
@@ -46,7 +47,17 @@ export class TabelaAgendamentosComponent {
 		}
 	}
 
-	excluirAgendamento(idAgendamento: number) {
+	verificarExclusao(idAgendamento: number) {
+		this.confirmationService.confirm({
+			message: 'Tem certeza que deseja excluir este agendamento?',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => {
+				this.excluirAgendamento(idAgendamento);
+			},
+		});
+	}
+
+	private excluirAgendamento(idAgendamento: number) {
 		this.agendamentoService.excluir(idAgendamento).subscribe({
 			next: () => {
 				this.mensagensGenericasService.mensagemPadraoDeSucesso('Agendamentos', 'excluído');
