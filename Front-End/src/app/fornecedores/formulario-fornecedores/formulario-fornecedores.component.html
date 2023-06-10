@@ -1,22 +1,24 @@
 <p-dialog
-	header="Cadastro de Fornecedor"
-	[contentStyle]="{ overflow: 'visible' }"
-	[modal]="true"
-	styleClass="min-w-max w-6"
+	*ngIf="exibirFormulario"
 	[(visible)]="exibirFormulario"
-	*ngIf="exibirFormulario">
+	[modal]="true"
+	[contentStyle]="{ overflow: 'visible' }"
+	header="Cadastro de Fornecedor"
+	styleClass="min-w-max w-6">
 	<form class="flex flex-column gap-3">
+		<!-- Linha 1 -->
 		<div class="flex flex-row gap-3">
+			<!-- Nome -->
 			<div class="flex flex-column w-full">
 				<label for="fornecedor.pessoa.nome">Nome: <b style="color: red">*</b></label>
 				<input
 					type="text"
 					pInputText
 					#fornecedorPessoaNome="ngModel"
-					[(ngModel)]="fornecedor.pessoa.nome"
-					[required]="true"
 					name="fornecedor.pessoa.nome"
-					data-cy="fornecedor.pessoa.nome" />
+					data-cy="fornecedor.pessoa.nome"
+					[(ngModel)]="fornecedor.pessoa.nome"
+					[required]="true" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(fornecedorPessoaNome)"
 					style="color: red">
@@ -24,17 +26,17 @@
 				</small>
 			</div>
 
+			<!-- Tipo de Pessoa -->
 			<div class="flex flex-column w-full">
 				<label for="fornecedor.pessoa.tipoPessoa">Tipo de Pessoa: <b style="color: red">*</b></label>
 				<p-dropdown
 					#fornecedorPessoaTipoPessoa="ngModel"
+					name="fornecedor.pessoa.tipoPessoa"
+					data-cy="fornecedor.pessoa.tipoPessoa"
 					[(ngModel)]="fornecedor.pessoa.tipoPessoa"
 					[options]="tiposPessoas"
 					[required]="true"
 					(onChange)="modificarMascaraCpfOuCnpj()"
-					field="fornecedor.pessoa.tipoPessoa"
-					data-cy="fornecedor.pessoa.tipoPessoa"
-					name="fornecedor.pessoa.tipoPessoa"
 					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(fornecedorPessoaTipoPessoa)"
@@ -43,15 +45,16 @@
 				</small>
 			</div>
 
+			<!-- CPF / CNPJ -->
 			<div class="flex flex-column w-full">
 				<label for="fornecedor.pessoa.cpfOuCnpj">CPF / CNPJ: <b style="color: red">*</b></label>
 				<p-inputMask
 					#fornecedorPessoaCpfOuCnpj="ngModel"
+					name="fornecedor.pessoa.cpfOuCnpj"
+					data-cy="fornecedor.pessoa.cpfOuCnpj"
 					[(ngModel)]="fornecedor.pessoa.cpfOuCnpj"
 					[mask]="mascaraCpfCnpj"
 					[required]="true"
-					name="fornecedor.pessoa.cpfOuCnpj"
-					data-cy="fornecedor.pessoa.cpfOuCnpj"
 					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(fornecedorPessoaCpfOuCnpj)"
@@ -63,17 +66,18 @@
 			</div>
 		</div>
 
+		<!-- Linha 2 -->
 		<div class="flex flex-row gap-3">
+			<!-- Telefone -->
 			<div class="flex flex-column w-full">
 				<label for="fornecedor.pessoa.telefone">Telefone: <b style="color: red">*</b></label>
 				<p-inputMask
 					#fornecedorPessoaTelefone="ngModel"
+					name="fornecedor.pessoa.telefone"
+					data-cy="fornecedor.pessoa.telefone"
 					[(ngModel)]="fornecedor.pessoa.telefone"
 					[required]="true"
 					mask="(99)99999-999?9"
-					field="fornecedor.pessoa.telefone"
-					name="fornecedor.pessoa.telefone"
-					data-cy="fornecedor.pessoa.telefone"
 					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(fornecedorPessoaTelefone)"
@@ -84,51 +88,57 @@
 				</small>
 			</div>
 
+			<!-- E-Mail -->
 			<div class="flex flex-column w-full">
 				<label for="fornecedor.pessoa.email">E-Mail:</label>
 				<input
 					type="text"
 					pInputText
-					[(ngModel)]="fornecedor.pessoa.email"
+					#fornecedorPessoaEmail="ngModel"
 					name="fornecedor.pessoa.email"
-					data-cy="fornecedor.pessoa.email" />
+					data-cy="fornecedor.pessoa.email"
+					[(ngModel)]="fornecedor.pessoa.email" />
 			</div>
 
+			<!-- Estado -->
 			<div class="flex flex-column w-full">
-				<label for="fornecedor.estadoBrasileiro">Estado:</label>
+				<label for="fornecedor.pessoa.estadoBrasileiro">Estado:</label>
 				<p-dropdown
+					#fornecedorEstadoBrasileiro="ngModel"
+					name="fornecedor.pessoa.estadoBrasileiro"
+					data-cy="fornecedor.pessoa.estadoBrasileiro"
 					[(ngModel)]="fornecedor.pessoa.estadoBrasileiro"
-					field="fornecedor.estadoBrasileiro"
-					data-cy="fornecedor.estadoBrasileiro"
-					name="fornecedor.estadoBrasileiro"
-					placeholder="Selecione um estado"
 					[options]="estadosBrasileiro"
-					styleClass="w-full" />
+					styleClass="w-full"
+					placeholder="Selecione um estado" />
 			</div>
 		</div>
 
+		<!-- Endereço -->
 		<div class="flex flex-row gap-3">
 			<div class="flex flex-column w-full">
 				<label for="fornecedor.endereco">Endereço:</label>
 				<textarea
 					pInputTextarea
 					#fornecedorendereco="ngModel"
+					name="fornecedor.endereco"
+					data-cy="fornecedor.endereco"
 					[(ngModel)]="fornecedor.endereco"
 					[maxLength]="500"
 					[autoResize]="true"
-					style="width: 100%"
-					field="fornecedor.endereco"
-					data-cy="fornecedor.endereco"
-					name="fornecedor.endereco">
+					style="width: 100%">
 				</textarea>
 			</div>
 		</div>
 
+		<!-- Salvar -->
 		<p-button
-			data-cy="fornecedor.submit"
-			label="Salvar fornecedor"
-			styleClass="w-full"
+			#fornecedorSalvar
+			name="fornecedor-salvar"
+			data-cy="fornecedor-salvar"
 			[disabled]="fornecedorInvalido()"
-			(onClick)="salvarForncedor()" />
+			(onClick)="salvarForncedor()"
+			label="Salvar Fornecedor"
+			styleClass="w-full" />
 	</form>
 </p-dialog>

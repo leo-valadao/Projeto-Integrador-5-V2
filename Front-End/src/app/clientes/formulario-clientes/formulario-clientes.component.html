@@ -1,21 +1,23 @@
 <p-dialog
-	header="Cadastro de Cliente"
-	[contentStyle]="{ overflow: 'visible' }"
-	[modal]="true"
-	styleClass="min-w-max w-6"
+	*ngIf="exibirFormulario"
 	[(visible)]="exibirFormulario"
-	*ngIf="exibirFormulario">
+	[modal]="true"
+	[contentStyle]="{ overflow: 'visible' }"
+	header="Cadastro de Cliente"
+	styleClass="min-w-max w-6">
 	<form class="flex flex-column gap-3">
+		<!-- Linha 1 -->
 		<div class="flex flex-row gap-3">
+			<!-- Nome -->
 			<div class="flex flex-column w-full">
-				<label for="cliente.nome">Nome: <b style="color: red">*</b></label>
+				<label for="cliente.pessoa.nome">Nome: <b style="color: red">*</b></label>
 				<input
 					type="text"
 					pInputText
 					#clienteNome="ngModel"
-					[(ngModel)]="cliente.pessoa.nome"
-					name="cliente.nome"
-					data-cy="cliente.nome" />
+					name="cliente.pessoa.nome"
+					data-cy="cliente.pessoa.nome"
+					[(ngModel)]="cliente.pessoa.nome" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(clienteNome)"
 					style="color: red">
@@ -23,17 +25,17 @@
 				</small>
 			</div>
 
+			<!-- Tipo de Pessoa -->
 			<div class="flex flex-column w-full">
-				<label for="cliente.tipoPessoa">Tipo de Pessoa: <b style="color: red">*</b></label>
+				<label for="cliente.pessoa.tipoPessoa">Tipo de Pessoa: <b style="color: red">*</b></label>
 				<p-dropdown
 					#clienteTipoPessoa="ngModel"
+					name="cliente.pessoa.tipoPessoa"
+					data-cy="cliente.pessoa.tipoPessoa"
 					[(ngModel)]="cliente.pessoa.tipoPessoa"
 					[options]="tiposPessoas"
 					[required]="true"
 					(onChange)="modificarMascaraCpfOuCnpj()"
-					field="cliente.pessoa.tipoPessoa"
-					data-cy="cliente.pessoa.tipoPessoa"
-					name="cliente.pessoa.tipoPessoa"
 					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(clienteTipoPessoa)"
@@ -42,84 +44,95 @@
 				</small>
 			</div>
 
+			<!-- CPF / CNPJ -->
 			<div class="flex flex-column w-full">
 				<label for="cliente.pessoa.cpfOuCnpj">CPF / CNPJ: <b style="color: red">*</b></label>
 				<p-inputMask
 					#clientePessoaCpfOuCnpj="ngModel"
-					[(ngModel)]="cliente.pessoa.cpfOuCnpj"
-					[mask]="mascaraCpfCnpj"
 					name="cliente.pessoa.cpfOuCnpj"
 					data-cy="cliente.pessoa.cpfOuCnpj"
-					styleClass="w-full" />
-			</div>
-			<small
-				*ngIf="validacaoCamposService.campoInvalido(clientePessoaCpfOuCnpj)"
-				style="color: red">
-				<b>CPF / CNPJ Inválido!</b> Os formatos devem ser: <b>CPF: 123.456.789-01 / CNPJ: 12.345.678/9012-34!</b>
-			</small>
-		</div>
-
-		<div class="flex flex-row gap-3">
-			<div class="flex flex-column w-full">
-				<label for="cliente.telefone">Telefone: <b style="color: red">*</b></label>
-				<p-inputMask
-					#clientePessoaTelefone="ngModel"
-					[(ngModel)]="cliente.pessoa.telefone"
-					mask="(99)99999-999?9"
-					field="cliente.pessoa.telefone"
-					name="cliente.pessoa.telefone"
-					data-cy="cliente.pessoa.telefone"
+					[(ngModel)]="cliente.pessoa.cpfOuCnpj"
+					[mask]="mascaraCpfCnpj"
 					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(clientePessoaCpfOuCnpj)"
 					style="color: red">
-					<b>Telefone Inválido!</b> Os formatos devem ser: <b>Celular: (12)3456-7890 / Fixo: (12)34567-8901!</b>
+					<b>CPF / CNPJ Inválido!</b> Os formatos devem ser:<br />
+					<b>CPF:</b> 123.456.789-01<br />
+					<b>CNPJ:</b> 12.345.678/9012-34!
+				</small>
+			</div>
+		</div>
+
+		<!-- Linha 2 -->
+		<div class="flex flex-row gap-3">
+			<!-- Telefone -->
+			<div class="flex flex-column w-full">
+				<label for="cliente.pessoa.telefone">Telefone: <b style="color: red">*</b></label>
+				<p-inputMask
+					#clientePessoaTelefone="ngModel"
+					name="cliente.pessoa.telefone"
+					data-cy="cliente.pessoa.telefone"
+					[(ngModel)]="cliente.pessoa.telefone"
+					mask="(99)99999-999?9"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(clientePessoaTelefone)"
+					style="color: red">
+					<b>Telefone Inválido!</b> Os formatos devem ser:<br />
+					<b>Celular:</b> (12)3456-7890<br />
+					<b>Fixo:</b> (12)34567-8901!
 				</small>
 			</div>
 
+			<!-- E-Mail -->
 			<div class="flex flex-column w-full">
-				<label for="cliente.email">E-Mail:</label>
+				<label for="cliente.pessoa.email">E-Mail:</label>
 				<input
 					type="text"
 					pInputText
-					[(ngModel)]="cliente.pessoa.email"
-					name="cliente.email"
-					data-cy="cliente.email" />
+					name="cliente.pessoa.email"
+					data-cy="cliente.pessoa.email"
+					[(ngModel)]="cliente.pessoa.email" />
 			</div>
 
+			<!-- Estado -->
 			<div class="flex flex-column w-full">
-				<label for="cliente.estadoBrasileiro">Estado:</label>
+				<label for="cliente.pessoa.estadoBrasileiro">Estado:</label>
 				<p-dropdown
+					#clienteEstadoBrasileiro="ngModel"
+					data-cy="cliente.pessoa.estadoBrasileiro"
+					name="cliente.pessoa.estadoBrasileiro"
 					[(ngModel)]="cliente.pessoa.estadoBrasileiro"
-					field="cliente.estadoBrasileiro"
-					data-cy="cliente.estadoBrasileiro"
-					name="cliente.estadoBrasileiro"
 					[options]="estadosBrasileiro"
 					placeholder="Selecione um estado"
 					styleClass="w-full" />
 			</div>
 		</div>
 
+		<!-- Alergias -->
 		<div class="flex flex-column w-full">
 			<label for="cliente.alergias">Alergias:</label>
 			<textarea
 				pInputTextarea
 				#clienteAlergias="ngModel"
+				name="cliente.alergias"
+				data-cy="cliente.alergias"
 				[(ngModel)]="cliente.alergias"
 				[maxLength]="500"
 				[autoResize]="true"
-				style="width: 100%"
-				field="cliente.alergias"
-				data-cy="cliente.alergias"
-				name="cliente.alergias">
+				style="width: 100%">
 			</textarea>
 		</div>
 
+		<!-- Salvar -->
 		<p-button
-			data-cy="cliente.submit"
-			label="Salvar Cliente"
-			styleClass="w-full"
+			#clienteSalvar
+			name="cliente-salvar"
+			data-cy="cliente-salvar"
 			[disabled]="clienteInvalido()"
-			(onClick)="salvarCliente()" />
+			(onClick)="salvarCliente()"
+			label="Salvar Cliente"
+			styleClass="w-full" />
 	</form>
 </p-dialog>

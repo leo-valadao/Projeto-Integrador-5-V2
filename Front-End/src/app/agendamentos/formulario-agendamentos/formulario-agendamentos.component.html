@@ -1,5 +1,3 @@
-<!-- Formulário do Agendamento -->
-<!-- Menu Pop-Up Flutuante -->
 <p-dialog
 	*ngIf="exibirFormulario"
 	[(visible)]="exibirFormulario"
@@ -158,9 +156,9 @@
 			#agendamentoSalvar
 			name="agendamento-salvar"
 			data-cy="agendamento-salvar"
-			label="Salvar Agendamento"
 			[disabled]="agendamentoInvalido()"
 			(onClick)="salvarAgendamento()"
+			label="Salvar Agendamento"
 			styleClass="w-full" />
 	</form>
 </p-dialog>

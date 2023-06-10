@@ -1,22 +1,24 @@
 <p-dialog
-	header="Cadastro de Funcionário"
-	[contentStyle]="{ overflow: 'visible' }"
-	[modal]="true"
-	styleClass="min-w-max w-6"
+	*ngIf="exibirFormulario"
 	[(visible)]="exibirFormulario"
-	*ngIf="exibirFormulario">
+	[modal]="true"
+	[contentStyle]="{ overflow: 'visible' }"
+	header="Cadastro de Funcionário"
+	styleClass="min-w-max w-6">
 	<form class="flex flex-column gap-3">
+		<!-- Linha 1 -->
 		<div class="flex flex-row gap-3">
+			<!-- Nome -->
 			<div class="flex flex-column w-full">
 				<label for="funcionario.pessoa.nome">Nome: <b style="color: red">*</b></label>
 				<input
 					type="text"
 					pInputText
 					#funcionarioPessoaNome="ngModel"
-					[(ngModel)]="funcionario.pessoa.nome"
-					[required]="true"
 					name="funcionario.pessoa.nome"
-					data-cy="funcionario.pessoa.nome" />
+					data-cy="funcionario.pessoa.nome"
+					[(ngModel)]="funcionario.pessoa.nome"
+					[required]="true" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(funcionarioPessoaNome)"
 					style="color: red">
@@ -24,17 +26,17 @@
 				</small>
 			</div>
 
+			<!-- Tipo de Pessoa -->
 			<div class="flex flex-column w-full">
 				<label for="funcionario.pessoa.tipoPessoa">Tipo de Pessoa: <b style="color: red">*</b></label>
 				<p-dropdown
 					#funcionarioPessoaTipoPessoa="ngModel"
+					name="funcionario.pessoa.tipoPessoa"
+					data-cy="funcionario.pessoa.tipoPessoa"
 					[(ngModel)]="funcionario.pessoa.tipoPessoa"
 					[options]="tiposPessoas"
 					[required]="true"
 					(onChange)="modificarMascaraCpfOuCnpj()"
-					field="funcionario.pessoa.tipoPessoa"
-					data-cy="funcionario.pessoa.tipoPessoa"
-					name="funcionario.pessoa.tipoPessoa"
 					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(funcionarioPessoaTipoPessoa)"
@@ -43,15 +45,16 @@
 				</small>
 			</div>
 
+			<!-- CPF / CNPJ -->
 			<div class="flex flex-column w-full">
 				<label for="funcionario.pessoa.cpfOuCnpj">CPF / CNPJ: <b style="color: red">*</b></label>
 				<p-inputMask
 					#funcionarioPessoaCpfOuCnpj="ngModel"
+					name="funcionario.pessoa.cpfOuCnpj"
+					data-cy="funcionario.pessoa.cpfOuCnpj"
 					[(ngModel)]="funcionario.pessoa.cpfOuCnpj"
 					[mask]="mascaraCpfCnpj"
 					[required]="true"
-					name="funcionario.pessoa.cpfOuCnpj"
-					data-cy="funcionario.pessoa.cpfOuCnpj"
 					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(funcionarioPessoaCpfOuCnpj)"
@@ -63,17 +66,18 @@
 			</div>
 		</div>
 
+		<!-- Linha 2 -->
 		<div class="flex flex-row gap-3">
+			<!-- Telefone -->
 			<div class="flex flex-column w-full">
 				<label for="funcionario.pessoa.telefone">Telefone: <b style="color: red">*</b></label>
 				<p-inputMask
 					#funcionarioPessoaTelefone="ngModel"
+					name="funcionario.pessoa.telefone"
+					data-cy="funcionario.pessoa.telefone"
 					[(ngModel)]="funcionario.pessoa.telefone"
 					[required]="true"
 					mask="(99)99999-999?9"
-					field="funcionario.pessoa.telefone"
-					name="funcionario.pessoa.telefone"
-					data-cy="funcionario.pessoa.telefone"
 					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(funcionarioPessoaTelefone)"
@@ -84,29 +88,33 @@
 				</small>
 			</div>
 
+			<!-- E-Mail -->
 			<div class="flex flex-column w-full">
 				<label for="funcionario.pessoa.email">E-Mail:</label>
 				<input
 					type="text"
 					pInputText
-					[(ngModel)]="funcionario.pessoa.email"
+					#funcionarioPessoaEmail="ngModel"
 					name="funcionario.pessoa.email"
-					data-cy="funcionario.pessoa.email" />
+					data-cy="funcionario.pessoa.email"
+					[(ngModel)]="funcionario.pessoa.email" />
 			</div>
 
+			<!-- Estado -->
 			<div class="flex flex-column w-full">
-				<label for="funcionario.estadoBrasileiro">Estado:</label>
+				<label for="funcionario.pessoa.estadoBrasileiro">Estado:</label>
 				<p-dropdown
+					#funcionarioEstadoBrasileiro="ngModel"
+					name="funcionario.pessoa.estadoBrasileiro"
+					data-cy="funcionario.pessoa.estadoBrasileiro"
 					[(ngModel)]="funcionario.pessoa.estadoBrasileiro"
-					field="funcionario.estadoBrasileiro"
-					data-cy="funcionario.estadoBrasileiro"
-					name="funcionario.estadoBrasileiro"
 					placeholder="Selecione um estado"
 					[options]="estadosBrasileiro"
 					styleClass="w-full" />
 			</div>
 		</div>
 
+		<!-- Linha 3 -->
 		<div class="flex flex-row gap-3">
 			<div class="flex flex-column w-full">
 				<label for="funcionario.login">Login: <b style="color: red">*</b></label>
@@ -114,12 +122,11 @@
 					type="text"
 					pInputText
 					#funcionarioLogin="ngModel"
+					name="funcionario.login"
+					data-cy="funcionario.login"
 					[(ngModel)]="funcionario.login"
 					[required]="true"
-					[maxlength]="30"
-					field="funcionario.login"
-					name="funcionario.login"
-					data-cy="funcionario.login" />
+					[maxlength]="30" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(funcionarioLogin)"
 					style="color: red">
@@ -127,55 +134,57 @@
 				</small>
 			</div>
 
+			<!-- Senha -->
 			<div class="flex flex-column w-full">
 				<label for="funcionario.senha">Senha: <b style="color: red">*</b></label>
 				<input
 					type="text"
 					pInputText
 					#funcionarioSenha="ngModel"
+					name="funcionario.senha"
+					data-cy="funcionario.senha"
 					[(ngModel)]="funcionario.senha"
 					[required]="true"
-					[maxlength]="30"
-					field="funcionario.senha"
-					name="funcionario.senha"
-					data-cy="funcionario.senha" />
+					[maxlength]="30" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(funcionarioSenha)"
 					style="color: red">
-					<b>Senha Inválido!</b>
+					<b>Senha Inválida!</b>
 				</small>
 			</div>
 
+			<!-- Comissão -->
 			<div class="flex flex-column w-full">
 				<label for="funcionario.comissao">Comissão: <b style="color: red">*</b></label>
 				<p-inputNumber
 					#funcionarioComissao="ngModel"
+					name="funcionario.comissao"
+					data-cy="funcionario.comissao"
 					[(ngModel)]="funcionario.comissao"
 					[max]="100"
 					[min]="0"
+					[step]="1"
 					[required]="true"
 					[allowEmpty]="false"
 					[showButtons]="true"
 					suffix="%"
-					buttonLayout="horizontal"
-					inputId="percent"
 					spinnerMode="horizontal"
-					[step]="1"
-					decrementButtonClass="p-button-danger"
-					incrementButtonClass="p-button-success"
+					buttonLayout="horizontal"
 					incrementButtonIcon="pi pi-plus"
 					decrementButtonIcon="pi pi-minus"
-					field="funcionario.comissao"
-					data-cy="funcionario.comissao"
-					name="funcionario.comissao" />
+					decrementButtonClass="p-button-danger"
+					incrementButtonClass="p-button-success" />
 			</div>
 		</div>
 
+		<!-- Salvar -->
 		<p-button
-			data-cy="funcionario.submit"
-			label="Salvar Funcionário"
-			styleClass="w-full"
+			#funcionarioSalvar
+			name="funcionario-salvar"
+			data-cy="funcionario-salvar"
 			[disabled]="funcionarioInvalido()"
-			(onClick)="salvarFuncionario()" />
+			(onClick)="salvarFuncionario()"
+			label="Salvar Funcionário"
+			styleClass="w-full" />
 	</form>
 </p-dialog>
