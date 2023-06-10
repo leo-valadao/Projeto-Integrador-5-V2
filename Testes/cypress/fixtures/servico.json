@@ -1,0 +1,87 @@
+{
+  "validaCampos": [
+    {
+      "campo": "Deve retornar erro ao não informar nome do serviço",
+      "descricao": "Corte de Cabelo Masculino ou Feminino",
+      "precoCusto": 20.0,
+      "precoVenda": 70,
+      "message": "O Nome do Serviço Deve Ser Informado e Não Pode Estar Vazio!"
+    },
+    {
+      "campo": "Deve retornar erro ao não informar custo do serviço",
+      "nome": "Corte de Cabelo",
+      "descricao": "Corte de Cabelo Masculino ou Feminino",
+      "precoVenda": 70,
+      "message": "O Valor do Preço de Custo do Serviço Deve Ser Informado!"
+    },
+    {
+      "campo": "Deve retornar erro ao não informar valor do serviço",
+      "nome": "Corte de Cabelo",
+      "descricao": "Corte de Cabelo Masculino ou Feminino",
+      "precoCusto": 20.0,
+      "message": "O Valor do Preço de Venda do Serviço Deve Ser Informado!"
+    }
+  ],
+  "servicos": [
+    {
+      "nome": "Corte de Cabelo",
+      "descricao": "Corte de Cabelo Feminino",
+      "precoCusto": 20.0,
+      "precoVenda": 70
+    },
+    {
+      "nome": "Escova e Alisamento",
+      "descricao": "Escova e Alisamento Feminino",
+      "precoCusto": 20.0,
+      "precoVenda": 100
+    },
+    {
+      "nome": "Lavagem e Massagem",
+      "descricao": "Lavagem e Massagem Capilar",
+      "precoCusto": 20.0,
+      "precoVenda": 100
+    },
+    {
+      "nome": "Limpeza de Pele",
+      "descricao": "Limpeza de Pele",
+      "precoCusto": 20.0,
+      "precoVenda": 150
+    },
+    {
+      "nome": "Manicure",
+      "descricao": "Serviço de Manicure",
+      "precoCusto": 10.0,
+      "precoVenda": 25
+    },
+    {
+      "nome": "Pedicure",
+      "descricao": "Serviço de Pedicure",
+      "precoCusto": 10.0,
+      "precoVenda": 25
+    },
+    {
+      "nome": "Manicure e Pedicure",
+      "descricao": "Serviço de Manicure e Pedicure",
+      "precoCusto": 20.0,
+      "precoVenda": 40
+    },
+    {
+      "nome": "Penteado",
+      "descricao": "Penteado",
+      "precoCusto": 20.0,
+      "precoVenda": 40
+    },
+    {
+      "nome": "Penteado",
+      "descricao": "Penteado",
+      "precoCusto": 20.0,
+      "precoVenda": 40
+    },
+    {
+      "nome": "Peeling",
+      "descricao": "Peeling",
+      "precoCusto": 20.0,
+      "precoVenda": 50
+    }
+  ]
+}

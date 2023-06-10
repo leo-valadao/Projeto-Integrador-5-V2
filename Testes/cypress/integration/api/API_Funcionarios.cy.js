@@ -6,6 +6,17 @@ describe("/api/v1/funcionario", () => {
     cy.clearFuncionarios()
   })
 
+  context("Validar campos obrigatórios", () => {
+    validaCampos.forEach(function (payload) {
+      it(`${payload.pessoa.campo}`, () => {
+        cy.PostProfissional(payload).then((res) => {
+          expect(res.status).to.eql(400);
+          expect(res.body.mensagens[0]).contain(payload.pessoa.message);
+        });
+      });
+    });
+  });
+
   context("POST", () => {
     cadastrarFuncionarios.forEach(function (payload) {
       it(`Deve cadastrar funcionario: ${payload.pessoa.nome}`, () => {
@@ -26,17 +37,6 @@ describe("/api/v1/funcionario", () => {
       cy.PostProfissional(payload).then((res) => {
         expect(res.status).to.eql(409);
         expect(res.body.mensagens[0]).contain(`Funcionario Já Cadastrado! CPF: ${payload.pessoa.cpfOuCnpj}`);
-      });
-    });
-  });
-
-  context("Validar campos obrigatórios", () => {
-    validaCampos.forEach(function (payload) {
-      it(`${payload.pessoa.campo}`, () => {
-        cy.PostProfissional(payload).then((res) => {
-          expect(res.status).to.eql(400);
-          expect(res.body.mensagens[0]).contain(payload.pessoa.message);
-        });
       });
     });
   });
