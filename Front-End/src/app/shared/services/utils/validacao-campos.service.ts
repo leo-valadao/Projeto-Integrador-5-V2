@@ -18,4 +18,20 @@ export class ValidacaoCamposService {
 		}
 		return false;
 	}
+
+	camposComPessoaInvalido(campo: NgModel) {
+		if (campo.touched) {
+			if (campo.valid && campo.model) {
+				if (campo.model.id) {
+					return false;
+				}
+				campo.control.markAsDirty();
+				return true;
+			} else {
+				campo.control.markAsDirty();
+				return true;
+			}
+		}
+		return false;
+	}
 }

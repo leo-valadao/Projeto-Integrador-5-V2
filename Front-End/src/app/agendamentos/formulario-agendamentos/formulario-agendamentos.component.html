@@ -1,49 +1,54 @@
+<!-- Formulário do Agendamento -->
+<!-- Menu Pop-Up Flutuante -->
 <p-dialog
-	header="Cadastro de Agendamento"
-	[contentStyle]="{ overflow: 'visible' }"
-	[modal]="true"
-	styleClass="min-w-max w-6"
+	*ngIf="exibirFormulario"
 	[(visible)]="exibirFormulario"
-	*ngIf="exibirFormulario">
+	[modal]="true"
+	[contentStyle]="{ overflow: 'visible' }"
+	header="Cadastro de Agendamento"
+	styleClass="min-w-max w-6">
+	<!-- Formulário -->
 	<form class="flex flex-column gap-3">
+		<!-- Linha 1 -->
 		<div class="flex flex-row gap-3">
+			<!-- Data -->
 			<div class="flex flex-column w-full">
 				<label for="agendamento.data">Data do Agendamento: <b style="color: red">*</b></label>
 				<p-calendar
 					#agendamentoData="ngModel"
+					name="agendamento.data"
+					data-cy="agendamento.data"
 					[(ngModel)]="agendamento.data"
 					[minDate]="dataMinima"
 					[showTime]="false"
 					[showIcon]="true"
 					[required]="true"
-					field="agendamento.data"
-					data-cy="agendamento.data"
-					name="agendamento.data"
-					dateFormat="dd/mm/yy"
 					dataType="string"
+					dateFormat="dd/mm/yy"
 					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(agendamentoData)"
 					style="color: red">
-					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YY</b>!
+					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY</b>!
 				</small>
 			</div>
 
+			<!-- Hora -->
 			<div class="flex flex-column w-full">
 				<label for="agendamento.hora">Hora do Agendamento: <b style="color: red">*</b></label>
 				<p-calendar
 					#agendamentoHora="ngModel"
-					[(ngModel)]="agendamento.hora"
-					data-cy="agendamento.hora"
 					name="agendamento.hora"
-					dateFormat="HH:mm:ss"
+					data-cy="agendamento.hora"
+					[(ngModel)]="agendamento.hora"
 					[showTime]="true"
 					[timeOnly]="true"
-					[showSeconds]="false"
 					[showIcon]="true"
+					[required]="true"
+					[showSeconds]="false"
 					dataType="string"
-					styleClass="w-full"
-					[required]="true" />
+					dateFormat="HH:mm:ss"
+					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(agendamentoHora)"
 					style="color: red">
@@ -51,102 +56,111 @@
 				</small>
 			</div>
 
+			<!-- Status -->
 			<div
 				*ngIf="agendamento.id"
 				class="flex flex-column w-full">
 				<label for="agendamento.status">Status:</label>
 				<p-dropdown
-					[(ngModel)]="agendamento.status"
-					field="agendamento.status"
-					data-cy="agendamento.status"
+					#agendamentoStatus="ngModel"
 					name="agendamento.status"
+					data-cy="agendamento.status"
+					[(ngModel)]="agendamento.status"
 					[options]="status"
 					[required]="true"
 					styleClass="w-full" />
 			</div>
 		</div>
 
+		<!-- Linha 2 -->
 		<div class="flex flex-row gap-3">
+			<!-- Cliente -->
 			<div class="flex flex-column w-full">
 				<label for="agendamento.cliente">Cliente: <b style="color: red">*</b></label>
 				<p-dropdown
 					#agendamentoCliente="ngModel"
-					[(ngModel)]="agendamento.cliente"
-					field="agendamento.cliente.nome"
-					data-cy="agendamento.cliente"
 					name="agendamento.cliente"
+					data-cy="agendamento.cliente"
+					[(ngModel)]="agendamento.cliente"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.camposComPessoaInvalido(agendamentoCliente) }"
 					[options]="clientes"
-					optionLabel="pessoa.nome"
-					styleClass="w-full"
 					[required]="true"
+					styleClass="w-full"
+					optionLabel="pessoa.nome"
 					placeholder="Selecione um cliente" />
 				<small
-					*ngIf="validacaoCamposService.campoInvalido(agendamentoCliente)"
+					*ngIf="validacaoCamposService.camposComPessoaInvalido(agendamentoCliente)"
 					style="color: red">
 					<b>Cliente Não Selecionado!</b>
 				</small>
 			</div>
 
+			<!-- Serviço -->
 			<div class="flex flex-column w-full">
 				<label for="agendamento.servico">Serviço: <b style="color: red">*</b></label>
 				<p-dropdown
 					#agendamentoServico="ngModel"
-					[(ngModel)]="agendamento.servico"
-					field="agendamento.servico.nome"
-					data-cy="agendamento.servico"
 					name="agendamento.servico"
+					data-cy="agendamento.servico"
+					[(ngModel)]="agendamento.servico"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.camposComPessoaInvalido(agendamentoServico) }"
 					[options]="servicos"
-					optionLabel="nome"
-					styleClass="w-full"
 					[required]="true"
-					placeholder="Selecione um serviço"
-					(onBlur)="(null)" />
+					styleClass="w-full"
+					optionLabel="nome"
+					placeholder="Selecione um serviço" />
 				<small
-					*ngIf="validacaoCamposService.campoInvalido(agendamentoServico)"
+					*ngIf="validacaoCamposService.camposComPessoaInvalido(agendamentoServico)"
 					style="color: red">
 					<b>Serviço Não Selecionado!</b>
 				</small>
 			</div>
 
+			<!-- Funcionário -->
 			<div class="flex flex-column w-full">
 				<label for="agendamento.funcionario">Funcionário: <b style="color: red">*</b></label>
 				<p-dropdown
 					#agendamentoFuncionario="ngModel"
-					[(ngModel)]="agendamento.funcionario"
-					field="agendamento.funcionario.nome"
-					data-cy="agendamento.funcionario"
 					name="agendamento.funcionario"
+					data-cy="agendamento.funcionario"
+					[(ngModel)]="agendamento.funcionario"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.camposComPessoaInvalido(agendamentoFuncionario) }"
 					[options]="funcionarios"
-					optionLabel="pessoa.nome"
-					styleClass="w-full"
 					[required]="true"
+					styleClass="w-full"
+					optionLabel="pessoa.nome"
 					placeholder="Selecione um funcionário" />
 				<small
-					*ngIf="validacaoCamposService.campoInvalido(agendamentoFuncionario)"
+					*ngIf="validacaoCamposService.camposComPessoaInvalido(agendamentoFuncionario)"
 					style="color: red">
 					<b>Funcionário Não Selecionado!</b>
 				</small>
 			</div>
 		</div>
 
+		<!-- Observações -->
 		<div class="flex flex-column">
 			<label for="agendamento.observacao">Observações:</label>
 			<textarea
-				[(ngModel)]="agendamento.observacao"
-				data-cy="agendamento.observacao"
 				pInputTextarea
-				style="width: 100%"
+				#agendamentoObservacao="ngModel"
+				name="agendamento.observacao"
+				data-cy="agendamento.observacao"
+				[(ngModel)]="agendamento.observacao"
 				[autoResize]="true"
-				maxlength="500"
-				name="agendamento.observacao">
+				style="width: 100%"
+				maxlength="500">
 			</textarea>
 		</div>
 
+		<!-- Salvar -->
 		<p-button
-			data-cy="agendamento.submit"
+			#agendamentoSalvar
+			name="agendamento-salvar"
+			data-cy="agendamento-salvar"
 			label="Salvar Agendamento"
-			styleClass="w-full"
 			[disabled]="agendamentoInvalido()"
-			(onClick)="salvarAgendamento()" />
+			(onClick)="salvarAgendamento()"
+			styleClass="w-full" />
 	</form>
 </p-dialog>

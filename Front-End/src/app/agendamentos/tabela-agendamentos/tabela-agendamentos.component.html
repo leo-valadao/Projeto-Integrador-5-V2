@@ -1,18 +1,18 @@
 <div class="px-3 pb-3">
 	<!-- Tabela PrimeNG -->
 	<p-table
-		[value]="agendamentos"
+		#dtAgendamentos
 		[(selection)]="agendamentosSelecionados"
-		[paginator]="true"
-		[totalRecords]="quantidadeTotalAgendamentos"
 		[rows]="quantidadeAgendamentosExibidosPorPagina"
 		[lazy]="true"
-		[showCurrentPageReport]="true"
+		[value]="agendamentos"
+		[paginator]="true"
 		[autoLayout]="true"
+		[totalRecords]="quantidadeTotalAgendamentos"
 		[rowsPerPageOptions]="[10, 30, 50, 100]"
+		[showCurrentPageReport]="true"
 		(onLazyLoad)="mudarPagina($event)"
 		currentPageReportTemplate="Mostrando do {first}º ao {last}º de {totalRecords} agendamentos"
-		#dtAgendamentos
 		styleClass="p-datatable-gridlines">
 		<ng-template pTemplate="caption">
 			<!-- Barra do Topo da Tabela -->
@@ -21,8 +21,8 @@
 				<button
 					pButton
 					pRipple
-					icon="pi pi-plus"
 					label="Adicionar"
+					icon="pi pi-plus"
 					class="p-button-primary"
 					(click)="mostrarFormularioAgendamentos(null)"></button>
 			</div>
@@ -55,25 +55,57 @@
 			let-columns="columns">
 			<tr>
 				<!-- Itens da Tabela -->
-				<td class="align-middle text-center">{{ item.id }}</td>
-				<td class="align-middle text-center">{{ item.data }}</td>
-				<td class="align-middle text-center">{{ item.hora }}</td>
-				<td class="align-middle text-center">{{ item.status }}</td>
-				<td class="align-middle text-center">{{ item.observacao }}</td>
-				<td class="align-middle text-center">{{ item.cliente.pessoa.nome }}</td>
-				<td class="align-middle text-center">{{ item.funcionario.pessoa.nome }}</td>
-				<td class="align-middle text-center">{{ item.servico.nome }}</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.id">
+					{{ item.id }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.data">
+					{{ item.data }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.hora">
+					{{ item.hora }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.status">
+					{{ item.status }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.observacao">
+					{{ item.observacao }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.cliente.pessoa.nome">
+					{{ item.cliente.pessoa.nome }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.funcionario.pessoa.nome">
+					{{ item.funcionario.pessoa.nome }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.servico.nome">
+					{{ item.servico.nome }}
+				</td>
 
 				<!-- Botões de Ações de Cada Item da Tabela -->
 				<td class="flex flex-row justify-content-around">
 					<i
 						class="pi pi-pencil"
-						data-cy="agendamento.editar"
+						data-cy="agendamento-editar"
 						style="font-size: 2rem; color: black !important"
 						(click)="mostrarFormularioAgendamentos(item)"></i>
 					<i
 						class="pi pi-trash"
-						data-cy="agendamento.excluir"
+						data-cy="agendamento-excluir"
 						style="font-size: 2rem; color: red !important"
 						(click)="excluirAgendamento(item.id)"></i>
 				</td>

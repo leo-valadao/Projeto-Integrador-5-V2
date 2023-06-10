@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { Dropdown } from 'primeng/dropdown';
 import { Agendamento } from 'src/app/shared/domains/agendamento.model';
 import { Cliente } from 'src/app/shared/domains/cliente.model';
@@ -46,6 +47,7 @@ export class FormularioAgendamentosComponent implements OnInit {
 		this.obterTodosClientes();
 		this.obterTodosServicos();
 		this.obterTodosFuncionarios();
+		// TODO: Melhorar a forma de como os valores das Enum's são exibidos na tela
 		this.status = Object.keys(StatusAgendamentoEnum).map((value) => value);
 	}
 
