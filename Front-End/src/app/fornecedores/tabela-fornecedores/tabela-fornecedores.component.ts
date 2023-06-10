@@ -3,7 +3,6 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { Table, TableLazyLoadEvent } from 'primeng/table';
 import { Fornecedor } from 'src/app/shared/domains/fornecedor.model';
 import { EstadosBrasileirosEnum } from 'src/app/shared/domains/enums/estados-brasileiros.enum';
-import { Pessoa } from 'src/app/shared/domains/pessoa.model';
 import { FornecedorService } from 'src/app/shared/services/fornecedor.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 import { ConfirmationService } from 'primeng/api';
@@ -15,7 +14,6 @@ import { ConfirmationService } from 'primeng/api';
 })
 export class TabelaFornecedoresComponent implements OnInit {
 	fornecedores!: Fornecedor[];
-	FornecedoresSelecionados!: Fornecedor[];
 	quantidadeTotalFornecedores!: number;
 	quantidadeFornecedoresExibidosPorPagina: number = 30;
 

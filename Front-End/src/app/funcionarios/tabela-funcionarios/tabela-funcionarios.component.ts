@@ -15,7 +15,6 @@ import { ConfirmationService } from 'primeng/api';
 })
 export class TabelaFuncionariosComponent {
 	funcionarios!: Funcionario[];
-	funcionariosSelecionados!: Funcionario[];
 	quantidadeTotalFuncionarios!: number;
 	quantidadeFuncionariosExibidosPorPagina: number = 30;
 

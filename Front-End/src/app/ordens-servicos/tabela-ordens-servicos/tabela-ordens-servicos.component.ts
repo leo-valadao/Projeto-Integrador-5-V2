@@ -38,7 +38,7 @@ export class TabelaOrdensServicosComponent {
 		});
 	}
 
-	mostrarFormularioOrdensServicos(ordemServico: OrdemServico | null) {
+	mostrarFormularioOrdensServicos(ordemServico?: OrdemServico) {
 		if (ordemServico) {
 			this.exibirFormularioOrdemServico.emit(ordemServico);
 		} else {

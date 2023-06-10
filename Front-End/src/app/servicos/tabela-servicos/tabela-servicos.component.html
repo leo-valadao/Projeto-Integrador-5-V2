@@ -1,17 +1,17 @@
 <div class="px-4 pb-4">
 	<!-- Tabela PrimeNG -->
 	<p-table
-		[value]="servicos"
-		[paginator]="true"
-		[totalRecords]="quantidadeTotalServicos"
+		#dtServicos
 		[rows]="quantidadeServicosExibidosPorPagina"
 		[lazy]="true"
-		[showCurrentPageReport]="true"
+		[value]="servicos"
+		[paginator]="true"
 		[autoLayout]="true"
+		[totalRecords]="quantidadeTotalServicos"
 		[rowsPerPageOptions]="[10, 30, 50, 100]"
+		[showCurrentPageReport]="true"
 		(onLazyLoad)="mudarPagina($event)"
 		currentPageReportTemplate="Mostrando do {first}º ao {last}º de {totalRecords} serviços"
-		#dtServicos
 		styleClass="p-datatable-gridlines">
 		<ng-template pTemplate="caption">
 			<!-- Barra do Topo da Tabela -->
@@ -51,22 +51,42 @@
 			let-columns="columns">
 			<tr>
 				<!-- Itens da Tabela -->
-				<td class="align-middle text-center">{{ item.id }}</td>
-				<td class="align-middle text-center">{{ item.nome }}</td>
-				<td class="align-middle text-center">{{ item.descricao }}</td>
-				<td class="align-middle text-center">{{ item.precoCusto | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}</td>
-				<td class="align-middle text-center">{{ item.precoVenda | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.id">
+					{{ item.id }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.nome">
+					{{ item.nome }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.descricao">
+					{{ item.descricao }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.precoCusto | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR'">
+					{{ item.precoCusto | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.precoVenda | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR'">
+					{{ item.precoVenda | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+				</td>
 
 				<!-- Botões de Ações de Cada Item da Tabela -->
 				<td class="flex flex-row justify-content-around">
 					<i
 						class="pi pi-pencil pointer"
-						data-cy="servico.editar"
+						data-cy="servico-editar"
 						style="font-size: 2rem; color: black !important"
 						(click)="mostrarFormularioServicos(item)"></i>
 					<i
 						class="pi pi-trash pointer"
-						data-cy="servico.excluir"
+						data-cy="servico-excluir"
 						style="font-size: 2rem; color: red !important"
 						(click)="verificarExclusao(item.id)"></i>
 				</td>

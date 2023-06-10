@@ -1,18 +1,17 @@
 <div class="px-4 pb-4">
 	<!-- Tabela PrimeNG -->
 	<p-table
-		[value]="clientes"
-		[(selection)]="clientesSelecionados"
-		[paginator]="true"
-		[totalRecords]="quantidadeTotalClientes"
+		#dtClientes
 		[rows]="quantidadeClientesExibidosPorPagina"
 		[lazy]="true"
-		[showCurrentPageReport]="true"
+		[value]="clientes"
+		[paginator]="true"
 		[autoLayout]="true"
+		[totalRecords]="quantidadeTotalClientes"
 		[rowsPerPageOptions]="[10, 30, 50, 100]"
+		[showCurrentPageReport]="true"
 		(onLazyLoad)="mudarPagina($event)"
 		currentPageReportTemplate="Mostrando do {first}º ao {last}º de {totalRecords} clientes"
-		#dtClientes
 		styleClass="p-datatable-gridlines">
 		<ng-template pTemplate="caption">
 			<!-- Barra do Topo da Tabela -->
@@ -54,15 +53,39 @@
 			let-columns="columns">
 			<tr>
 				<!-- Itens da Tabela -->
-				<td class="align-middle text-center">{{ item.id }}</td>
-				<td class="align-middle text-center">{{ item.pessoa.nome }}</td>
-				<td class="align-middle text-center">{{ item.pessoa.telefone }}</td>
-				<td class="align-middle text-center">{{ item.pessoa.email }}</td>
-				<td class="align-middle text-center">{{ obterEstadoBrasileiro(item.pessoa.estadoBrasileiro) }}</td>
-				<td class="align-middle text-center">{{ item.pessoa.cpfOuCnpj }}</td>
 				<td
 					class="align-middle text-center"
-					title="{{ item.alergias }}">
+					[title]="item.id">
+					{{ item.id }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.pessoa.nome">
+					{{ item.pessoa.nome }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.pessoa.telefone">
+					{{ item.pessoa.telefone }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.pessoa.email">
+					{{ item.pessoa.email }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="obterEstadoBrasileiro(item.pessoa.estadoBrasileiro)">
+					{{ obterEstadoBrasileiro(item.pessoa.estadoBrasileiro) }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.pessoa.cpfOuCnpj">
+					{{ item.pessoa.cpfOuCnpj }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.alergias">
 					{{ item.alergias }}
 				</td>
 
@@ -70,12 +93,12 @@
 				<td class="flex flex-row justify-content-around">
 					<i
 						class="pi pi-pencil pointer"
-						data-cy="cliente.editar"
+						data-cy="cliente-editar"
 						style="font-size: 2rem; color: black !important"
 						(click)="mostrarFormularioClientes(item)"></i>
 					<i
 						class="pi pi-trash pointer"
-						data-cy="cliente.excluir"
+						data-cy="cliente-excluir"
 						style="font-size: 2rem; color: red !important"
 						(click)="verificarExclusao(item.id)"></i>
 				</td>

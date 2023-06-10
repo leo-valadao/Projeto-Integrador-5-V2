@@ -1,17 +1,17 @@
 <div class="px-3 pb-3">
 	<!-- Tabela PrimeNG -->
 	<p-table
-		[value]="ordemServicos"
-		[paginator]="true"
-		[totalRecords]="quantidadeTotalOrdemServicos"
+		#dtAgendamentos
 		[rows]="quantidadeOrdemServicosExibidosPorPagina"
 		[lazy]="true"
-		[showCurrentPageReport]="true"
+		[value]="ordemServicos"
+		[paginator]="true"
 		[autoLayout]="true"
+		[totalRecords]="quantidadeTotalOrdemServicos"
 		[rowsPerPageOptions]="[10, 30, 50, 100]"
+		[showCurrentPageReport]="true"
 		(onLazyLoad)="mudarPagina($event)"
 		currentPageReportTemplate="Mostrando do {first}º ao {last}º de {totalRecords} ordens de serviços"
-		#dtAgendamentos
 		styleClass="p-datatable-gridlines">
 		<ng-template pTemplate="caption">
 			<!-- Barra do Topo da Tabela -->
@@ -23,7 +23,7 @@
 					icon="pi pi-plus"
 					label="Adicionar"
 					class="p-button-primary"
-					(click)="mostrarFormularioOrdensServicos(null)"></button>
+					(click)="mostrarFormularioOrdensServicos()"></button>
 			</div>
 		</ng-template>
 
@@ -55,26 +55,62 @@
 			let-columns="columns">
 			<tr>
 				<!-- Itens da Tabela -->
-				<td class="align-middle text-center">{{ item.id }}</td>
-				<td class="align-middle text-center">{{ item.dataHoraInicio }}</td>
-				<td class="align-middle text-center">{{ item.dataHoraTermino }}</td>
-				<td class="align-middle text-center">{{ item.status }}</td>
-				<td class="align-middle text-center">{{ item.valor | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}</td>
-				<td class="align-middle text-center">{{ 'ID: ' + item.agendamento.id + ' - Data: ' + item.agendamento.data + ' Hora: ' + item.agendamento.hora }}</td>
-				<td class="align-middle text-center">{{ item.servico.nome }}</td>
-				<td class="align-middle text-center">{{ item.responsavelPelaOS.pessoa.nome }}</td>
-				<td class="align-middle text-center">{{ item.executorServico.pessoa.nome }}</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.id">
+					{{ item.id }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.dataHoraInicio">
+					{{ item.dataHoraInicio }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.dataHoraTermino">
+					{{ item.dataHoraTermino }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.status">
+					{{ item.status }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.valor | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR'">
+					{{ item.valor | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="'ID: ' + item.agendamento.id + ' - Data: ' + item.agendamento.data + ' Hora: ' + item.agendamento.hora">
+					{{ 'ID: ' + item.agendamento.id + ' - Data: ' + item.agendamento.data + ' Hora: ' + item.agendamento.hora }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.servico.nome">
+					{{ item.servico.nome }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.responsavelPelaOS.pessoa.nome">
+					{{ item.responsavelPelaOS.pessoa.nome }}
+				</td>
+				<td
+					class="align-middle text-center"
+					[title]="item.executorServico.pessoa.nome">
+					{{ item.executorServico.pessoa.nome }}
+				</td>
 
 				<!-- Botões de Ações de Cada Item da Tabela -->
 				<td class="flex flex-row justify-content-around">
 					<i
 						class="pi pi-pencil pointer"
-						data-cy="ordemServico.editar"
+						data-cy="ordemServico-editar"
 						style="font-size: 2rem; color: black !important"
 						(click)="mostrarFormularioOrdensServicos(item)"></i>
 					<i
 						class="pi pi-trash pointer"
-						data-cy="ordemServico.excluir"
+						data-cy="ordemServico-excluir"
 						style="font-size: 2rem; color: red !important"
 						(click)="verificarExclusao(item.id)"></i>
 				</td>

@@ -13,7 +13,6 @@ import { MensagensGenericasService } from 'src/app/shared/services/utils/mensage
 })
 export class TabelaAgendamentosComponent {
 	agendamentos!: Agendamento[];
-	agendamentosSelecionados!: Agendamento[];
 	quantidadeTotalAgendamentos!: number;
 	quantidadeAgendamentosExibidosPorPagina: number = 30;
 
@@ -39,7 +38,7 @@ export class TabelaAgendamentosComponent {
 		});
 	}
 
-	mostrarFormularioAgendamentos(agendamento: Agendamento | null) {
+	mostrarFormularioAgendamentos(agendamento?: Agendamento) {
 		if (agendamento) {
 			this.exibirFormularioAgendamento.emit(agendamento);
 		} else {

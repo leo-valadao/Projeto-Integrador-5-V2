@@ -15,7 +15,6 @@ import { MensagensGenericasService } from 'src/app/shared/services/utils/mensage
 })
 export class TabelaClientesComponent {
 	clientes!: Cliente[];
-	clientesSelecionados!: Cliente[];
 	quantidadeTotalClientes!: number;
 	quantidadeClientesExibidosPorPagina: number = 30;
 

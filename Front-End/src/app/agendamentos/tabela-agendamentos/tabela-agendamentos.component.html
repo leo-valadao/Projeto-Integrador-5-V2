@@ -2,7 +2,6 @@
 	<!-- Tabela PrimeNG -->
 	<p-table
 		#dtAgendamentos
-		[(selection)]="agendamentosSelecionados"
 		[rows]="quantidadeAgendamentosExibidosPorPagina"
 		[lazy]="true"
 		[value]="agendamentos"
@@ -24,7 +23,7 @@
 					label="Adicionar"
 					icon="pi pi-plus"
 					class="p-button-primary"
-					(click)="mostrarFormularioAgendamentos(null)"></button>
+					(click)="mostrarFormularioAgendamentos()"></button>
 			</div>
 		</ng-template>
 
@@ -99,12 +98,12 @@
 				<!-- Botões de Ações de Cada Item da Tabela -->
 				<td class="flex flex-row justify-content-around">
 					<i
-						class="pi pi-pencil"
+						class="pi pi-pencil pointer"
 						data-cy="agendamento-editar"
 						style="font-size: 2rem; color: black !important"
 						(click)="mostrarFormularioAgendamentos(item)"></i>
 					<i
-						class="pi pi-trash"
+						class="pi pi-trash pointer"
 						data-cy="agendamento-excluir"
 						style="font-size: 2rem; color: red !important"
 						(click)="verificarExclusao(item.id)"></i>
