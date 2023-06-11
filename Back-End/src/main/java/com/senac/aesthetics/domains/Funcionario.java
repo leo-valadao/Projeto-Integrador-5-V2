@@ -55,7 +55,7 @@ public class Funcionario {
     @Size(max = 30, message = "O Tamanho Máximo da Senha do Funcionário é de 30 Caracteres!")
     private String senha;
 
-    @Column(name = "COMISSAO", nullable = false, precision = 10, scale = 2)
+    @Column(name = "COMISSAO", nullable = false, precision = 3, scale = 2)
     @Digits(integer = 3, fraction = 2, message = "A Comissão do Funcionário Deve Estar Entre 0% á 100%!")
     @Max(value = 100, message = "A Comissão do Funcionário Máxima é de 100%!")
     @Min(value = 100, message = "A Comissão do Funcionário Mínimia é de 0%!")

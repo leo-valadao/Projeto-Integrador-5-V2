@@ -1,0 +1,12 @@
+DO $$ DECLARE
+    drop_statements text;
+BEGIN
+    -- Gerar uma lista de tabelas para dropar em ordem reversa de dependência
+    SELECT string_agg('DROP TABLE IF EXISTS "' || schemaname || '"."' || tablename || '" CASCADE', E';\n')
+    FROM pg_tables
+    WHERE schemaname = 'public' -- Especifique o esquema desejado, se necessário
+    INTO drop_statements;
+
+    -- Executar as declarações DROP
+    EXECUTE drop_statements;
+END $$;

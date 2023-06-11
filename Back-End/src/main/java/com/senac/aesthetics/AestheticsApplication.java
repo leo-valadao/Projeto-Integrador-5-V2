@@ -77,7 +77,7 @@ public class AestheticsApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
-		Boolean inserirDadosDeTeste = true;
+		Boolean inserirDadosDeTeste = false;
 
 		if (inserirDadosDeTeste) {
 			System.out.println("\nInserindo dados de teste...\n");
@@ -171,8 +171,8 @@ public class AestheticsApplication implements ApplicationRunner {
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				ContaReceber cr = new ContaReceber();
-				cr.setDataEmissao(new Date(122, 5, 7));
-				cr.setDataVencimento(new Date(124, 5, 7));
+				cr.setDataEmissao(new Date(122, 5, 7, 15, 10));
+				cr.setDataVencimento(new Date(124, 5, 7, 15, 10));
 				cr.setValor(BigDecimal.valueOf(100.00));
 				cr.setValorRecebido(BigDecimal.valueOf(100.00));
 				cr.setDataRecebimento(new Date());
@@ -206,8 +206,8 @@ public class AestheticsApplication implements ApplicationRunner {
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
 				ContaPagar cp = new ContaPagar();
-				cp.setDataEmissao(new Date(122, 5, 7));
-				cp.setDataVencimento(new Date(124, 5, 7));
+				cp.setDataEmissao(new Date(122, 5, 7, 15, 10));
+				cp.setDataVencimento(new Date(124, 5, 7, 15, 10));
 				cp.setValor(BigDecimal.valueOf(100.00));
 				cp.setValorPago(BigDecimal.valueOf(100.00));
 				cp.setDataPagamento(new Date());
