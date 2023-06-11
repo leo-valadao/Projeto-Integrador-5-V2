@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Funcionario;
 import com.senac.aesthetics.domains.Pessoa;
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
+import com.senac.aesthetics.domains.filters.FuncionarioFiltro;
 import com.senac.aesthetics.errors.ExcecaoRegraNegocio;
 import com.senac.aesthetics.errors.Erros;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
@@ -23,7 +24,7 @@ import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.FuncionarioRepository;
 
 @Service
-public class FuncionarioService implements InterfaceGenericaResource<Funcionario> {
+public class FuncionarioService implements InterfaceGenericaResource<Funcionario, FuncionarioFiltro> {
 
     // Objetos:
     @Autowired
@@ -34,10 +35,10 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
 
     // Métodos:
     public Page<Funcionario> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) throws Exception {
+            String ordenarPor, FuncionarioFiltro filtro) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
-        return funcionarioRepository.findAll(pagina);
+        return funcionarioRepository.obterPorFiltroComPaginacao(filtro, pagina);
     }
 
     public Funcionario obterPorId(Long idFuncionario) throws Exception {
@@ -50,7 +51,7 @@ public class FuncionarioService implements InterfaceGenericaResource<Funcionario
         }
     }
 
-    public Funcionario inserir(Funcionario funcionario) throws Exception {
+    public Funcionario salvar(Funcionario funcionario) throws Exception {
         this.validarFuncionario(funcionario);
         this.associarFuncionarioAPessoaJaCadastrada(funcionario);
 

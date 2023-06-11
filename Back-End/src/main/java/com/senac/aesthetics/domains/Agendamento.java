@@ -69,7 +69,7 @@ public class Agendamento {
 
     // Relacionamentos:
     @ManyToOne
-    @JoinColumn(name = "ID_FK")
+    @JoinColumn(name = "ID_CLINETE_FK")
     @NotNull(message = "O Cliente do Agendamento Deve Ser Informado!")
     private Cliente cliente;
 

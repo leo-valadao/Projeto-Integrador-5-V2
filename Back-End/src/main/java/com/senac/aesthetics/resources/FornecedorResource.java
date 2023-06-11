@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senac.aesthetics.domains.Fornecedor;
+import com.senac.aesthetics.domains.filters.FornecedorFiltro;
 import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 
@@ -22,34 +23,28 @@ import jakarta.validation.Valid;
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/fornecedor")
-public class FornecedorResource implements InterfaceGenericaCliente<Fornecedor> {
+public class FornecedorResource implements InterfaceGenericaCliente<Fornecedor, FornecedorFiltro> {
 
     // Obejtos:
     @Autowired
-    private InterfaceGenericaResource<Fornecedor> fornecedorService;
+    private InterfaceGenericaResource<Fornecedor, FornecedorFiltro> fornecedorService;
 
     // API's:
     @GetMapping
     public ResponseEntity<Page<Fornecedor>> obterTodosComPaginacao(
-            @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
-            @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
+            @RequestParam(required = false, name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
+            @RequestParam(required = false, name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
+            @RequestParam(required = false, name = "ordenarPor", defaultValue = "id") String ordernarPor,
+            @RequestBody(required = false) FornecedorFiltro filtro) throws Exception {
         Page<Fornecedor> fornecedors = fornecedorService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
-                ordernarPor);
+                ordernarPor, filtro);
 
         return ResponseEntity.ok(fornecedors);
     }
 
-    @GetMapping(params = "id")
-    public ResponseEntity<Fornecedor> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
-        Fornecedor fornecedor = fornecedorService.obterPorId(id);
-
-        return ResponseEntity.ok(fornecedor);
-    }
-
     @PostMapping
-    public ResponseEntity<Fornecedor> inserir(@RequestBody @Valid Fornecedor fornecedor) throws Exception {
-        Fornecedor fornecedorInserido = fornecedorService.inserir(fornecedor);
+    public ResponseEntity<Fornecedor> salvar(@RequestBody @Valid Fornecedor fornecedor) throws Exception {
+        Fornecedor fornecedorInserido = fornecedorService.salvar(fornecedor);
 
         return ResponseEntity.created(null).body(fornecedorInserido);
     }

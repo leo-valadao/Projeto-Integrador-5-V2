@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senac.aesthetics.domains.OrdemServico;
+import com.senac.aesthetics.domains.filters.OrdemServicoFiltro;
 import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 
@@ -22,34 +23,28 @@ import jakarta.validation.Valid;
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/ordem-servico")
-public class OrdemServicoResource implements InterfaceGenericaCliente<OrdemServico> {
+public class OrdemServicoResource implements InterfaceGenericaCliente<OrdemServico, OrdemServicoFiltro> {
 
     // Obejtos:
     @Autowired
-    private InterfaceGenericaResource<OrdemServico> ordemServicoService;
+    private InterfaceGenericaResource<OrdemServico, OrdemServicoFiltro> ordemServicoService;
 
     // API's:
     @GetMapping
     public ResponseEntity<Page<OrdemServico>> obterTodosComPaginacao(
-            @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
-            @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
+            @RequestParam(required = false, name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
+            @RequestParam(required = false, name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
+            @RequestParam(required = false, name = "ordenarPor", defaultValue = "id") String ordernarPor,
+            @RequestBody(required = false) OrdemServicoFiltro filtro) throws Exception {
         Page<OrdemServico> ordemServicos = ordemServicoService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
-                ordernarPor);
+                ordernarPor, filtro);
 
         return ResponseEntity.ok(ordemServicos);
     }
 
-    @GetMapping(params = "id")
-    public ResponseEntity<OrdemServico> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
-        OrdemServico ordemServico = ordemServicoService.obterPorId(id);
-
-        return ResponseEntity.ok(ordemServico);
-    }
-
     @PostMapping
-    public ResponseEntity<OrdemServico> inserir(@RequestBody @Valid OrdemServico ordemServico) throws Exception {
-        OrdemServico ordemServicoInserido = ordemServicoService.inserir(ordemServico);
+    public ResponseEntity<OrdemServico> salvar(@RequestBody @Valid OrdemServico ordemServico) throws Exception {
+        OrdemServico ordemServicoInserido = ordemServicoService.salvar(ordemServico);
 
         return ResponseEntity.created(null).body(ordemServicoInserido);
     }

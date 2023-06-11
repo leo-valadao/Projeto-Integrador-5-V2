@@ -12,16 +12,15 @@ import jakarta.validation.Valid;
  * O nome "Resource" é porque a interface é utilizada na camada de serviço (Service) e satisfaz as necessidades das controladoras (Resource),
  * por causa do princípio da inversão das dependências do SOLID
  */
-public interface InterfaceGenericaCliente<T> {
+public interface InterfaceGenericaCliente<T, TFiltro> {
 
     public ResponseEntity<Page<T>> obterTodosComPaginacao(
-            @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
-            @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception;
+            @RequestParam(required = false, name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
+            @RequestParam(required = false, name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
+            @RequestParam(required = false, name = "ordenarPor", defaultValue = "id") String ordernarPor,
+            @RequestBody(required = false) TFiltro filtro) throws Exception;
 
-    public ResponseEntity<T> obterPorId(@RequestParam(name = "id") Long id) throws Exception;
-
-    public ResponseEntity<T> inserir(@RequestBody @Valid T T) throws Exception;
+    public ResponseEntity<T> salvar(@RequestBody @Valid T T) throws Exception;
 
     public ResponseEntity<T> atualizar(@RequestBody @Valid T T) throws Exception;
 

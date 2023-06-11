@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Cliente;
 import com.senac.aesthetics.domains.Pessoa;
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
+import com.senac.aesthetics.domains.filters.ClienteFiltro;
 import com.senac.aesthetics.errors.ExcecaoRegraNegocio;
 import com.senac.aesthetics.errors.Erros;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
@@ -23,7 +24,7 @@ import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.ClienteRepository;
 
 @Service
-public class ClienteService implements InterfaceGenericaResource<Cliente> {
+public class ClienteService implements InterfaceGenericaResource<Cliente, ClienteFiltro> {
 
     // Objetos:
     @Autowired
@@ -34,10 +35,14 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
 
     // Métodos:
     public Page<Cliente> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) throws Exception {
+            String ordenarPor, ClienteFiltro filtro) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
-        return clienteRepository.findAll(pagina);
+        if (filtro == null) {
+            filtro = new ClienteFiltro();
+        }
+
+        return clienteRepository.obterPorFiltroComPaginacao(filtro, pagina);
     }
 
     public Cliente obterPorId(Long idCliente) throws Exception {
@@ -50,7 +55,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         }
     }
 
-    public Cliente inserir(Cliente cliente) throws Exception {
+    public Cliente salvar(Cliente cliente) throws Exception {
         this.validarCliente(cliente);
         this.associarClienteAPessoaJaCadastrada(cliente);
 
@@ -73,6 +78,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         }
     }
 
+    // Faz todas as validações necessárias ao salvar o cliente no banco de dados
     private void validarCliente(Cliente cliente) throws Exception {
         List<String> mensagensErros = new ArrayList<String>();
 
@@ -85,6 +91,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         }
     }
 
+    // Associa uma Pessoa ao Cliente caso a mesma já exista no banco de dados
     private void associarClienteAPessoaJaCadastrada(Cliente cliente) {
         Optional<Pessoa> pessoaJaCadastrada = pessoaService
                 .verificarPessoaJaCadastrada(cliente.getPessoa().getCpfOuCnpj());
@@ -94,6 +101,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
         }
     }
 
+    // Verifica se o Cliente já está cadastrado no banco de dados
     private void verificarClienteJaEstaCadastrado(Cliente cliente, List<String> mensagensErros) {
         Optional<Cliente> clienteaCadastrada = clienteRepository.obterPorCpfOuCnpj(cliente.getPessoa().getCpfOuCnpj());
 

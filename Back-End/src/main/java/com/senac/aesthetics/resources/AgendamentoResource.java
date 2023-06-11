@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senac.aesthetics.domains.Agendamento;
+import com.senac.aesthetics.domains.filters.AgendamentoFiltro;
 import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.interfaces.InterfaceResourceObterAgendamentosSemOrdemServico;
@@ -27,11 +28,12 @@ import jakarta.validation.Valid;
 @CrossOrigin
 @RequestMapping("api/v1/agendamento")
 public class AgendamentoResource
-        implements InterfaceGenericaCliente<Agendamento>, InterfaceResourceObterAgendamentosSemOrdemServico {
+        implements InterfaceGenericaCliente<Agendamento, AgendamentoFiltro>,
+        InterfaceResourceObterAgendamentosSemOrdemServico {
 
     // Obejtos:
     @Autowired
-    private InterfaceGenericaResource<Agendamento> agendamentoService;
+    private InterfaceGenericaResource<Agendamento, AgendamentoFiltro> agendamentoService;
 
     @Autowired
     private InterfaceServiceObterAgendamentosSemOrdemServico agendamentoService2;
@@ -39,32 +41,19 @@ public class AgendamentoResource
     // API's:
     @GetMapping
     public ResponseEntity<Page<Agendamento>> obterTodosComPaginacao(
-            @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
-            @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
+            @RequestParam(required = false, name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
+            @RequestParam(required = false, name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
+            @RequestParam(required = false, name = "ordenarPor", defaultValue = "id") String ordernarPor,
+            @RequestBody(required = false) AgendamentoFiltro filtro) throws Exception {
         Page<Agendamento> agendamentos = agendamentoService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
-                ordernarPor);
-
-        return ResponseEntity.ok(agendamentos);
-    }
-
-    @GetMapping(params = "id")
-    public ResponseEntity<Agendamento> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
-        Agendamento agendamento = agendamentoService.obterPorId(id);
-
-        return ResponseEntity.ok(agendamento);
-    }
-
-    @GetMapping(value = "/sem-ordem-servico")
-    public ResponseEntity<List<Agendamento>> obterAgendamentosSemOrdemServiço() throws Exception {
-        List<Agendamento> agendamentos = agendamentoService2.obterAgendamentosSemOrdemServiço();
+                ordernarPor, filtro);
 
         return ResponseEntity.ok(agendamentos);
     }
 
     @PostMapping
-    public ResponseEntity<Agendamento> inserir(@RequestBody @Valid Agendamento agendamento) throws Exception {
-        Agendamento agendamentoInserido = agendamentoService.inserir(agendamento);
+    public ResponseEntity<Agendamento> salvar(@RequestBody @Valid Agendamento agendamento) throws Exception {
+        Agendamento agendamentoInserido = agendamentoService.salvar(agendamento);
 
         return ResponseEntity.created(null).body(agendamentoInserido);
     }
@@ -81,6 +70,13 @@ public class AgendamentoResource
         agendamentoService.excluir(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/sem-ordem-servico")
+    public ResponseEntity<List<Agendamento>> obterAgendamentosSemOrdemServiço() throws Exception {
+        List<Agendamento> agendamentos = agendamentoService2.obterAgendamentosSemOrdemServiço();
+
+        return ResponseEntity.ok(agendamentos);
     }
 
 }

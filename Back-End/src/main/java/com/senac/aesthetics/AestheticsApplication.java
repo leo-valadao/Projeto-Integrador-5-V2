@@ -77,7 +77,7 @@ public class AestheticsApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
-		Boolean inserirDadosDeTeste = true;
+		Boolean inserirDadosDeTeste = false;
 
 		if (inserirDadosDeTeste) {
 			System.out.println("\nInserindo dados de teste...\n");
@@ -96,7 +96,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				c.getPessoa().setCpfOuCnpj(gd.cpf(true));
 				c.setAlergias("Nenhuma");
 
-				cs.inserir(c);
+				cs.salvar(c);
 			}
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
@@ -106,7 +106,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				s.setPrecoCusto(BigDecimal.valueOf(1000000.00));
 				s.setPrecoVenda(BigDecimal.valueOf(1000000.00));
 
-				ss.inserir(s);
+				ss.salvar(s);
 			}
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
@@ -122,7 +122,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				f.setSenha("f" + i);
 				f.setComissao(BigDecimal.valueOf(100.00));
 
-				fus.inserir(f);
+				fus.salvar(f);
 			}
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
@@ -142,7 +142,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				a.setFuncionario(fus.obterPorId(Long.valueOf(i)));
 				a.setServico(ss.obterPorId(Long.valueOf(i)));
 
-				as.inserir(a);
+				as.salvar(a);
 			}
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
@@ -166,7 +166,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				os.setResponsavelPelaOS(fus.obterPorId(Long.valueOf(i)));
 				os.setExecutorServico(fus.obterPorId(Long.valueOf(i)));
 
-				oss.inserir(os);
+				oss.salvar(os);
 			}
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
@@ -187,7 +187,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				cr.setOrdemServico(oss.obterPorId(Long.valueOf(i)));
 				cr.setCliente(cs.obterPorId(Long.valueOf(i)));
 
-				crs.inserir(cr);
+				crs.salvar(cr);
 			}
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
@@ -201,7 +201,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				f.getPessoa().setCpfOuCnpj(gd.cnpj(true));
 				f.setEndereco("Endereço " + i);
 
-				fos.inserir(f);
+				fos.salvar(f);
 			}
 
 			for (int i = 1; i <= quantidadeDeTestes; i++) {
@@ -221,7 +221,7 @@ public class AestheticsApplication implements ApplicationRunner {
 				}
 				cp.setFornecedor(fos.obterPorId(Long.valueOf(i)));
 
-				cps.inserir(cp);
+				cps.salvar(cp);
 			}
 
 			System.out.println("Valores de teste inseridos!\n");

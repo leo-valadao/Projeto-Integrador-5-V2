@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.senac.aesthetics.domains.Fornecedor;
 import com.senac.aesthetics.domains.Pessoa;
 import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
+import com.senac.aesthetics.domains.filters.FornecedorFiltro;
 import com.senac.aesthetics.errors.ExcecaoRegraNegocio;
 import com.senac.aesthetics.errors.Erros;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
@@ -23,7 +24,7 @@ import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.FornecedorRepository;
 
 @Service
-public class FornecedorService implements InterfaceGenericaResource<Fornecedor> {
+public class FornecedorService implements InterfaceGenericaResource<Fornecedor, FornecedorFiltro> {
 
     // Objetos:
     @Autowired
@@ -34,10 +35,10 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
 
     // Métodos:
     public Page<Fornecedor> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) throws Exception {
+            String ordenarPor, FornecedorFiltro filtro) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
-        return fornecedorRepository.findAll(pagina);
+        return fornecedorRepository.obterPorFiltroComPaginacao(filtro, pagina);
     }
 
     public Fornecedor obterPorId(Long idFornecedor) throws Exception {
@@ -50,7 +51,7 @@ public class FornecedorService implements InterfaceGenericaResource<Fornecedor> 
         }
     }
 
-    public Fornecedor inserir(Fornecedor fornecedor) throws Exception {
+    public Fornecedor salvar(Fornecedor fornecedor) throws Exception {
         this.validarFornecedor(fornecedor);
         this.associarFornecedorAPessoaJaCadastrada(fornecedor);
 

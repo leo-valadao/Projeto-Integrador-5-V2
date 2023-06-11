@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senac.aesthetics.domains.Cliente;
+import com.senac.aesthetics.domains.filters.ClienteFiltro;
 import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 
@@ -22,34 +23,28 @@ import jakarta.validation.Valid;
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/cliente")
-public class ClienteResource implements InterfaceGenericaCliente<Cliente> {
+public class ClienteResource implements InterfaceGenericaCliente<Cliente, ClienteFiltro> {
 
     // Obejtos:
     @Autowired
-    private InterfaceGenericaResource<Cliente> clienteService;
+    private InterfaceGenericaResource<Cliente, ClienteFiltro> clienteService;
 
     // API's:
     @GetMapping
     public ResponseEntity<Page<Cliente>> obterTodosComPaginacao(
-            @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
-            @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
+            @RequestParam(required = false, name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
+            @RequestParam(required = false, name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
+            @RequestParam(required = false, name = "ordenarPor", defaultValue = "id") String ordernarPor,
+            @RequestBody(required = false) ClienteFiltro filtro) throws Exception {
         Page<Cliente> clientes = clienteService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
-                ordernarPor);
+                ordernarPor, filtro);
 
         return ResponseEntity.ok(clientes);
     }
 
-    @GetMapping(params = "id")
-    public ResponseEntity<Cliente> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
-        Cliente cliente = clienteService.obterPorId(id);
-
-        return ResponseEntity.ok(cliente);
-    }
-
     @PostMapping
-    public ResponseEntity<Cliente> inserir(@RequestBody @Valid Cliente cliente) throws Exception {
-        Cliente clienteInserido = clienteService.inserir(cliente);
+    public ResponseEntity<Cliente> salvar(@RequestBody @Valid Cliente cliente) throws Exception {
+        Cliente clienteInserido = clienteService.salvar(cliente);
 
         return ResponseEntity.created(null).body(clienteInserido);
     }

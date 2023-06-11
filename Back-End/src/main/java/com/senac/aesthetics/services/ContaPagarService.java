@@ -11,11 +11,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.ContaPagar;
+import com.senac.aesthetics.domains.filters.ContaPagarFiltro;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.ContaPagarRepository;
 
 @Service
-public class ContaPagarService implements InterfaceGenericaResource<ContaPagar> {
+public class ContaPagarService implements InterfaceGenericaResource<ContaPagar, ContaPagarFiltro> {
 
     // Objetos:
     @Autowired
@@ -23,10 +24,10 @@ public class ContaPagarService implements InterfaceGenericaResource<ContaPagar> 
 
     // Métodos:
     public Page<ContaPagar> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) throws Exception {
+            String ordenarPor, ContaPagarFiltro filtro) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
-        return contaPagarRepository.findAll(pagina);
+        return contaPagarRepository.obterPorFiltroComPaginacao(filtro, pagina);
     }
 
     public ContaPagar obterPorId(Long idContaPagar) throws Exception {
@@ -39,7 +40,7 @@ public class ContaPagarService implements InterfaceGenericaResource<ContaPagar> 
         }
     }
 
-    public ContaPagar inserir(ContaPagar contaPagar) throws Exception {
+    public ContaPagar salvar(ContaPagar contaPagar) throws Exception {
         return contaPagarRepository.save(contaPagar);
     }
 

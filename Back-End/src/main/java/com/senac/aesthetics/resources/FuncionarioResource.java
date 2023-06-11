@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senac.aesthetics.domains.Funcionario;
+import com.senac.aesthetics.domains.filters.FuncionarioFiltro;
 import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 
@@ -22,34 +23,28 @@ import jakarta.validation.Valid;
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/funcionario")
-public class FuncionarioResource implements InterfaceGenericaCliente<Funcionario> {
+public class FuncionarioResource implements InterfaceGenericaCliente<Funcionario, FuncionarioFiltro> {
 
     // Obejtos:
     @Autowired
-    private InterfaceGenericaResource<Funcionario> funcionarioService;
+    private InterfaceGenericaResource<Funcionario, FuncionarioFiltro> funcionarioService;
 
     // API's:
     @GetMapping
     public ResponseEntity<Page<Funcionario>> obterTodosComPaginacao(
-            @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
-            @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
+            @RequestParam(required = false, name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
+            @RequestParam(required = false, name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
+            @RequestParam(required = false, name = "ordenarPor", defaultValue = "id") String ordernarPor,
+            @RequestBody(required = false) FuncionarioFiltro filtro) throws Exception {
         Page<Funcionario> funcionarios = funcionarioService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
-                ordernarPor);
+                ordernarPor, filtro);
 
         return ResponseEntity.ok(funcionarios);
     }
 
-    @GetMapping(params = "id")
-    public ResponseEntity<Funcionario> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
-        Funcionario funcionario = funcionarioService.obterPorId(id);
-
-        return ResponseEntity.ok(funcionario);
-    }
-
     @PostMapping
-    public ResponseEntity<Funcionario> inserir(@RequestBody @Valid Funcionario funcionario) throws Exception {
-        Funcionario funcionarioInserido = funcionarioService.inserir(funcionario);
+    public ResponseEntity<Funcionario> salvar(@RequestBody @Valid Funcionario funcionario) throws Exception {
+        Funcionario funcionarioInserido = funcionarioService.salvar(funcionario);
 
         return ResponseEntity.created(null).body(funcionarioInserido);
     }

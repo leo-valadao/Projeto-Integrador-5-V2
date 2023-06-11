@@ -12,13 +12,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Agendamento;
+import com.senac.aesthetics.domains.filters.AgendamentoFiltro;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.interfaces.InterfaceServiceObterAgendamentosSemOrdemServico;
 import com.senac.aesthetics.repositories.AgendamentoRepository;
 
 @Service
 public class AgendamentoService
-        implements InterfaceGenericaResource<Agendamento>, InterfaceServiceObterAgendamentosSemOrdemServico {
+        implements InterfaceGenericaResource<Agendamento, AgendamentoFiltro>,
+        InterfaceServiceObterAgendamentosSemOrdemServico {
 
     // Objetos:
     @Autowired
@@ -26,10 +28,10 @@ public class AgendamentoService
 
     // Métodos:
     public Page<Agendamento> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) throws Exception {
+            String ordenarPor, AgendamentoFiltro filtro) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
-        return agendamentoRepository.findAll(pagina);
+        return agendamentoRepository.obterPorFiltroComPaginacao(filtro, pagina);
     }
 
     public Agendamento obterPorId(Long idAgendamento) throws Exception {
@@ -46,7 +48,7 @@ public class AgendamentoService
         return agendamentoRepository.obterAgendamentosSemOrdemServiço();
     }
 
-    public Agendamento inserir(Agendamento agendamento) throws Exception {
+    public Agendamento salvar(Agendamento agendamento) throws Exception {
         return agendamentoRepository.save(agendamento);
     }
 

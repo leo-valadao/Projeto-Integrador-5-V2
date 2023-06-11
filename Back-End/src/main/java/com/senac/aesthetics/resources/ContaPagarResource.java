@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senac.aesthetics.domains.ContaPagar;
+import com.senac.aesthetics.domains.filters.ContaPagarFiltro;
 import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 
@@ -22,34 +23,28 @@ import jakarta.validation.Valid;
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/conta-pagar")
-public class ContaPagarResource implements InterfaceGenericaCliente<ContaPagar> {
+public class ContaPagarResource implements InterfaceGenericaCliente<ContaPagar, ContaPagarFiltro> {
 
     // Obejtos:
     @Autowired
-    private InterfaceGenericaResource<ContaPagar> contaPagarService;
+    private InterfaceGenericaResource<ContaPagar, ContaPagarFiltro> contaPagarService;
 
     // API's:
     @GetMapping
     public ResponseEntity<Page<ContaPagar>> obterTodosComPaginacao(
-            @RequestParam(name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
-            @RequestParam(name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
-            @RequestParam(name = "ordenarPor", defaultValue = "id") String ordernarPor) throws Exception {
+            @RequestParam(required = false, name = "numeroPagina", defaultValue = "0") Integer numeroPagina,
+            @RequestParam(required = false, name = "quantidadePorPagina", defaultValue = "25") Integer quantidadePorPagina,
+            @RequestParam(required = false, name = "ordenarPor", defaultValue = "id") String ordernarPor,
+            @RequestBody(required = false) ContaPagarFiltro filtro) throws Exception {
         Page<ContaPagar> contaPagars = contaPagarService.obterTodosComPaginacao(numeroPagina, quantidadePorPagina,
-                ordernarPor);
+                ordernarPor, filtro);
 
         return ResponseEntity.ok(contaPagars);
     }
 
-    @GetMapping(params = "id")
-    public ResponseEntity<ContaPagar> obterPorId(@RequestParam(name = "id") Long id) throws Exception {
-        ContaPagar contaPagar = contaPagarService.obterPorId(id);
-
-        return ResponseEntity.ok(contaPagar);
-    }
-
     @PostMapping
-    public ResponseEntity<ContaPagar> inserir(@RequestBody @Valid ContaPagar contaPagar) throws Exception {
-        ContaPagar contaPagarInserido = contaPagarService.inserir(contaPagar);
+    public ResponseEntity<ContaPagar> salvar(@RequestBody @Valid ContaPagar contaPagar) throws Exception {
+        ContaPagar contaPagarInserido = contaPagarService.salvar(contaPagar);
 
         return ResponseEntity.created(null).body(contaPagarInserido);
     }

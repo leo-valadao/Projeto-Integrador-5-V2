@@ -11,11 +11,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.ContaReceber;
+import com.senac.aesthetics.domains.filters.ContaReceberFiltro;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.ContaReceberRepository;
 
 @Service
-public class ContaReceberService implements InterfaceGenericaResource<ContaReceber> {
+public class ContaReceberService implements InterfaceGenericaResource<ContaReceber, ContaReceberFiltro> {
 
     // Objetos:
     @Autowired
@@ -23,10 +24,10 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
 
     // Métodos:
     public Page<ContaReceber> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) throws Exception {
+            String ordenarPor, ContaReceberFiltro filtro) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
-        return contaReceberRepository.findAll(pagina);
+        return contaReceberRepository.obterPorFiltroComPaginacao(filtro, pagina);
     }
 
     public ContaReceber obterPorId(Long idContaReceber) throws Exception {
@@ -39,7 +40,7 @@ public class ContaReceberService implements InterfaceGenericaResource<ContaReceb
         }
     }
 
-    public ContaReceber inserir(ContaReceber contaReceber) throws Exception {
+    public ContaReceber salvar(ContaReceber contaReceber) throws Exception {
         return contaReceberRepository.save(contaReceber);
     }
 

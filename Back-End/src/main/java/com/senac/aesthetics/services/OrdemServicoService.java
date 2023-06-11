@@ -11,11 +11,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.OrdemServico;
+import com.senac.aesthetics.domains.filters.OrdemServicoFiltro;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
 import com.senac.aesthetics.repositories.OrdemServicoRepository;
 
 @Service
-public class OrdemServicoService implements InterfaceGenericaResource<OrdemServico> {
+public class OrdemServicoService implements InterfaceGenericaResource<OrdemServico, OrdemServicoFiltro> {
 
     // Objetos:
     @Autowired
@@ -23,10 +24,10 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
 
     // Métodos:
     public Page<OrdemServico> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,
-            String ordenarPor) throws Exception {
+            String ordenarPor, OrdemServicoFiltro filtro) throws Exception {
         Pageable pagina = PageRequest.of(numeroPagina, quantidadePorPagina, Sort.by(Sort.Direction.DESC, ordenarPor));
 
-        return ordemServicoRepository.findAll(pagina);
+        return ordemServicoRepository.obterPorFiltroComPaginacao(filtro, pagina);
     }
 
     public OrdemServico obterPorId(Long idOrdemServico) throws Exception {
@@ -39,7 +40,7 @@ public class OrdemServicoService implements InterfaceGenericaResource<OrdemServi
         }
     }
 
-    public OrdemServico inserir(OrdemServico ordemServico) throws Exception {
+    public OrdemServico salvar(OrdemServico ordemServico) throws Exception {
         return ordemServicoRepository.save(ordemServico);
     }
 
