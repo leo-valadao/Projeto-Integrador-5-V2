@@ -18,8 +18,8 @@ public class PessoaFiltro {
   private String nome = "";
   private String telefone = "";
   private String email = "";
-  private EstadosBrasileirosEnum estadoBrasileiro;
-  private TipoPessoaEnum tipoPessoa;
+  private EstadosBrasileirosEnum estadoBrasileiro = null;
+  private TipoPessoaEnum tipoPessoa = null;
   private String cpfOuCnpj = "";
 
 }
