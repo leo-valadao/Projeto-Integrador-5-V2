@@ -81,9 +81,7 @@
 			</div>
 
 			<!-- Status -->
-			<div
-				*ngIf="contaReceber.status"
-				class="flex flex-column w-full">
+			<div class="flex flex-column w-full">
 				<label for="contaReceber.status">Status:</label>
 				<p-dropdown
 					#contaReceberStatus="ngModel"
@@ -131,20 +129,18 @@
 					[options]="ondernsServico"
 					[required]="true"
 					styleClass="w-full"
-					optionLabel="ordemServico.id"
-					placeholder="Selecione uma Ordem de Serviço" />
+					optionLabel="id"
+					placeholder="Selecione uma Ordem de Serviço"
+					(onChange)="atualizarValorEValorAReceber()" />
 				<small
 					*ngIf="validacaoCamposService.camposComPessoaInvalido(contaReceberOrdemDeServico)"
 					style="color: red">
 					<b>Ordem de Serviço Não Selecionada!</b>
 				</small>
 			</div>
-
-			
 		</div>
 		<!-- Linha 4 -->
 		<div class="flex flex-row gap-3">
-			
 			<!-- valor  -->
 			<div class="flex flex-column w-full">
 				<label for="contaReceber.valor"> Valor: <b style="color: red">*</b></label>

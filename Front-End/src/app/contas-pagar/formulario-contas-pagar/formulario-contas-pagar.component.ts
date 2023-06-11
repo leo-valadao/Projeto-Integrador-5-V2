@@ -1,7 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { NgModel } from '@angular/forms';
-import { Dropdown } from 'primeng/dropdown';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ContaPagarService } from 'src/app/shared/services/conta-pagar.service';
 import { ContaPagar } from 'src/app/shared/domains/conta-pagar.model';
 import { Fornecedor } from 'src/app/shared/domains/fornecedor.model';
@@ -12,12 +10,12 @@ import { StatusContaPagarEnum } from 'src/app/shared/domains/enums/status-conta-
 import { Pagina } from 'src/app/shared/domains/others/pagina.page';
 
 @Component({
-  selector: 'app-formulario-contas-pagar',
-  templateUrl: './formulario-contas-pagar.component.html',
-  styles: [],
+	selector: 'app-formulario-contas-pagar',
+	templateUrl: './formulario-contas-pagar.component.html',
+	styles: [],
 })
-export class FormularioContasPagarComponent implements OnInit{
-  exibirFormulario: Boolean = false;
+export class FormularioContasPagarComponent implements OnInit {
+	exibirFormulario: Boolean = false;
 	fornecedores!: Fornecedor[];
 	fornecedoresSelecionado!: Fornecedor;
 	status!: string[];
@@ -26,12 +24,7 @@ export class FormularioContasPagarComponent implements OnInit{
 	@Input() contaPagar: ContaPagar = new ContaPagar();
 	@Output() atualizarTabela: EventEmitter<void> = new EventEmitter();
 
-	constructor(
-		private contaPagarService: ContaPagarService,
-		private fornecedorSevice: FornecedorService,
-		private mensagensGenericasService: MensagensGenericasService,
-		public validacaoCamposService: ValidacaoCamposService
-	) {}
+	constructor(private contaPagarService: ContaPagarService, private fornecedorSevice: FornecedorService, private mensagensGenericasService: MensagensGenericasService, public validacaoCamposService: ValidacaoCamposService) {}
 
 	ngOnInit(): void {
 		this.obterTodosFornecedores();
@@ -39,8 +32,7 @@ export class FormularioContasPagarComponent implements OnInit{
 		this.status = Object.keys(StatusContaPagarEnum).map((value) => value);
 	}
 
-
-  salvarContaPagar() {
+	salvarContaPagar() {
 		if (this.contaPagar.id) {
 			this.atualizarContaPagar();
 		} else {
@@ -87,19 +79,15 @@ export class FormularioContasPagarComponent implements OnInit{
 		});
 	}
 
-	
 	atualizarTabelaEFecharFormulario() {
 		this.atualizarTabela.emit();
 		this.exibirFormulario = false;
 	}
 
 	contaPagarInvalido(): boolean {
-		if (this.contaPagar.dataPagamento && this.contaPagar.valorPago && this.contaPagar.fornecedor ) {
+		if (this.contaPagar.dataPagamento && this.contaPagar.valorPago && this.contaPagar.fornecedor) {
 			return false;
 		}
 		return true;
 	}
-
-
-
 }

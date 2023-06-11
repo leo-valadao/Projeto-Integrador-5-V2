@@ -40,7 +40,6 @@
 				<th class="align-middle text-center">Valor</th>
 				<th class="align-middle text-center">Valor a Pagar</th>
 				<th class="align-middle text-center">Fornecedor</th>
-			
 
 				<!-- Título da Coluna dos Botões de Ações -->
 				<th class="align-middle text-center align-items-center">Ações</th>
@@ -81,12 +80,12 @@
 				</td>
 				<td
 					class="align-middle text-center"
-					[title]="item.valor | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' ">
+					[title]="item.valor | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR'">
 					{{ item.valor | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
 				</td>
 				<td
 					class="align-middle text-center"
-					[title]="item.valorPago | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' ">
+					[title]="item.valorPago | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR'">
 					{{ item.valorPago | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
 				</td>
 				<td
@@ -94,7 +93,6 @@
 					[title]="item.fornecedor.pessoa.nome">
 					{{ item.fornecedor.pessoa.nome }}
 				</td>
-				
 
 				<!-- Botões de Ações de Cada Item da Tabela -->
 				<td class="flex flex-row justify-content-around">

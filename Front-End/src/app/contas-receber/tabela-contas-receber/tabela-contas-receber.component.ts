@@ -7,13 +7,12 @@ import { ContaReceberService } from 'src/app/shared/services/conta-receber.servi
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 
 @Component({
-  selector: 'app-tabela-contas-receber',
-  templateUrl: './tabela-contas-receber.component.html',
-  styles: [],
+	selector: 'app-tabela-contas-receber',
+	templateUrl: './tabela-contas-receber.component.html',
+	styles: [],
 })
 export class TabelaContasReceberComponent {
-
-  contasReceber!: ContaReceber[];
+	contasReceber!: ContaReceber[];
 	quantidadeTotalContasReceber!: number;
 	quantidadeContasReceberExibidosPorPagina: number = 30;
 
@@ -78,6 +77,4 @@ export class TabelaContasReceberComponent {
 			this.obterTodosContasReceber(Math.floor(evento.first / evento.rows), evento.rows, 'id');
 		}
 	}
-
-
 }

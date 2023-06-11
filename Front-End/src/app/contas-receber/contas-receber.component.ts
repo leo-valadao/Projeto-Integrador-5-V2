@@ -5,12 +5,12 @@ import { ContaReceber } from '../shared/domains/conta-receber.model';
 import { FiltroContasReceberComponent } from './filtro-contas-receber/filtro-contas-receber.component';
 
 @Component({
-  selector: 'app-contas-receber',
-  templateUrl: './contas-receber.component.html',
-  styles: [],
+	selector: 'app-contas-receber',
+	templateUrl: './contas-receber.component.html',
+	styles: [],
 })
 export class ContasReceberComponent {
-  @ViewChild(FormularioContasReceberComponent) formularioContasReceber!: FormularioContasReceberComponent;
+	@ViewChild(FormularioContasReceberComponent) formularioContasReceber!: FormularioContasReceberComponent;
 	@ViewChild(TabelaContasReceberComponent) tabelaContasReceber!: TabelaContasReceberComponent;
 
 	exibirFormularioContaReceber(contasReceber: ContaReceber) {
@@ -21,6 +21,4 @@ export class ContasReceberComponent {
 	atualizarTabela() {
 		this.tabelaContasReceber.atualizarTabela();
 	}
-
-  
 }
