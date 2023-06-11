@@ -7,14 +7,12 @@
 	styleClass="min-w-max w-6">
 	<!-- Formulário -->
 	<form class="flex flex-column gap-3">
-
-			<!-- Linha 1 -->
-			<div class="flex flex-row gap-3">
-				
-				<!-- Data -->
-				<div class="flex flex-column w-full">
-					<label for="contaPagar.dataEmissao">Data de Emissão: <b style="color: red">*</b></label>
-					<p-calendar
+		<!-- Linha 1 -->
+		<div class="flex flex-row gap-3">
+			<!-- Data -->
+			<div class="flex flex-column w-full">
+				<label for="contaPagar.dataEmissao">Data de Emissão: <b style="color: red">*</b></label>
+				<p-calendar
 					#contaPagarDataEmissao="ngModel"
 					name="contaPagar.dataEmissao"
 					data-cy="contaPagar.dataEmissao"
@@ -27,16 +25,16 @@
 					dataType="string"
 					dateFormat="dd/mm/yy"
 					styleClass="w-full" />
-					<small
-						*ngIf="validacaoCamposService.campoInvalido(contaPagarDataEmissao)"
-						style="color: red">
-						<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY HH:MM</b>!
-					</small>
-				</div>
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(contaPagarDataEmissao)"
+					style="color: red">
+					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY HH:MM</b>!
+				</small>
+			</div>
 
-				<div class="flex flex-column w-full">
-					<label for="contaPagar.dataVencimento">Data de Vencimento: <b style="color: red">*</b></label>
-					<p-calendar
+			<div class="flex flex-column w-full">
+				<label for="contaPagar.dataVencimento">Data de Vencimento: <b style="color: red">*</b></label>
+				<p-calendar
 					#contaPagarDataVencimento="ngModel"
 					name="contaPagar.dataVencimento"
 					data-cy="contaPagar.dataVencimento"
@@ -49,15 +47,13 @@
 					dataType="string"
 					dateFormat="dd/mm/yy"
 					styleClass="w-full" />
-					<small
-						*ngIf="validacaoCamposService.campoInvalido(contaPagarDataVencimento)"
-						style="color: red">
-						<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY HH:MM</b>!
-					</small>
-				</div>
-	
-				
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(contaPagarDataVencimento)"
+					style="color: red">
+					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY HH:MM</b>!
+				</small>
 			</div>
+		</div>
 
 		<!-- Linha 2 -->
 		<div class="flex flex-row gap-3">
@@ -65,18 +61,18 @@
 			<div class="flex flex-column w-full">
 				<label for="contaPagar.dataPagamento">Data do Pagamento: <b style="color: red">*</b></label>
 				<p-calendar
-				#contaPagarDataPagamento="ngModel"
-				name="contaPagar.dataPagamento"
-				data-cy="contaPagar.dataPagamento"
-				[(ngModel)]="contaPagar.dataPagamento"
-				[minDate]="dataMinima"
-				[showTime]="true"
-				[showIcon]="true"
-				[required]="true"
-				[showSeconds]="false"
-				dataType="string"
-				dateFormat="dd/mm/yy"
-				styleClass="w-full" />
+					#contaPagarDataPagamento="ngModel"
+					name="contaPagar.dataPagamento"
+					data-cy="contaPagar.dataPagamento"
+					[(ngModel)]="contaPagar.dataPagamento"
+					[minDate]="dataMinima"
+					[showTime]="true"
+					[showIcon]="true"
+					[required]="true"
+					[showSeconds]="false"
+					dataType="string"
+					dateFormat="dd/mm/yy"
+					styleClass="w-full" />
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(contaPagarDataPagamento)"
 					style="color: red">
@@ -123,7 +119,6 @@
 				</small>
 			</div>
 
-
 			<!-- valor  -->
 			<div class="flex flex-column w-full">
 				<label for="contaPagar.valor"> Valor: <b style="color: red">*</b></label>
@@ -155,9 +150,6 @@
 				</small>
 			</div>
 
-		
-
-			
 			<!-- valor a pagar -->
 			<div class="flex flex-column w-full">
 				<label for="contaPagar.valorPago">Valor a Pagar: <b style="color: red">*</b></label>
@@ -189,8 +181,6 @@
 				</small>
 			</div>
 		</div>
-
-		
 
 		<!-- Salvar -->
 		<p-button
