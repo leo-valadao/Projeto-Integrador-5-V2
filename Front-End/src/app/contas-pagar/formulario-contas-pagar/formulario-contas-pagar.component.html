@@ -1,1 +1,205 @@
-<p>formulario-contas-pagar works!</p>
+<p-dialog
+	*ngIf="exibirFormulario"
+	[(visible)]="exibirFormulario"
+	[modal]="true"
+	[contentStyle]="{ overflow: 'visible' }"
+	header="Cadastro de Contas a Pagar"
+	styleClass="min-w-max w-6">
+	<!-- Formulário -->
+	<form class="flex flex-column gap-3">
+
+			<!-- Linha 1 -->
+			<div class="flex flex-row gap-3">
+				
+				<!-- Data -->
+				<div class="flex flex-column w-full">
+					<label for="contaPagar.dataEmissao">Data de Emissão: <b style="color: red">*</b></label>
+					<p-calendar
+					#contaPagarDataEmissao="ngModel"
+					name="contaPagar.dataEmissao"
+					data-cy="contaPagar.dataEmissao"
+					[(ngModel)]="contaPagar.dataEmissao"
+					[minDate]="dataMinima"
+					[showTime]="true"
+					[showIcon]="true"
+					[required]="true"
+					[showSeconds]="false"
+					dataType="string"
+					dateFormat="dd/mm/yy"
+					styleClass="w-full" />
+					<small
+						*ngIf="validacaoCamposService.campoInvalido(contaPagarDataEmissao)"
+						style="color: red">
+						<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY</b>!
+					</small>
+				</div>
+
+				<div class="flex flex-column w-full">
+					<label for="contaPagar.dataVencimento">Data de Vencimento: <b style="color: red">*</b></label>
+					<p-calendar
+					#contaPagarDataVencimento="ngModel"
+					name="contaPagar.dataVencimento"
+					data-cy="contaPagar.dataVencimento"
+					[(ngModel)]="contaPagar.dataVencimento"
+					[minDate]="dataMinima"
+					[showTime]="true"
+					[showIcon]="true"
+					[required]="true"
+					[showSeconds]="false"
+					dataType="string"
+					dateFormat="dd/mm/yy"
+					styleClass="w-full" />
+					<small
+						*ngIf="validacaoCamposService.campoInvalido(contaPagarDataVencimento)"
+						style="color: red">
+						<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY</b>!
+					</small>
+				</div>
+	
+				
+			</div>
+
+		<!-- Linha 2 -->
+		<div class="flex flex-row gap-3">
+			<!-- Data -->
+			<div class="flex flex-column w-full">
+				<label for="contaPagar.dataPagamento">Data do Pagamento: <b style="color: red">*</b></label>
+				<p-calendar
+				#contaPagarDataPagamento="ngModel"
+				name="contaPagar.dataPagamento"
+				data-cy="contaPagar.dataPagamento"
+				[(ngModel)]="contaPagar.dataPagamento"
+				[minDate]="dataMinima"
+				[showTime]="true"
+				[showIcon]="true"
+				[required]="true"
+				[showSeconds]="false"
+				dataType="string"
+				dateFormat="dd/mm/yy"
+				styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(contaPagarDataPagamento)"
+					style="color: red">
+					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY</b>!
+				</small>
+			</div>
+
+			<!-- Status -->
+			<div
+				*ngIf="contaPagar.status"
+				class="flex flex-column w-full">
+				<label for="contaPagar.status">Status:</label>
+				<p-dropdown
+					#contaPagarStatus="ngModel"
+					name="contaPagar.status"
+					data-cy="contaPagar.status"
+					[(ngModel)]="contaPagar.status"
+					[options]="status"
+					[required]="true"
+					styleClass="w-full" />
+			</div>
+		</div>
+
+		<!-- Linha 3 -->
+		<div class="flex flex-row gap-3">
+			<!-- Fornecedor -->
+			<div class="flex flex-column w-full">
+				<label for="contaPagar.fornecedor">Fornecedor: <b style="color: red">*</b></label>
+				<p-dropdown
+					#contaPagarFornecedor="ngModel"
+					name="contaPagar.fornecedor"
+					data-cy="contaPagar.fornecedor"
+					[(ngModel)]="contaPagar.fornecedor"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.camposComPessoaInvalido(contaPagarFornecedor) }"
+					[options]="fornecedores"
+					[required]="true"
+					styleClass="w-full"
+					optionLabel="pessoa.nome"
+					placeholder="Selecione um fornecedor" />
+				<small
+					*ngIf="validacaoCamposService.camposComPessoaInvalido(contaPagarFornecedor)"
+					style="color: red">
+					<b>Fornecedor Não Selecionado!</b>
+				</small>
+			</div>
+
+
+			<!-- valor  -->
+			<div class="flex flex-column w-full">
+				<label for="contaPagar.valor"> Valor: <b style="color: red">*</b></label>
+				<p-inputNumber
+					#contaPagarValor="ngModel"
+					name="contaPagar.valor"
+					data-cy="contaPagar.valor"
+					[(ngModel)]="contaPagar.valor"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.campoInvalido(contaPagarValorPago) }"
+					[max]="1000000"
+					[min]="0"
+					[step]="1"
+					[allowEmpty]="false"
+					[showButtons]="true"
+					mode="currency"
+					locale="pt-BR"
+					currency="BRL"
+					styleClass="w-full"
+					spinnerMode="horizontal"
+					buttonLayout="horizontal"
+					incrementButtonIcon="pi pi-plus"
+					decrementButtonIcon="pi pi-minus"
+					decrementButtonClass="p-button-danger"
+					incrementButtonClass="p-button-success" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(contaPagarValor)"
+					style="color: red">
+					<b>Preço Inválido!</b>
+				</small>
+			</div>
+
+		
+
+			
+			<!-- valor a pagar -->
+			<div class="flex flex-column w-full">
+				<label for="contaPagar.valorPago">Valor a Pagar: <b style="color: red">*</b></label>
+				<p-inputNumber
+					#contaPagarValorPago="ngModel"
+					name="contaPagar.valorPago"
+					data-cy="contaPagar.valorPago"
+					[(ngModel)]="contaPagar.valorPago"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.campoInvalido(contaPagarValorPago) }"
+					[max]="1000000"
+					[min]="0"
+					[step]="1"
+					[allowEmpty]="false"
+					[showButtons]="true"
+					mode="currency"
+					locale="pt-BR"
+					currency="BRL"
+					styleClass="w-full"
+					spinnerMode="horizontal"
+					buttonLayout="horizontal"
+					incrementButtonIcon="pi pi-plus"
+					decrementButtonIcon="pi pi-minus"
+					decrementButtonClass="p-button-danger"
+					incrementButtonClass="p-button-success" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(contaPagarValorPago)"
+					style="color: red">
+					<b>Preço Inválido!</b>
+				</small>
+			</div>
+		</div>
+
+		
+
+		<!-- Salvar -->
+		<p-button
+			#contaPagarSalvar
+			name="contaPagar-salvar"
+			data-cy="contaPagar-salvar"
+			[disabled]="contaPagarInvalido()"
+			(onClick)="salvarContaPagar()"
+			label="Salvar Conta a Pagar"
+			styleClass="w-full" />
+	</form>
+</p-dialog>
