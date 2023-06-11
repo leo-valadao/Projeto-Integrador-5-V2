@@ -1,1 +1,217 @@
-<p>formulario-contas-receber works!</p>
+<p-dialog
+	*ngIf="exibirFormulario"
+	[(visible)]="exibirFormulario"
+	[modal]="true"
+	[contentStyle]="{ overflow: 'visible' }"
+	header="Cadastro de Contas a Receber"
+	styleClass="min-w-max w-6">
+	<!-- Formulário -->
+	<form class="flex flex-column gap-3">
+		<!-- Linha 1 -->
+		<div class="flex flex-row gap-3">
+			<!-- Data -->
+			<div class="flex flex-column w-full">
+				<label for="contaReceber.dataEmissao">Data de Emissão: <b style="color: red">*</b></label>
+				<p-calendar
+					#contaReceberDataEmissao="ngModel"
+					name="contaReceber.dataEmissao"
+					data-cy="contaReceber.dataEmissao"
+					[(ngModel)]="contaReceber.dataEmissao"
+					[minDate]="dataMinima"
+					[showTime]="true"
+					[showIcon]="true"
+					[required]="true"
+					[showSeconds]="false"
+					dataType="string"
+					dateFormat="dd/mm/yy"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(contaReceberDataEmissao)"
+					style="color: red">
+					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY HH:MM</b>!
+				</small>
+			</div>
+
+			<div class="flex flex-column w-full">
+				<label for="contaReceber.dataVencimento">Data de Vencimento: <b style="color: red">*</b></label>
+				<p-calendar
+					#contaReceberDataVencimento="ngModel"
+					name="contaReceber.dataVencimento"
+					data-cy="contaReceber.dataVencimento"
+					[(ngModel)]="contaReceber.dataVencimento"
+					[minDate]="dataMinima"
+					[showTime]="true"
+					[showIcon]="true"
+					[required]="true"
+					[showSeconds]="false"
+					dataType="string"
+					dateFormat="dd/mm/yy"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(contaReceberDataVencimento)"
+					style="color: red">
+					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY HH:MM</b>!
+				</small>
+			</div>
+		</div>
+
+		<!-- Linha 2 -->
+		<div class="flex flex-row gap-3">
+			<!-- Data -->
+			<div class="flex flex-column w-full">
+				<label for="contaReceber.dataRecebimento">Data de Recebimento: <b style="color: red">*</b></label>
+				<p-calendar
+					#contaReceberDataRecebimento="ngModel"
+					name="contaReceber.dataRecebimento"
+					data-cy="contaReceber.dataRecebimento"
+					[(ngModel)]="contaReceber.dataRecebimento"
+					[minDate]="dataMinima"
+					[showTime]="true"
+					[showIcon]="true"
+					[required]="true"
+					[showSeconds]="false"
+					dataType="string"
+					dateFormat="dd/mm/yy"
+					styleClass="w-full" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(contaReceberDataRecebimento)"
+					style="color: red">
+					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY HH:MM</b>!
+				</small>
+			</div>
+
+			<!-- Status -->
+			<div class="flex flex-column w-full">
+				<label for="contaReceber.status">Status:</label>
+				<p-dropdown
+					#contaReceberStatus="ngModel"
+					name="contaReceber.status"
+					data-cy="contaReceber.status"
+					[(ngModel)]="contaReceber.status"
+					[options]="status"
+					[required]="true"
+					styleClass="w-full" />
+			</div>
+		</div>
+
+		<!-- Linha 3 -->
+		<div class="flex flex-row gap-3">
+			<!-- cliente -->
+			<div class="flex flex-column w-full">
+				<label for="contaReceber.cliente">Cliente: <b style="color: red">*</b></label>
+				<p-dropdown
+					#contaReceberCliente="ngModel"
+					name="contaReceber.cliente"
+					data-cy="contaReceber.cliente"
+					[(ngModel)]="contaReceber.cliente"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.camposComPessoaInvalido(contaReceberCliente) }"
+					[options]="clientes"
+					[required]="true"
+					styleClass="w-full"
+					optionLabel="pessoa.nome"
+					placeholder="Selecione um cliente" />
+				<small
+					*ngIf="validacaoCamposService.camposComPessoaInvalido(contaReceberCliente)"
+					style="color: red">
+					<b>Cliente Não Selecionado!</b>
+				</small>
+			</div>
+
+			<!-- Ordem de Serviço -->
+			<div class="flex flex-column w-full">
+				<label for="contaReceber.ordemServico">Ordem de Serviço: <b style="color: red">*</b></label>
+				<p-dropdown
+					#contaReceberOrdemDeServico="ngModel"
+					name="contaReceber.ordemServico"
+					data-cy="contaReceber.ordemServico"
+					[(ngModel)]="contaReceber.ordemServico"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.camposComPessoaInvalido(contaReceberOrdemDeServico) }"
+					[options]="ondernsServico"
+					[required]="true"
+					styleClass="w-full"
+					optionLabel="id"
+					placeholder="Selecione uma Ordem de Serviço"
+					(onChange)="atualizarValorEValorAReceber()" />
+				<small
+					*ngIf="validacaoCamposService.camposComPessoaInvalido(contaReceberOrdemDeServico)"
+					style="color: red">
+					<b>Ordem de Serviço Não Selecionada!</b>
+				</small>
+			</div>
+		</div>
+		<!-- Linha 4 -->
+		<div class="flex flex-row gap-3">
+			<!-- valor  -->
+			<div class="flex flex-column w-full">
+				<label for="contaReceber.valor"> Valor: <b style="color: red">*</b></label>
+				<p-inputNumber
+					#contaReceberValor="ngModel"
+					name="contaReceber.valor"
+					data-cy="contaReceber.valor"
+					[(ngModel)]="contaReceber.valor"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.campoInvalido(contaReceberValor) }"
+					[max]="1000000"
+					[min]="0"
+					[step]="1"
+					[allowEmpty]="false"
+					[showButtons]="true"
+					mode="currency"
+					locale="pt-BR"
+					currency="BRL"
+					styleClass="w-full"
+					spinnerMode="horizontal"
+					buttonLayout="horizontal"
+					incrementButtonIcon="pi pi-plus"
+					decrementButtonIcon="pi pi-minus"
+					decrementButtonClass="p-button-danger"
+					incrementButtonClass="p-button-success" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(contaReceberValor)"
+					style="color: red">
+					<b>Preço Inválido!</b>
+				</small>
+			</div>
+
+			<!-- valor a pagar -->
+			<div class="flex flex-column w-full">
+				<label for="contaReceber.valorRecebido">Valor a Receber: <b style="color: red">*</b></label>
+				<p-inputNumber
+					#contaReceberValorReceber="ngModel"
+					name="contaReceber.valorRecebido"
+					data-cy="contaReceber.valorRecebido"
+					[(ngModel)]="contaReceber.valorRecebido"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.campoInvalido(contaReceberValorReceber) }"
+					[max]="1000000"
+					[min]="0"
+					[step]="1"
+					[allowEmpty]="false"
+					[showButtons]="true"
+					mode="currency"
+					locale="pt-BR"
+					currency="BRL"
+					styleClass="w-full"
+					spinnerMode="horizontal"
+					buttonLayout="horizontal"
+					incrementButtonIcon="pi pi-plus"
+					decrementButtonIcon="pi pi-minus"
+					decrementButtonClass="p-button-danger"
+					incrementButtonClass="p-button-success" />
+				<small
+					*ngIf="validacaoCamposService.campoInvalido(contaReceberValorReceber)"
+					style="color: red">
+					<b>Preço Inválido!</b>
+				</small>
+			</div>
+		</div>
+
+		<!-- Salvar -->
+		<p-button
+			#contaReceberSalvar
+			name="contaReceber-salvar"
+			data-cy="contaReceber-salvar"
+			[disabled]="contaReceberInvalido()"
+			(onClick)="salvarContaReceber()"
+			label="Salvar Conta a Receber"
+			styleClass="w-full" />
+	</form>
+</p-dialog>

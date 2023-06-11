@@ -6,13 +6,12 @@ import { ContaPagar } from 'src/app/shared/domains/conta-pagar.model';
 import { ContaPagarService } from 'src/app/shared/services/conta-pagar.service';
 import { MensagensGenericasService } from 'src/app/shared/services/utils/mensagens-genericas.service';
 @Component({
-  selector: 'app-tabela-contas-pagar',
-  templateUrl: './tabela-contas-pagar.component.html',
-  styles: [],
+	selector: 'app-tabela-contas-pagar',
+	templateUrl: './tabela-contas-pagar.component.html',
+	styles: [],
 })
 export class TabelaContasPagarComponent {
-
-  contasPagar!: ContaPagar[];
+	contasPagar!: ContaPagar[];
 	quantidadeTotalContasPagar!: number;
 	quantidadeContasPagarExibidosPorPagina: number = 30;
 

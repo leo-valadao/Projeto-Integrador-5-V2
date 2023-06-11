@@ -4,12 +4,12 @@ import { FormularioContasPagarComponent } from './formulario-contas-pagar/formul
 import { ContaPagar } from '../shared/domains/conta-pagar.model';
 import { FiltroContasPagarComponent } from './filtro-contas-pagar/filtro-contas-pagar.component';
 @Component({
-  selector: 'app-contas-pagar',
-  templateUrl: './contas-pagar.component.html',
-  styles: [],
+	selector: 'app-contas-pagar',
+	templateUrl: './contas-pagar.component.html',
+	styles: [],
 })
 export class ContasPagarComponent {
-  @ViewChild(FormularioContasPagarComponent) formularioContasPagar!: FormularioContasPagarComponent;
+	@ViewChild(FormularioContasPagarComponent) formularioContasPagar!: FormularioContasPagarComponent;
 	@ViewChild(TabelaContasPagarComponent) tabelaContasPagar!: TabelaContasPagarComponent;
 
 	exibirFormularioContaPagar(contasPagar: ContaPagar) {
@@ -20,5 +20,4 @@ export class ContasPagarComponent {
 	atualizarTabela() {
 		this.tabelaContasPagar.atualizarTabela();
 	}
-
 }
