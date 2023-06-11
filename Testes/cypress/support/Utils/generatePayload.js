@@ -20,14 +20,10 @@ export function payloadPostAgendamento(
 
 export function payloadPostServico() {
   const payload = {
-    nome: `Serviço ${uuid.v4().substring(24)}`,
-    descricao: `Descrição Serviço ${uuid.v4().substring(24)}`,
-    valor: 2000.0,
-    profissionais: [
-      {
-        id: 1,
-      },
-    ],
+    nome: "Corte de Cabelo e Escova",
+    descricao: "Corte de Cabelo Feminino e Escova",
+    precoCusto: 20.0,
+    precoVenda: 100,
   };
 
   return payload;
@@ -36,14 +32,21 @@ export function payloadPostServico() {
 export function payloadPutServico(servico_id) {
   const payload = {
     id: servico_id,
-    nome: `Serviço PUT ${uuid.v4().substring(24)}`,
-    descricao: `Descrição Serviço PUT ${uuid.v4().substring(24)}`,
-    valor: 200.0,
-    profissionais: [
-      {
-        id: 2,
-      },
-    ],
+    nome: "Corte de Cabelo e Escova",
+    descricao: "Corte de Cabelo Feminino com Escova",
+    precoCusto: 25.0,
+    precoVenda: 110,
+  };
+
+  return payload;
+}
+
+export function payloadPostServicoDel() {
+  const payload = {
+    nome: "Serviço para Exclusão",
+    descricao: "Serviço para Exclusao",
+    precoCusto: 20.0,
+    precoVenda: 100,
   };
 
   return payload;

@@ -51,7 +51,7 @@ Cypress.Commands.add("postAndGetIdCliente", (payload) => {
 });
 
 Cypress.Commands.add("PostAndGetIdProfissional", (payload) => {
-  cy.api({
+  cy.request({
     method: "POST",
     url: `${url}/funcionario`,
     body: payload,
@@ -62,23 +62,82 @@ Cypress.Commands.add("PostAndGetIdProfissional", (payload) => {
   });
 });
 
+Cypress.Commands.add("PostAndGetIdServico", (payload) => {
+  cy.request({
+    method: "POST",
+    url: `${url}/servico`,
+    body: payload,
+    failOnStatusCode: false,
+  }).then(function (response) {
+    expect(response.status).to.eql(201);
+    Cypress.env("servico_id", response.body.id);
+  });
+});
+
 Cypress.Commands.add("clearFuncionarios", () => {
-  cy.GetAllProfissionais().then((response) => {
+  cy.request({
+    method: "GET",
+    url: `${url}/funcionario`,
+    failOnStatusCode: false,
+  }).then(function (response) {
     response.body.content.forEach((data) => {
-      cy.DeleteProfissional(data.id).then((res) => {
+      cy.request({
+        method: "DELETE",
+        url: `${url}/funcionario`,
+        qs: {
+          id: data.id,
+        },
+        failOnStatusCode: false,
+      }).then((response) => {
         cy.log("Remove ID: " + data.id);
-        expect(res.status).to.eql(204);
+        expect(response.status).to.eql(204);
       });
     });
   });
 });
 
 Cypress.Commands.add("clearClientes", () => {
-  cy.GetAllClients().then((response) => {
+  cy.request({
+    method: "GET",
+    url: `${url}/cliente`,
+    failOnStatusCode: false,
+  }).then(function (response) {
     response.body.content.forEach((data) => {
-      cy.DeleteCliente(data.id).then((res) => {
+      cy.request({
+        method: "DELETE",
+        url: `${url}/cliente`,
+        qs: {
+          id: data.id,
+        },
+        failOnStatusCode: false,
+      }).then((response) => {
         cy.log("Remove ID: " + data.id);
-        expect(res.status).to.eql(204);
+        expect(response.status).to.eql(204);
+      });
+    });
+  });
+});
+
+Cypress.Commands.add("clearServicos", () => {
+  cy.request({
+    method: "GET",
+    url: `${url}/servico`,
+    qs: {
+      ordenarPo: "id",
+    },
+    failOnStatusCode: false,
+  }).then((response) => {
+    response.body.content.forEach((data) => {
+      cy.request({
+        method: "DELETE",
+        url: `${url}/servico`,
+        qs: {
+          id: data.id,
+        },
+        failOnStatusCode: false,
+      }).then((response) => {
+        cy.log("Remove ID: " + data.id);
+        expect(response.status).to.eql(204);
       });
     });
   });

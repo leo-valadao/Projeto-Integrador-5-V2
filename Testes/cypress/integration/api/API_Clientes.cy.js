@@ -54,7 +54,8 @@ describe("/api/v1/cliente", () => {
     it("Deve retornar todos os clientes cadastrados", () => {
       cy.GetAllClients().then((res) => {
         expect(res.status).to.eql(200);
-        expect(res.body.content).to.be.a("array");
+        expect(res.body.content).to.be.a("array")
+        expect(res.body.content).length(11)
       });
     });
 
