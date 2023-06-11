@@ -30,7 +30,7 @@
 					<small
 						*ngIf="validacaoCamposService.campoInvalido(contaPagarDataEmissao)"
 						style="color: red">
-						<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY</b>!
+						<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY HH:MM</b>!
 					</small>
 				</div>
 
@@ -52,7 +52,7 @@
 					<small
 						*ngIf="validacaoCamposService.campoInvalido(contaPagarDataVencimento)"
 						style="color: red">
-						<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY</b>!
+						<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY HH:MM</b>!
 					</small>
 				</div>
 	
@@ -80,7 +80,7 @@
 				<small
 					*ngIf="validacaoCamposService.campoInvalido(contaPagarDataPagamento)"
 					style="color: red">
-					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY</b>!
+					<b>Data Inválida!</b> A data deve ter o formato: <b>DD/MM/YYYY HH:MM</b>!
 				</small>
 			</div>
 
@@ -132,7 +132,7 @@
 					name="contaPagar.valor"
 					data-cy="contaPagar.valor"
 					[(ngModel)]="contaPagar.valor"
-					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.campoInvalido(contaPagarValorPago) }"
+					[ngClass]="{ 'ng-invalid ng-touched ng-dirty': validacaoCamposService.campoInvalido(contaPagarValor) }"
 					[max]="1000000"
 					[min]="0"
 					[step]="1"

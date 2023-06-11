@@ -81,13 +81,13 @@
 				</td>
 				<td
 					class="align-middle text-center"
-					[title]="item.valor">
-					{{ item.valor }}
+					[title]="item.valor | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' ">
+					{{ item.valor | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
 				</td>
 				<td
 					class="align-middle text-center"
-					[title]="item.valorPago">
-					{{ item.valorPago }}
+					[title]="item.valorPago | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' ">
+					{{ item.valorPago | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
 				</td>
 				<td
 					class="align-middle text-center"
