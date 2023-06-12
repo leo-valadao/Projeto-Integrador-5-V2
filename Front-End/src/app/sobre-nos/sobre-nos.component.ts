@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
 	templateUrl: './sobre-nos.component.html',
 	styles: [],
 })
-export class SobreNosComponent {}
+export class SobreNosComponent {
+	redirecionar(link: string) {
+		window.location.href = link;
+	}
+}
