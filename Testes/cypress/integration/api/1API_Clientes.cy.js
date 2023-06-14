@@ -8,6 +8,7 @@ import { validaCampos, cadastrarClientes } from "../../fixtures/cliente.json";
 
 describe("/api/v1/cliente", () => {
   before(() => {
+    cy.clearAgendamentos()
     cy.clearClientes();
   });
 
