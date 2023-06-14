@@ -28,6 +28,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { SplitterModule } from 'primeng/splitter';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CardModule } from 'primeng/card';
 
 // Aesthetics:
 import { Rotas } from './app.routes';
@@ -140,6 +141,7 @@ registerLocaleData(localePtBr, 'pt-BR');
 		SplitterModule,
 		InputNumberModule,
 		ConfirmDialogModule,
+		CardModule,
 		RouterModule.forRoot(Rotas, { onSameUrlNavigation: 'reload' }),
 	],
 	providers: [MessageService, ConfirmationService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
