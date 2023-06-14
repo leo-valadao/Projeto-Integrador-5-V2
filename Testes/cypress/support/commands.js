@@ -1,4 +1,6 @@
+import { obterNumeroAleatorio } from "./Utils/generateDate";
 export const url = Cypress.env("apiUrl");
+export const random = obterNumeroAleatorio();
 
 Cypress.Commands.add("GetPessoa", () => {
   cy.request({
@@ -74,6 +76,18 @@ Cypress.Commands.add("PostAndGetIdServico", (payload) => {
   });
 });
 
+Cypress.Commands.add("PostAndGetIdAgendamento", (payload) => {
+  cy.request({
+    method: "POST",
+    url: `${url}/agendamento`,
+    body: payload,
+    failOnStatusCode: false,
+  }).then((response) => {
+    expect(response.status).to.eql(201);
+    Cypress.env("agendamento_id", response.body.id);
+  });
+});
+
 Cypress.Commands.add("clearFuncionarios", () => {
   cy.request({
     method: "GET",
@@ -140,5 +154,63 @@ Cypress.Commands.add("clearServicos", () => {
         expect(response.status).to.eql(204);
       });
     });
+  });
+});
+
+Cypress.Commands.add("clearAgendamentos", () => {
+  cy.request({
+    method: "GET",
+    url: `${url}/agendamento`,
+    qs: {
+      ordenarPo: "id",
+    },
+    failOnStatusCode: false,
+  }).then((response) => {
+    response.body.content.forEach((data) => {
+      cy.request({
+        method: "DELETE",
+        url: `${url}/agendamento`,
+        qs: {
+          id: data.id,
+        },
+        failOnStatusCode: false,
+      }).then((response) => {
+        cy.log("Remove ID: " + data.id);
+        expect(response.status).to.eql(204);
+      });
+    });
+  });
+});
+
+Cypress.Commands.add("GetRandomClientId", () => {
+  cy.request({
+    method: "GET",
+    url: `${url}/cliente`,
+    failOnStatusCode: false,
+  }).then(function (response) {
+    Cypress.env("cliId_agendamento", response.body.content[random].id);
+  });
+});
+
+Cypress.Commands.add("GetRandomProfissionailId", () => {
+  cy.request({
+    method: "GET",
+    url: `${url}/funcionario`,
+    failOnStatusCode: false,
+  }).then(function (response) {
+    Cypress.env("profId_agendamento", response.body.content[random].id);
+  });
+});
+
+Cypress.Commands.add("GetRandomServicosId", () => {
+  cy.request({
+    method: "GET",
+    url: `${url}/servico`,
+    qs: {
+      ordenarPo: "id",
+    },
+    failOnStatusCode: false,
+  }).then(function (response) {
+    Cypress.env("servfId_agendamento", response.body.content[random].id);
   });
 });

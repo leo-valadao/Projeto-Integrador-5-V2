@@ -1,0 +1,64 @@
+{
+  "validaCampos": [
+    {
+      "campo": "ID do cliente deve ser informado",
+      "data": "13/05/2023",
+      "hora": "12:34:00",
+      "status": "ABERTO",
+      "observacao": "Nada a se observar",
+      "funcionario": { "id": 1 },
+      "servico": { "id": 2 },
+      "message": "O Cliente do Agendamento Deve Ser Informado!"
+    },
+    {
+      "campo": "ID do profissional deve ser informado",
+      "data": "13/05/2023",
+      "hora": "12:34:00",
+      "status": "ABERTO",
+      "observacao": "Nada a se observar",
+      "cliente": { "id": 1 },
+      "servico": { "id": 2 },
+      "message": "O Responsável do Agendamento Deve Ser Informado!"
+    },
+    {
+      "campo": "ID do serviço deve ser informado",
+      "data": "13/05/2023",
+      "hora": "12:34:00",
+      "status": "ABERTO",
+      "observacao": "Nada a se observar",
+      "cliente": { "id": 1 },
+      "funcionario": { "id": 1 },
+      "message": "O Serviço do Agendamento Deve Ser Informado!"
+    },
+    {
+      "campo": "Status do agendamento deve ser informado",
+      "data": "13/05/2023",
+      "hora": "12:34:00",
+      "observacao": "Nada a se observar",
+      "cliente": { "id": 1 },
+      "funcionario": { "id": 1 },
+      "servico": { "id": 2 },
+      "message": "O Status do Agendamento Deve Ser Informado!"
+    },
+    {
+      "campo": "Hora do agendamento deve ser informado",
+      "data": "13/05/2023",
+      "status": "ABERTO",
+      "observacao": "Nada a se observar",
+      "cliente": { "id": 1 },
+      "funcionario": { "id": 1 },
+      "servico": { "id": 2 },
+      "message": "A Hora do Agendamento Deve Ser Informada!"
+    },
+    {
+      "campo": "Data do agendamento deve ser informado",
+      "hora": "12:34:00",
+      "status": "ABERTO",
+      "observacao": "Nada a se observar",
+      "cliente": { "id": 1 },
+      "funcionario": { "id": 1 },
+      "servico": { "id": 2 },
+      "message": "A Data do Agendamento Deve Ser Informada!"
+    }
+  ]
+}
