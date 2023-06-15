@@ -1,18 +1,47 @@
 import uuid from "./uuid";
+import { obterDataAmanha, obterHorarioAleatorio } from "./generateDate";
 
-export function payloadPostAgendamento(
-  cliente_id,
-  profissional_id,
-  servico_id
-) {
-  const data = "29/04/2023";
+export const data = obterDataAmanha();
+export const horario = obterHorarioAleatorio();
+
+export function payloadAgendamento() {
   const payload = {
-    agendamentoDataHora: `${data} 15:50:12`,
-    duracao: "02:00:00",
-    finalizacaoAgendamento: `${data} 17:50:12`,
-    cliente: { id: cliente_id },
-    profissional: { id: profissional_id },
-    servico: { id: servico_id },
+    data: data,
+    hora: horario,
+    status: "ABERTO",
+    observacao: "Nenhum",
+    cliente: { id: Cypress.env("cliId_agendamento") },
+    funcionario: { id: Cypress.env("profId_agendamento") },
+    servico: { id: Cypress.env("servfId_agendamento") },
+  };
+
+  return payload;
+}
+
+export function payloadAgendamentoPut() {
+  const payload = {
+    id: Cypress.env("agendamento_id"),
+    data: data,
+    hora: horario,
+    status: "CONFIRMADO",
+    observacao: "Observação editada",
+    cliente: { id: Cypress.env("cliId_agendamento") },
+    funcionario: { id: Cypress.env("profId_agendamento") },
+    servico: { id: Cypress.env("servfId_agendamento") },
+  };
+
+  return payload;
+}
+
+export function payloadPostAgendamento() {
+  const payload = {
+    data: data,
+    hora: horario,
+    status: "ABERTO",
+    observacao: "Nenhuma",
+    cliente: { id: Cypress.env("cliId_agendamento") },
+    funcionario: { id: Cypress.env("profId_agendamento") },
+    servico: { id: Cypress.env("servfId_agendamento") },
   };
 
   return payload;
