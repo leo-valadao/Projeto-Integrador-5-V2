@@ -64,9 +64,10 @@ class BeautySync {
     cy.get('[data-cy="agendamento.funcionario"]').click()
     cy.get('li[aria-label="Funcionário Teste"]').click()
     cy.get('[data-cy="agendamento.observacao"]').click().type('Teste Automação')
+    cy.wait(3000)
     cy.contains('button', 'Salvar Agendamento').click()
     cy.contains("div[role='alert']", "Agendamento Inserido!").should("be.visible");
-    cy.wait(3000)
+    cy.wait(5000)
 
     cy.step('Excluindo Agendamento')
     cy.get('[data-cy="agendamento-excluir"]').first().click()
@@ -79,6 +80,7 @@ class BeautySync {
     cy.url().should('contain', '/funcionarios')
     cy.wait(3000)
     cy.get('[data-cy="funcionario-excluir"]').first().click()
+    cy.wait(3000)
     cy.contains('button', 'Excluir').click()
     cy.contains("div[role='alert']", "Funcionário excluído!").should("be.visible");
     cy.wait(3000)
@@ -88,12 +90,13 @@ class BeautySync {
     cy.url().should("contain", "/clientes");
     cy.wait(3000);
     cy.get('[data-cy="cliente-excluir"]').first().click()
+    cy.wait(3000)
     cy.contains('button', 'Excluir').click()
     cy.contains("div[role='alert']", "Clientes excluído!").should("be.visible");
     cy.wait(3000)
     cy.get('li[routerlink="/home"]').click()
     cy.contains("span", "BeautySync,").should("be.visible");
-    cy.wait(3000)
+    cy.wait(10000)
 
   }
 }
