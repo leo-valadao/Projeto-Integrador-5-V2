@@ -1,11 +1,11 @@
-
 import "./commands";
 import "./ApiCommands/agendamentoCommands";
 import "./ApiCommands/clientesCommands";
 import "./ApiCommands/profissionaisCommands";
 import "./ApiCommands/servicosCommands";
-import '@bahmutov/cy-api'
-
+import "@bahmutov/cy-api";
+import "cypress-plugin-steps";
+require("cypress-xpath");
 // before(() => {
 //   cy.GetPessoa().then((res) => {
 //     expect(res.status).to.eq(200);
