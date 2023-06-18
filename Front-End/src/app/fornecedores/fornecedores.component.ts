@@ -4,21 +4,21 @@ import { TabelaFornecedoresComponent } from './tabela-fornecedores/tabela-fornec
 import { FormularioFornecedoresComponent } from './formulario-fornecedores/formulario-fornecedores.component';
 
 @Component({
-  selector: 'app-fornecedores',
-  templateUrl: './fornecedores.component.html',
-  styles: [],
+	selector: 'app-fornecedores',
+	templateUrl: './fornecedores.component.html',
+	styles: [],
 })
 export class FornecedoresComponent {
-  @ViewChild(FormularioFornecedoresComponent) formularioFornecedores!: FormularioFornecedoresComponent;
+	@ViewChild(FormularioFornecedoresComponent) formularioFornecedores!: FormularioFornecedoresComponent;
 	@ViewChild(TabelaFornecedoresComponent) tabelaFornecedores!: TabelaFornecedoresComponent;
 
 	exibirFormularioFornecedores(fornecedor: Fornecedor) {
 		this.formularioFornecedores.fornecedor = JSON.parse(JSON.stringify(fornecedor));
 		this.formularioFornecedores.exibirFormulario = true;
+		this.formularioFornecedores.modificarMascaraCpfOuCnpj();
 	}
 
 	atualizarTabela() {
 		this.tabelaFornecedores.atualizarTabela();
 	}
-
 }

@@ -19,7 +19,7 @@ import com.senac.aesthetics.domains.enums.TipoMensagemEnum;
 import com.senac.aesthetics.errors.ExcecaoRegraNegocio;
 import com.senac.aesthetics.errors.Erros;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
-import com.senac.aesthetics.interfaces.InterfaceVerificarPessoaJaCadastrada;
+import com.senac.aesthetics.interfaces.InterfaceServiceVerificarPessoaJaCadastrada;
 import com.senac.aesthetics.repositories.ClienteRepository;
 
 @Service
@@ -30,7 +30,7 @@ public class ClienteService implements InterfaceGenericaResource<Cliente> {
     private ClienteRepository clienteRepository;
 
     @Autowired
-    private InterfaceVerificarPessoaJaCadastrada pessoaService;
+    private InterfaceServiceVerificarPessoaJaCadastrada pessoaService;
 
     // Métodos:
     public Page<Cliente> obterTodosComPaginacao(Integer numeroPagina, Integer quantidadePorPagina,

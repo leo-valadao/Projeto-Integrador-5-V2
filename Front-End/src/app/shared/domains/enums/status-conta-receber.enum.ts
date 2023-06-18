@@ -1,5 +1,5 @@
 export enum StatusContaReceberEnum {
-	ABERTO,
-	CANCELADO,
-	RECEBIDO,
+	ABERTO = 'ABERTO',
+	CANCELADO = 'CANCELADO',
+	RECEBIDO = 'RECEBIDO',
 }

@@ -15,6 +15,7 @@ export class ClientesComponent {
 	exibirFormularioCliente(cliente: Cliente) {
 		this.formularioClientes.cliente = JSON.parse(JSON.stringify(cliente));
 		this.formularioClientes.exibirFormulario = true;
+		this.formularioClientes.modificarMascaraCpfOuCnpj();
 	}
 
 	atualizarTabela() {

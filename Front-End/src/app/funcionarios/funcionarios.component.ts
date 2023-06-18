@@ -4,18 +4,18 @@ import { FormularioFuncionariosComponent } from './formulario-funcionarios/formu
 import { Funcionario } from '../shared/domains/funcionario.model';
 
 @Component({
-  selector: 'app-funcionarios',
-  templateUrl: './funcionarios.component.html',
-  styles: [],
+	selector: 'app-funcionarios',
+	templateUrl: './funcionarios.component.html',
+	styles: [],
 })
 export class FuncionariosComponent {
-
-  @ViewChild(FormularioFuncionariosComponent) formularioFuncionarios!: FormularioFuncionariosComponent;
+	@ViewChild(FormularioFuncionariosComponent) formularioFuncionarios!: FormularioFuncionariosComponent;
 	@ViewChild(TabelaFuncionariosComponent) tabelaFuncionarios!: TabelaFuncionariosComponent;
 
 	exibirFormularioFuncionario(funcionario: Funcionario) {
 		this.formularioFuncionarios.funcionario = JSON.parse(JSON.stringify(funcionario));
 		this.formularioFuncionarios.exibirFormulario = true;
+		this.formularioFuncionarios.modificarMascaraCpfOuCnpj();
 	}
 
 	atualizarTabela() {

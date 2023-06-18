@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.senac.aesthetics.domains.Agendamento;
 import com.senac.aesthetics.interfaces.InterfaceGenericaCliente;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
+import com.senac.aesthetics.interfaces.InterfaceClienteObterAgendamentosSemOrdemServico;
 import com.senac.aesthetics.interfaces.InterfaceResourceObterAgendamentosSemOrdemServico;
-import com.senac.aesthetics.interfaces.InterfaceServiceObterAgendamentosSemOrdemServico;
 
 import jakarta.validation.Valid;
 
@@ -27,14 +27,14 @@ import jakarta.validation.Valid;
 @CrossOrigin
 @RequestMapping("api/v1/agendamento")
 public class AgendamentoResource
-        implements InterfaceGenericaCliente<Agendamento>, InterfaceResourceObterAgendamentosSemOrdemServico {
+        implements InterfaceGenericaCliente<Agendamento>, InterfaceClienteObterAgendamentosSemOrdemServico {
 
     // Obejtos:
     @Autowired
     private InterfaceGenericaResource<Agendamento> agendamentoService;
 
     @Autowired
-    private InterfaceServiceObterAgendamentosSemOrdemServico agendamentoService2;
+    private InterfaceResourceObterAgendamentosSemOrdemServico agendamentoService2;
 
     // API's:
     @GetMapping

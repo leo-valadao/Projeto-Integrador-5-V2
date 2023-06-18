@@ -27,8 +27,8 @@ export class FormularioClientesComponent implements OnInit {
 	constructor(private clienteService: ClienteService, private mensagensGenericasService: MensagensGenericasService, public validacaoCamposService: ValidacaoCamposService) {}
 
 	ngOnInit(): void {
-		this.estadosBrasileiro = Object.keys(EstadosBrasileirosEnum).map((value) => value);
-		this.tiposPessoas = Object.keys(TipoPessoaEnum).map((value) => value);
+		this.estadosBrasileiro = Object.values(EstadosBrasileirosEnum).map((value) => value);
+		this.tiposPessoas = Object.values(TipoPessoaEnum).map((value) => value);
 	}
 
 	salvarCliente() {
@@ -71,7 +71,7 @@ export class FormularioClientesComponent implements OnInit {
 	}
 
 	modificarMascaraCpfOuCnpj() {
-		if (this.cliente.pessoa.tipoPessoa == TipoPessoaEnum.PESSOA_FISICA) {
+		if (this.cliente.pessoa.tipoPessoa == TipoPessoaEnum.PESSOA_FISICA || !this.cliente.pessoa.tipoPessoa) {
 			this.mascaraCpfCnpj = '999.999.999-99';
 		} else {
 			this.mascaraCpfCnpj = '99.999.999/9999-99';

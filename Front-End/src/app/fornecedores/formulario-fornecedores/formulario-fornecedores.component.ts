@@ -70,7 +70,7 @@ export class FormularioFornecedoresComponent {
 	}
 
 	modificarMascaraCpfOuCnpj() {
-		if (this.fornecedor.pessoa.tipoPessoa == TipoPessoaEnum.PESSOA_FISICA) {
+		if (this.fornecedor.pessoa.tipoPessoa == TipoPessoaEnum.PESSOA_FISICA || !this.fornecedor.pessoa.tipoPessoa) {
 			this.mascaraCpfCnpj = '999.999.999-99';
 		} else {
 			this.mascaraCpfCnpj = '99.999.999/9999-99';

@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
 
 import com.senac.aesthetics.domains.Agendamento;
 import com.senac.aesthetics.interfaces.InterfaceGenericaResource;
-import com.senac.aesthetics.interfaces.InterfaceServiceObterAgendamentosSemOrdemServico;
+import com.senac.aesthetics.interfaces.InterfaceResourceObterAgendamentosSemOrdemServico;
 import com.senac.aesthetics.repositories.AgendamentoRepository;
 
 @Service
 public class AgendamentoService
-        implements InterfaceGenericaResource<Agendamento>, InterfaceServiceObterAgendamentosSemOrdemServico {
+        implements InterfaceGenericaResource<Agendamento>, InterfaceResourceObterAgendamentosSemOrdemServico {
 
     // Objetos:
     @Autowired
